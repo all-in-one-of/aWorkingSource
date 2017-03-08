@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Publish Edit Info" command="import plt.edit_publish.publish_edit_info as popp; popp.show_dialog()" />
+</root>

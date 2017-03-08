@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Tessa Pro" command="import common.katanaUtils as cku;win=cku.tessa_pro()" />
+    <cmd_menu label="check error" command="import common.getErrorInKatana as gtero;reload(gtero);gtero.runGetError()" />
+    <cmd_menu label="auto check" command="import common.autoPrune.checkErrorUI as erroui;
+    	reload(erroui);w=erroui.checkErrorWin({});w.show();print 'open ui'" />    
+</root>

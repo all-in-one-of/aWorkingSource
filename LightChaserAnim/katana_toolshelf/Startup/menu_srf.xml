@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Project Loader" command="import srf.project_loader.project_loader as project_loader;project_loader.showWindow()" />
+    <cmd_menu label="Srf Finalize" command="import srf.srfFinalize.srfFinalize as srfFinalize;srfFinalize.showWindow()" />
+    <cmd_menu label="Export Renders" command="import srf.export_renders.export_renders as export_renders;window = export_renders.showWindow()" />
+    <cmd_menu label="standard to alsurface" command="import srf.standard_to_alsurface.standard_to_alsurface as stoal;window = stoal.main()" />
+    <cmd_menu label="MaterialAssign_Stack Replace" command="import srf.MaterialAssign_replace.replace_path as replace_path;window=replace_path.showWindow()" />
+    <cmd_menu label="images Path Replace" command="import srf.imange_replace_path.txReplace as txReplace;window=txReplace.showWindow()" />
+    <cmd_menu label="Save to mtl_lib" command="import srf.save_to_mtl_lib.save_to_mtl_lib as save_to_mtl_lib;window = save_to_mtl_lib.showWindow()" />
+    <cmd_menu label="mtl_lib Browser" command="import srf.mtl_lib_katana.mtl_lib_katana as mtl_lib_katana;window = mtl_lib_katana.showWindow()" />
+    <cmd_menu label="Export mtl to MtoA" command="import srf.srf_ktoa_to_mtoa.srf_ktoa_to_mtoa as srf_ktoa_to_mtoa;window = srf_ktoa_to_mtoa.showWindow()" />
+    <cmd_menu label='import mtl from Mtoa' command='import srf.srf_ktoa_to_mtoa.ktoa_import as ktoa_import;ktoa_import.showWindow()' allowOptionBoxes='true'/>
+    <cmd_menu label="Expose Material Params" command="import common.katanaUtils as cku;cku.expose_selected_networkmat_param()" />
+    <!-- <cmd_menu label="Pass Info Editor" command="import SrfPassInfo.KatanaLoadWind as KatanaLoadWind; reload(KatanaLoadWind);minwin=KatanaLoadWind.loadUI();minwin.show()" /> -->
+    <cmd_menu label="Random Collections" command="import srf.random_collections.random_collections as random_collections;window = random_collections.showWindow()" />
+    <cmd_menu label="CEL Replace" command="import srf.cel_replace.cel_replace as cel_replace;window = cel_replace.showWindow()" />
+    <cmd_menu label="Abc To Xml" command="import srf.abc_to_xml.abc_to_xml as saa;saa.AbcToXml().show()" />
+    <cmd_menu label="Srf PrePa Check" command="import common.srf_prepublish_check as cspc;cspc.SrfPrePublishCheck().show()" />
+    <cmd_menu label="LookBake From Sel" command="import common.katanaUtils as cku;cku.make_lookbake_from_sel()" />
+    <cmd_menu label="Muster Submit" command="import common.katanaUtils as cku;a=cku.srf_turntable_muster_submit_render()" />
+    <cmd_menu label="Rename Mtl Node" command="import macro.srfMtlMerge as msm;reload(msm);msm.SrfNodesNetwork.rename_mtl_node()" />
+    <cmd_menu label="Add SrfCC To Mtl" command="import common.add_srf_cc as casc; reload(casc); casc.add_srf_cc();" />
+    <cmd_menu label="Remove SrfCC In Mtl" command="import common.add_srf_cc as casc; reload(casc); casc.remove_srf_cc();" />
+    <cmd_menu icon="/mnt/utility/toolset/tools/srf/selSame/selectSamePolygon.png" label="select Same one" command="import srf.selSame.selSameUI as ss;ui=ss.selectSameOneUI();ui.show()"  />
+    <cmd_menu icon="/mnt/utility/toolset/tools/srf/replace_cel_str/replaceStr.png" label="Replace Cel" command="import srf.replace_cel_str.replaceCel as rec;ui=rec.changeCelPath();ui.show()"  />  
+    
+    <cmd_menu label="Add SM Params" command="import macro.srfMtlMerge as ms; ms.SrfNodesNetwork.add_mtl_sm_param()"  />  
+
+</root>

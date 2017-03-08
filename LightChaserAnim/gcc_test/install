@@ -1,0 +1,3 @@
+#mv main ./build
+
+cp -i main ./build

@@ -1,0 +1,601 @@
+SPDL
+Version = "2.0.0.0";
+Reference = "{8cc67320-5eb2-430a-9bed-872d5cc19a0f}";
+PropertySet "alLayer_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{e40d4b6a-7503-4574-a646-c9f3e203543a}";
+		Type = color;
+	}
+	Parameter "layer1" input
+	{
+		GUID = "{6320e266-f170-41c7-8ced-ad392b6e592b}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer2" input
+	{
+		GUID = "{64288114-99e7-48f6-9871-9166be10a99f}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "mix" input
+	{
+		GUID = "{bc84d862-7213-4858-a8f5-e7e24ff97652}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "debug" input
+	{
+		GUID = "{bc6ed917-04d8-4fe4-8b86-cdc8149d9537}";
+		Type = string;
+		Texturable = off;
+		Value = "off";
+	}
+	Parameter "standardCompatibleAOVs" input
+	{
+		GUID = "{6389262d-d664-4549-a1d7-f4a255d993ab}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+	Parameter "aov_diffuse_color" input
+	{
+		GUID = "{ea89be3a-4c1d-435c-a167-261c62728d99}";
+		Type = string;
+		Value = "Arnold_Diffuse_Color";
+	}
+	Parameter "aov_direct_diffuse" input
+	{
+		GUID = "{4786555a-8700-488e-aa41-483c7d75c0ce}";
+		Type = string;
+		Value = "Arnold_Direct_Diffuse";
+	}
+	Parameter "aov_direct_diffuse_raw" input
+	{
+		GUID = "{9cdcded7-de95-418b-98ef-e85681fa0d17}";
+		Type = string;
+		Value = "Arnold_Direct_Diffuse_Raw";
+	}
+	Parameter "aov_indirect_diffuse" input
+	{
+		GUID = "{bf935f5c-07d1-4e77-8e0e-8a8aea1e7b2b}";
+		Type = string;
+		Value = "Arnold_Indirect_Diffuse";
+	}
+	Parameter "aov_indirect_diffuse_raw" input
+	{
+		GUID = "{7c4d3a59-513d-4b81-9f1e-1cc13028037c}";
+		Type = string;
+		Value = "Arnold_Indirect_Diffuse_Raw";
+	}
+	Parameter "aov_direct_backlight" input
+	{
+		GUID = "{65a17bf2-091c-4b9e-b0fd-6b2da59cdf07}";
+		Type = string;
+		Value = "Arnold_Direct_Backlight";
+	}
+	Parameter "aov_indirect_backlight" input
+	{
+		GUID = "{d0b74e99-3c34-4815-99f9-2d9f809c8e7d}";
+		Type = string;
+		Value = "Arnold_Indirect_Backlight";
+	}
+	Parameter "aov_direct_specular" input
+	{
+		GUID = "{cb02f77c-a179-464b-83ca-d26e23901d19}";
+		Type = string;
+		Value = "Arnold_Direct_Specular";
+	}
+	Parameter "aov_indirect_specular" input
+	{
+		GUID = "{a996bcef-374b-447e-a5bd-38fac8271b82}";
+		Type = string;
+		Value = "Arnold_Indirect_Specular";
+	}
+	Parameter "aov_direct_specular_2" input
+	{
+		GUID = "{29cb7cfd-bb96-4ccb-8f74-14eae207cb26}";
+		Type = string;
+		Value = "Arnold_Direct_Specular_2";
+	}
+	Parameter "aov_indirect_specular_2" input
+	{
+		GUID = "{9e512ed0-0b85-46a7-b7c4-788d18d4386c}";
+		Type = string;
+		Value = "Arnold_Indirect_Specular_2";
+	}
+	Parameter "aov_single_scatter" input
+	{
+		GUID = "{5c1f4fa7-36ea-467e-86f0-651cf8caf56f}";
+		Type = string;
+		Value = "Arnold_Single_Scatter";
+	}
+	Parameter "aov_sss" input
+	{
+		GUID = "{d9d9d993-99c7-4bd7-b3b9-7d8dda36e29d}";
+		Type = string;
+		Value = "Arnold_Sss";
+	}
+	Parameter "aov_refraction" input
+	{
+		GUID = "{69f2d26d-91f1-40db-b8e8-66dd5ea4d36a}";
+		Type = string;
+		Value = "Arnold_Refraction";
+	}
+	Parameter "aov_emission" input
+	{
+		GUID = "{1662e8fc-200d-4bfa-a814-9d894a886c3e}";
+		Type = string;
+		Value = "Arnold_Emission";
+	}
+	Parameter "aov_uv" input
+	{
+		GUID = "{6d24a46a-25fa-438b-bddb-0fd311f98ede}";
+		Type = string;
+		Value = "Arnold_Uv";
+	}
+	Parameter "aov_depth" input
+	{
+		GUID = "{b04e564b-9356-41cd-b594-2787eb3a9591}";
+		Type = string;
+		Value = "Arnold_Depth";
+	}
+	Parameter "aov_light_group_1" input
+	{
+		GUID = "{a6c0fa6d-9b78-4a87-a6f4-2708ccd57bff}";
+		Type = string;
+		Value = "Arnold_Light_Group_1";
+	}
+	Parameter "aov_light_group_2" input
+	{
+		GUID = "{38bd340b-ca19-4c75-84cc-8cdf5bd82950}";
+		Type = string;
+		Value = "Arnold_Light_Group_2";
+	}
+	Parameter "aov_light_group_3" input
+	{
+		GUID = "{fadd3d17-9f98-4986-b1e2-6ae07ec54a5f}";
+		Type = string;
+		Value = "Arnold_Light_Group_3";
+	}
+	Parameter "aov_light_group_4" input
+	{
+		GUID = "{353404df-bd67-4b56-8bbe-60117e589692}";
+		Type = string;
+		Value = "Arnold_Light_Group_4";
+	}
+	Parameter "aov_light_group_5" input
+	{
+		GUID = "{41ce0eb1-339c-4361-bdb9-51be1a2e0de6}";
+		Type = string;
+		Value = "Arnold_Light_Group_5";
+	}
+	Parameter "aov_light_group_6" input
+	{
+		GUID = "{4633cad0-953e-44eb-91ca-be81125b2ae0}";
+		Type = string;
+		Value = "Arnold_Light_Group_6";
+	}
+	Parameter "aov_light_group_7" input
+	{
+		GUID = "{3805cdf3-3544-4116-81e1-186440cfa7d6}";
+		Type = string;
+		Value = "Arnold_Light_Group_7";
+	}
+	Parameter "aov_light_group_8" input
+	{
+		GUID = "{09d399ef-e2e4-4a97-8ddf-0da54fafea05}";
+		Type = string;
+		Value = "Arnold_Light_Group_8";
+	}
+	Parameter "aov_id_1" input
+	{
+		GUID = "{f57bb6d4-a0a6-4c55-a44d-f34de731f475}";
+		Type = string;
+		Value = "Arnold_Id_1";
+	}
+	Parameter "aov_id_2" input
+	{
+		GUID = "{49676a81-f55b-4932-a290-68fee009ec04}";
+		Type = string;
+		Value = "Arnold_Id_2";
+	}
+	Parameter "aov_id_3" input
+	{
+		GUID = "{622ace30-f816-420a-927f-039098aa60b9}";
+		Type = string;
+		Value = "Arnold_Id_3";
+	}
+	Parameter "aov_id_4" input
+	{
+		GUID = "{355a5b7b-6be2-4c69-920f-0b13b9040b5f}";
+		Type = string;
+		Value = "Arnold_Id_4";
+	}
+	Parameter "aov_id_5" input
+	{
+		GUID = "{35c475d9-288e-47b9-b027-6de80c68887d}";
+		Type = string;
+		Value = "Arnold_Id_5";
+	}
+	Parameter "aov_id_6" input
+	{
+		GUID = "{79edfc60-7973-4665-8b72-a0132354076c}";
+		Type = string;
+		Value = "Arnold_Id_6";
+	}
+	Parameter "aov_id_7" input
+	{
+		GUID = "{2bdc9d2e-5a68-469e-883c-3aaa66421cc6}";
+		Type = string;
+		Value = "Arnold_Id_7";
+	}
+	Parameter "aov_id_8" input
+	{
+		GUID = "{35559b45-1806-4afb-9e4c-1156a995e11d}";
+		Type = string;
+		Value = "Arnold_Id_8";
+	}
+	Parameter "aov_crypto_asset" input
+	{
+		GUID = "{9701d41b-091d-4bb7-ad91-33cd8ed9adb4}";
+		Type = string;
+		Value = "Arnold_Crypto_Asset";
+	}
+	Parameter "aov_crypto_object" input
+	{
+		GUID = "{d8a08d51-6b5b-45e7-b6ec-cb5f10ea8952}";
+		Type = string;
+		Value = "Arnold_Crypto_Object";
+	}
+	Parameter "aov_crypto_material" input
+	{
+		GUID = "{cab6c972-6a4a-4a3f-b0c8-f2f5f146dcd6}";
+		Type = string;
+		Value = "Arnold_Crypto_Material";
+	}
+	Parameter "aov_shadow_group_1" input
+	{
+		GUID = "{e9ad60c3-21fb-4c11-95fc-a02dd4e4b5b7}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_1";
+	}
+	Parameter "aov_shadow_group_2" input
+	{
+		GUID = "{0c8b45ef-05df-4305-9a31-44517ea8c441}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_2";
+	}
+	Parameter "aov_shadow_group_3" input
+	{
+		GUID = "{1749e699-e3ea-4a12-8653-aa27323753bd}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_3";
+	}
+	Parameter "aov_shadow_group_4" input
+	{
+		GUID = "{33ece57e-b9d6-4110-bb32-32869b634449}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_4";
+	}
+	Parameter "aov_shadow_group_5" input
+	{
+		GUID = "{765de76d-a014-4661-b534-16ce1ed143f0}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_5";
+	}
+	Parameter "aov_shadow_group_6" input
+	{
+		GUID = "{5a4e16d9-b1c6-4cba-9657-853a2011fcf5}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_6";
+	}
+	Parameter "aov_shadow_group_7" input
+	{
+		GUID = "{e6649a12-b695-4e80-b1f5-acf0c8478be0}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_7";
+	}
+	Parameter "aov_shadow_group_8" input
+	{
+		GUID = "{1fbe0ec2-1248-428d-a910-d8abb1a1da87}";
+		Type = string;
+		Value = "Arnold_Shadow_Group_8";
+	}
+}
+MetaShader "alLayer_meta"
+{
+	Name = "ALS_Layer";
+	Type = material;
+	Renderer "mental ray"
+	{
+		Name = "ALS_Layer";
+		Filename = "alLayer";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+Defaults
+{
+	layer1
+	{
+		Name = "Layer 1";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer2
+	{
+		Name = "Layer 2";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	mix
+	{
+		Name = "Mix";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	debug
+	{
+		Name = "Debug";
+		UIType = "Combo";
+		Items
+		{
+			"off" = "off";
+			"layer1" = "layer1";
+			"layer2" = "layer2";
+			"mixer" = "mixer";
+		}
+	}
+	standardCompatibleAOVs
+	{
+		Name = "Write standard AOVs only";
+	}
+	aov_diffuse_color
+	{
+		Name = "aov_diffuse_color";
+	}
+	aov_direct_diffuse
+	{
+		Name = "aov_direct_diffuse";
+	}
+	aov_direct_diffuse_raw
+	{
+		Name = "aov_direct_diffuse_raw";
+	}
+	aov_indirect_diffuse
+	{
+		Name = "aov_indirect_diffuse";
+	}
+	aov_indirect_diffuse_raw
+	{
+		Name = "aov_indirect_diffuse_raw";
+	}
+	aov_direct_backlight
+	{
+		Name = "aov_direct_backlight";
+	}
+	aov_indirect_backlight
+	{
+		Name = "aov_indirect_backlight";
+	}
+	aov_direct_specular
+	{
+		Name = "aov_direct_specular";
+	}
+	aov_indirect_specular
+	{
+		Name = "aov_indirect_specular";
+	}
+	aov_direct_specular_2
+	{
+		Name = "aov_direct_specular_2";
+	}
+	aov_indirect_specular_2
+	{
+		Name = "aov_indirect_specular_2";
+	}
+	aov_single_scatter
+	{
+		Name = "aov_single_scatter";
+	}
+	aov_sss
+	{
+		Name = "aov_sss";
+	}
+	aov_refraction
+	{
+		Name = "aov_refraction";
+	}
+	aov_emission
+	{
+		Name = "aov_emission";
+	}
+	aov_uv
+	{
+		Name = "aov_uv";
+	}
+	aov_depth
+	{
+		Name = "aov_depth";
+	}
+	aov_light_group_1
+	{
+		Name = "aov_light_group_1";
+	}
+	aov_light_group_2
+	{
+		Name = "aov_light_group_2";
+	}
+	aov_light_group_3
+	{
+		Name = "aov_light_group_3";
+	}
+	aov_light_group_4
+	{
+		Name = "aov_light_group_4";
+	}
+	aov_light_group_5
+	{
+		Name = "aov_light_group_5";
+	}
+	aov_light_group_6
+	{
+		Name = "aov_light_group_6";
+	}
+	aov_light_group_7
+	{
+		Name = "aov_light_group_7";
+	}
+	aov_light_group_8
+	{
+		Name = "aov_light_group_8";
+	}
+	aov_id_1
+	{
+		Name = "aov_id_1";
+	}
+	aov_id_2
+	{
+		Name = "aov_id_2";
+	}
+	aov_id_3
+	{
+		Name = "aov_id_3";
+	}
+	aov_id_4
+	{
+		Name = "aov_id_4";
+	}
+	aov_id_5
+	{
+		Name = "aov_id_5";
+	}
+	aov_id_6
+	{
+		Name = "aov_id_6";
+	}
+	aov_id_7
+	{
+		Name = "aov_id_7";
+	}
+	aov_id_8
+	{
+		Name = "aov_id_8";
+	}
+	aov_crypto_asset
+	{
+		Name = "aov_crypto_asset";
+	}
+	aov_crypto_object
+	{
+		Name = "aov_crypto_object";
+	}
+	aov_crypto_material
+	{
+		Name = "aov_crypto_material";
+	}
+	aov_shadow_group_1
+	{
+		Name = "aov_shadow_group_1";
+	}
+	aov_shadow_group_2
+	{
+		Name = "aov_shadow_group_2";
+	}
+	aov_shadow_group_3
+	{
+		Name = "aov_shadow_group_3";
+	}
+	aov_shadow_group_4
+	{
+		Name = "aov_shadow_group_4";
+	}
+	aov_shadow_group_5
+	{
+		Name = "aov_shadow_group_5";
+	}
+	aov_shadow_group_6
+	{
+		Name = "aov_shadow_group_6";
+	}
+	aov_shadow_group_7
+	{
+		Name = "aov_shadow_group_7";
+	}
+	aov_shadow_group_8
+	{
+		Name = "aov_shadow_group_8";
+	}
+}
+Layout "Default"
+{
+	layer1;
+	layer2;
+	mix;
+	debug;
+	Tab "AOVs"
+	{
+		standardCompatibleAOVs;
+		aov_diffuse_color;
+		aov_direct_diffuse;
+		aov_direct_diffuse_raw;
+		aov_indirect_diffuse;
+		aov_indirect_diffuse_raw;
+		aov_direct_backlight;
+		aov_indirect_backlight;
+		aov_direct_specular;
+		aov_indirect_specular;
+		aov_direct_specular_2;
+		aov_indirect_specular_2;
+		aov_single_scatter;
+		aov_sss;
+		aov_refraction;
+		aov_emission;
+		aov_uv;
+		aov_depth;
+		aov_light_group_1;
+		aov_light_group_2;
+		aov_light_group_3;
+		aov_light_group_4;
+		aov_light_group_5;
+		aov_light_group_6;
+		aov_light_group_7;
+		aov_light_group_8;
+		aov_id_1;
+		aov_id_2;
+		aov_id_3;
+		aov_id_4;
+		aov_id_5;
+		aov_id_6;
+		aov_id_7;
+		aov_id_8;
+		aov_crypto_asset;
+		aov_crypto_object;
+		aov_crypto_material;
+		aov_shadow_group_1;
+		aov_shadow_group_2;
+		aov_shadow_group_3;
+		aov_shadow_group_4;
+		aov_shadow_group_5;
+		aov_shadow_group_6;
+		aov_shadow_group_7;
+		aov_shadow_group_8;
+	}
+}
+Layout "RenderTree"
+{
+	layer1;
+	layer2;
+	mix;
+}
+Plugin = Shader
+{
+	Filename = "alLayer";
+}

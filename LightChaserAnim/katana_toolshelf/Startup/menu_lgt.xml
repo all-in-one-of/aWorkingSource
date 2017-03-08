@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Shot Maker" command="import common.katanaUtils as cku;cku.create_shot_maker_node()" />
+    <cmd_menu label="Shot Simplify" command="import common.lgtsimplify_set as lss;lss.runsetSimplifyNode()" />
+    <cmd_menu label="Scenegraph Report" command="import common.katana_analyzer as cka;reload(cka);cka.send_report()" />
+    <cmd_menu label="Replace Node" command="import common.katanaUtils as cku;cku.replace_selected_with_file()" />
+    <cmd_menu label="Update All LookDev" command="import macro.lgtShotMaker as mlsm;mlsm.update_all_lookdev()" />
+    <cmd_menu label="Gegi" command="import gegi_katana.gegi_katana as gegi; reload(gegi); gegi.showWindow()" />
+    <cmd_menu label="Lod Tuner" command="import gene.lodtuner.window as lod;reload(lod);lod.showWindow()" />
+    <cmd_menu label="Local Batch Render" command="import common.local_render_win as clw;reload(clw);clw.show_window()" />
+    <cmd_menu label="Shot Path" command="import shot_path.shot_path_open as sspp;reload(sspp);sspp.show_window()" />
+    <cmd_menu label="Set OK" command="import common.set_ok as setok;reload(setok);setok.set_ok()" />
+    <cmd_menu label="Override All Look" command="import macro.lookFileXmlIn as mlfl;mlfl.set_all_override()" />
+    <cmd_menu label="Check Cache Invalid" command="import common.katanaUtils as cku;cku.scan_katana_cache_path()" />
+    <cmd_menu label="Muster Submit" command="import common.katanaUtils as cku;a=cku.muster_submit_render()" />
+    <cmd_menu label="Get Locator" command="import common.getLocator as loc;a=loc.getLocator()" />
+    <cmd_menu label="Rotate Light" command="import manipulator.ui as mu;reload(mu);global w;w = mu.WindowDelegete();w.show()" icon="/mnt/utility/toolset/applications/katana_v2/Scripts/manipulator/img/compass.png"/>
+    <cmd_menu label="LiveGroup Manager" command="import LiveGroupManager.LiveGroupManagerBase as lgmb;reload(lgmb);lgmb.main();" />
+</root>

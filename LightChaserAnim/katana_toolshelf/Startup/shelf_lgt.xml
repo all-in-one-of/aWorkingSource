@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <sub_tool label="download" icon="downloadcloud.png" command="print 'Hello Download Button!'"/>
+  <sub_tool label="build" icon="wrench.png" command="import common.katanaUtils as cku;cku.create_shot_maker_node()"/>
+  <sub_tool label="tool_box" icon="colorwheel.png" command="print 'Hello ToolBox Button!'"/>
+  <sub_tool label="rocket" icon="rocket.png" command="import common.katanaUtils as cku;a=cku.muster_submit_render()"/>
+  <spacing value="5"/>
+  <sub_tool label="edit" icon="compose.png" command="print 'Hello Edit Button!'"/>
+</root>

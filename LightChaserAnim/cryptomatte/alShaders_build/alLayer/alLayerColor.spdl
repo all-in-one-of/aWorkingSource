@@ -1,0 +1,850 @@
+SPDL
+Version = "2.0.0.0";
+Reference = "{582560b8-e5e5-4b37-bf34-cd05aa0fa384}";
+PropertySet "alLayerColor_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{35905322-266c-438c-90d2-e35254c3f0d6}";
+		Type = color;
+	}
+	Parameter "clamp_result" input
+	{
+		GUID = "{3afd41bb-d3bf-46bd-b22e-923668ab95a6}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer1name" input
+	{
+		GUID = "{d8c3598d-dfb9-43e5-9085-5b92d2265838}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer1enabled" input
+	{
+		GUID = "{97bad5e1-ac7f-4e6a-ba5f-204eaaf6b34e}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer1" input
+	{
+		GUID = "{9031c010-fab6-412b-b724-0ad81fd00255}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer1a" input
+	{
+		GUID = "{e3c0e11c-3607-4336-96a4-94c8fb08e79a}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer1blend" input
+	{
+		GUID = "{8b1c6894-87e3-4630-9901-4fb0b500ab08}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer2name" input
+	{
+		GUID = "{482cc2d7-ec95-4aa4-96fa-e8457c1d9ad2}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer2enabled" input
+	{
+		GUID = "{cc647d73-62b2-4fe4-829b-84da6bb4881d}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer2" input
+	{
+		GUID = "{4b86a3fb-d142-4ff4-a203-d7e61babbbba}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer2a" input
+	{
+		GUID = "{41b8809f-33c7-4725-b158-9ce25d628df7}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer2blend" input
+	{
+		GUID = "{50cd0b20-2ce6-4f7e-a585-4bacfeb2324b}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer3name" input
+	{
+		GUID = "{8a1342cc-0115-4c69-9939-3c3c6cea252c}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer3enabled" input
+	{
+		GUID = "{bb06591c-e626-4117-a2ab-c90086cff504}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer3" input
+	{
+		GUID = "{2ef14a9c-88ba-4375-8ff6-db8df7ef5687}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer3a" input
+	{
+		GUID = "{fd111a3f-d874-4b68-9765-1264a325fca0}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer3blend" input
+	{
+		GUID = "{81dcdedd-ac0f-4e04-a586-492c7cc20a45}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer4name" input
+	{
+		GUID = "{31f3348d-93ec-472e-b683-32b17296f1c6}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer4enabled" input
+	{
+		GUID = "{badf217a-40fd-45bc-bb22-ebfc635af820}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer4" input
+	{
+		GUID = "{47e33fcd-0b1d-45e6-a4df-16dc68960fdb}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer4a" input
+	{
+		GUID = "{37676766-c6c8-4ad3-8007-d38b71630b33}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer4blend" input
+	{
+		GUID = "{7ca14839-26a5-4332-a675-6683c4a4f037}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer5name" input
+	{
+		GUID = "{9a63feef-616d-46e2-9073-4f81cabcfa99}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer5enabled" input
+	{
+		GUID = "{32c31203-603c-485b-b4e9-0d6408a995b1}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer5" input
+	{
+		GUID = "{83edc65a-7a57-419a-a20e-1e501aa94e16}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer5a" input
+	{
+		GUID = "{d60cfd5e-c798-4c9e-96b0-973dfe50cbea}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer5blend" input
+	{
+		GUID = "{c38017bc-40b9-437f-9fab-daf3d24770b3}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer6name" input
+	{
+		GUID = "{3ed3f1fa-a395-4d79-952b-1ac4faf32500}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer6enabled" input
+	{
+		GUID = "{679c3d20-7bba-4710-adf5-5b6858ae3e65}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer6" input
+	{
+		GUID = "{9fdd46d6-c03f-4efd-ac78-1ad7833980bb}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer6a" input
+	{
+		GUID = "{71c537e7-0fba-47ec-86ca-47c372843331}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer6blend" input
+	{
+		GUID = "{69895c74-c77c-4999-8ed8-08cc7318ea8c}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer7name" input
+	{
+		GUID = "{25436362-b1d1-422a-ae07-b4af5e0fceda}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer7enabled" input
+	{
+		GUID = "{26e930e2-e7ca-4d96-a717-6a289f99ac2c}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer7" input
+	{
+		GUID = "{e75412b5-f24f-49f4-81d3-232d0fcde61c}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer7a" input
+	{
+		GUID = "{2c2ddf0d-a2cc-4fc3-95b0-58d539cdf78a}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer7blend" input
+	{
+		GUID = "{7d797e73-e307-4629-9b31-aad8f18e968c}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+	Parameter "layer8name" input
+	{
+		GUID = "{14b616a0-4a74-4df8-a32b-bf066ff7bad7}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "layer8enabled" input
+	{
+		GUID = "{a29895fc-4674-404d-b010-dda796ab534c}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "layer8" input
+	{
+		GUID = "{7aba7a1f-a747-46ad-a081-2f9313102c21}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "layer8a" input
+	{
+		GUID = "{35c712ce-3814-4523-830a-edff7af8f97a}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "layer8blend" input
+	{
+		GUID = "{9acf5895-8045-4665-9bd8-9c0739dd4401}";
+		Type = string;
+		Texturable = off;
+		Value = "normal";
+	}
+}
+MetaShader "alLayerColor_meta"
+{
+	Name = "ALS_LayerColor";
+	Type = material;
+	Renderer "mental ray"
+	{
+		Name = "ALS_LayerColor";
+		Filename = "alLayerColor";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+Defaults
+{
+	clamp_result
+	{
+		Name = "Clamp";
+	}
+	layer1name
+	{
+		Name = "Name";
+	}
+	layer1enabled
+	{
+		Name = "Enabled";
+	}
+	layer1
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer1a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer1blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer2name
+	{
+		Name = "Name";
+	}
+	layer2enabled
+	{
+		Name = "Enabled";
+	}
+	layer2
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer2a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer2blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer3name
+	{
+		Name = "Name";
+	}
+	layer3enabled
+	{
+		Name = "Enabled";
+	}
+	layer3
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer3a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer3blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer4name
+	{
+		Name = "Name";
+	}
+	layer4enabled
+	{
+		Name = "Enabled";
+	}
+	layer4
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer4a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer4blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer5name
+	{
+		Name = "Name";
+	}
+	layer5enabled
+	{
+		Name = "Enabled";
+	}
+	layer5
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer5a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer5blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer6name
+	{
+		Name = "Name";
+	}
+	layer6enabled
+	{
+		Name = "Enabled";
+	}
+	layer6
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer6a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer6blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer7name
+	{
+		Name = "Name";
+	}
+	layer7enabled
+	{
+		Name = "Enabled";
+	}
+	layer7
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer7a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer7blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+	layer8name
+	{
+		Name = "Name";
+	}
+	layer8enabled
+	{
+		Name = "Enabled";
+	}
+	layer8
+	{
+		Name = "Input";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer8a
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	layer8blend
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"Normal" = "Normal";
+			"Lighten" = "Lighten";
+			"Darken" = "Darken";
+			"Multiply" = "Multiply";
+			"Average" = "Average";
+			"Add" = "Add";
+			"Subtract" = "Subtract";
+			"Difference" = "Difference";
+			"Negation" = "Negation";
+			"Exclusion" = "Exclusion";
+			"Screen" = "Screen";
+			"Overlay" = "Overlay";
+			"Soft Light" = "Soft Light";
+			"Hard Light" = "Hard Light";
+			"Color Dodge" = "Color Dodge";
+			"Color Burn" = "Color Burn";
+			"Linear Dodge" = "Linear Dodge";
+			"Linear Burn" = "Linear Burn";
+			"Linear Light" = "Linear Light";
+			"Vivid Light" = "Vivid Light";
+			"Pin Light" = "Pin Light";
+			"Hard Mix" = "Hard Mix";
+			"Reflect" = "Reflect";
+			"Glow" = "Glow";
+			"Phoenix" = "Phoenix";
+		}
+	}
+}
+Layout "Default"
+{
+	clamp_result;
+	Tab "Background"
+	{
+		layer1name;
+		layer1enabled;
+		layer1;
+		layer1a;
+		layer1blend;
+	}
+	Tab "Layer 2"
+	{
+		layer2name;
+		layer2enabled;
+		layer2;
+		layer2a;
+		layer2blend;
+	}
+	Tab "Layer 3"
+	{
+		layer3name;
+		layer3enabled;
+		layer3;
+		layer3a;
+		layer3blend;
+	}
+	Tab "Layer 4"
+	{
+		layer4name;
+		layer4enabled;
+		layer4;
+		layer4a;
+		layer4blend;
+	}
+	Tab "Layer 5"
+	{
+		layer5name;
+		layer5enabled;
+		layer5;
+		layer5a;
+		layer5blend;
+	}
+	Tab "Layer 6"
+	{
+		layer6name;
+		layer6enabled;
+		layer6;
+		layer6a;
+		layer6blend;
+	}
+	Tab "Layer 7"
+	{
+		layer7name;
+		layer7enabled;
+		layer7;
+		layer7a;
+		layer7blend;
+	}
+	Tab "Layer 8"
+	{
+		layer8name;
+		layer8enabled;
+		layer8;
+		layer8a;
+		layer8blend;
+	}
+}
+Layout "RenderTree"
+{
+	Group "Background"
+	{
+		layer1;
+		layer1a;
+	}
+	Group "Layer 2"
+	{
+		layer2;
+		layer2a;
+	}
+	Group "Layer 3"
+	{
+		layer3;
+		layer3a;
+	}
+	Group "Layer 4"
+	{
+		layer4;
+		layer4a;
+	}
+	Group "Layer 5"
+	{
+		layer5;
+		layer5a;
+	}
+	Group "Layer 6"
+	{
+		layer6;
+		layer6a;
+	}
+	Group "Layer 7"
+	{
+		layer7;
+		layer7a;
+	}
+	Group "Layer 8"
+	{
+		layer8;
+		layer8a;
+	}
+}
+Plugin = Shader
+{
+	Filename = "alLayerColor";
+}

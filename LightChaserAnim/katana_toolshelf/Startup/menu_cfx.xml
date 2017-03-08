@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Asset Loader" command="import srf.project_loader.project_loader as project_loader;reload(project_loader);project_loader.showCfxWindow()" />
+    <cmd_menu label="Muster Submit" command="import common.katanaUtils as cku;a=cku.cfx_muster_submit()" />
+</root>
