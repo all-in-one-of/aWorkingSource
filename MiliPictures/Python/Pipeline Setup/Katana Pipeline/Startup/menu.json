@@ -1,0 +1,10 @@
+{
+   "Moduel": {
+      "&Shading": "print 'Shading'", 
+      "&Lighting": "print 'Lighting'"
+   }, 
+   "Plugins": {
+      "&Build Scenes": "from KtnPyMili import KatanaSceneBuild;KatanaSceneBuild.execute()", 
+      "&Script Test": "from KtnPyMili import Test;reload(Test);Test.execute()"
+   }
+}

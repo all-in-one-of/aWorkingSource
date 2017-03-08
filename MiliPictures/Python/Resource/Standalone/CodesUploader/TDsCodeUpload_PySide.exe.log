@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "TDsCodeUpload_PySide.py", line 9, in <module>
+  File "ConfigParser.pyc", line 557, in get
+ConfigParser.NoSectionError: No section: 'filepath'

@@ -1,0 +1,6 @@
+float olefresnel(float r, float g, float c);
+float get_n(float r,float g);
+float get_k2(float r, float n);
+float n_min(float r);
+float n_max(float r);
+vec3 FresnelConductor(vec3 Refelctivity, vec3 EdgeTint,float cos_theta);

@@ -1,0 +1,65 @@
+<Node>
+  <ID>MY_EXAMPLE_Phong_Specular_And_Lambertian_Diffuse</ID>
+  <Inputs>
+    <Input Name="DiffuseColor" PrettyName="Diffuse Color" PreferredInput='1'></Input>
+    <Input Name="SpecularColor" PrettyName="Specular Color"></Input>
+    <Input Name="SpecularShininess" PrettyName="Specular Shininess"></Input>
+  </Inputs>
+  <Attributes>
+	<Attribute Name="Diffuse" 			PrettyName="Diffuse Weight" 	Group="" Type="double" Min="0" Max="1"  >0.7</Attribute>
+	<Attribute Name="Specular" 			PrettyName="Specular Weight" 	Group="" Type="double" Min="0" Max="1"  >0.0</Attribute>
+	<Attribute Name="SpecularShininess" PrettyName="Specular Shininess" Group="" Type="double" Min="0" Max="100">10</Attribute>
+  </Attributes>
+  <Tags>
+    <Tag>_notcacheable</Tag>
+    <Tag>_standalone</Tag>
+  </Tags>
+    <Contexts>
+        <Context Type="GLSL">
+            <Shader ShaderType='Fragment'>
+                <Inputs>
+                    <Input Name="DiffuseColor"><Default>vec4(0,0,0,0)</Default></Input>
+                    <Input Name="SpecularColor"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="SpecularShininess"><Default>vec4(1,1,1,1)</Default></Input>
+                </Inputs>
+                <Body><![CDATA[
+    vec3 E = normalize(-State.ViewVectorInEyeSpaceFromViewCamera);
+    vec3 N = State.NormalInEyeSpaceFromViewCamera;
+    float Shininess = 100 - $SpecularShininess*#SpecularShininess.r;
+
+    vec3 Specular = vec3($Specular); 
+    vec3 Diffuse = vec3($Diffuse);
+
+    for(int i=0;i<4;i++)
+    {
+        //Light Direction
+        vec3 L = normalize(u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera);
+        //Reflection Vector
+        vec3 R = reflect(L,N);
+
+        float LightVisibility = mriLightVisibility( i, State.Position);
+
+        float NdotH = clamp( dot(R,E), 0.001, 0.999);
+        float LdotN = max(dot(L,N),0.0);
+
+        // Phong specular
+        Specular += pow(NdotH,Shininess) * u_MriLightSources[i].SpecularColor.rgb * LightVisibility;
+
+        // Lambertian Diffuse
+        Diffuse += LdotN * u_MriLightSources[i].DiffuseColor.rgb * LightVisibility; 
+    }
+	vec3 EnergyDiffuse_env = vec3(0,0,0);
+	if( mriEnvironmentLightOn() == true)
+	{
+		vec3 L = N;
+		vec3 LightColour = mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, 0.0);
+		vec3 EnergyDiffuse_env = mix(3.14, 2.5, 0.25)*mriBRDF_Oren_Nayar(N, E, L, 0.25) * LightColour;        
+	}
+	
+    Output.rgb = Specular * #SpecularColor.rgb + Diffuse * (#DiffuseColor.rgb+EnergyDiffuse_env);
+    Output.a = #DiffuseColor.a;
+                ]]></Body>
+            </Shader>
+        </Context>
+    </Contexts>
+</Node>

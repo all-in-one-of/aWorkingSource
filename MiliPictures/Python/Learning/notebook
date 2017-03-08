@@ -1,0 +1,39 @@
+__author__ = 'kai.xu'
+from Pyside import QtGui,QtCore
+##############################################
+
+#设置QLabel颜色
+OTPvalue = QtGui.QTextEdit()
+OTPvalue.setText("Test")
+OTPvalue.setFont(QtGui.QFont("Roman times",40,QtGui.QFont.Bold))
+OTPvalue.setAlignment(QtCore.Qt.AlignCenter)
+OTPvalue.setReadOnly(True)
+color1 = QtGui.QColor(255,255,0)
+color2 = QtGui.QColor(0,255,255)
+#OTPvalue.setTextBackgroundColor(color)
+OTPvalue.setFixedSize(150,70)
+pe = QtGui.QPalette()
+pe.setColor(QtGui.QPalette.WindowText,color1)#~ 设置字体颜色
+OTPvalue.setAutoFillBackground(True)#设置背景充满，为设置背景颜色的必要条件
+pe.setColor(QtGui.QPalette.Window,color2)#设置背景颜色
+#pe.setColor(QPalette.Background,Qt.blue)<span style="font-family: Arial, Helvetica, sans-serif;">#设置背景颜色，和上面一行的效果一样
+OTPvalue.setPalette(pe)
+########################################################
+'''
+m_pVBoxLayout->setContentsMargins (20, 20, 20, 20);
+m_pVBoxLayout->addWidget(m_topCaptionButton); //1
+m_pVBoxLayout->addWidget(m_pShadowDialog); //2
+m_pVBoxLayout->setSpacing(15);
+m_pVBoxLayout->addLayout (m_pHBoxLayoutButton); //3
+m_pVBoxLayout->addStretch();
+'''
+#########################################################
+
+'''
+import maya.OpenMayaUI as omui
+try:
+    mayaWindowParent = shiboken.wrapInstance(long(omui.MQtUtil.mainWindow()), QtGui.QWidget)
+except:
+    pass
+parent = mayaWindowParent
+'''

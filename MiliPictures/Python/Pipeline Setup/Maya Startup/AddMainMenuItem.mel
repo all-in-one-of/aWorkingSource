@@ -1,0 +1,10 @@
+global string $gMainWindow;
+    setParent $gMainWindow;
+    menu
+    -label "Test Menu in Main menu"
+    -parent $gMainWindow
+    -tearOff on;
+    menuItem
+    -ann "This is a test menu"
+    -label "This is a test menu"
+    -echoCommand true;

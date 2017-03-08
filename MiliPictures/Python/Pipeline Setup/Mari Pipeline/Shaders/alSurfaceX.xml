@@ -1,0 +1,962 @@
+<Node>
+<!-- alSurfaceX is Copyright of Mili Pictures Ltd. The following code is an adaptation for MARI in GLSL of the original code from the shader alSurface and a personal attempt to create a shader that visually resemble like it, as well internal controls over the sliders and their attributes. -->
+
+  <ID>alSurfaceX</ID>
+  <Inputs>	
+    <Input Name="DiffuseColor" 	    	PrettyName="Diffuse Color"						></Input>
+	<Input Name="DiffuseRoughness"  	PrettyName="Diffuse Roughness"					></Input>
+	<Input Name="Specular1Color"     	PrettyName="Specular1 Color"					></Input>
+    <Input Name="Specular1Roughness" 	PrettyName="Specular1 Roughness"				></Input>
+	<Input Name="Specular1Anisotropy" 	PrettyName="Specular1 Anisotropy"				></Input>
+	<Input Name="Specular1Rotation" 	PrettyName="Specular1 Rotation"					></Input>
+	<Input Name="Specular2Color"     	PrettyName="Specular2 Color"					></Input>
+    <Input Name="Specular2Roughness" 	PrettyName="Specular2 Roughness"				></Input>
+	<Input Name="Specular2Anisotropy" 	PrettyName="Specular2 Anisotropy"				></Input>
+	<Input Name="Specular2Rotation" 	PrettyName="Specular2 Rotation"					></Input>
+	<Input Name="TransmissionColor" 	PrettyName="Transmission Color"					></Input>	
+	<Input Name="Opacity" 	    		PrettyName="Opacity"							></Input>
+	<Input Name="SSSColor"     			PrettyName="SSS Color"							></Input>
+	<Input Name="SSSRadius"     		PrettyName="SSS Radius"							></Input>
+	<Input Name="EmissionColor" 		PrettyName="Emission Color"						></Input>
+	<Input Name="Bump"					PrettyName="Bump Map"							></Input>
+    <Input Name="Normal"				PrettyName="Normal Map"							></Input>
+	<Input Name="Displacement"			PrettyName="Displacement Map"					></Input>
+	<Input Name="Vector" 				PrettyName="Vector Map"							></Input>
+	<Input Name="ThicknessMap" 			PrettyName="Thickness Map"						></Input>
+	<Input Name="View_Current_Channel" 	PreferredInput='1'></Input>
+  </Inputs>
+  <Attributes>
+	<Attribute Name="shadingNode" 					PrettyName="Type"								Group="" 						Type="stringlist" 	Description="(c)2014 Antonio Lisboa M. Neto, Based on Arnold Renderer - Ai Standard.\nThis is a Custom Standalone Shader replica for MARI written in OpenGL Shading Language with support of Solid Angle.">Al Surface,Al Surface</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="DiffuseStrength"				PrettyName="Strength"							Group="Diffuse"					Type="double" 		Description="" Min="0" Max="1">1.0</Attribute>
+	<Attribute Name="DiffuseColor"					PrettyName="Color"								Group="Diffuse"					Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<Attribute Name="DiffuseRoughness" 				PrettyName="Diffuse Roughness"					Group="Diffuse"					Type="double"		Description="The diffuse component follows an Oren-Nayar reflection model with surface roughness.\nA value of 0.0 is comparable to a Lambert reflection.\nHigher values will result in a rougher surface look more suitable for materials like concrete, plaster or sand." Min="0" Max="1">0.0</Attribute>	
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="BacklightStrength"				PrettyName="Strength"							Group="Backlight"				Type="double" 		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="BacklightColor"				PrettyName="Color"								Group="Backlight"				Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<Attribute Name="BacklightIndirectStrength" 	PrettyName="Indirect strength"					Group="Backlight"				Type="double"		Description="The diffuse component follows an Oren-Nayar reflection model with surface roughness.\nA value of 0.0 is comparable to a Lambert reflection.\nHigher values will result in a rougher surface look more suitable for materials like concrete, plaster or sand." Min="0" Max="1">0.0</Attribute>	
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="SSSColor"     					PrettyName="SSS Color"							Group="SSS"						Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<Attribute Name="SSSWeight" 					PrettyName="SSS Weight"							Group="SSS"						Type="double"		Description="The amount of sub-surface scattering. Multiplies SSS Color.\nSub-surface scattering is useful for rendering materials like wax, skin and milk."	Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="SSSRadius"     				PrettyName="SSS Radius"							Group="SSS"						Type="color" 		Description="">(0.1,0.1,0.1,1)</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="Specular1Strength"     		PrettyName="Strength"							Group="Specular1"				Type="double" 		Description="" Min="0" Max="1">1.0</Attribute>
+	<Attribute Name="Specular1Color" 				PrettyName="Color"								Group="Specular1"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<Attribute Name="Specular1Roughness"     		PrettyName="Roughness"							Group="Specular1"				Type="double" 		Description="" Min="0" Max="1">0.3</Attribute>	
+	<Attribute Name="ConvertToGlossiness"   		PrettyName="Convert To Glossiness"				Group="Specular1"				Type="bool"			Description="">false</Attribute>
+	<Attribute Name="Specular1Anisotropy"     		PrettyName="Anisotropy"							Group="Specular1"				Type="double" 		Description="" Min="0" Max="1">0.5</Attribute>
+	<Attribute Name="Specular1Rotation" 			PrettyName="Rotation"							Group="Specular1"				Type="double"		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="Specular1FresnelMode"			PrettyName="Fresnel Mode"						Group="Specular1" 				Type="stringlist"	Description="" >dielectric,dielectric,metallic</Attribute>		
+	<Attribute Name="Specular1Ior" 					PrettyName="IOR:"								Group="Specular1"				Type="float"		Description="" Min="0" Max="3">1.4</Attribute>
+	<Attribute Name="Specular1Reflectivity"     	PrettyName="Reflectivity"						Group="Specular1"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<Attribute Name="Specular1EdgeTint" 			PrettyName="Edge tint"							Group="Specular1"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="Specular2Strength"     		PrettyName="Strength"							Group="Specular2"				Type="double" 		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="Specular2Color" 				PrettyName="Color"								Group="Specular2"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<Attribute Name="Specular2Roughness"     		PrettyName="Roughness"							Group="Specular2"				Type="double" 		Description="" Min="0" Max="1">0.5</Attribute>	
+	<Attribute Name="ConvertToGlossiness"   		PrettyName="Convert To Glossiness"				Group="Specular2"				Type="bool"			Description="">false</Attribute>
+	<Attribute Name="Specular2Anisotropy"     		PrettyName="Anisotropy"							Group="Specular2"				Type="double" 		Description="" Min="0" Max="1">0.5</Attribute>
+	<Attribute Name="Specular2Rotation" 			PrettyName="Rotation"							Group="Specular2"				Type="double"		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="Specular2FresnelMode"			PrettyName="Fresnel Mode"						Group="Specular2" 				Type="stringlist"	Description="" >dielectric,dielectric,metallic</Attribute>		
+	<Attribute Name="Specular2Ior" 					PrettyName="IOR:"								Group="Specular2"				Type="float"		Description="" Min="0" Max="3">1.4</Attribute>
+	<Attribute Name="Specular2Reflectivity"     	PrettyName="Reflectivity"						Group="Specular2"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<Attribute Name="Specular2EdgeTint" 			PrettyName="Edge tint"							Group="Specular2"				Type="color"		Description="" >(1,1,1,1)</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="TransmissionStrength" 			PrettyName="Strength"							Group="Transmission"			Type="double"		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="TransmissionColor"     		PrettyName="Color"								Group="Transmission"			Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<Attribute Name="TransmissionLinkToSpecular1"   PrettyName="Link to specular1"					Group="Transmission"			Type="bool"			Description="">true</Attribute>
+	<Attribute Name="TransmissionRoughness"     	PrettyName="Roughness"							Group="Transmission"			Type="double" 		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="TransmissionIor" 				PrettyName="IOR:"								Group="Transmission"			Type="float"		Description="" Min="0" Max="3">1.4</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="EmissionStrength"     			PrettyName="Strength"							Group="Emission"				Type="double" 		Description="" Min="0" Max="1">0.0</Attribute>
+	<Attribute Name="EmissionColor"					PrettyName="Emission Color"						Group="Emission"				Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="Opacity"						PrettyName="Opacity"							Group="Opacity"					Type="color" 		Description="">(1,1,1,1)</Attribute>
+	<!--=============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================-->
+	<Attribute Name="Light_Falloff"					PrettyName="Light Falloff"						Group="Display Features" 		Type="stringlist"	Description="Add falloff to Mari's Point Lights. In Arnold Lights 'Constant' means no decay,\n'Quadratic' is proportional to the square of the distance from the light. This is the normal behavior of light in real world.">Constant,Constant,Quadratic</Attribute>		
+	<Attribute Name="Decay_Rate" 					PrettyName="Decay Rate"							Group="Display Features"		Type="double"		Description="Control the rate of the Light Falloff."	Min="0.01" Max="1.0">1.0</Attribute>
+	<Attribute Name="AmbientOcclusion"				PrettyName="Ambient Occlusion Amount"			Group="Display Features"		Type="double"		Description="Control the amount of Ambient Occlusion.\n*Note that you still have to calculate the Ambient Occlusion feature under menu Objects -> Ambient Occlusion."	Min="0.0" Max="1.0">1.0</Attribute>
+	<Attribute Name="Render_Passes"					PrettyName="AOVs"								Group="Display Features" 		Type="stringlist"	Description="Shows the contribution of each element separately, Diffuse, Specular, Reflection, Refraction, Sub-Surface Scattering, Emission,\nor a preview for an average result of the Object Thickness, from dark to light values for thin objects.\nIn Flat Lighting Mode the Render Pass will only display the texture related to the selected pass.\nIn Basic lighting mode it will display texture multiplied by the attribute slider.\nIn Full Shaded lighting mode it will display the end result of all the calculations behind that pass.">Beauty,Beauty,Diffuse,Specular,Reflection,Refraction,SSS,Emission,Thickness Map Preview</Attribute>
+	<Attribute Name="Solid"							PrettyName="Thick Glass effect emulation" 		Group="Display Features" 		Type="bool"			Description="This is a try to emulate the look in Mari of a Thick/Solid Glass.\nIf not checked it consider the object as a simple slice of glass.\nMari Refraction display some glitches in the Ortho viewport.">false</Attribute>		
+  </Attributes>
+  <Groups>	
+	<Group Name="SSS"						Expanded="false"></Group>
+	<Group Name="Backlight"					Expanded="false"></Group>
+	<Group Name="Specular2"					Expanded="false"></Group>
+	<Group Name="Transmission"				Expanded="false"></Group>	
+	<Group Name="Emission"					Expanded="false"></Group>
+	<Group Name="Opacity"					Expanded="false"></Group>	
+    <Group Name="Display Features"			Expanded="false"></Group>
+	<Group Name="Bump"			    		Expanded="false"></Group>
+	<Group Name="Displacement"				Expanded="false"></Group>
+  </Groups>
+  <Tags>
+    <Tag>_notcacheable</Tag>
+	<Tag>_standalone</Tag>
+  </Tags>
+    <Contexts>
+        <Context Type="GLSL">
+            <Shader ShaderType='Fragment'>
+                <Inputs>
+                    <Input Name="DiffuseColor"><Default>vec4($DiffuseColor.rgb,-1)</Default></Input>
+                    <Input Name="DiffuseRoughness"><Default>vec4($DiffuseRoughness)</Default></Input>
+					<Input Name="Specular1Color"><Default>vec4($Specular1Color.rgb,-1)</Default></Input>
+                    <Input Name="Specular1Roughness"><Default>vec4($Specular1Roughness)</Default></Input>
+					<Input Name="Specular1Anisotropy"><Default>vec4($Specular1Anisotropy)</Default></Input>
+					<Input Name="Specular1Rotation"><Default>vec4($Specular1Rotation)</Default></Input>
+					<Input Name="Specular2Color"><Default>vec4($Specular2Color.rgb,-1)</Default></Input>
+                    <Input Name="Specular2Roughness"><Default>vec4($Specular2Roughness)</Default></Input>
+					<Input Name="Specular2Anisotropy"><Default>vec4($Specular2Anisotropy)</Default></Input>
+					<Input Name="Specular2Rotation"><Default>vec4($Specular2Rotation)</Default></Input>
+					<Input Name="TransmissionColor"><Default>vec4($TransmissionColor.rgb,-1)</Default></Input>	
+					<Input Name="Opacity"><Default>vec4($Opacity.rgb,0)</Default></Input>
+					<Input Name="SSSColor"><Default>vec4($SSSColor.rgb,-1)</Default></Input>
+					<Input Name="SSSRadius"><Default>vec4($SSSRadius.rgb,-1)</Default></Input>
+					<Input Name="EmissionColor"><Default>vec4($EmissionColor.rgb,-1)</Default></Input>
+					<Input Name="Bump"><Default>vec4(0.5,0.5,0.5,1)</Default></Input>
+                    <Input Name="Normal"><Default>vec4(0,0,1,1)</Default></Input>
+					<Input Name="Displacement"><Default>vec4(0.5,0.5,0.5,1)</Default></Input>					
+					<Input Name="Vector"><Default>vec4(State.TangentInEyeSpaceFromProjectionCamera.xyz,1)</Default></Input>
+					<Input Name="ThicknessMap"><Default>vec4(0.5,0.5,0.5,0.0)</Default></Input>
+				</Inputs>
+				<Body><![CDATA[
+	$shadingNode; 
+	// Used for continually Mark what shader you are using in case you have renamed the name of the shader inside Mari. This var is also used for the exporter to identify what shader he is picking.
+	
+	$DiffuseColor;
+	$DiffuseRoughness;
+	$Specular1Color;
+	$Specular1Roughness;
+	$Specular1Anisotropy;
+	$Specular1Rotation;
+	$Specular2Color;
+	$Specular2Roughness;
+	$Specular2Anisotropy;
+	$Specular2Rotation;
+	$Specular1Color;
+	$TransmissionColor;
+	$TransmissionStrength;
+	$TransmissionRoughness;
+	$Opacity;
+	$SSSColor;
+	$SSSRadius;
+	$EmissionColor;	
+	
+	// These control/input pairs are alpha blended together.
+	// If the Channel has an input connected the input is used.	
+	// Else the attribute slider is used instead.
+	// VAR Name   			 'mix' based on existence of an alpha in the channels	
+	vec3 difCol	   			= mix( vec3(0),		#DiffuseColor.rgb,		#DiffuseColor.a 		== 0 ? 0 : 1);
+	vec3 specCol1  			= mix( vec3(0),		#Specular1Color.rgb,	#Specular1Color.a 		== 0 ? 0 : 1);
+	vec3 specCol2  			= mix( vec3(0),		#Specular2Color.rgb,	#Specular2Color.a 		== 0 ? 0 : 1);
+	vec3 reflCol1  			= mix( vec3(0),		#Specular1Color.rgb,	#Specular1Color.a 		== 0 ? 0 : 1);
+	vec3 reflCol2  			= mix( vec3(0),		#Specular2Color.rgb,	#Specular2Color.a 		== 0 ? 0 : 1);
+	vec3 refrCol  			= mix( vec3(0),		#TransmissionColor.rgb,	#TransmissionColor.a 		== 0 ? 0 : 1);
+	vec3 transCol 			= mix( vec3(0),		#TransmissionColor.rgb,	#TransmissionColor.a 		== 0 ? 0 : 1);
+	vec3 sssCol	   			= mix( vec3(0),		#SSSColor.rgb, 			#SSSColor.a				== 0 ? 0 : 1);
+	vec3 sssRadius 			= mix( vec3(0), 	#SSSRadius.rgb, 		#SSSRadius.a 			== 0 ? 0 : 1);
+	vec3 emisCol   			= mix( vec3(0),		#EmissionColor.rgb,	 	#EmissionColor.a		== 0 ? 0 : 1);
+		
+	float difrough 	 		= mix( float(0),	#DiffuseRoughness.r,	#DiffuseRoughness.a 	== 0 ? 0 : 1);
+	float spec1rough 		= mix( float(0),	#Specular1Roughness.r,	#Specular1Roughness.a 	== 0 ? 0 : 1);
+	float ani1				= mix( float(0),	#Specular1Anisotropy.r,	#Specular1Anisotropy.a 	== 0 ? 0 : 1);
+	float rot1 		 		= mix( float(0),	#Specular1Rotation.r,	#Specular1Rotation.a 	== 0 ? 0 : 1);
+	float spec2rough 		= mix( float(0),	#Specular2Roughness.r,	#Specular2Roughness.a 	== 0 ? 0 : 1);
+	float ani2				= mix( float(0),	#Specular2Anisotropy.r,	#Specular2Anisotropy.a 	== 0 ? 0 : 1);
+	float rot2 		 		= mix( float(0),	#Specular2Rotation.r,	#Specular2Rotation.a 	== 0 ? 0 : 1);
+	float refrarough		= mix( float(0),	#TransmissionColor.r,	#TransmissionColor.a 	== 0 ? 0 : 1);
+	
+
+	vec3 Current_Channel_Selected = #View_Current_Channel.rgb;
+	
+	if($ConvertToGlossiness == true)
+	{
+		spec1rough = 1.0 - spec1rough;
+		spec2rough = 1.0 - spec2rough;
+	}
+	
+	// Check if there's Color painted at the rgb of the Opacity Channels	
+	vec3 opacityCol	 = vec3(0,0,0);
+	if (color_toValue(#Opacity.rgb) == 0)
+	{
+		opacityCol = vec3(1.0) - $Opacity.rgb;
+	}
+	else
+	{
+		opacityCol = vec3(1.0) - #Opacity.rgb;	
+	}	
+	
+	// The UV Viewport will display what is the Current Channel Selected, unless you don't have any channel. Then it will display the Mari`s alpha checkerboard pattern.	
+	if(u_MriViewType==2 || u_MriLightingMode==0)
+	{
+		// This is the cheapest way to use this "viewbuffer" feature, skipping most of the shader calculation.
+		
+		Output = #View_Current_Channel;		
+		
+		if($Render_Passes == 1)
+		{
+			Output.rgb = difCol.rgb;
+		}
+		if($Render_Passes == 2)
+		{
+			Output.rgb = specCol1.rgb;
+		}
+		if($Render_Passes == 3)
+		{
+			Output.rgb = reflCol1.rgb;
+		}
+		if($Render_Passes == 4)
+		{
+			Output.rgb = refrCol.rgb;
+		}
+		if($Render_Passes == 5)
+		{
+			Output.rgb = sssCol.rgb;
+		}
+		if($Render_Passes == 6)
+		{
+			Output.rgb = emisCol.rgb;
+		}
+		if($Render_Passes == 7)
+		{
+			Output = #ThicknessMap;
+		}
+		
+		//Display the Thickness imported image in the UV Viewport
+		if(u_MriViewType==2 && $Render_Passes == 7) 
+		{
+			Output = #ThicknessMap;			
+		}		
+	}
+	else
+	{
+		// ------------  All the shader math ------------
+		
+		const float PI = 3.14159265358979323846264;
+		const float TwoPI = 2.0 * PI;
+			
+		// View Direction
+		vec3 V = normalize(-State.ViewVectorInEyeSpaceFromViewCamera);
+		// Normal Direction
+		vec3 N = normalize(#Normal.xyz);
+			
+		float NdotV = dot(N,V);
+		// On the wrong side of the face
+		if( NdotV <= 0.0)
+		{
+			N = -N;
+			NdotV = 1.0 - NdotV;
+		}
+				
+		//Enum Light direction
+		vec3 L = N;
+		// Half Vector
+		vec3 H = normalize(L+V);					
+		float cos_theta = dot(H,V);
+		vec3 RelectionTintColor1 = FresnelConductor($Specular1Reflectivity.rgb,$Specular1EdgeTint.rgb,cos_theta);
+		//vec3 RelectionTintColor1 = $Specular1Reflectivity.rgb;
+		vec3 RelectionTintColor2 = FresnelConductor($Specular2Reflectivity.rgb,$Specular2EdgeTint.rgb,cos_theta);
+
+				
+		// Calculates the Space diagonal of the volume inside a cube
+		vec3 viewPos = vec3(1.0);
+		viewPos.x = mix(1, 2*abs(State.Position.x), abs(State.NormalInEyeSpaceFromViewCamera.x) );
+		viewPos.y = mix(1, 2*abs(State.Position.y), abs(State.NormalInEyeSpaceFromViewCamera.y) );
+		viewPos.z = mix(1, 2*abs(State.Position.z), abs(State.NormalInEyeSpaceFromViewCamera.z) );
+		float base_diagonal = sqrt(viewPos.x*viewPos.x+viewPos.z*viewPos.z);
+		float space_diagonal = sqrt(base_diagonal*base_diagonal + viewPos.y*viewPos.y);
+			
+		// Check if there is a texture assigned to the #ThicknessMap attribute, if does, then use it instead of the 1.5 value. 
+		float Thickness = 1.5;	
+		if(#ThicknessMap.a > 0)	
+		{
+			Thickness = 1.0 + #ThicknessMap.r;		
+		}
+		
+		//Use the Baked texture to mix with the multiplication factors of the "Voxelized calculation method" based on depth of the scene
+		if(u_MriViewType == 0) //gl buffer does not work well in perspective mode
+		{
+			//thickness based on position calculation mixed with obj radius
+			vec3 P = State.Position*u_MriObjectRadius;
+			float d = -dot(State.Position,P);
+			float D = abs(d)/length(P);
+			D /=u_MriObjectRadius;             
+			
+			Thickness *= mix( mix(2, 1, 1-NdotV)*u_MriObjectRadius, space_diagonal, (1-NdotV)*length(D));	
+		}
+		else
+		{
+			//thickness based on depth and obj radius
+			float mult_factor = mix(2*u_MriObjectRadius, u_MriObjectRadius/2, gl_FragDepth);
+			//thickness adjusment for the depth based on the Space diagonal of a cube created for each pixel on face.
+			float mult_factor2 = mix( mix(space_diagonal, 1, (gl_FragDepth*(1-NdotV))), mix(u_MriObjectRadius, 1, (2*abs(gl_FragDepth - 0.5))*(1-NdotV)), 2*abs(gl_FragDepth - 0.5) )*PI; // this PI is just a adjusment to the color values between the two viewports
+			
+			Thickness *= mix(mult_factor, mult_factor2, gl_FragDepth);
+		}	
+		
+				
+		// Roughness attributes squared
+		float difrough2 = difrough*difrough;		
+		float spec1rough2 = spec1rough*spec1rough*spec1rough*spec1rough; // Arnold use a quadratic specrough for cook-torrance only(their wish was to use cubic, but that's expensive they say).	
+		float spec2rough2 = spec2rough*spec2rough*spec2rough*spec2rough;
+		float refrarough2 = refrarough*refrarough*refrarough*refrarough;
+		
+		float _glossiness = 1.0;
+		float _Refra_glossiness = 1.0;
+		float _ani1 = 2*(0.5-ani1); // internal variable to be used as anisotropy for the maths, this changes the anisotropy value to the range -1 and 1 that is used by V-ray and is correct for obtain the correct result from the BRDF Formula.
+		float _ani2 = 2*(0.5-ani2);
+		
+		// IBL Glossiness adaptation to match the BRDF blur or 'spec lobe' for Environment Lighting
+		_glossiness = mix(pow( 1-sqrt(spec1rough2), 2), pow( 1-(spec1rough), 3), 1-spec1rough);
+		_Refra_glossiness = mix(pow( 1-sqrt(refrarough2), 2-refrarough), pow( 1-sqrt(refrarough2), mix(4, 16, refrarough2) ), 1-refrarough);
+		
+		if(_ani1 == 0.0 || spec1rough2 == 0.0) // There is no Anisotropy if the Specular Roughness = 0
+		{
+			_glossiness = pow( mix( 1-spec1rough2, 1-sqrt(spec1rough2), 1-spec1rough), mix(2, 3, 1-spec1rough) );
+			_Refra_glossiness = mix(pow( 1-sqrt(refrarough2), 2-refrarough), pow( 1-sqrt(refrarough2), mix(4, 16, refrarough2) ), 1-refrarough);
+		}
+		else
+		{				  
+			_glossiness = pow( mix( (abs(_ani1)/PI+1-sqrt(spec1rough2))/2, (abs(_ani1)+1-sqrt(spec1rough2))/2, 1-spec1rough), mix(1, (abs(_ani1)+1-sqrt(spec1rough2))*1.5, 1-spec1rough) );
+			_Refra_glossiness = mix(pow( 1-sqrt(refrarough2), 2-refrarough), pow( 1-sqrt(refrarough2), mix(4, 16, refrarough2) ), 1-refrarough);
+		}
+		
+		// Fresnel var initialization	
+		float F = 1.0;
+		if($Specular1FresnelMode == 0)
+		{
+			F = 0.0;
+		}	
+		
+		// Anisotropic coords
+		vec3 epsilon1 = vec3(0, 1, 0.15);
+		vec3 X1 = vec3(1,0,0);
+		vec3 Y1 = vec3(0,1,0);
+		if(#Vector.a != 1.0)
+		{
+			X1.x = #Vector.r;
+			Y1.y = #Vector.g;
+		}
+		if(ani1 != 0.5)
+		{		
+			epsilon1 = rot1 < 0.5 ? mix(Y1, X1, 2*rot1) : mix(X1, -Y1, 2*(rot1-0.5) );		
+		}
+				
+		Y1 = normalize(cross(N, epsilon1));
+		X1 = normalize(cross(N, Y1));
+		
+		vec3 epsilon2 = vec3(0, 1, 0.15);
+		vec3 X2 = vec3(1,0,0);
+		vec3 Y2 = vec3(0,1,0);
+		if(#Vector.a != 1.0)
+		{
+			X2.x = #Vector.r;
+			Y2.y = #Vector.g;
+		}
+		if(ani2 != 0.5)
+		{		
+			epsilon2 = rot2 < 0.5 ? mix(Y2, X2, 2*rot2) : mix(X2, -Y2, 2*(rot2-0.5) );		
+		}
+				
+		Y2 = normalize(cross(N, epsilon2));
+		X2 = normalize(cross(N, Y2));
+
+		// Energy variables initialization for each phase of the light calculation
+		vec3 EnergyDiffuse = vec3(0.0);
+		vec3 EnergyDiffuse_env = vec3(0.0); //avoid diffuse light bounces from lights to the obj
+		vec3 EnergyBacklight = vec3(0.0);
+		vec3 EnergyBacklight_env = vec3(0.0);
+		vec3 EnergySpecular1 = vec3(0.0); //also separete the energy from highlights and reflection(point lights and environment light) also avoids lights bouncees from shader to the direct light sourcers the point lights.
+		vec3 EnergySpecular_env1 = vec3(0.0);
+		vec3 EnergyReflection_env1 = vec3(0.0);
+		vec3 EnergySpecular2 = vec3(0.0); 
+		vec3 EnergySpecular_env2 = vec3(0.0); 
+		vec3 EnergyReflection_env2 = vec3(0.0);
+		vec3 EnergyRefraction_env = vec3(0.0);
+		vec3 EnergyTransmittance = vec3(1.0);
+		vec3 EnergySSS = vec3(0.0);
+		vec3 EnergySSS_env = vec3(0.0); //avoid SSS light bounces from lights to the obj
+		vec3 EnergyOpacity_env = vec3(0.0);
+		
+		vec3 LightColour = vec3(0.0);
+		float diffterm = 0.0;
+		float specterm = 0.0;
+		float specterm2 = 0.0;
+		float refraterm = 0.0;
+		vec3 _Absorbance = vec3 (1.0);
+		
+		
+		
+		for(int i=0;i<4;i++)
+		{
+			if( vec3( 0) == u_MriLightSources[i].DiffuseColor.rgb && vec3( 0) == u_MriLightSources[i].SpecularColor.rgb)
+			{
+				continue;
+			}
+
+			float lightVisibility = mriLightVisibility( i, State.Position);		
+			
+			// Light Direction			
+			vec3 L = normalize(u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera);
+			vec3 LdistP = u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera;	
+			
+			// Half Vector
+			vec3 H = normalize(L+V);		
+			
+			float LdotN = dot(L,N);		
+			{			
+				// ----------DIFFUSE TERM-----------
+				// Oren-Nayar Diffuse Result from the Light Sources
+				diffterm = 1.25*mriBRDF_Oren_Nayar(N, V, L, difrough2);
+				EnergyDiffuse  += (lightVisibility * u_MriLightSources[i].DiffuseColor.rgb) * (diffterm) * att(LdistP, $Light_Falloff, $Decay_Rate);
+				
+				// Check-box Calculate Fresnel to Diffuse
+				//if($DiffuseFresnel == true)
+				// Calculate fresnel attenuation for the Diffuse, using the specReflectance at normal or the $IOR attributes.		
+				if($Specular1FresnelMode == 0)
+				{
+					F = mriBRDF_Fresnel(L, H, $TransmissionIor);
+					// *FIX Light Occlusion/Shadow Issue*
+					float F0 = (1 - $TransmissionIor)/(1 + $TransmissionIor);	
+					F0 = F0*F0;
+					F = mix(F*(1-NdotV), F, F0);
+					// Energy Conservation from Specular (Lights Sources)	
+					EnergyDiffuse *= 1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;						
+				}
+				
+				// ----------Sub-Surface Scattering TERM-----------            
+				float LdotN = dot(L,N);
+				float LdotH = dot(L,H);
+				
+				float FL = mriBRDF_SchlickFresnel(LdotN);
+				float FV = mriBRDF_SchlickFresnel(NdotV);			
+							
+				LightColour = (lightVisibility * u_MriLightSources[i].DiffuseColor.rgb) * att(LdistP, $Light_Falloff, $Decay_Rate);
+					
+				// creates a bit of a fake impression of difusion
+				vec3 mixSSSdifusion = vec3(0.0);
+				for (int j=0;j<3;j++)
+				{			
+					mixSSSdifusion[j] = LightColour[j] * mix(LdotH, LdotH*LdotN, 1-sssRadius.rgb[j] ) * mix( (1-FL)*(1-FV), (1-FL), 1-sssRadius.rgb[j] );
+				}
+				vec3 Back_Scat_Color = 1.25*mixSSSdifusion*mixSSSdifusion;
+				Back_Scat_Color.r *= sssRadius.r > 0 ? 1 : 0;
+				Back_Scat_Color.g *= sssRadius.g > 0 ? 1 : 0;
+				Back_Scat_Color.b *= sssRadius.b > 0 ? 1 : 0;
+				
+				EnergySSS += Back_Scat_Color;
+							
+				// Check-box Calculate Fresnel to Diffuse it is applyed to Sub-Surface Scattering too!
+				//if($DiffuseFresnel == true)
+				// The same fresnel attenuation that affects the diffuse above.
+				if($Specular1FresnelMode == 0)
+				{
+					// Energy Conservation from Specular (Lights Sources)
+					EnergySSS *= 1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;														
+				}
+				
+				// ----------BACKLIGHT TERM-----------
+				if( LdotN <= 0.0)
+				{
+					if($BacklightStrength > 0.0)
+					{					
+						diffterm = mriBRDF_Oren_Nayar(N, V, -L, difrough2);
+						EnergyBacklight += ( u_MriLightSources[i].DiffuseColor.rgb) * diffterm * $BacklightStrength * $BacklightColor.rgb *att(LdistP, $Light_Falloff, $Decay_Rate)/PI;
+						
+						// Check-box Calculate Fresnel to Diffuse it is applyed to Sub-Surface Scattering too!
+						//if($DiffuseFresnel == true)
+						if($Specular1FresnelMode == 0)
+						{
+							F = mriBRDF_Fresnel(-L, -H, $TransmissionIor);	
+							// *FIX Light Occlusion/Shadow Issue*
+							float F0 = (1 - $TransmissionIor)/(1 + $TransmissionIor);	
+							F0 = F0*F0;
+							F = mix(F*(1-NdotV), F, F0);						
+							// Energy Conservation from Specular (Lights Sources)
+							// ----------BACKLIGHT TERM-----------
+							EnergyBacklight *= 1.0 - min(PI * F * max(0.0, dot(-L,N)) * color_toValue(specCol1.rgb)*$Specular1Strength, 1.0);						
+						}
+					}
+					else
+					{
+						continue;
+					}	
+				}			
+				
+				// ----------SPECULAR1 TERM-----------
+				// Moved to here so would Avoid shadow issues in the Diffuse and SSS Calculation and will prevent future issues in the Specular Calculation.
+				if( LdotN > 0.0)
+				{				
+					// How to calculate fresnel to specular equation, using specReflectance at normal or $IOR
+					if($Specular1FresnelMode==0)
+					{
+						F = mriBRDF_Fresnel(L, H, $Specular1Ior);
+					}	
+					else
+					{
+						F = 1.0;
+					}					
+					//BRDF Model Cook-Torrance
+					// Cook-Torrance Specular Result
+					specterm = mriBRDF_Beckman(N, H, max(spec1rough2, 0.0001) ) * F * mriBRDF_Geo_att_Beckmann(N, V, max(spec1rough2, 0.0001) )*LdotN/(1+NdotV*LdotN);				
+					
+					
+					// In the last versions of Arnold The BRDF models get unified into a single one!
+					//BRDF Model WARD or Cook-Torrance with Anisotropy	
+					if(abs(_ani1) != 0.0) 
+					{							
+						//Anisotropy, if Specular Roughness is 0 means that there is no Anisotropy
+						if(spec1rough2 == 0.0)
+						{
+							specterm = mriBRDF_Ward(N, V, L, H, X1, Y1, 0, 0.99) * F * mriBRDF_Geo_att_Ward_Duer(L, V, N, H)*LdotN;
+						}
+						else
+						{						
+							// Isotropy specular assumes that ani = 0
+							specterm = mriBRDF_Ward(N, V, L, H, X1, Y1, _ani1, 0.99-spec1rough2) * F * mriBRDF_Geo_att_Ward_Duer(L, V, N, H)*TwoPI*LdotN/(1+NdotV*LdotN);
+						}					
+					}						
+					EnergySpecular1 += (lightVisibility * u_MriLightSources[i].SpecularColor.rgb) * (specterm) * att(LdistP, $Light_Falloff, $Decay_Rate);			
+				}
+				
+				// ----------SPECULAR2 TERM-----------
+				if( LdotN > 0.0)
+				{				
+					if($Specular2FresnelMode==0)
+					{
+						F = mriBRDF_Fresnel(L, H, $Specular2Ior);
+					}	
+					else
+					{
+						F = 1.0;
+					}					
+										
+					//BRDF Model Cook-Torrance
+					// Cook-Torrance Specular Result
+					specterm2 = mriBRDF_Beckman(N, H, max(spec2rough2, 0.0001) ) * F * mriBRDF_Geo_att_Beckmann(N, V, max(spec2rough2, 0.0001) )*LdotN/(1+NdotV*LdotN);				
+					
+					
+					// In the last versions of Arnold The BRDF models get unified into a single one!
+					//BRDF Model WARD or Cook-Torrance with Anisotropy	
+					if(abs(_ani2) != 0.0) 
+					{							
+						//Anisotropy, if Specular Roughness is 0 means that there is no Anisotropy
+						if(spec2rough2 == 0.0)
+						{
+							specterm2 = mriBRDF_Ward(N, V, L, H, X2, Y2, 0, 0.99) * F * mriBRDF_Geo_att_Ward_Duer(L, V, N, H)*LdotN;
+						}
+						else
+						{						
+							// Isotropy specular assumes that ani = 0
+							specterm2 = mriBRDF_Ward(N, V, L, H, X2, Y2, _ani2, 0.99-spec2rough2) * F * mriBRDF_Geo_att_Ward_Duer(L, V, N, H)*TwoPI*LdotN/(1+NdotV*LdotN);
+						}					
+					}						
+					EnergySpecular2 += (lightVisibility * u_MriLightSources[i].SpecularColor.rgb) * (specterm2) * att(LdistP, $Light_Falloff, $Decay_Rate);			
+				}
+
+			}		
+		}
+		
+		
+		if( mriEnvironmentLightOn() == true)
+		{
+			{
+				// ----------DIFFUSE TERM-----------
+				// Env Light, Light Direction
+				vec3 L = N;
+				LightColour = mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, 0.0);
+				// This mix(PI, 2.5, difrough2) would preserve albedo.	
+				EnergyDiffuse_env = mix(PI, 2.5, difrough2)*mriBRDF_Oren_Nayar(N, V, L, difrough2) * LightColour;            		
+				
+				// Check-box Calculate Fresnel to Diffuse 
+				//if($DiffuseFresnel == true)
+				// How to calculate fresnel to specular equation, using specReflectance at normal or $IOR	
+				if($Specular1FresnelMode == 0)
+				{
+					// Reassigning light direction for calculate the fresnel accordingly to specular maths.
+					L = normalize( -reflect( V, N));
+					// Half Vector
+					vec3 H = normalize(L+V);					
+					F = mriBRDF_Fresnel(L, H, $TransmissionIor);						
+					// Energy Conservation from Specular (Environment)					
+					EnergyDiffuse_env *= 1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;					
+					
+					if($Specular1FresnelMode == 0)
+					{
+						F = 0.0; 
+					}
+					// Energy Conservation from Reflection (Environment)	
+					EnergyDiffuse_env *= 1.0 - F * color_toValue(reflCol1.rgb)*$Specular1Strength;					
+				}
+			}
+			
+			{
+				// ----------BACKLIGHT TERM-----------
+				// Env Light, Light Direction
+				// Backlight	
+				vec3 L = normalize( -refract(V, -N*State.FragmentPositionInEyeSpaceFromViewCamera, 1.0) );				
+				
+				float lightVisibility = 1.0;			
+				
+				LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L,  0.0);	
+				
+				EnergyBacklight_env += mix(vec3(0), LightColour, $BacklightStrength)*mriBRDF_Oren_Nayar(N, V, N, difrough2);
+				EnergyBacklight_env /= 1+difrough2/PI;
+				
+				//if($DiffuseFresnel == true)
+				// How to calculate fresnel to specular equation, using specReflectance at normal or $IOR	
+				if($Specular1FresnelMode == 0)
+				{
+					// Reassigning light direction for calculate the fresnel accordingly to specular maths.
+					L = normalize( -reflect( V, N));
+					// Half Vector
+					vec3 H = normalize(L+V);					
+					F = mriBRDF_Fresnel(L, H, $TransmissionIor);						
+					// Energy Conservation from Specular (Environment)					
+					EnergyBacklight_env *= 1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;					
+						
+					if($Specular1FresnelMode == 0)
+					{
+						F = 0.0; 
+					}
+					// Energy Conservation from Reflection (Environment)	
+					EnergyBacklight_env *= 1.0 - F * color_toValue(reflCol1.rgb)*$Specular1Strength;					
+				}
+			}	
+
+			{
+				// ----------SPECULAR TERM1-----------
+				// Env Specular Reflection, Light Direction			
+				vec3 L = normalize( -reflect( V, N));
+				// Half Vector
+				vec3 H = normalize(L+V);          			
+				
+				// How to calculate fresnel to specular equation, using specReflectance at normal or $Specular1Ior
+				if($Specular1FresnelMode==0)
+				{
+					F = mriBRDF_Fresnel(L, H, $Specular1Ior);
+				}
+				else
+				{
+					F = 1.0;
+				}
+				float LdotN = dot(L,N);
+				if( 0.0 < LdotN)
+				{
+					float lightVisibility = 1.0;
+					LightColour = vec3(0.0);				
+
+					//BRDF Model Cook-Torrance
+					LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, _glossiness);						
+					// Cook-Torrance Specular Result from Environment
+					specterm = 1.0 * F * mriBRDF_Geo_att_Cook_Torrance(N, H, V, L) * clamp( mix(1.0-LdotN*NdotV/4, 1, 1-spec1rough), 0.0, 1.0 );	//the mriBRDF_Geo_att_Cook_Torrance fits better here then the Beckmann. 	
+					
+					// In the last versions of Arnold The BRDF models get unified into a single one!
+					//BRDF Model WARD or Cook-Torrance with Anisotropy	
+					if(abs(_ani1) != 0) 
+					{									
+						// Isotropy reflection
+						LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, _glossiness);
+							
+						// Anisotropy reflection	
+						if(_ani1 != 0.0 && spec1rough2 != 0)
+						{
+							// Caculate how much isotropy is the material based on roughness and anisotropy values.
+							float _isotropy = abs(_ani1)*(1.1-spec1rough2);	
+							
+							LightColour = vec3(0.0);
+							float i = 0;
+							for (;i < _isotropy;)
+							{
+							
+							// Define the direction of the anisotropy
+							vec3 L1 = normalize( reflect( V, _ani1 < 0? X1:Y1 ));
+								
+							// mix between isotropy and anisotropy look, depending on the amount of roughness and anisotropy amount							
+							LightColour += lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * mix(L1, L, 1-i), clamp(_glossiness + abs(_ani1*_ani1)*(1.0-spec1rough2)/9, .1, .9) );							
+							i += 0.1;
+							}
+							LightColour /= i*10;												
+						}		
+						specterm = 1.0 * F * mriBRDF_Geo_att_Ward_Duer( L, V, N, H) * clamp( mix(0.95-NdotV/6.5, 1, 1-spec1rough), 0.0, 1.0 );					
+					}
+					EnergySpecular_env1 += specterm * (LightColour);		
+				
+			
+					// ----------REFLECTION TERM-----------
+					// Reset the fresnel value, and keep the L direction from the specular above.
+					
+					if($Specular1FresnelMode==0)
+					{
+						F = mriBRDF_Fresnel(L, H, $Specular1Ior);
+					}
+					else
+					{
+						F = 1.0;
+					}
+					LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, 1.0);
+					EnergyReflection_env1 += F * (LightColour);
+				}	
+			}		
+
+			{
+				// ----------SPECULAR TERM2-----------
+				// Env Specular Reflection, Light Direction			
+				vec3 L = normalize( -reflect( V, N));
+				// Half Vector
+				vec3 H = normalize(L+V);          			
+				
+				// How to calculate fresnel to specular equation, using specReflectance at normal or $Specular2Ior
+				if($Specular2FresnelMode==0)
+				{
+					F = mriBRDF_Fresnel(L, H, $Specular2Ior);
+				}
+				else
+				{
+					F = 1.0;
+				}
+				float LdotN = dot(L,N);
+				if( 0.0 < LdotN)
+				{
+					float lightVisibility = 1.0;
+					LightColour = vec3(0.0);				
+
+					//BRDF Model Cook-Torrance
+					LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, _glossiness);						
+					// Cook-Torrance Specular Result from Environment
+					specterm = 1.0 * F * mriBRDF_Geo_att_Cook_Torrance(N, H, V, L) * clamp( mix(1.0-LdotN*NdotV/4, 1, 1-spec2rough), 0.0, 1.0 );	//the mriBRDF_Geo_att_Cook_Torrance fits better here then the Beckmann. 	
+					
+					// In the last versions of Arnold The BRDF models get unified into a single one!
+					//BRDF Model WARD or Cook-Torrance with Anisotropy	
+					if(abs(_ani2) != 0) 
+					{									
+						// Isotropy reflection
+						LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, _glossiness);
+							
+						// Anisotropy reflection	
+						if(_ani2 != 0.0 && spec2rough2 != 0)
+						{
+							// Caculate how much isotropy is the material based on roughness and anisotropy values.
+							float _isotropy = abs(_ani2)*(1.1-spec2rough2);	
+							
+							LightColour = vec3(0.0);
+							float i = 0;
+							for (;i < _isotropy;)
+							{
+							
+							// Define the direction of the anisotropy
+							vec3 L2 = normalize( reflect( V, _ani2 < 0? X2:Y2 ));
+								
+							// mix between isotropy and anisotropy look, depending on the amount of roughness and anisotropy amount							
+							LightColour += lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * mix(L2, L, 1-i), clamp(_glossiness + abs(_ani2*_ani2)*(1.0-spec2rough2)/9, .1, .9) );							
+							i += 0.1;
+							}
+							LightColour /= i*10;												
+						}		
+						specterm = 1.0 * F * mriBRDF_Geo_att_Ward_Duer( L, V, N, H) * clamp( mix(0.95-NdotV/6.5, 1, 1-spec2rough), 0.0, 1.0 );					
+					}
+					EnergySpecular_env2 += specterm * (LightColour);		
+				
+			
+					// ----------REFLECTION TERM-----------
+					// Reset the fresnel value, and keep the L direction from the specular above.
+					
+					if($Specular2FresnelMode==0)
+					{
+						F = mriBRDF_Fresnel(L, H, $Specular2Ior);
+					}
+					else
+					{
+						F = 1.0;
+					}
+					LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, 1.0);
+					EnergyReflection_env2 += F * (LightColour);
+				}	
+			}		
+
+			
+			{
+				// ----------REFRACTION TERM-----------
+				// Env Refraction, Light Direction			
+				// Refraction incoming direction
+				vec3 Li = vec3(0.0);
+				if($Solid)
+				{
+					Li = normalize( -refract(V, -N, (1.0/$TransmissionIor)) );
+				}
+				else
+				{
+					// Mari Refraction works well in perspective mode, the ortho viewport presents some glitches
+					Li = normalize( -refract(V, u_MriViewType == 0 ? N*State.FragmentPositionInEyeSpaceFromViewCamera : N*State.FragmentPositionInNdcSpaceFromProjectionCamera, (1.0/$TransmissionIor)) );
+				}
+				
+				float lightVisibility = 1.0;
+				LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * Li, _Refra_glossiness);		
+				
+				EnergyRefraction_env += (LightColour);		
+							
+				_Absorbance = transCol.rgb;
+				if (_Absorbance != vec3(1.0) )
+				{			
+					_Absorbance = pow_RGB(transCol.rgb, Thickness/10);
+					EnergyTransmittance = _Absorbance;
+				}
+				
+				// *TWEAK* This will preserve some energy from the reflection that is actually passing through the surface and not been reflected by the fresnel.
+				if($Specular1FresnelMode == 0)
+				{
+					// Reassigning light direction for calculate the fresnel accordingly to specular maths.
+					vec3 L = normalize( -reflect( V, N));
+					float LdotN = dot(L,N);
+					// Half Vector
+					vec3 H = normalize(L+V);					
+					F = mriBRDF_Fresnel(L, H, $TransmissionIor);					
+					EnergyRefraction_env *=  1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;			
+					
+					if($Specular1FresnelMode == 0)
+					{
+						F = 0.0; 
+					}
+					EnergyRefraction_env *= 1.0 - F * color_toValue(reflCol1.rgb)*$Specular1Strength;				
+				}		
+			}	
+
+			{
+				// ----------Sub-Surface Scattering TERM-----------
+				// Env Light, Light Direction
+				// Sub-Surface Scattering	
+				vec3 L = N;				
+				// Half Vector
+				vec3 H = normalize(L+V);			
+				
+				float LdotN = dot(L,N);
+				float LdotH = dot(L,H);
+				
+				float FL = mriBRDF_SchlickFresnel(LdotN);
+				float FV = mriBRDF_SchlickFresnel(NdotV);			
+					
+				float lightVisibility = 1.0;
+				
+				LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L,  0.0);
+				
+				// creates a bit of a fake impression of difusion
+				vec3 mixSSSdifusion = vec3(0.0);
+				for (int j=0;j<3;j++)
+				{			
+					mixSSSdifusion[j] = LightColour[j] * mix(LdotH, LdotH*LdotN, 1-sssRadius.rgb[j] ) * mix( (1-FL)*(1-FV), (1-FL), sssRadius.rgb[j] );
+				}
+				vec3 Back_Scat_Color = 1.25*mixSSSdifusion;
+				Back_Scat_Color.r *= sssRadius.r > 0 ? 1 : 0;
+				Back_Scat_Color.g *= sssRadius.g > 0 ? 1 : 0;
+				Back_Scat_Color.b *= sssRadius.b > 0 ? 1 : 0;						
+				
+				EnergySSS_env += Back_Scat_Color;
+				
+				// Check-box Calculate Fresnel to Diffuse it is applyed to Sub-Surface Scattering too!
+				//if($DiffuseFresnel == true)
+				// How to calculate fresnel to specular equation, using specReflectance at normal or $IOR	
+				if($Specular1FresnelMode == 0)
+				{
+					// Reassigning light direction for calculate the fresnel accordingly to specular maths.
+					L = normalize( -reflect( V, N));
+					// Half Vector
+					vec3 H = normalize(L+V);					
+					F = mriBRDF_Fresnel(L, H, $TransmissionIor);						
+					EnergySSS_env *= 1.0 - F * color_toValue(specCol1.rgb)*$Specular1Strength;					
+					
+					if($Specular1FresnelMode==0)
+					{
+						F = 0.0; // picks from the math above, since this would be a value that comes from a global attribute for the entire fresnels math.
+					}
+					EnergySSS_env *= 1.0 - F * color_toValue(reflCol1.rgb)*$Specular1Strength;					
+				}
+			}
+			
+			{
+				// ----------OPACITY TERM-----------
+				// Env Opacity, Light Direction			
+				// Opacity incoming direction
+				// It should look like a Ghost with inverted colors!
+				vec3 Li = vec3(0.0);
+				if($Solid)
+				{
+					Li = normalize( -refract(V, -N, 1.0) );
+				}
+				else
+				{
+					// Mari Refraction works well in perspective mode, the ortho viewport presents some glitches
+					Li = normalize( -refract(V, u_MriViewType == 0 ? N*State.FragmentPositionInEyeSpaceFromViewCamera : N*State.FragmentPositionInNdcSpaceFromProjectionCamera, 1.0) );
+				}
+				float lightVisibility = 1.0;
+				LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * Li, 1.0);		
+				EnergyOpacity_env += LightColour;				
+			}
+		}	
+		
+		// AO option
+		float _AO = 1.0 - $AmbientOcclusion * State.AmbientOcclusion;
+		
+		// Keep in mind that Arnold does not restrict the artists with a builtin Energy Conservation! So you have some artists freedom to break the rules as you wish.
+		vec3 Kd = (EnergyDiffuse+EnergyBacklight + EnergyDiffuse_env+EnergyBacklight_env) * difCol.rgb * $DiffuseStrength * _AO;
+		vec3 Ks1 = (EnergySpecular1 + EnergySpecular_env1) * specCol1.rgb * $Specular1Strength * RelectionTintColor1* _AO;	
+		vec3 Ks2 = (EnergySpecular2 + EnergySpecular_env2) * specCol2.rgb * $Specular2Strength * RelectionTintColor2* _AO;	
+		vec3 Kr1 = EnergyReflection_env1 * reflCol1.rgb * $Specular1Strength * RelectionTintColor1 * _AO;
+		vec3 Kr2 = EnergyReflection_env2 * reflCol2.rgb * $Specular2Strength * RelectionTintColor2 * _AO;
+		vec3 Kt = EnergyRefraction_env * EnergyTransmittance * refrCol.rgb * $TransmissionStrength * _AO;
+		vec3 Ksss = (EnergySSS + EnergySSS_env) * $SSSWeight * sssCol.rgb * _AO;	
+		vec3 Opa = EnergyOpacity_env * opacityCol.rgb;
+		
+		// New Mari Lighting Mode workflow.
+		// Lighting Mode => 0 - "Flat" - only display the Current Channel that is selected.
+		// Lighting Mode =>	1 - Basic - Display Diffuse + Sub-surface Scattering
+		// Lighting Mode => 2 - Full - Adds the specular/reflection + refraction + self-illumination on top of what the Basic mode displays
+		Output.rgb = u_MriLightingMode==0 ? Current_Channel_Selected.rgb : Kd+Ksss;
+		Output.rgb += u_MriLightingMode!=2 ? vec3(0.0) : Ks1+Ks2+Kt;
+			
+		// Emission
+		Output.rgb += u_MriLightingMode==2 ? $EmissionStrength * emisCol.rgb : vec3(0.0);
+
+		// Opacity
+		Output.rgb = u_MriLightingMode==2 ? mix(Opa.rgb, Output.rgb, 1.0-color_toValue(opacityCol.rgb)) : Output.rgb;
+				
+		// If displaying "flat" lighting mode 0 use the Current Channel alpha.
+		Output.a = u_MriLightingMode==0 ? #View_Current_Channel.a : 1.0;		
+		
+		
+		// Render Passes Mode, the beauty pass = 0 doesn't need an if statement, it has coded above and displayed by default
+		// Lighting Mode == 1 ? #Channel * $Weight : #Channel * $ChannelWeight * Lighting Contribution
+		if($Render_Passes == 1)
+		{
+			Output.rgb = (u_MriLightingMode==1 ? difCol.rgb * $DiffuseStrength : Kd);
+		}
+		if($Render_Passes == 2)
+		{
+			Output.rgb = (u_MriLightingMode==1 ? specCol1.rgb * $Specular1Strength : Ks1+Ks2);
+		}
+		if($Render_Passes == 3)
+		{
+			Output.rgb = (u_MriLightingMode==1 ? reflCol1.rgb * $Specular1Strength : Kr1+Kr2);
+		}
+		if($Render_Passes == 4)
+		{
+			Output.rgb = (u_MriLightingMode==1 ? refrCol.rgb * $TransmissionStrength : Kt);
+		}
+		if($Render_Passes == 5)
+		{
+			Output.rgb = (u_MriLightingMode==1 ? sssCol.rgb * $SSSWeight : Ksss);
+		}
+		if($Render_Passes == 6)
+		{
+			Output.rgb = emisCol.rgb * $EmissionStrength;
+		}
+		if($Render_Passes == 7)
+		{
+			Output.rgb = vec3(1.0/Thickness);			
+		}	
+	}
+		
+	            ]]></Body>
+            </Shader>
+        </Context>
+    </Contexts>
+</Node>

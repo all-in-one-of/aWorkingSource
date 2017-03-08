@@ -1,0 +1,52 @@
+<Node>
+  <ID>MY_EXAMPLE_Phong_Specular</ID>
+  <Inputs>
+    <Input Name="SpecularColor" PrettyName="Specular Color" PreferredInput='1'></Input>
+    <Input Name="SpecularShininess" PrettyName="Specular Shininess"></Input>
+    <Input Name="Normal"></Input>
+  </Inputs>
+  <Attributes>
+    <Attribute Name="SpecularShininess" PrettyName="Specular Shininess" Group="" Type="double" Min="0" Max="100">10</Attribute>
+  </Attributes>
+  <Tags>
+    <Tag>_notcacheable</Tag>
+    <Tag>_specular</Tag>
+  </Tags>
+    <Contexts>
+        <Context Type="GLSL">
+            <Shader ShaderType='Fragment'>
+                <Inputs>
+                    <Input Name="SpecularColor"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="SpecularShininess"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="Normal"><Default>vec4(0,0,1,1)</Default></Input>
+                </Inputs>
+                <Body><![CDATA[
+    vec3 E = normalize(-State.ViewVectorInEyeSpaceFromViewCamera);
+    vec3 N = normalize(#Normal.xyz); 
+
+    float Shininess = $SpecularShininess*#SpecularShininess.r;
+
+    vec3 Specular = vec3(0.0); 
+
+    for(int i=0;i<4;i++)
+    {
+        //Light Direction
+        vec3 L = normalize(u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera);
+        //Reflection Vector
+        vec3 R = 2.0*dot(L,N)*N - L;
+
+        float LightVisibility = mriLightVisibility( i, State.Position);
+
+        float NdotH = clamp( dot(R,E), 0.001, 0.999);
+
+        // Phong specular
+        Specular += pow(NdotH,Shininess) * u_MriLightSources[i].SpecularColor.rgb * LightVisibility;
+    }
+
+    Output.rgb = Specular * #SpecularColor.rgb;
+    Output.a = #SpecularColor.a;
+                ]]></Body>
+            </Shader>
+        </Context>
+    </Contexts>
+</Node>

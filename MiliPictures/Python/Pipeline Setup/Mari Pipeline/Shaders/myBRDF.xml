@@ -1,0 +1,166 @@
+<Node>
+  <ID>myBRDF</ID>
+  <Inputs>
+    <Input Name="DiffuseColor" PrettyName="Diffuse Color" PreferredInput='1' />
+    <Input Name="SpecularColor" PrettyName="Specular Color" />
+    <Input Name="Glossiness" PrettyName="Glossiness" />
+    <Input Name="Reflectance" PrettyName="Reflectance" />
+    <Input Name="AmbientOcclusion" PrettyName="Ambient Occlusion"></Input>
+    <Input Name="EmissiveColor" PrettyName="Emissive Color"></Input>
+    <Input Name="Normal" />
+  </Inputs>
+  <Attributes>
+      <Attribute Name="Diffuse" Group="" Type="double" Min="0" Max="1">1.0</Attribute>
+      <Attribute Name="Specular" Group="" Type="double" Min="0" Max="1">1.0</Attribute>
+      <Attribute Name="Glossiness" Group="" Type="double" Min="0" Max="1">0.2</Attribute>
+      <Attribute Name="AmbientOcclusion" PrettyName="Ambient Occlusion" Group="" Type="double" Min="0" Max="2">1.0</Attribute>
+      <Attribute Name="Reflectance" Group="" Type="double" Min="0" Max="1">0.2</Attribute>
+      <Attribute Name="Emissive" Group="" Type="double" Min="0" Max="100.0" Logarithmic="1">1.0</Attribute>
+  </Attributes>
+  <Tags>
+    <Tag>_notcacheable</Tag>
+    <Tag>_standalone</Tag>
+  </Tags>
+    <Contexts>
+        <Context Type="NodeGraphView">
+        </Context>
+        <Context Type="GLSL">
+            <Shader ShaderType='Fragment'>
+                <Inputs>
+                    <Input Name="DiffuseColor"><Default>vec4(0,0,0,0)</Default></Input>
+                    <Input Name="SpecularColor"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="Glossiness" Tags="_invertable"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="Reflectance"><Default>vec4(1,1,1,1)</Default></Input>
+                    <Input Name="AmbientOcclusion"><Default>vec4(vec3(1.0-State.AmbientOcclusion),1.0)</Default></Input>
+                    <Input Name="EmissiveColor"><Default>vec4(0,0,0,0)</Default></Input>
+                    <Input Name="Normal"><Default>vec4(0,0,1,1)</Default></Input>
+                </Inputs>
+                <Body><![CDATA[
+    // View Direction
+    vec3 V = normalize(-State.ViewVectorInEyeSpaceFromViewCamera);
+    // Normal Direction
+    vec3 N = #Normal.xyz;
+
+    float NdotV = dot(N,V);
+    // On the wrong side of the face
+    if( NdotV <= 0.0)
+    {
+        N = -N;
+        NdotV = 1.0 - NdotV;
+    }
+
+    vec3 EnergyDiffuse = vec3(0.0);
+    vec3 EnergySpecular = vec3(0.0);
+
+    float _Glossiness = ($Glossiness * ( bool( #Glossiness_INVERTED) ? (1.0 - (#Glossiness).r) : (#Glossiness).r));
+    float _Reflectance = ($Reflectance * (#Reflectance).r);
+
+    float PI = 3.141;
+
+    float g = _Glossiness;
+    float m = exp2( 13.0*g);
+    float a = 1.0 / sqrt( ((PI/4.0) * m) + (PI/2.0));
+    float r = _Reflectance;
+
+
+    for(int i=0;i<4;i++)
+    {
+        if( vec3( 0) == u_MriLightSources[i].DiffuseColor.rgb && vec3( 0) == u_MriLightSources[i].SpecularColor.rgb)
+        {
+            continue;
+        }
+
+        float lightVisibility = mriLightVisibility( i, State.Position);
+        if( lightVisibility <= 0.01)
+        {
+            continue;
+        }
+
+        // Light Direction
+        vec3 L = normalize(u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera);
+        // Half Vector
+        vec3 H = normalize(L+V);
+
+        float NdotL = dot(L,N);
+        if( NdotL <= 0.0)
+        {
+            continue;
+        }
+
+        {
+            float NdotH = dot(N,H);
+            float LdotH = dot(L,H);
+
+            // Fresnel - Schlicks
+            float F = r + ((1-r) * pow( 1.0-LdotH, 5.0));
+
+            // Microfacet - Blinn-Phong
+            float D = 1.0 * ((m+2.0)/(8*PI)) * pow( NdotH, m);
+
+            // Geometric Visible - Schlick-Smith
+            float G = 1;
+            float V = 1.0 / (((1.0 - a )*NdotL) + a) * ((NdotV*(1.0-a))+ a);
+
+            float fs = (F * V * D);
+            float fd = 1.0;
+
+            EnergyDiffuse  += (lightVisibility * u_MriLightSources[i].DiffuseColor.rgb) * (fd * NdotL);
+            EnergySpecular += (lightVisibility * u_MriLightSources[i].SpecularColor.rgb) * (fs * NdotL);
+        }
+    }
+
+    if( true == mriEnvironmentLightOn())
+    {
+        {
+            // Env Light, Light Direction
+            EnergyDiffuse += mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * N, 0.0);
+        }
+
+        {
+            // Env Reflection, Light Direction
+            //vec3 L = normalize(u_MriLightSources[i].Position.xyz - State.FragmentPositionInEyeSpaceFromViewCamera);
+            vec3 L = normalize( -reflect( V, N));
+            // Half Vector
+            vec3 H = normalize(L+V);
+
+            float NdotL = dot(L,N);
+            if( 0.0 < NdotL)
+            {
+                float lightVisibility = 1.0;
+
+                float LdotH = dot(L,H);
+
+                // Fresnel - Schlicks
+                float F = r + ((1-r) * pow( 1.0-LdotH, 5.0));
+
+                // Microfacet - Cubemaps render using glossy pow( )
+                float D = 1;
+
+                // Geometric Visible
+                float G = 1;
+                float V = 1.0 / (((1.0 - a )*NdotL) + a) * ((NdotV*(1.0-a))+ a);
+
+                float fs = (F * V * D);
+
+                vec3 LightColour = lightVisibility * mriEnvironmentLight( transpose(mat3(u_MriViewMatrix)) * L, _Glossiness);
+                EnergySpecular += (fs * NdotL) * (LightColour);
+            }
+        }
+    }
+
+    Output.rgb  = u_MriLightingMode==0 ? #DiffuseColor.rgb : vec3($Diffuse  * EnergyDiffuse.rgb  * #DiffuseColor.rgb );
+    Output.rgb += u_MriLightingMode!=2 ? vec3(0.0)         : vec3($Specular * EnergySpecular.rgb * #SpecularColor.rgb);
+
+    Output.rgb *= u_MriLightingMode>=1 ? vec3(1.0 - ($AmbientOcclusion * vec3(1.0-#AmbientOcclusion.rgb)) ) : vec3(1.0);
+
+    // Emissive not affected by AO
+    Output.rgb += u_MriLightingMode==2 ? $Emissive * #EmissiveColor.rgb * #EmissiveColor.a : vec3(0.0);
+
+    Output.a = #DiffuseColor.a;
+
+                ]]></Body>
+            </Shader>
+        </Context>
+    </Contexts>
+</Node>
+

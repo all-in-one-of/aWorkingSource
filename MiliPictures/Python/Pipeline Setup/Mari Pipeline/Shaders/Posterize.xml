@@ -1,0 +1,25 @@
+<Node>
+  <ID>MY_EXAMPLE_Posterize_Adjustment</ID>
+  <Tags>
+    <Tag>_adjustment</Tag>
+  </Tags>
+  <Inputs>
+    <Input Name="Input"></Input>
+  </Inputs>
+  <Attributes>
+    <Attribute Name="Colors" Description="The number of colors after posterization" Group="" Type="double" Min="0.0" Max="256" Logarithmic="true">8</Attribute>
+  </Attributes>
+  <Contexts>
+    <Context Type="GLSL">
+        <Shader>
+            <Inputs>
+                <Input Name="Input"><Default>vec4(1,1,1,1)</Default></Input>
+            </Inputs>
+            <Body><![CDATA[
+            Output.rgb = round($Colors * #Input.rgb) / $Colors;
+            Output.a = #Input.a;
+            ]]></Body>
+        </Shader>
+    </Context>
+  </Contexts>
+</Node>
