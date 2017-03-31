@@ -16,5 +16,6 @@ def getAll():
 	    traversal.next()
 	for i in locationPathsAndData:
 	    print i
-def getSingal():
+
+getAll()
 	

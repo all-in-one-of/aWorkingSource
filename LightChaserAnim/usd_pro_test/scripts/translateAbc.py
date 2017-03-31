@@ -10,14 +10,14 @@ def exportAbc(path):
     command = "-frameRange " + str(start) + " " + str(end) +" -uvWrite -worldSpace -dataFormat ogawa" + root + " -file " + save_name
     cmds.AbcExport ( j = command )
 
-file = open("/mnt/proj/software/develop/usd/usd_test_data/tea_street_a_asb/dAbcMap.json", "rb")
+file = open("/home/xukai/Documents/TestDataFactory/tea_shop/assets/map/dAbcMap.json", "rb")
 dAbcMap = json.load(file)
 file.close()
 dUsdMap={}
 for abc in dAbcMap:
     name = abc
     path = dAbcMap[name]
-    out_path = "/mnt/proj/software/develop/usd/usd_test_data/tea_street_a_asb/abc/"+name.split("/")[-1].replace(":","_")+".abc"
+    out_path = "/home/xukai/Documents/TestDataFactory/tea_shop/assets/abc/"+name.split("/")[-1].replace(":","_")+".abc"
     #print name,"---",path
     #print "-",out_path
     
@@ -34,6 +34,6 @@ for abc in dAbcMap:
     exportAbc(out_path)
 
 
-file = open("/mnt/proj/software/develop/usd/usd_test_data/tea_street_a_asb/dUsdMap.json", "wb")
+file = open("/home/xukai/Documents/TestDataFactory/tea_shop/assets/map/dUsdMap.json", "wb")
 json.dump(dUsdMap, file, indent=3)
 file.close()
