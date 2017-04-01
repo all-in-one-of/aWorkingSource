@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfoundry.katana.FnViewerModifierPlugin.a  CMakeFiles/foundry.katana.FnViewerModifierPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnViewerModifier/plugin/FnViewerModifierInput.cpp.o CMakeFiles/foundry.katana.FnViewerModifierPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnViewerModifier/plugin/FnViewerModifier.cpp.o
+/usr/bin/ranlib libfoundry.katana.FnViewerModifierPlugin.a

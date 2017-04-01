@@ -1,0 +1,250 @@
+<args format="1.0">
+<param name="layer1" label="Layer 1" widget="color"/>
+<param name="layer1a" label="Layer 1 Alpha"/>
+<param name="layer1blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer2" label="Layer 2" widget="color"/>
+<param name="layer2a" label="Layer 2 Alpha"/>
+<param name="layer2blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer3" label="Layer 3" widget="color"/>
+<param name="layer3a" label="Layer 3 Alpha"/>
+<param name="layer3blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer4" label="Layer 4" widget="color"/>
+<param name="layer4a" label="Layer 4 Alpha"/>
+<param name="layer4blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer5" label="Layer 5" widget="color"/>
+<param name="layer5a" label="Layer 5 Alpha"/>
+<param name="layer5blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer6" label="Layer 6" widget="color"/>
+<param name="layer6a" label="Layer 6 Alpha"/>
+<param name="layer6blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer7" label="Layer 7" widget="color"/>
+<param name="layer7a" label="Layer 7 Alpha"/>
+<param name="layer7blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+<param name="layer8" label="Layer 8" widget="color"/>
+<param name="layer8a" label="Layer 8 Alpha"/>
+<param name="layer8blend" label="Mode" widget="popup">
+	<hintlist name="options">
+		<string value="Normal"/>
+		<string value="Lighten"/>
+		<string value="Darken"/>
+		<string value="Multiply"/>
+		<string value="Average"/>
+		<string value="Add"/>
+		<string value="Subtract"/>
+		<string value="Difference"/>
+		<string value="Negation"/>
+		<string value="Exclusion"/>
+		<string value="Screen"/>
+		<string value="Overlay"/>
+		<string value="Soft Light"/>
+		<string value="Hard Light"/>
+		<string value="Color Dodge"/>
+		<string value="Color Burn"/>
+		<string value="Linear Dodge"/>
+		<string value="Linear Burn"/>
+		<string value="Linear Light"/>
+		<string value="Vivid Light"/>
+		<string value="Pin Light"/>
+		<string value="Hard Mix"/>
+		<string value="Reflect"/>
+		<string value="Glow"/>
+		<string value="Phoenix"/>
+	</hintlist>
+</param>
+</args>

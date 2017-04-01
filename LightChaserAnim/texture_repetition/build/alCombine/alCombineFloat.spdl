@@ -1,0 +1,101 @@
+SPDL
+Version = "2.0.0.0";
+Reference = "{2312d928-5461-4fd0-85a1-41c37e49800b}";
+PropertySet "alCombineFloat_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{386b537c-8045-4cfa-a0ed-a531298bbf88}";
+		Type = scalar;
+	}
+	Parameter "input1" input
+	{
+		GUID = "{ed2f9b68-7cf9-4b7d-be24-b5d18348f97d}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "input2" input
+	{
+		GUID = "{6f1c5580-fdfb-48f2-b878-de4c423dd2b7}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "input3" input
+	{
+		GUID = "{813a89c0-f8b2-49ac-bcfa-d895fa3cc9a7}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "combineOp" input
+	{
+		GUID = "{e8b48ff2-1b3d-44f1-8a6f-792f46a2797c}";
+		Type = string;
+		Texturable = off;
+		Value = "multiply 1*2";
+	}
+}
+MetaShader "alCombineFloat_meta"
+{
+	Name = "ALS_CombineFloat";
+	Type = texture;
+	Renderer "mental ray"
+	{
+		Name = "ALS_CombineFloat";
+		Filename = "alCombineFloat";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+Defaults
+{
+	input1
+	{
+		Name = "input1";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	input2
+	{
+		Name = "input2";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	input3
+	{
+		Name = "input3";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	combineOp
+	{
+		Name = "Combine Op";
+		UIType = "Combo";
+		Items
+		{
+			"multiply 1*2" = "multiply 1*2";
+			"add 1+2" = "add 1+2";
+			"divide 1/2" = "divide 1/2";
+			"subtract 1-2" = "subtract 1-2";
+			"lerp(1, 2, 3)" = "lerp(1, 2, 3)";
+		}
+	}
+}
+Layout "Default"
+{
+	input1;
+	input2;
+	input3;
+	combineOp;
+}
+Layout "RenderTree"
+{
+	input1;
+	input2;
+	input3;
+}
+Plugin = Shader
+{
+	Filename = "alCombineFloat";
+}

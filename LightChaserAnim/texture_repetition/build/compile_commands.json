@@ -1,0 +1,402 @@
+[
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSurface",
+  "command": "/usr/bin/c++   -DalSurface_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSurface.dir/alSurface.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSurface/alSurface.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSurface/alSurface.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSurface",
+  "command": "/usr/bin/c++   -DalSurface_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSurface.dir/sss.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSurface/sss.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSurface/sss.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSurface",
+  "command": "/usr/bin/c++   -DalSurface_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSurface.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSurface",
+  "command": "/usr/bin/c++   -DalSurface_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSurface.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSurface",
+  "command": "/usr/bin/c++   -DalSurface_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSurface.dir/__/common/fresnel.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/fresnel.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/fresnel.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapFloat.dir/alRemapFloat.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alRemap/alRemapFloat.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alRemap/alRemapFloat.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapFloat.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapFloat.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapColor.dir/alRemapColor.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alRemap/alRemapColor.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alRemap/alRemapColor.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapColor.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alRemap",
+  "command": "/usr/bin/c++   -DalRemapColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alRemapColor.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineFloat.dir/alCombineFloat.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCombine/alCombineFloat.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCombine/alCombineFloat.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineFloat.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineFloat.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineColor.dir/alCombineColor.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCombine/alCombineColor.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCombine/alCombineColor.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineColor.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCombine",
+  "command": "/usr/bin/c++   -DalCombineColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCombineColor.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFractal_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFractal.dir/alFractal.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alFractal.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alFractal.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFractal_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFractal.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFractal_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFractal.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalGaborNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alGaborNoise.dir/alGaborNoise.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alGaborNoise.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alGaborNoise.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalGaborNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alGaborNoise.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalGaborNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alGaborNoise.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFlowNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlowNoise.dir/alFlowNoise.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alFlowNoise.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alFlowNoise.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFlowNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlowNoise.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalFlowNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlowNoise.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalCellNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCellNoise.dir/alCellNoise.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alCellNoise.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alNoise/alCellNoise.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalCellNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCellNoise.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alNoise",
+  "command": "/usr/bin/c++   -DalCellNoise_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCellNoise.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerColor.dir/alLayerColor.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayerColor.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayerColor.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerColor.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerColor.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerFloat.dir/alLayerFloat.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayerFloat.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayerFloat.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerFloat.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayerFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayerFloat.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayer_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayer.dir/alLayer.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayer.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alLayer/alLayer.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayer_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayer.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alLayer",
+  "command": "/usr/bin/c++   -DalLayer_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alLayer.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alPattern",
+  "command": "/usr/bin/c++   -DalPattern_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alPattern.dir/alPattern.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alPattern/alPattern.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alPattern/alPattern.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alPattern",
+  "command": "/usr/bin/c++   -DalPattern_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alPattern.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alPattern",
+  "command": "/usr/bin/c++   -DalPattern_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alPattern.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCurvature",
+  "command": "/usr/bin/c++   -DalCurvature_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCurvature.dir/alCurvature.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCurvature/alCurvature.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCurvature/alCurvature.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCurvature",
+  "command": "/usr/bin/c++   -DalCurvature_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCurvature.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCurvature",
+  "command": "/usr/bin/c++   -DalCurvature_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCurvature.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alBlackbody",
+  "command": "/usr/bin/c++   -DalBlackbody_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alBlackbody.dir/alBlackbody.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alBlackbody/alBlackbody.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alBlackbody/alBlackbody.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alBlackbody",
+  "command": "/usr/bin/c++   -DalBlackbody_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alBlackbody.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alBlackbody",
+  "command": "/usr/bin/c++   -DalBlackbody_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alBlackbody.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputVector_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputVector.dir/alInputVector.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alInputVector/alInputVector.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alInputVector/alInputVector.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputVector_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputVector.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputVector_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputVector.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputScalar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputScalar.dir/alInputScalar.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alInputVector/alInputScalar.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alInputVector/alInputScalar.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputScalar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputScalar.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alInputVector",
+  "command": "/usr/bin/c++   -DalInputScalar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alInputScalar.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alHair",
+  "command": "/usr/bin/c++   -DalHair_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alHair.dir/alHair.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alHair/alHair.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alHair/alHair.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alHair",
+  "command": "/usr/bin/c++   -DalHair_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alHair.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alHair",
+  "command": "/usr/bin/c++   -DalHair_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alHair.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alColorSpace",
+  "command": "/usr/bin/c++   -DalColorSpace_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alColorSpace.dir/alColorSpace.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alColorSpace/alColorSpace.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alColorSpace/alColorSpace.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alColorSpace",
+  "command": "/usr/bin/c++   -DalColorSpace_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alColorSpace.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alColorSpace",
+  "command": "/usr/bin/c++   -DalColorSpace_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alColorSpace.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alTriplanar",
+  "command": "/usr/bin/c++   -DalTriplanar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alTriplanar.dir/alTriplanar.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alTriplanar/alTriplanar.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alTriplanar/alTriplanar.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alTriplanar",
+  "command": "/usr/bin/c++   -DalTriplanar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alTriplanar.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alTriplanar",
+  "command": "/usr/bin/c++   -DalTriplanar_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alTriplanar.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchColor.dir/alSwitchColor.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSwitch/alSwitchColor.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSwitch/alSwitchColor.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchColor.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchColor.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchFloat.dir/alSwitchFloat.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSwitch/alSwitchFloat.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alSwitch/alSwitchFloat.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchFloat.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alSwitch",
+  "command": "/usr/bin/c++   -DalSwitchFloat_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alSwitchFloat.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alJitterColor",
+  "command": "/usr/bin/c++   -DalJitterColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alJitterColor.dir/alJitterColor.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alJitterColor/alJitterColor.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alJitterColor/alJitterColor.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alJitterColor",
+  "command": "/usr/bin/c++   -DalJitterColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alJitterColor.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alJitterColor",
+  "command": "/usr/bin/c++   -DalJitterColor_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alJitterColor.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCache",
+  "command": "/usr/bin/c++   -DalCache_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCache.dir/alCache.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCache/alCache.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCache/alCache.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCache",
+  "command": "/usr/bin/c++   -DalCache_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCache.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCache",
+  "command": "/usr/bin/c++   -DalCache_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCache.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCel",
+  "command": "/usr/bin/c++   -DalCel_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCel.dir/alCel.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCel/alCel.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alCel/alCel.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCel",
+  "command": "/usr/bin/c++   -DalCel_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCel.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alCel",
+  "command": "/usr/bin/c++   -DalCel_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alCel.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alFlake",
+  "command": "/usr/bin/c++   -DalFlake_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlake.dir/alFlake.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alFlake/alFlake.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/alFlake/alFlake.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alFlake",
+  "command": "/usr/bin/c++   -DalFlake_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlake.dir/__/common/alUtil.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/alUtil.cpp"
+},
+{
+  "directory": "/home/xukai/Documents/TestProgramFactory/texture_repetition/build/alFlake",
+  "command": "/usr/bin/c++   -DalFlake_EXPORTS -I/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/include -I/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common  -O3 -fvisibility=hidden -DNDEBUG -fPIC   -o CMakeFiles/alFlake.dir/__/common/Color.cpp.o -c /home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp",
+  "file": "/home/xukai/Documents/TestProgramFactory/texture_repetition/alshaders/common/Color.cpp"
+}
+]

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfoundry.katana.FnConfig.a  CMakeFiles/foundry.katana.FnConfig.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnConfig/FnConfig.cpp.o
+/usr/bin/ranlib libfoundry.katana.FnConfig.a

@@ -1,0 +1,543 @@
+SPDL
+Version = "2.0.0.0";
+Reference = "{31497e96-372f-4337-a958-6bc287e56599}";
+PropertySet "alCellNoise_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{4c8c2def-61f4-4021-b40c-9d0dfe3dc403}";
+		Type = color;
+	}
+	Parameter "space" input
+	{
+		GUID = "{462e69fe-024d-4ca6-a17f-a345835d2077}";
+		Type = string;
+		Texturable = off;
+		Value = "world";
+	}
+	Parameter "frequency" input
+	{
+		GUID = "{8c707714-75a1-427a-9cd5-5d7d46fbd3a5}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{9d9718fd-14b8-46eb-ba3f-2427b7b40d3b}";
+		Type = string;
+		Texturable = off;
+		Value = "features";
+	}
+	Parameter "randomness" input
+	{
+		GUID = "{44794247-84d4-4d23-8dab-3a72fda7c24f}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "octaves" input
+	{
+		GUID = "{7c48bf15-66a7-4599-a5f0-acef99b13796}";
+		Type = integer;
+		Texturable = off;
+		Value = 1;
+	}
+	Parameter "lacunarity" input
+	{
+		GUID = "{4fd71f14-ebd4-403c-8ec7-2c8dfa41755c}";
+		Type = scalar;
+		Texturable = on;
+		Value = 2.121000;
+	}
+	Parameter "RMPinputMin" input
+	{
+		GUID = "{943d8628-3e11-41c8-8eca-692499609cd6}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "RMPinputMax" input
+	{
+		GUID = "{b4a6fcbd-a0c4-44f6-8f1d-f901cfc4d1c9}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "RMPcontrast" input
+	{
+		GUID = "{48e9d16d-4d89-4eea-a371-589b5221d78f}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "RMPcontrastPivot" input
+	{
+		GUID = "{910b0ef8-f8a6-4240-b45b-9884589a4193}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.180000;
+	}
+	Parameter "RMPbias" input
+	{
+		GUID = "{498edcff-864d-48a0-aba0-a24246a181fc}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.500000;
+	}
+	Parameter "RMPgain" input
+	{
+		GUID = "{c41ea45a-0a03-4f5d-aa6e-42f680f8ac01}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.500000;
+	}
+	Parameter "RMPoutputMin" input
+	{
+		GUID = "{ca57f0dc-e312-4075-bf17-2d5bfc89cce6}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "RMPoutputMax" input
+	{
+		GUID = "{ec419125-db61-44ea-b476-8594cfff6cc5}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "RMPclampEnable" input
+	{
+		GUID = "{d0c761b5-0203-4ae5-8f3e-5d7d7e52b2db}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+	Parameter "RMPthreshold" input
+	{
+		GUID = "{81a24fc5-c972-49f0-976b-4719b2fed10f}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+	Parameter "RMPclampMin" input
+	{
+		GUID = "{09145011-0fb1-486e-86b6-44aa2e18e78e}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.000000;
+	}
+	Parameter "RMPclampMax" input
+	{
+		GUID = "{3f725844-ede1-4258-abd0-6b39524f7b8b}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "color1" input
+	{
+		GUID = "{34287a5b-829f-4c80-bf71-e3a9e35af813}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "color2" input
+	{
+		GUID = "{b47ce937-7840-4c28-9f4e-bc1fa134990a}";
+		Type = color;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+	Parameter "smoothChips" input
+	{
+		GUID = "{d754777d-7dbf-4978-93a3-ad3ec5d2c793}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+	Parameter "randomChips" input
+	{
+		GUID = "{a0e78217-ba98-4117-9ac7-a7b16b5af08a}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+	Parameter "chipColor1" input
+	{
+		GUID = "{49b7b126-acab-4d16-b333-8f69d1c3f92c}";
+		Type = color;
+		Texturable = on;
+		Value = 0.383000 0.318000 0.252000;
+	}
+	Parameter "chipProb1" input
+	{
+		GUID = "{4f0247b5-03a6-4002-9a86-ebed1ec78649}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "chipColor2" input
+	{
+		GUID = "{ed2e5f25-f8d1-4769-9745-e28371bd9ca1}";
+		Type = color;
+		Texturable = on;
+		Value = 0.383000 0.191000 0.010000;
+	}
+	Parameter "chipProb2" input
+	{
+		GUID = "{b7c2e127-1fb2-4100-b454-172b29388ac7}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "chipColor3" input
+	{
+		GUID = "{892d1d13-3adb-4400-b373-5eee94322510}";
+		Type = color;
+		Texturable = on;
+		Value = 0.635000 0.612000 0.563000;
+	}
+	Parameter "chipProb3" input
+	{
+		GUID = "{7d292fb9-d901-4fcf-886e-39c628779555}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "chipColor4" input
+	{
+		GUID = "{20a25bd0-36a4-4efb-8d69-8e2460ce1521}";
+		Type = color;
+		Texturable = on;
+		Value = 0.509000 0.361000 0.213000;
+	}
+	Parameter "chipProb4" input
+	{
+		GUID = "{608152ee-2bf0-4250-970a-de96944e2e47}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "chipColor5" input
+	{
+		GUID = "{b8e2ee24-d958-4bb0-a0dc-48761ae59225}";
+		Type = color;
+		Texturable = on;
+		Value = 0.593000 0.472000 0.248000;
+	}
+	Parameter "chipProb5" input
+	{
+		GUID = "{3301ff96-d268-4aee-a86b-97fad846c946}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.000000;
+	}
+	Parameter "P" input
+	{
+		GUID = "{5e49a90f-8608-43ca-be85-0ef84da94bbc}";
+		Type = vector;
+		Texturable = on;
+		Value = 0.000000 0.000000 0.000000;
+	}
+}
+MetaShader "alCellNoise_meta"
+{
+	Name = "ALS_CellNoise";
+	Type = texture;
+	Renderer "mental ray"
+	{
+		Name = "ALS_CellNoise";
+		Filename = "alCellNoise";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+Defaults
+{
+	space
+	{
+		Name = "Space";
+		UIType = "Combo";
+		Items
+		{
+			"world" = "world";
+			"object" = "object";
+			"Pref" = "Pref";
+			"UV" = "UV";
+		}
+	}
+	frequency
+	{
+		Name = "Frequency";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	mode
+	{
+		Name = "Mode";
+		UIType = "Combo";
+		Items
+		{
+			"features" = "features";
+			"chips" = "chips";
+		}
+	}
+	randomness
+	{
+		Name = "Randomness";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	octaves
+	{
+		Name = "Octaves";
+	}
+	lacunarity
+	{
+		Name = "Lacunarity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPinputMin
+	{
+		Name = "Input min";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPinputMax
+	{
+		Name = "Input max";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPcontrast
+	{
+		Name = "Contrast";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPcontrastPivot
+	{
+		Name = "Pivot";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPbias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPgain
+	{
+		Name = "Gain";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPoutputMin
+	{
+		Name = "Output min";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPoutputMax
+	{
+		Name = "Output max";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPclampEnable
+	{
+		Name = "Enable";
+	}
+	RMPthreshold
+	{
+		Name = "Expand";
+	}
+	RMPclampMin
+	{
+		Name = "Min";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	RMPclampMax
+	{
+		Name = "Max";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	color1
+	{
+		Name = "Color 1";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	color2
+	{
+		Name = "Color 2";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	smoothChips
+	{
+		Name = "Smooth";
+	}
+	randomChips
+	{
+		Name = "Randomize";
+	}
+	chipColor1
+	{
+		Name = "Chip color 1";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipProb1
+	{
+		Name = "Chip probability 1";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipColor2
+	{
+		Name = "Chip color 2";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipProb2
+	{
+		Name = "Chip probability 2";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipColor3
+	{
+		Name = "Chip color 3";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipProb3
+	{
+		Name = "Chip probability 3";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipColor4
+	{
+		Name = "Chip color 4";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipProb4
+	{
+		Name = "Chip probability 4";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipColor5
+	{
+		Name = "Chip color 5";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	chipProb5
+	{
+		Name = "Chip probability 5";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	P
+	{
+		Name = "P";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+Layout "Default"
+{
+	space;
+	frequency;
+	mode;
+	randomness;
+	Tab "Features"
+	{
+		octaves;
+		lacunarity;
+		Group "Remap"
+		{
+			RMPinputMin;
+			RMPinputMax;
+			Group "Contrast"
+			{
+				RMPcontrast;
+				RMPcontrastPivot;
+			}
+			Group "Bias and gain"
+			{
+				RMPbias;
+				RMPgain;
+			}
+			RMPoutputMin;
+			RMPoutputMax;
+			Group "Clamp"
+			{
+				RMPclampEnable;
+				RMPthreshold;
+				RMPclampMin;
+				RMPclampMax;
+			}
+		}
+		color1;
+		color2;
+	}
+	Tab "Chips"
+	{
+		smoothChips;
+		randomChips;
+		chipColor1;
+		chipProb1;
+		chipColor2;
+		chipProb2;
+		chipColor3;
+		chipProb3;
+		chipColor4;
+		chipProb4;
+		chipColor5;
+		chipProb5;
+	}
+	P;
+}
+Layout "RenderTree"
+{
+	frequency;
+	randomness;
+	Group "Features"
+	{
+		lacunarity;
+		Group "Remap"
+		{
+			RMPinputMin;
+			RMPinputMax;
+			Group "Contrast"
+			{
+				RMPcontrast;
+				RMPcontrastPivot;
+			}
+			Group "Bias and gain"
+			{
+				RMPbias;
+				RMPgain;
+			}
+			RMPoutputMin;
+			RMPoutputMax;
+			Group "Clamp"
+			{
+				RMPclampMin;
+				RMPclampMax;
+			}
+		}
+		color1;
+		color2;
+	}
+	Group "Chips"
+	{
+		chipColor1;
+		chipProb1;
+		chipColor2;
+		chipProb2;
+		chipColor3;
+		chipProb3;
+		chipColor4;
+		chipProb4;
+		chipColor5;
+		chipProb5;
+	}
+	P;
+}
+Plugin = Shader
+{
+	Filename = "alCellNoise";
+}

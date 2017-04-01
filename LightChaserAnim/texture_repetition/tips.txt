@@ -1,0 +1,10 @@
+#Tips
+
+alShader:1.0.0rc16
+
+
+http://www.iquilezles.org/www/articles/texturerepetition/texturerepetition.htm
+
+/mnt/utility/toolset/applications/mari3/Scripts/ExtensionPack_3v2/Shaders/FunctionLibrary/YU_FunctionLibrary/Yu_proceduralLib.glslc
+
+function name:texture2DNoTile
