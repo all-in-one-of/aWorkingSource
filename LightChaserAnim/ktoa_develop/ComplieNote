@@ -1,0 +1,6 @@
+./kbuild KATANA_HOME=/mnt/work/software/katana/katana2.5v5 \
+         ARNOLD_HOME=/mnt/work/software/arnold/arnold-5.0.0.0 \
+         SA_COMMON_HOME=/ \
+         OPENEXR_HOME=/mnt/work/software/develop/dependence/ilmbase-2.2.0 \
+         BOOST_HOME=/mnt/work/software/develop/dependence/boost_163 \
+         -j 8 install PREFIX=/home/xukai/Documents/TestDataFactory/ktoa_develop

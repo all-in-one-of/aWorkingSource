@@ -10,3 +10,5 @@ in:
 	@echo "Install file..."
 	#mv -f main ./build	
 	cp -f main ./build
+run:
+	./main

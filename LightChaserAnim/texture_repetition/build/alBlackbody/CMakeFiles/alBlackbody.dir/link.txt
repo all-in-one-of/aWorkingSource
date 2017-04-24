@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,alBlackbody.so -o alBlackbody.so CMakeFiles/alBlackbody.dir/alBlackbody.cpp.o CMakeFiles/alBlackbody.dir/__/common/alUtil.cpp.o CMakeFiles/alBlackbody.dir/__/common/Color.cpp.o  -L/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.11.3-linux/bin -lai 
