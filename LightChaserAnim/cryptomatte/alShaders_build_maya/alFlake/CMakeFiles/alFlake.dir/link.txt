@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,alFlake.so -o alFlake.so CMakeFiles/alFlake.dir/alFlake.cpp.o CMakeFiles/alFlake.dir/__/common/alUtil.cpp.o CMakeFiles/alFlake.dir/__/common/Color.cpp.o  -L/home/xukai/Documents/KT_Libs/ArnoldSDK/Arnold-4.2.10.0-linux/bin -lai 

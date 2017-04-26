@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,alInputVector.so -o alInputVector.so CMakeFiles/alInputVector.dir/alInputVector.cpp.o CMakeFiles/alInputVector.dir/__/common/alUtil.cpp.o CMakeFiles/alInputVector.dir/__/common/Color.cpp.o  -L/home/xukai/Documents/KT_Libs/ArnoldSDK/Arnold-4.2.11.3-linux/bin -lai 
