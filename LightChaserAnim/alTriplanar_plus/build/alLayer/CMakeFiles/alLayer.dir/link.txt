@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,alLayer.so -o alLayer.so CMakeFiles/alLayer.dir/alLayer.cpp.o CMakeFiles/alLayer.dir/__/common/alUtil.cpp.o CMakeFiles/alLayer.dir/__/common/Color.cpp.o  -L/mnt/proj/software/develop/katana/sources/ArnoldSDKs/Arnold-4.2.10.0-linux/bin -lai 
