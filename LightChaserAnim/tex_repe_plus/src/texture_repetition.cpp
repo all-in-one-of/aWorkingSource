@@ -13,6 +13,7 @@ AI_SHADER_NODE_EXPORT_METHODS(TextureRepetitionMethods);
 
 enum TextureRepetitionParams { 
    p_texture,
+   p_uvset,
 };
 
 void TextureFileOperation(AtPoint2 inUV,AtPoint2 inDu,AtPoint2 inDv,AtPoint2 &outUV,AtPoint2 &outDu,AtPoint2 &outDv,AtPoint2 noise,AtPoint2 offset,float rotate,AtPoint2 repeat)
@@ -112,7 +113,6 @@ void TextureFileOperation(AtPoint2 inUV,AtPoint2 inDu,AtPoint2 inDv,AtPoint2 &ou
    outDu.y = outDuDy;
    outDv.x = outDvDx;
    outDv.y = outDvDy;
-
 }
 
 node_parameters
