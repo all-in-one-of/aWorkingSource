@@ -9,7 +9,7 @@
 
 [^W^] [4-26-2017]update shader library with arnold 5.0
 
-[^W^] [4-28-2017]the snake and the fish squama shader[4-28-2017]
+[^W^] [4-28-2017]the snake and the fish squama shader
 
 [^W^] [4-28-2017] add ao AOV to cryptomatte
 
