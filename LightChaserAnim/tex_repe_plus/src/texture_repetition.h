@@ -15,6 +15,8 @@ struct ShaderData
 {
     AtTextureHandle* texturehandle;
     AtTextureParams *textureparams;
+    bool useCustomUVSet;
+    std::string uvSetName;
 };
 
 struct SGCache{

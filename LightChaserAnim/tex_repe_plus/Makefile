@@ -13,13 +13,13 @@ all:
 
 in:
 	@echo "Install Shader TextureRepetition ... "
-	@cp -f ${OUT_PATH}LcaTextureRepetition.so /mnt/proj/software/develop/katana/utility/shaders/devShaders
+	@cp -f ${OUT_PATH}LcaTextureRepetition.so /mnt/work/software/develop/katana/shader/4.x/devShaders
 	@echo "Done!"
 .PHONY : TextureRepetition
 
 args:
 	@echo "Install Args ... "
-	@cp -f TextureRepetition.args /mnt/proj/software/develop/katana/utility/shaders/devShaders/Args
-	@cp -f TextureBlend.args /mnt/proj/software/develop/katana/utility/shaders/devShaders/Args
+	@cp -f TextureRepetition.args /mnt/work/software/develop/katana/shader/4.x/devShaders/Args
+	@cp -f TextureBlend.args /mnt/work/software/develop/katana/shader/4.x/devShaders/Args
 	@echo "Done!"
 .PHONY : TextureRepetition

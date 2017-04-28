@@ -13,7 +13,7 @@ AI_SHADER_NODE_EXPORT_METHODS(TextureRepetitionMethods);
 
 enum TextureRepetitionParams { 
    p_texture,
-   p_uvset,
+   p_uvset_name,
 };
 
 void TextureFileOperation(AtPoint2 inUV,AtPoint2 inDu,AtPoint2 inDv,AtPoint2 &outUV,AtPoint2 &outDu,AtPoint2 &outDv,AtPoint2 noise,AtPoint2 offset,float rotate,AtPoint2 repeat)
@@ -118,29 +118,32 @@ void TextureFileOperation(AtPoint2 inUV,AtPoint2 inDu,AtPoint2 inDv,AtPoint2 &ou
 node_parameters
 {
    AiParameterSTR("texture", "");
+   AiParameterSTR("uvSetName", "");
 }
 
 node_initialize
 {
-    ShaderData *data = new ShaderData;
-    const char *texname = params[p_texture].STR;
-    data->texturehandle = AiTextureHandleCreate(texname);
-    data->textureparams = new AtTextureParams;
-    AiTextureParamsSetDefaults(data->textureparams);
-    AiNodeSetLocalData(node, data);
+   ShaderData *data = new ShaderData;
+   const char *texname = params[p_texture].STR;
+   data->texturehandle = AiTextureHandleCreate(texname);
+   data->textureparams = new AtTextureParams;
+   AiTextureParamsSetDefaults(data->textureparams);
+   AiNodeSetLocalData(node, data);
 }
 
 node_finish
 {
-    ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-    AiTextureHandleDestroy(data->texturehandle);
-    delete data->textureparams;
-    delete data;
+   ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+   AiTextureHandleDestroy(data->texturehandle);
+   delete data->textureparams;
+   delete data;
 }
 
 node_update
 {
-    ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+   ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+   data->uvSetName = AiNodeGetStr(node, "uvSetName");
+   data->useCustomUVSet = data->uvSetName.length() > 0;
 }
 
 
@@ -190,6 +193,27 @@ shader_evaluate
    SGCache SGC,SGB;
    bool textureAccess = false;
    ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+
+   // uvset
+   if (data->useCustomUVSet)
+   {
+      AtPoint2 altuv;
+      if (AiUDataGetPnt2(data->uvSetName.c_str(), &altuv))
+      {         
+         sg->u = altuv.x;
+         sg->v = altuv.y;
+         AtPoint2 altuvDx, altuvDy; 
+         if (AiUDataGetDxyDerivativesPnt2(data->uvSetName.c_str(), &altuvDx, &altuvDy)) 
+         { 
+            sg->dudx = altuvDx.x; 
+            sg->dvdx = altuvDx.y; 
+            sg->dudy = altuvDy.x; 
+            sg->dvdy = altuvDy.y; 
+         }
+         else
+            sg->dudx = sg->dudy = sg->dvdx = sg->dvdy = 0.0f;
+      }
+   }
 
    SGC.initCache(sg);
 
