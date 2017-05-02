@@ -1,0 +1,7 @@
+<args format="1.0">
+<param name="input" label="Input Color" widget="color"/>
+<param name="position" label="Position" widget="color"/>
+<param name="contrast" label="Contrast" widget="color"/>
+<param name="invert" label="Invert Position" />
+<param name="clamp" label="Clamp" />
+</args>
