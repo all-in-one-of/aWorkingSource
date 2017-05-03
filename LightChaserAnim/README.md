@@ -3,8 +3,6 @@
 
 [^W^] [04-26-2017] compile windsows usd maya plugin and usd python lib
 
-[^W^] [04-26-2017] alTripanar_plus:add three texture in different x,y,z pix
-
 [^W^] [04-26-2017] ktoa xgen_procedural
 
 [^W^] [04-26-2017] update shader library with arnold 5.0
@@ -16,3 +14,5 @@
 [^F^] [04-26-2017 ~ 4-28-2017] tex_repe_plus:add feature about uvsets
 
 [^F^] [05-02-2017 ~ 05-03-2017] HistogameScan node
+
+[^F^] [04-26-2017 ~ 05-03-2017] alTripanar_plus:add three texture in different x,y,z

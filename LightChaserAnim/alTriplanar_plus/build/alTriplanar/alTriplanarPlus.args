@@ -1,6 +1,10 @@
 <args format="1.0">
 <param name="sourceimage" label="Source Image" widget="color"/>
-<param name="background" label="Background" widget="color"/>
+<page name="AxisImage">
+	<param name="ximage" label="x axis"/>
+	<param name="yimage" label="y axis"/>
+	<param name="zimage" label="z axis"/>
+</page>
 <param name="texture" label="Texture File"/>
 <param name="modo" label="Modo" widget="popup">
 	<hintlist name="options">
@@ -30,6 +34,7 @@
 </param>
 <param name="frequency" label="Frequency"/>
 <param name="mipMapBias" label="Mip map bias" int="True"/>
+<param name="background" label="Background" widget="color"/>
 <page name="Change Blend">
 	<param name="blendSoftness" label="Blend Softness"/>
 	<param name="cellSoftness" label="Cell Softness"/>

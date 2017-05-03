@@ -291,7 +291,6 @@ help:
 .PHONY : help
 
 
-
 #=============================================================================
 # Special targets to cleanup operation of make.
 
@@ -302,3 +301,10 @@ cmake_check_build_system:
 	cd /home/xukai/Documents/TestProgramFactory/alTriplanar_plus/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
+in:
+	if [ -f alTriplanar.so ];then mv alTriplanar.so alTriplanarPlus.so;fi
+	#if [ -f alTriplanar.so.args ];then mv alTriplanar.so.args alTriplanarPlus.args;fi
+	cp -f alTriplanarPlus.so /mnt/proj/software/develop/katana/utility/shaders/devShaders
+	#cp -f alTriplanarPlus.args /mnt/proj/software/develop/katana/utility/shaders/devShaders/Args
+	@echo "Install alTriplanarPlus ... "
+.PHONY : alTriplanarPlus_install
