@@ -6,7 +6,7 @@
 #include <ai.h>
 
 namespace kt
-{// start namespace
+{// starting namespace
 
 AtVector min(AtVector a,AtVector b)
 {
@@ -46,7 +46,7 @@ genUType clamp(genUType x, genUType minVal, genUType maxVal)
 
 template<typename genMType>
 
-AtRGB AtRGBtoAtVector(genMType vec)
+AtRGB AtVector2AtRGB(genMType vec)
 {
 	AtRGB result;
 	result.r = vec.x;
@@ -55,4 +55,4 @@ AtRGB AtRGBtoAtVector(genMType vec)
 	return result;
 }
 
-}//end namespace
+}//ending namespace
