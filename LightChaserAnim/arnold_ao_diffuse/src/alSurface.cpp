@@ -1,5 +1,5 @@
 #include <ai.h>
-#include <math.h>
+
 #include "utils.h"
 
 #define RR_BOUNCES
@@ -502,10 +502,15 @@ shader_evaluate
    float falloff = 0.0f;
    AtSampler * sampler = AiSampler(10,2);
    AtVector Nbent;
-   AtColor temp_ao = AiOcclusion(&N, &Ng, sg, mint, maxt, spread, falloff, sampler, &Nbent);    
-   AtColor ao = kt::invertColor(temp_ao);
+   AtColor Black = {0.0036f, 0.0036f, 0.0036f};
+   AtColor White = {1.20f,1.20f,1.20f};
+   AtColor OriBlack = {0.0f, 0.0f, 0.0f};
+   AtColor OriWhite = {1.0f,1.0f,1.0f};
+   AtColor ao = AiOcclusion(&N, &Ng, sg, mint, maxt, spread, falloff, sampler, &Nbent);    
+   ao = kt::invertColor(ao);
+   ao = kt::maxh(ao);
+   ao = kt::clamp(ao, Black, White);
    AtColor diffuse = AiShaderEvalParamRGB(p_diffuseColor);
-
    if (diffuse != AI_RGB_BLACK)
       AiAOVSetRGB(sg, data->aovs[k_diffuse_color].c_str(), diffuse);
    if (ao != AI_RGB_BLACK)
