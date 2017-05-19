@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,cryptomatte_aov.so -o cryptomatte_aov.so CMakeFiles/cryptomatte_aov.dir/cryptomatte_aov.cpp.o CMakeFiles/cryptomatte_aov.dir/MurmurHash3.cpp.o  -L/home/xukai/Documents/KT_Libs/ArnoldSDK/Arnold-4.2.10.0-linux/bin -lai 

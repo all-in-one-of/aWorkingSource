@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -O3 -fvisibility=hidden -DNDEBUG  -shared -Wl,-soname,cryptomatte_filter.so -o cryptomatte_filter.so CMakeFiles/cryptomatte_filter.dir/cryptomatte_filter.cpp.o CMakeFiles/cryptomatte_filter.dir/MurmurHash3.cpp.o  -L/home/xukai/Documents/KT_Libs/ArnoldSDK/Arnold-4.2.11.3-linux/bin -lai 
