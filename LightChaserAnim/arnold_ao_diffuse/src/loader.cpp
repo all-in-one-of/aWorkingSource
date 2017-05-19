@@ -18,13 +18,13 @@ node_loader
    {     
       case cryptomatte:
          node->methods     = (AtNodeMethods*) cryptomatteMethods;
-         node->output_type = AI_TYPE_RGBA;
+         node->output_type = AI_TYPE_RGB;
          node->name        = "cryptomatte";
          node->node_type   = AI_NODE_SHADER;
       break;
       case alSurface:
          node->methods     = (AtNodeMethods*) alSurfaceMethods;
-         node->output_type = AI_TYPE_RGBA;
+         node->output_type = AI_TYPE_RGB;
          node->name        = "alSurface";
          node->node_type   = AI_NODE_SHADER;
       break;

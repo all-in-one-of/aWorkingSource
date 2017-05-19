@@ -9,6 +9,7 @@ enum cryptomatteParams
 {
    p_sourceShader,
 
+   p_aov_ao_color,
    p_aov_diffuse_color,
    p_aov_direct_diffuse,
    p_aov_direct_diffuse_raw,
@@ -70,6 +71,7 @@ node_parameters
 {
    AiParameterRGB("sourceShader", 1.0f, 0.0f, 0.0f);
 
+   AiParameterStr("aov_ao_color", "ao_color");
    AiParameterStr("aov_diffuse_color", "diffuse_color");
    AiParameterStr("aov_direct_diffuse", "direct_diffuse");
    AiParameterStr("aov_direct_diffuse_raw", "direct_diffuse_raw");
@@ -130,18 +132,35 @@ node_parameters
 
 node_initialize
 {
+   ShaderData* data = new ShaderData();
+   AiNodeSetLocalData(node, data);
 }
 
 node_update
 {
+   ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
+   // set up AOVs
+   REGISTER_AOVS_CUSTOM
+   
 }
 
 node_finish
 {
+   if (AiNodeGetLocalData(node))
+   {
+      ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
+      AiNodeSetLocalData(node, NULL);
+      delete data;
+   }
 }
 
 shader_evaluate
-{  
+{
+   ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
+
+   AtRGB result = AI_RGB_BLACK;
+   AtRGB result_opacity = sg->out_opacity;
+
    AtVector N = sg->N;
    AtVector Ng = sg->Ng;
    float mint = 0.1f;
@@ -150,11 +169,27 @@ shader_evaluate
    float falloff = 0.0f;
    AtSampler * sampler = AiSampler(10,2);
    AtVector Nbent;
+   AtColor Black = {0.0036f, 0.0036f, 0.0036f};
+   AtColor White = {1.20f,1.20f,1.20f};
+   AtColor OriBlack = {0.0f, 0.0f, 0.0f};
+   AtColor OriWhite = {1.0f,1.0f,1.0f};
    AtColor ao = AiOcclusion(&N, &Ng, sg, mint, maxt, spread, falloff, sampler, &Nbent);    
-   AtColor dDiffuse = AiDirectDiffuse(&N, sg);
-   //sg->out.RGB = kt::invertColor(ao);
-   sg->out.RGB = AiShaderEvalParamRGB(p_sourceShader);
+   ao = kt::invertColor(ao);
+   ao = kt::maxh(ao);
+   ao = kt::clamp(ao, Black, White);
+   AtColor diffuse = AiShaderEvalParamRGB(p_sourceShader);
+   if (diffuse != AI_RGB_BLACK)
+      AiAOVSetRGB(sg, data->aovs_custom[k_diffuse_color].c_str(), diffuse);
+   if (ao != AI_RGB_BLACK)
+      AiAOVSetRGB(sg, data->aovs_custom[k_ao_color].c_str(), ao);
+
+   result = diffuse*ao;
+   
+   sg->out.RGB = result;
+   sg->out_opacity = result_opacity;
+
 }
+
 
 /*node_loader
 {

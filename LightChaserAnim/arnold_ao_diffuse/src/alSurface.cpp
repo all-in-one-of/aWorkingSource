@@ -2,6 +2,7 @@
 
 #include "utils.h"
 
+
 #define RR_BOUNCES
 
 AI_SHADER_NODE_EXPORT_METHODS(alSurfaceMethods);
@@ -272,6 +273,13 @@ enum alSurfaceParams
    p_aov_light_group_7_clamp,
    p_aov_light_group_8_clamp,
 
+   p_aov_crypto_asset,
+   p_aov_crypto_object,
+   p_aov_crypto_material,
+   p_crypto_asset_override,
+   p_crypto_object_override,
+   p_crypto_material_override,
+
    p_bump
 };
 
@@ -462,6 +470,13 @@ node_parameters
    AiParameterFlt("aov_light_group_6_clamp", 0.0f);
    AiParameterFlt("aov_light_group_7_clamp", 0.0f);
    AiParameterFlt("aov_light_group_8_clamp", 0.0f);
+   
+   AiParameterStr("aov_crypto_asset", "crypto_asset");
+   AiParameterStr("aov_crypto_object", "crypto_object");
+   AiParameterStr("aov_crypto_material", "crypto_material");
+   AiParameterStr("crypto_asset_override", "");
+   AiParameterStr("crypto_object_override", "");
+   AiParameterStr("crypto_material_override", "");
 }
 
 node_initialize
@@ -473,10 +488,9 @@ node_initialize
 node_update
 {
    ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
-
    // set up AOVs
-   REGISTER_AOVS
-
+   REGISTER_AOVS_CUSTOM
+   
 }
 
 node_finish
@@ -484,7 +498,6 @@ node_finish
    if (AiNodeGetLocalData(node))
    {
       ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
-
       AiNodeSetLocalData(node, NULL);
       delete data;
    }
@@ -493,6 +506,9 @@ node_finish
 shader_evaluate
 {
    ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
+
+   AtRGB result = AI_RGB_BLACK;
+   AtRGB result_opacity = sg->out_opacity;
 
    AtVector N = sg->N;
    AtVector Ng = sg->Ng;
@@ -512,24 +528,15 @@ shader_evaluate
    ao = kt::clamp(ao, Black, White);
    AtColor diffuse = AiShaderEvalParamRGB(p_diffuseColor);
    if (diffuse != AI_RGB_BLACK)
-      AiAOVSetRGB(sg, data->aovs[k_diffuse_color].c_str(), diffuse);
+      AiAOVSetRGB(sg, data->aovs_custom[k_diffuse_color].c_str(), diffuse);
    if (ao != AI_RGB_BLACK)
-      AiAOVSetRGB(sg, data->aovs[k_ao_color].c_str(), ao);
+      AiAOVSetRGB(sg, data->aovs_custom[k_ao_color].c_str(), ao);
 
-   AtPoint alsPreviousIntersection;
-   AtRGB als_sigma_t; 
-   AtRGB outOpacity = AI_RGB_WHITE;
-   AiStateGetMsgPnt("alsPreviousIntersection",&alsPreviousIntersection);
-   AiStateGetMsgRGB("alsPrevious_sigma_t", &als_sigma_t);
-   float z = AiV3Dist(sg->P, alsPreviousIntersection);
-   outOpacity.r = fast_exp(-z * als_sigma_t.r);
-   outOpacity.g = fast_exp(-z * als_sigma_t.g);
-   outOpacity.b = fast_exp(-z * als_sigma_t.b);
-   outOpacity = -kt::log(outOpacity);
+   result = diffuse*ao;
+   
+   sg->out.RGB = result;
+   sg->out_opacity = result_opacity;
 
-
-   sg->out.RGB = diffuse*ao;
-   sg->out_opacity = outOpacity;
 }
 
 /*node_loader

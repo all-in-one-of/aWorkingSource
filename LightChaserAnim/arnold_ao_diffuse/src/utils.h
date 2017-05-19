@@ -2,16 +2,17 @@
 #include <vector>
 #include <string>
 #include <math.h>
+#include <cassert>
 
-#include "assert.h"
-
-#define REGISTER_AOVS \
-data->aovs.clear(); \
-data->aovs.push_back(params[p_aov_diffuse_color].STR); \
-data->aovs.push_back(params[p_aov_ao_color].STR); \
-assert(data->aovs.size() == 2 && "NUM_AOVs does not match size of aovs array!"); \
-for (size_t i=0; i < data->aovs.size(); ++i) \
-	AiAOVRegister(data->aovs[i].c_str(), AI_TYPE_RGB, AI_AOV_BLEND_OPACITY); \
+#ifndef REGISTER_AOVS_CUSTOM
+#define REGISTER_AOVS_CUSTOM \
+data->aovs_custom.clear(); \
+data->aovs_custom.push_back(params[p_aov_diffuse_color].STR); \
+data->aovs_custom.push_back(params[p_aov_ao_color].STR); \
+assert(data->aovs_custom.size() == 2 && "NUM_AOVs does not match size of aovs array!"); \
+for (size_t i=0; i < data->aovs_custom.size(); ++i) \
+	AiAOVRegister(data->aovs_custom[i].c_str(), AI_TYPE_RGB, AI_AOV_BLEND_OPACITY);
+#endif
 
 enum AovIndices
 {
@@ -21,7 +22,10 @@ enum AovIndices
 
 struct ShaderData
 {
-	std::vector<std::string> aovs;
+    // AOV names
+    std::vector<std::string> aovs;
+    std::vector<std::string> aovs_rgba;
+    std::vector<std::string> aovs_custom;
 };
 
 
