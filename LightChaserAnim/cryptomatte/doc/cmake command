@@ -1,0 +1,7 @@
+
+
+cmake -DARNOLD_ROOT=/home/xukai/Documents/KT_Libs/ArnoldSDK/Arnold-4.2.11.3-linux /home/xukai/Documents/TestProgramFactory/cryptomatte/alshaders
+
+https://gist.github.com/stephenturner/e3bc5cfacc2dc67eca8b
+
+https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/User_Guide/sect-Red_Hat_Developer_Toolset-Uninstall.html
