@@ -119,5 +119,13 @@ inline float minh(const AtRGB& c)
    return std::min(std::min(c.r, c.g ), c.b);
 }
 
+inline AtRGB pow(AtRGB c, float e)
+{
+    c.r = powf(c.r, e);
+    c.g = powf(c.g, e);
+    c.b = powf(c.b, e);
+    return c;
+}
+
 
 }//ending namespace kt

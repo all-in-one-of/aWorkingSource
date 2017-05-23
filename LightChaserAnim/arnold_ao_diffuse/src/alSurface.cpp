@@ -509,23 +509,28 @@ shader_evaluate
 
    AtRGB result = AI_RGB_BLACK;
    AtRGB result_opacity = sg->out_opacity;
-
+   AtRGB opacity = AiShaderEvalParamRGB(p_opacity);
    AtVector N = sg->N;
    AtVector Ng = sg->Ng;
    float mint = 0.1f;
-   float maxt = 100000.0f;
+   float maxt = 400.0f;
    float spread = 1.0f;
    float falloff = 0.0f;
    AtSampler * sampler = AiSampler(10,2);
    AtVector Nbent;
-   AtColor Black = {0.0036f, 0.0036f, 0.0036f};
-   AtColor White = {1.20f,1.20f,1.20f};
+   AtColor Black = {0.2f, 0.2f, 0.2f};
+   AtColor White = {1.2f,1.2f,1.2f};
    AtColor OriBlack = {0.0f, 0.0f, 0.0f};
    AtColor OriWhite = {1.0f,1.0f,1.0f};
    AtColor ao = AiOcclusion(&N, &Ng, sg, mint, maxt, spread, falloff, sampler, &Nbent);    
    ao = kt::invertColor(ao);
    ao = kt::maxh(ao);
-   ao = kt::clamp(ao, Black, White);
+   float gamma = 2.0f;
+   ao = kt::pow(ao, float(1.0f/gamma));
+   //ao = kt::clamp(ao, Black, White);
+   //ao = kt::remap(ao,OriBlack,OriWhite,Black,White);
+   //ao = ao + Black;
+   //ao = kt::bright(ao, Black);
    AtColor diffuse = AiShaderEvalParamRGB(p_diffuseColor);
    if (diffuse != AI_RGB_BLACK)
       AiAOVSetRGB(sg, data->aovs_custom[k_diffuse_color].c_str(), diffuse);
@@ -533,7 +538,7 @@ shader_evaluate
       AiAOVSetRGB(sg, data->aovs_custom[k_ao_color].c_str(), ao);
 
    result = diffuse*ao;
-   
+   result_opacity = result_opacity * opacity;
    sg->out.RGB = result;
    sg->out_opacity = result_opacity;
 
