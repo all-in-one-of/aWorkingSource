@@ -1,4 +1,4 @@
-.pyc
+*.pyc 
 LightChaserAnim/deps_compile
 LightChaserAnim/cryptomatte1.0/ref/alshaders_rc19/build
 LightChaserAnim/cryptomatte1.0/ref/alshaders_rc19/install
