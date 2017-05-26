@@ -1,3 +1,0 @@
-build_shader(alBlackbody)
-
-

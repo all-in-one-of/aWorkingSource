@@ -1,0 +1,19 @@
+#!/bin/sh
+# .bashrc
+
+source /home/xukai/Git/git_repo_devset/maya2015_dev.sh
+
+ROOT_PATH=/usr/autodesk/maya2015-x64/bin
+FILE_PATH=/home/xukai/Documents/TestDataFactory/c50770/c50770_RS.mb
+# Frame Start
+FS=1001
+#Frame End
+FE=1014
+
+# arnold
+#$ROOT_PATH/Render -r arnold -s $FS -e $FE $FILE_PATH
+
+# redshift
+$ROOT_PATH/Render -r redshift -s $FS -e $FE $FILE_PATH
+
+#1001~1150

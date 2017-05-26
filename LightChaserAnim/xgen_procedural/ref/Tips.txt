@@ -15,3 +15,6 @@ procedural_force_expand           true
 -motionSamplesLookup 0.0 
 -motionSamplesPlacement 0.0 
 -world 1;0;0;0;0;1;0;0;0;0;1;0;0;0;0;1
+
+
+/mnt/work/projects/cat/shot/f50/f50155/plt/task/katana/f50155.plt.render.v007.katana

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export LC_TOOLSET=~/Git/git_repo/lcatools
+
+/mnt/proj/software/KATANA/Launcher/katana_next

@@ -1,0 +1,34 @@
+import uigen
+
+ui.shader({
+	'name':'alLayerFloat',
+	'intro':'Layer multiple floats together with alpha blending.',
+   'description':'This can be handy for stacking multiple image or procedural channels together and blending between them in different areas, for example for a displacement shader.',
+	'output':'float',
+	'maya_name':'alLayerFloat',
+	'maya_classification':'utility/color',
+	'maya_id':'0x0011641B',
+	'maya_swatch':True,
+	'maya_matte':False,
+	'maya_bump':False,
+   'c4d_classification':'texture',
+   'c4d_menu':'texture',   
+	'soft_name':'ALS_LayerFloat',
+	'soft_classification':'material',
+	'soft_version':1,
+	'help_url':'http://www.anderslanglands.com/alshaders/alLayerFloat.html',
+   'houdini_icon': 'COP2_composite'
+})
+
+with uigen.group(ui, 'Background', False, description='The background layer will be blended over 0 if its alpha is not 1'):
+    ui.parameter('layer1name', 'string', '', 'Name', description='A descriptive name for this layer')
+    ui.parameter('layer1enabled', 'bool', True, 'Enabled', description='Toggle this layer on or off')
+    ui.parameter('layer1', 'float', 0.0, 'Input', description='The value of the background layer', mayane=True)
+    ui.parameter('layer1a', 'float', 0.0, 'Alpha', description='The alpha of the background layer', mayane=True)
+
+for i in range(2,9):
+    with uigen.group(ui, 'Layer %d' % i, False, description='This layer will be blended over lower-numbered layers'):
+        ui.parameter('layer%dname' % i, 'string', '', 'Name', description='A descriptive name for this layer')
+        ui.parameter('layer%denabled' % i, 'bool', True, 'Enabled', description='Toggle this layer on or off')
+        ui.parameter('layer%d' % i, 'float', 0.0, 'Input', description='The value to be layered', mayane=True)
+        ui.parameter('layer%da' % i, 'float', 0.0, 'Alpha', description='The alpha used to blend this layer over the layers below.', mayane=True)

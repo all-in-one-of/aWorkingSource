@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+##
+## A simple wrapper to add third-party libraries to the environment.
+##
+## Presently, KATANA has dependencies on the following third-party shared
+## libraries:
+##
+##    OpenEXR    1.6.1    http://www.openexr.com
+##    OpenSSL    1.0.0a
+##
+## An ABI-compatible copy of these libraries needs to reside on your
+## LD_LIBRARY_PATH in order for many of KATANA's plug-ins to run. The KATANA
+## application itself uses RPATHs to locate the needed libraries.
+##
+## This wrapper script is provided as a convenience, and will prepend your
+## LD_LIBRARY_PATH to point to the versions of these libraries included in the
+## KATANA distribution. This will allow any plug-in on your KATANA_RESOURCES
+## directory to find the required dependencies.
+##
+## If you manage your own LD_LIBRARY_PATH or wish to expose these libraries to
+## plug-ins by some other means you can simply call the KATANA binary directly:
+##
+##    ${KATANA_ROOT}/bin/katanaBin
+##
+## For example - with suitable modifications to their Makefiles, relevant
+## plug-ins could be recompiled to use RPATHs to locate the libraries directly,
+## without needing to modify the environment.
+##
+
+source env-KtoA1.0.7-ai4.2.12.0.sh
+echo $'\nKatana RESEACH Mode ...\n'
+
+# Attempt to determine the KATANA installation
+#KATANA_DIR=$(dirname "$(readlink -e "$BASH_SOURCE")")
+KATANA_DIR=/mnt/proj/software/k2/katana2.1v1
+KATANA_BIN=${KATANA_DIR}/bin/katanaBin
+
+if [ ! -x "${KATANA_BIN}" ]
+then
+    echo "ERROR: Unable to find 'bin/katanaBin' in the KATANA installation directory (${KATANA_DIR})" 1>&2
+    exit 1
+fi
+
+
+# OpenEXR
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/OpenEXR:${LD_LIBRARY_PATH}
+
+# YAML
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/YAML:${LD_LIBRARY_PATH}
+
+# ZeroMQ
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/ZeroMQ/lib:${LD_LIBRARY_PATH}
+
+# OpenSSL
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/OpenSSL:${LD_LIBRARY_PATH}
+
+# ZLib
+# Add ZLib sub-folder to LD_LIBRARY_PATH only if KATANA_USE_INTERNAL_ZLIB is set
+if [ -n "${KATANA_USE_INTERNAL_ZLIB+set}" ]
+then
+    export LD_LIBRARY_PATH=${KATANA_DIR}/bin/ZLib:${LD_LIBRARY_PATH}
+fi
+
+# Setup the Geolib3 library dependencies
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/FnAttribute:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyFnAttribute:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyScenegraphAttr:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/FnGeolib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyFnGeolib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/CEL:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyCEL:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/FnGeolibServices:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/FnConfiguration:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyFnConfiguration:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/ResolutionTable:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/PyFnGeolibServices:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/FnGeolibServicesHost:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${KATANA_DIR}/bin/Geolib3/internal/ExpressionMath:${LD_LIBRARY_PATH}
+
+# Set up Katana's logging configuration
+export FNLOGGING_CONFIG=${KATANA_DIR}/bin/log.conf
+
+exec "${KATANA_BIN}" "$@"
+

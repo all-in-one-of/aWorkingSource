@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# gcc4.8
+source /opt/rh/devtoolset-2/enable
+
+# python2.7
+source /opt/rh/python27/enable
