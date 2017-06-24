@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "/mnt/work/software/develop/katana/launcher/env_config/shader_dev_2.1.sh"
+
+/mnt/work/software/develop/katana/launcher/katana2.1v5

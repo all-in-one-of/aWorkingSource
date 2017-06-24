@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "maya for developing"
+source /home/xukai/Git/git_repo_devset/maya_mul_config.sh
+/mnt/proj/software/develop/maya/maya-x64/maya2015-x64/bin/maya $@

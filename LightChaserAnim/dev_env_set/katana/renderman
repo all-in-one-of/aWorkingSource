@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+export KATANA_RESOURCES="/opt/pixar/RenderManForKatana-21.4-katana2.5/plugins/Resources/PRMan21":$KATANA_RESOURCES

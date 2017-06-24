@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "=== Maya For Developing ==="
+
+source "$(dirname "$(readlink -f "$0")")"/maya_dev_config.sh
+
+/mnt/proj/software/develop/maya/maya/maya2015-x64/bin/maya $@

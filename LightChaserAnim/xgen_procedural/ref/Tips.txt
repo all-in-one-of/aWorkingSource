@@ -1,0 +1,20 @@
+/mnt/proj/projects/cat/asset/flg/fern_a/srf/publish/fern_a.srf.surfacing.v002/xg_archive/default
+procedural_force_expand           true
+*.xarc
+
+-debug 0 
+-warning 1 
+-stats 1 
+-frame 1.0 
+-file /mnt/proj/projects/cat/shot/f50/f50155/plt/publish/f50155.plt.sclupturing_inside_b_plant.v004/cache/sclupturing_inside_b/xgen/collections/tree_col/tree_col.xgen 
+-palette tree_col 
+-geom /mnt/proj/projects/cat/shot/f50/f50155/plt/publish/f50155.plt.sclupturing_inside_b_plant.v004/cache/sclupturing_inside_b/xgen/collections/wild_flower_col/patches/wild_flower_col.abc
+-patch tree_ground 
+-description tree_des 
+-fps 24.000 
+-motionSamplesLookup 0.0 
+-motionSamplesPlacement 0.0 
+-world 1;0;0;0;0;1;0;0;0;0;1;0;0;0;0;1
+
+
+/mnt/work/projects/cat/shot/f50/f50155/plt/task/katana/f50155.plt.render.v007.katana
