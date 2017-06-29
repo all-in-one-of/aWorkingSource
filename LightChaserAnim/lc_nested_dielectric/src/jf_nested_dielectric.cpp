@@ -1151,7 +1151,7 @@ shader_evaluate
 
 					// offsets and depth modification
 					//const float dr_roughnessOffset = refractRoughnessConvert( AiShaderEvalParamFlt( p_dr_roughnessOffset ) );
-					const float dr_roughnessOffset = 0.3f;//dr_roughnessOffset
+					const float dr_roughnessOffset = 0.2f;//dr_roughnessOffset
 					const float dr_roughnessDepthAdder = refractRoughnessConvert( AiShaderEvalParamFlt( p_dr_roughnessDepthAdder ) );
 					const float dr_roughnessDepthMultiplier = AiShaderEvalParamFlt( p_dr_roughnessDepthMultiplier );
 
@@ -1529,16 +1529,16 @@ shader_evaluate
 		AiAOVSetRGBA(sg, data->aov_indirect_refraction.c_str(), AiRGBtoRGBA( acc_refract_indirect ));			
 		AiAOVSetRGBA(sg, data->aov_indirect_specular.c_str(), AiRGBtoRGBA( acc_spec_indirect ));			
 		AtRGBA outcolor;
-		AtRGB colorMount = acc_refract_indirect + acc_refract_direct + acc_refract_direct_second + acc_spec_indirect+ acc_spec_direct;
-		AiRGBtoRGBA(colorMount,outcolor);
-/*		AiRGBtoRGBA(
+		//AtRGB colorMount = acc_refract_indirect + acc_refract_direct + acc_refract_direct_second + acc_spec_indirect+ acc_spec_direct;
+		//AiRGBtoRGBA(colorMount,outcolor);
+		AiRGBtoRGBA(
 			( acc_refract_indirect 
 			+ acc_refract_direct 
 			+ acc_refract_direct_second 
 			+ acc_spec_indirect
 			+ acc_spec_direct
 			+ emission ), 
-			outcolor) ;*/
+			outcolor) ;
 		sg->out.RGBA = outcolor;
 	}
 	else

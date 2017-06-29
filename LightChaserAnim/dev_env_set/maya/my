@@ -2,5 +2,5 @@
 export LCTOOLSET=/home/xukai/Git/git_repo/lcatools
 export LCA_DEVKTN_PATH=/home/xukai/Git/git_repo/katana
 export LCA_DEVMY_PATH=/home/xukai/Git/git_repo/maya
-source "${LCA_DEVKTN_PATH}/launcher/env_config/plugin_dev_2.1.sh"
-${LCA_DEVKTN_PATH}/launcher/katana2.1v5
+source "${LCA_DEVMY_PATH}/launcher/env_config/maya2017_test.sh"
+${LCA_DEVMY_PATH}/launcher/maya2017

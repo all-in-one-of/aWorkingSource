@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-export KATANA_RESOURCES="/opt/pixar/RenderManForKatana-21.4-katana2.5/plugins/Resources/PRMan21":$KATANA_RESOURCES
+export RMANTREE=/opt/pixar/RenderManProServer-21.4
+export KATANA_RESOURCES=/opt/pixar/RenderManForKatana-21.4-katana2.5/plugins/Resources/PRMan21
+export RMAN_SHADERPATH=${KATANA_RESOURCES}/Shaders:${RMANTREE}/lib/shaders:${RMANTREE}/lib/rsl/shaders:$RMAN_SHADERPATH
+export RMAN_RIXPLUGINPATH=${RMANTREE}/lib/RIS/bxdf:${RMANTREE}/lib/RIS/pattern:${RMANTREE}/lib/RIS/integrator:$RMAN_RIXPLUGINPATH
