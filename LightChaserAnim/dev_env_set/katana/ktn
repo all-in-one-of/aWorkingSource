@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+echo "===+ Light Chaser Animation Katana +==="
+
 export LCTOOLSET=/home/xukai/Git/git_repo/lcatools
 export LCA_DEVKTN_PATH=/home/xukai/Git/git_repo/katana
 export LCA_DEVMY_PATH=/home/xukai/Git/git_repo/maya
-source "${LCA_DEVKTN_PATH}/launcher/env_config/plugin_dev_2.1.sh"
-${LCA_DEVKTN_PATH}/launcher/katana2.1v5
+
+# launch katana
+source "${LCA_DEVKTN_PATH}/launcher/env_config/multiverse_dev.sh"
+exec "${LCA_SOFTWARE_PATH}/katana/katana2.6v1/katana"
