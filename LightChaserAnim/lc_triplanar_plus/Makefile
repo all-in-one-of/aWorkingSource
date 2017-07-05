@@ -5,12 +5,12 @@ OUT=out
 INC=src
 SRC=src/source
 all: shader0
-	g++ -o ${OUT}/alTriplanarPlus.so -shared ${OUT}/shader0.os -L${ARNOLD_PATH}/bin -lai
+	g++ -o ${OUT}/lc_triplanar.so -shared ${OUT}/shader0.os -L${ARNOLD_PATH}/bin -lai
 shader0:
 	g++ -o ${OUT}/shader0.os -c -fPIC -D_LINUX -I${ARNOLD_PATH}/include -I${INC}/common ${SRC}/alTriplanarPlus.cpp
 install:
 	@echo "Install ... "
-	@cp -f ${OUT}/alTriplanarPlus.so /mnt/work/software/develop/katana/shader/4.x/lcaShaders
+	@cp -f ${OUT}/lc_triplanar.so /mnt/work/software/develop/katana/shader/4.x/lcaShaders
 	@echo "Done!"
 clean:
 	rm -f ${OUT}/shader0.os
