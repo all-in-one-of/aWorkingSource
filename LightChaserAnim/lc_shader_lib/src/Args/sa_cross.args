@@ -1,0 +1,7 @@
+<args format="1.0">
+ <help>
+  Vector cross product between the two inputs.
+ </help>
+ <param name="input1"/>
+ <param name="input2"/>
+</args>

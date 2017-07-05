@@ -1,0 +1,20 @@
+<args format="1.0">
+ <help>
+  Set inhomogeneous volumetric values inside a volume shape.  It is intended that other shader nodes will be connected to these channels as needed to provide the actual values, and this shader will then call the correct API providing a bridge into the volume integrator.
+ </help>
+ <param name="scattering" widget="color">
+  <help>
+   Volume scattering component; should be zero or greater, and typically can go far past 1 in each color component.  Higher values make a harder, harsher reflective volume.
+  </help>
+ </param>
+ <param name="absorption" widget="color">
+  <help>
+   Volume absorption component; should be zero or greater, and typically can go far past 1 in each color component.  Higher values make a harder, harsher, and darker volume.
+  </help>
+ </param>
+ <param name="emission" widget="color">
+  <help>
+   Volume emission component; should be zero or greater, and typically can go far past 1 in each color component.  Higher values make a more self-illuminated glowing volume.
+  </help>
+ </param>
+</args>

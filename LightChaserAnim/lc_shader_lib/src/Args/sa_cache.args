@@ -1,0 +1,6 @@
+<args format="1.0">
+ <help>
+  Cache results of the shader network up to this node.  The cache will be dropped if any of P, N, u, v, or Ro have changed since the last time it was cached, but otherwise the network behind this node will not be executed more than once.
+ </help>
+ <param name="input" widget="color"/>
+</args>

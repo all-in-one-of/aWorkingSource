@@ -1,0 +1,34 @@
+<args format="1.0">
+ <help>
+  Blackbody emission shader, using standard 500K to 10000K temperatures.
+ </help>
+ <param name="temperature">
+  <help>
+   Temperature in Kelvins.  For glowing surfaces, 4000K to 7000K is typical.
+  </help>
+ </param>
+ <param name="mode" widget="popup">
+  <hintlist name="options">
+   <string value="color"/>
+   <string value="chroma"/>
+  </hintlist>
+  <help>
+   Output mode; color is the standard blackbody color scaled by intensity, while chroma outputs the normalized RGB color in the RGB part of the output, and the intensity in the alpha component.
+  </help>
+ </param>
+ <param name="tone_map" widget="checkBox">
+  <help>
+   Apply a tone mapping to the color so the brightest colors are near white.  Blackbody emitters show an incredible range of brightnesses, so tone mapping can bring that back to a perceptual range of colors.
+  </help>
+ </param>
+ <param name="adaptation">
+  <help>
+   Reinhard tone mapping key; 0.18 is typical.
+  </help>
+ </param>
+ <param name="burn">
+  <help>
+   Overexposure allowed for the brighter colors; higher burn allows the colors to blow out.
+  </help>
+ </param>
+</args>

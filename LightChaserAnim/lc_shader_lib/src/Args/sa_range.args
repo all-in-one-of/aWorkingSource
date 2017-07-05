@@ -1,0 +1,31 @@
+<args format="1.0">
+ <help>
+  Take an input from a specified native range, and transform it linearly to an arbitrary output range, with an optional smoothstep to increase continuity.
+ </help>
+ <param name="input" widget="color"/>
+ <param name="input_min">
+  <help>
+   Input's native minimum or natural zero value.
+  </help>
+ </param>
+ <param name="input_max">
+  <help>
+   Input's native maximum or natural 100% value.
+  </help>
+ </param>
+ <param name="output_min">
+  <help>
+   Output minimum or natural zero value.
+  </help>
+ </param>
+ <param name="output_max">
+  <help>
+   Output natural maximum or natural 100% value.
+  </help>
+ </param>
+ <param name="smoothstep" widget="checkBox">
+  <help>
+   Smoothly ease values into the output min and max, so there aren't sudden harsh changes in color at the min and max boundaries.
+  </help>
+ </param>
+</args>

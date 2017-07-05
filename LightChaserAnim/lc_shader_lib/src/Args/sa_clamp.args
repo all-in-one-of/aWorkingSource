@@ -1,0 +1,16 @@
+<args format="1.0">
+ <help>
+  Clamp the input to the min,max range; essentially is a shortcut for color = minimum(max, maximum(min, input)).
+ </help>
+ <param name="input" widget="color"/>
+ <param name="min">
+  <help>
+   The output will not be less than this minimum value.
+  </help>
+ </param>
+ <param name="max">
+  <help>
+   The output will not be greater than this maximum value.
+  </help>
+ </param>
+</args>

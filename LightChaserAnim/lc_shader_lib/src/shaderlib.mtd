@@ -1,0 +1,310 @@
+# $Id: shaderlib.mtd 250 2013-02-05 17:57:38Z r3d $
+##############################################################################
+[node abs]
+houdini.icon STRING "VOP_abs"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node add]
+houdini.icon STRING "VOP_add"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node blackbody]
+houdini.icon STRING "SHELF_fire"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/Blackbody"
+
+[attr temperature]
+desc STRING "The temperature corresponding to an input value of 1. For example, if this parameter is 6500 (the default 6500K, is considered as the "daylight" white point), then an input value of 1 means a temperature of 6500 degrees Kelvin. The color ranges from red, through to white and then to blue. Values above 6500 will give a cool color, whilst values below will show a warm color."
+
+[attr mode]
+desc STRING "color: Outputs the color RGB channels multiplied by the intensity with a solid alpha.\nchroma: Outputs the color in the RGB channels and the intensity to the alpha channel. This allow the hue to be modified independently of the intensity."
+
+[attr adaptation]
+houdini.disable_when STRING "{ tone_map == 0 }"
+desc STRING "Squashes or stretches the low end of the generated intensity, similar to exposing a photograph for shadows."
+
+[attr burn]
+houdini.disable_when STRING "{ tone_map == 0 }"
+desc STRING "Manipulates the high end of the generated intensity."
+
+##############################################################################
+[node cache]
+houdini.icon STRING "SOP_cache"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/Arnold+Shader+Network"
+
+##############################################################################
+[node clamp]
+houdini.icon STRING "VOP_clamp"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr min]
+desc STRING "The minumum value that the input will be clamped to."
+
+[attr max]
+desc STRING "The maximum value that the input will be clamped to."
+
+##############################################################################
+[node color_convert]
+houdini.icon STRING "COP2_lookup"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr from_space]
+houdini.no_menu_caps BOOL true
+desc STRING "Colorspace of the input."
+
+[attr to_space]
+houdini.no_menu_caps BOOL true
+desc STRING "Colorspace to convert to."
+
+##############################################################################
+[node color_correct]
+houdini.icon STRING "COP2_colorcorrect"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr hue_shift]
+softmin FLOAT -1
+softmax FLOAT 1
+desc STRING "Alters the input color to another hue."
+
+[attr saturation]
+desc STRING "Controls the amount of color for a given hue."
+
+[attr brighten]
+desc STRING "Increases the brightness of the input."
+
+[attr contrast]
+desc STRING "Makes the light areas lighter and dark areas darker increasing the difference between."
+
+[attr contrast_pivot]
+desc STRING "Controls how changes in contrast affect the input. It shifts the middle between the light and dark areas."
+
+[attr exposure]
+desc STRING "Multiplies the image by a constant using stops , 3 stops will be twice as bright as 2 stops."
+
+[attr gain]
+desc STRING "White is turned into this colour."
+
+[attr gamma]
+desc STRING "Applies gamma correction."
+
+##############################################################################
+[node complement]
+houdini.icon STRING "VOP_complement"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node cross]
+houdini.icon STRING "VOP_cross"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node divide]
+houdini.icon STRING "VOP_divide"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node dot]
+houdini.icon STRING "VOP_dot"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node exp]
+houdini.icon STRING "VOP_exp"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node length]
+houdini.icon STRING "VOP_length"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr mode]
+desc STRING "Euclidian: The actual length of the vector.\nQuadrance: Euclidian distance squared, which is cheaper to compute.\nManhattan: Measures distance following only axis-aligned directions, which is even cheaper to compute."
+
+##############################################################################
+[node max]
+houdini.icon STRING "VOP_max"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr max]
+desc STRING "Computes the maximum value of the input vector argument."
+
+##############################################################################
+[node min]
+houdini.icon STRING "VOP_min"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr min]
+desc STRING "Computes the minimum value of the input vector argument."
+
+##############################################################################
+[node mix]
+houdini.icon STRING "VOP_mix"
+houdini.lod STRING "H"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr mix]
+desc STRING "Computes a blend (or a mix) of its input values using linear interpolation."
+
+##############################################################################
+[node multiply]
+houdini.icon STRING "VOP_multiply"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node normalize]
+houdini.icon STRING "VOP_normalize"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node pow]
+houdini.icon STRING "VOP_pow"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr base]
+desc STRING "Value to be raised to the power of the exponent."
+
+[attr exponent]
+desc STRING "The base is raised to the power of this value."
+
+##############################################################################
+[node random]
+houdini.icon STRING "VOP_random"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr seed]
+desc STRING "Generates a random number based on this seed input."
+
+##############################################################################
+[node range]
+houdini.icon STRING "VOP_fit"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr input_min]
+desc STRING "The minimum value of the input range."
+
+[attr input_max]
+desc STRING "The maximum value of the input range."
+
+[attr output_min]
+desc STRING "The minimum value of the output range. The Input Min  will be mapped to this value."
+
+[attr output_max]
+desc STRING "The maximum value of the input range. The Input Max will be mapped to this value."
+
+[attr smoothstep]
+desc STRING "Interpolates the output range smoothly between the max and min output values. The returned value is clamped between these values."
+
+##############################################################################
+[node reciprocal]
+houdini.icon STRING "VOP_invert"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node rgb_to_float]
+houdini.label STRING "RGB To Float"
+houdini.icon STRING "VOP_vectofloat"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr mode]
+desc STRING "r: Outputs only the red component as float.\ng: Outputs only the green component as float.\nb: Outputs only the blue component as float.\nmin: Outputs only the minimum value as float.\nmax: Outputs only the maximum value as float.\naverage: Outputs the average of the RGB components.\nsum: Outputs the sum of the RGB components.\nperceptual: Outputs a luminance based on how our eyes view color."
+
+##############################################################################
+[node rgb_to_vector]
+houdini.label STRING "RGB To Vector"
+houdini.icon STRING "COP2_lookup"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr mode]
+desc STRING "raw: Passes the input through, does nothing.\ncanonical: Converts the input from 0,1 range to -1,1."
+
+##############################################################################
+[node subtract]
+houdini.icon STRING "VOP_subtract"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+##############################################################################
+[node user_data_float]
+houdini.icon STRING "SOP_attribute"
+houdini.lod STRING "M"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/User+Data+Nodes"
+
+[attr attribute]
+desc STRING "Name of the custom attribute attached to the geometry with float data."
+
+[attr default]
+desc STRING "The default value to use if the attribute is not found on input."
+
+##############################################################################
+[node user_data_int]
+houdini.icon STRING "SOP_attribute"
+houdini.lod STRING "M"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/User+Data+Nodes"
+
+[attr attribute]
+desc STRING "Name of the custom attribute attached to the geometry with integer data."
+
+[attr default]
+desc STRING "The default value to use if the attribute is not found on input."
+
+##############################################################################
+[node user_data_rgb]
+houdini.label STRING "User Data RGB"
+houdini.icon STRING "SOP_attribute"
+houdini.lod STRING "M"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/User+Data+Nodes"
+
+[attr attribute]
+desc STRING "Name of the custom attribute attached to the geometry with RGB data."
+
+[attr default]
+desc STRING "The default value to use if the attribute is not found on input."
+
+##############################################################################
+[node user_data_rgba]
+houdini.label STRING "User Data RGBA"
+houdini.icon STRING "SOP_attribute"
+houdini.lod STRING "M"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/User+Data+Nodes"
+
+[attr attribute]
+desc STRING "Name of the custom attribute attached to the geometry with RGBA data."
+
+[attr default]
+desc STRING "The default value to use if the attribute is not found on input."
+
+##############################################################################
+[node user_data_string]
+houdini.icon STRING "SOP_attribute"
+houdini.lod STRING "M"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/User+Data+Nodes"
+
+[attr attribute]
+desc STRING "Name of the custom attribute attached to the geometry with string data."
+
+[attr default]
+desc STRING "The default value to use if the attribute is not found on input."
+
+##############################################################################
+[node vector_to_rgb]
+houdini.label STRING "Vector To RGB"
+houdini.icon STRING "COP2_lookup"
+houdini.help_url STRING "http://support.solidangle.com/pages/viewpage.action?pageId=2654302"
+
+[attr mode]
+desc STRING "raw: Passes the input through, does nothing.\nnormalized: Normalizes the vector before converting the input from 0,1 range to -1,1.\ncanonical: Converts the input from 0,1 range to -1,1."
+
+##############################################################################
+[node volume_collector]
+houdini.icon STRING "SOP_volume"
+houdini.shader_type STRING "volume"
+houdini.help_url STRING "http://support.solidangle.com/display/AFHUG/Volumes"
+
+[attr scattering]
+desc STRING ""
+
+[attr absorption]
+desc STRING ""
+
+[attr emission]
+desc STRING ""

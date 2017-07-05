@@ -1,0 +1,12 @@
+<args format="1.0">
+ <help>
+  Mix two inputs based on the linear interpolation formula: color = (input1 * (1 - mix)) + (input2 * mix).
+ </help>
+ <param name="input1" widget="color"/>
+ <param name="input2" widget="color"/>
+ <param name="mix">
+  <help>
+   Mix value; 0 is use input 2, 1 is use input 1, and anything in between mixes them both.
+  </help>
+ </param>
+</args>

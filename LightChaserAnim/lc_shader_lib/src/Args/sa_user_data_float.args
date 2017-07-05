@@ -1,0 +1,15 @@
+<args format="1.0">
+ <help>
+  Read float (or compatible) user data from the primitive.
+ </help>
+ <param name="attribute">
+  <help>
+   Name of the user data attribute to read.
+  </help>
+ </param>
+ <param name="default">
+  <help>
+   Value to use if no compatible user data is found.
+  </help>
+ </param>
+</args>

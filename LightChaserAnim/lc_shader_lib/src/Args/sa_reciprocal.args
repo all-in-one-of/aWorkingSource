@@ -1,0 +1,6 @@
+<args format="1.0">
+ <help>
+  Output the inverse, or 1/color as a result.
+ </help>
+ <param name="input" widget="color"/>
+</args>

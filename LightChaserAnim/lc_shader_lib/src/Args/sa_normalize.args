@@ -1,0 +1,6 @@
+<args format="1.0">
+ <help>
+  Produce a unit-length vector in the same direction as the input.
+ </help>
+ <param name="input"/>
+</args>

@@ -1,0 +1,10 @@
+<args format="1.0">
+ <help>
+  Output a fixed random value (doesn't vary between shading samples).
+ </help>
+ <param name="seed">
+  <help>
+   RGB seed value, where you can randomize each color component separately.
+  </help>
+ </param>
+</args>

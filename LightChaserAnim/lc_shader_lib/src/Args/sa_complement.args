@@ -1,0 +1,6 @@
+<args format="1.0">
+ <help>
+  Invert each color component: color = (1 - r, 1 - g, 1 - b).
+ </help>
+ <param name="input" widget="color"/>
+</args>

@@ -1,0 +1,7 @@
+<args format="1.0">
+ <help>
+  Exponentiation of using an arbitrary base.
+ </help>
+ <param color_enableFilmlookVis="False" name="base" widget="color"/>
+ <param name="exponent" widget="color"/>
+</args>

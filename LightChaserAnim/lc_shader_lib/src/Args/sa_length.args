@@ -1,0 +1,13 @@
+<args format="1.0">
+ <help>
+  Compute the length (using one of several methods) of a vector.
+ </help>
+ <param name="input"/>
+ <param name="mode" widget="popup">
+  <hintlist name="options">
+   <string value="manhattan"/>
+   <string value="euclidian"/>
+   <string value="quadrance"/>
+  </hintlist>
+ </param>
+</args>
