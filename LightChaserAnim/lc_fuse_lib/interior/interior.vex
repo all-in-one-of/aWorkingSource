@@ -1,0 +1,49 @@
+vector filterstep(vector x; vector a){
+    return set(filterstep(x.x, a.x), filterstep(x.y, a.y), filterstep(x.z, a.z));
+}
+
+vector floor = filterstep(set(0,0,0), I);//set(filterstep(0, I.x), filterstep(0, I.y),filterstep(0, I.z));
+floor -= set(0.5,0.5,0.5);
+float s, t, z;
+float f = (floor.y-P.y)/I.y;
+s = f*I.x+P.x+0.5;
+z = t = f*I.z+P.z;
+//C_ = texture("Mandril.pic", s, t)/length(set(s, floor.y, t) - P);
+C = set(s, t, 0);
+
+float depth = -cap_depth;
+int flag = 1;
+if (s<1 && s>0) {
+    if (z<depth && cap){
+        flag = 0;
+    } else{
+        if (floor.y>0)
+            C = texture(tex_top, s, t);
+        else
+            C = texture(tex_bottom, s, t);
+    }
+}else{
+    f = (floor.x-P.x)/I.x;
+    int left = s<0;
+    s = f*I.y+P.y;
+    z = t = f*I.z+P.z;
+    if (z<depth && cap){
+        flag = 0;
+    } else {
+        if (left)
+            C = texture(tex_left, s, t);
+        else
+            C = texture(tex_right, s, t);
+    }
+}
+
+if ( !flag){
+    s = I.x*depth/I.z+P.x+0.5;
+    t = I.y*depth/I.z+P.y+0.5;
+    z = depth;
+    C = texture(tex_cap, s, t);
+}
+
+C*= min(pow(1/-z, 2.2), 1);
+if (wireframe)
+    C+= color;
