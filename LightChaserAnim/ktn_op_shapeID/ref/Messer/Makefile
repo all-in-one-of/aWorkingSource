@@ -3,9 +3,9 @@
 # The output objects dir
 KATANA_HOME = /mnt/work/software/katana/katana2.1v5
 OBJDIR = ./out
-INSTALLDIR = /home/xukai/Git/git_repo/katana/resource/2.1/Ops
+INSTALLDIR = $(KATANA_HOME)/plugins/Resources/Examples/Ops
 
-OUTFILENAME = ShapeID.so
+OUTFILENAME = Messer.so
 OUTFILEPATH = $(OBJDIR)/$(OUTFILENAME)
 
 # Plug-in sources and includes
@@ -36,7 +36,7 @@ LIBS = -lCEL
 all: $(OUTFILEPATH)
 
 $(OUTFILEPATH): $(OBJS)
-	@echo "  Compiling ShapeID"
+	@echo "  Compiling Messer"
 	$(CXX) $(CXXFLAGS) $(OBJS) $(LIBPATH) $(LIBS) -shared -o $(OUTFILEPATH) -Wl,-soname,$(OUTFILENAME)
 
 $(OBJDIR)/%.o: %.cpp
@@ -44,15 +44,10 @@ $(OBJDIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	@echo "  Cleaning ShapeID"
+	@echo "  Cleaning Messer"
 	@rm -rf $(OBJDIR)
 
 install:
 	@echo "  Installing to $(INSTALLDIR)"
 	@mkdir -p $(INSTALLDIR)
 	@cp $(OUTFILEPATH) $(INSTALLDIR)
-
-test:
-	$(CXX) -o ./out/tst ./src/rapidjson.cpp
-run:
-	./out/tst
