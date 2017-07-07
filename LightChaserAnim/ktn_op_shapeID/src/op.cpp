@@ -30,7 +30,6 @@ const std::string DEFAULT_RIGEDITATTR = "";
 class ShapeIDOp : public Foundry::Katana::GeolibOp
 {
 public:
-
     static void setup(Foundry::Katana::GeolibSetupInterface &interface)
     {
         interface.setThreading(
@@ -47,7 +46,7 @@ public:
             return;
         }
         std::vector<kt::shapeid> regeditMap;
-        if(interface.atRoot())
+/*        if(interface.atRoot())
         {          
             std::string celInfo = celAttr.getValue();
             celInfo = kt::replace(celInfo,"(","");
@@ -75,21 +74,21 @@ public:
                 rapidjson::Value tempStr(regeditMap[i].shape.c_str(), alloc);
                 document.AddMember(tempStr, regeditMap[i].id, alloc);
             }
-
-            FILE* fp = fopen("/home/xukai/Documents/TestProgramFactory/ktn_op_shapeID/out/output.json", "w"); // non-Windows use "w"
+            std::string output_path = "/home/xukai/Documents/TestProgramFactory/ktn_op_shapeID/out/output.json";
+            FILE* fp = fopen(kt::stoChar(output_path), "w"); // non-Windows use "w"
             char writeBuffer[65536];
             rapidjson::FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
             rapidjson::PrettyWriter<rapidjson::FileWriteStream> writer(os);
             document.Accept(writer);
             fclose(fp);
 
-            ////Print regeditMap
-            //std::cout << "regeditMap.size:" <<regeditMap.size() << std::endl;
-            //for(unsigned int i=0;i<regeditMap.size();++i)
-            //{
-            //   std::cout << regeditMap[i].shape << ":" << regeditMap[i].id << std::endl;
-            //}
-        }//ending atRoot
+        }//ending atRoot*/
+        if(interface.atRoot())
+        {
+            std::cout << celAttr.getValue() << std::endl;
+            interface.createChild("shapeid","");
+        }    
+
         // If a CEL attribute was provided (and so it's valid), check
         // our current output location against the CEL. If it doesn't match
         // the CEL, then don't continue cooking at this location.
@@ -113,6 +112,7 @@ public:
         {
             return;
         }
+        std::cout << "Current Location:" << interface.getInputLocationPath() << std::endl;
 
         FnAttribute::StringAttribute regeditAttr =
             interface.getOpArg("regedit");
@@ -120,9 +120,7 @@ public:
         const std::string regedit =
             regeditAttr.getValue(DEFAULT_RIGEDITATTR, false);
 
-        FnAttribute::FloatAttribute currPointsAttr =
-            interface.getAttr("geometry.point.P");
-        
+        interface.setAttr("LCA.name", FnAttribute::StringAttribute("Light Chaser Animation Studio"),false);
         //int index = interface.getInputIndex();
         //std::string name = interface.getInputName();
         //std::cout << index << " : " << name << regedit << std::endl;
