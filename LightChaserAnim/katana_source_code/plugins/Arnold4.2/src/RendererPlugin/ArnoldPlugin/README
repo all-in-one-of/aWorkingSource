@@ -1,0 +1,19 @@
+Arnold 4.2 Renderer Plug-in
+===========================
+
+Environment Variables
+---------------------
+
+ARNOLDTREE_4_2  The installation directory of Arnold 4.2
+BOOST_HOME      The root of the boost directory.
+KATANA_HOME     The Katana installation directory at compile-time
+OPENEXR_HOME    The installation directory of openEXR
+ZMQ_HOME        The installation directory of Zero MQ.
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/libArnoldPlugin.so' to the 'Libs' subdirectory within a
+   Katana resources path.

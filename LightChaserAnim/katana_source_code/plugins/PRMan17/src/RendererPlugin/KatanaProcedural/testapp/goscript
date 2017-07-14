@@ -1,0 +1,121 @@
+#!/embedded/python
+
+from time import time,ctime
+print 'Today is',ctime(time())
+
+import sys
+sys.path.insert( 0, '../../../../PYTHON_LIBS' )
+
+import GeoAPI
+
+
+def recursiveOutput(fi, indent):
+    localfi = fi.lockedCopy()
+    while not localfi.isNull():
+        if len(indent) > 10:
+            return
+        print indent, 'name:', localfi.name(), 'type:', localfi.type()
+        try:
+            xform = localfi.localAttribute('xform')
+            xformchildren = xform.children()
+            for (key,value) in xformchildren.items():
+                print indent, ' ', key, ':', value.getData()
+        except:
+            pass
+        recursiveOutput(localfi.down(), indent+' ')
+        if (localfi.isLocked()):
+            localfi = localfi.unlockedCopy()
+        localfi.next()
+
+# material_surfaceParams_Ka.out @ 1.0
+# GenericGeo.out @ 1.0
+# Merge.out @ 1.0
+# GTO_In.out @ 1.0
+proceduralAttrs = GeoAPI.Util.GetProceduralArgs(fileName = "GTO_In.so", time = (1.000000, 2.000000, 1.000000) )
+GTO_In_out_1_0 = GeoAPI.Filters.GenericGeo("/root", "procedural", proceduralAttrs, "GTO_In")
+oDict = {}
+oDict[('root',)] = [ (['gtoFile'], GeoAPI.Attr('StringAttr',['/net/homedirs/shingot/src/katana/TEST_IMAGES/beethoven.gto']), 'GTO_In') ]
+GTO_In_out_1_0 = GeoAPI.Filters.Override(GTO_In_out_1_0, oDict)
+GTO_In_out_1_0 = GeoAPI.Filters.ProceduralResolve(GTO_In_out_1_0, nodeName="GTO_In", time = (1.000000, 2.000000, 1.000000))
+# Insert1.out @ 1.0
+# xform1.out @ 1.0
+groupXform = GeoAPI.GroupAttr(False)
+groupXform = GeoAPI.PushTranslateAttr(groupXform, 3.000000, 1.000000, -3.000000)
+groupAttrs = {"xform":groupXform,
+}
+xform1_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/xform1", "group", groupAttrs, "xform1")
+Insert1_out_1_0 = GeoAPI.Filters.InsertFilter(xform1_out_1_0,"root/world/xform1",GTO_In_out_1_0,"root/world/beethoven",False,nodeName="Insert1")
+# Insert.out @ 1.0
+# xform2.out @ 1.0
+groupXform = GeoAPI.GroupAttr(False)
+groupXform = GeoAPI.PushTranslateAttr(groupXform, -3.000000, 1.000000, -3.000000)
+groupAttrs = {"xform":groupXform,
+}
+xform2_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/xform2", "group", groupAttrs, "xform2")
+Insert_out_1_0 = GeoAPI.Filters.InsertFilter(xform2_out_1_0,"root/world/xform2",GTO_In_out_1_0,"root/world/beethoven",False,nodeName="Insert")
+# Insert2.out @ 1.0
+# TransformGroup.out @ 1.0
+groupXform = GeoAPI.GroupAttr(False)
+groupAttrs = {"xform":groupXform,
+}
+TransformGroup_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/null", "group", groupAttrs, "TransformGroup")
+# Merge1.out @ 1.0
+# Light.out @ 1.0
+lightXform = GeoAPI.GroupAttr(False)
+lightXform = GeoAPI.PushTranslateAttr(lightXform, 5.000000, 5.000000, 5.000000)
+lightAttrs = {"xform":lightXform,
+}
+Light_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/light", "light", lightAttrs, "Light")
+oDict = {}
+oDict[('root',)] = [ (['lightPaths'], GeoAPI.Attr('StringAttr',['/root/world/light']), 'Light') ]
+Light_out_1_0 = GeoAPI.Filters.Override(Light_out_1_0, oDict)
+# Light1.out @ 1.0
+lightXform = GeoAPI.GroupAttr(False)
+lightXform = GeoAPI.PushTranslateAttr(lightXform, -5.000000, -5.000000, 5.000000)
+lightAttrs = {"xform":lightXform,
+}
+Light1_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/light", "light", lightAttrs, "Light1")
+oDict = {}
+oDict[('root',)] = [ (['lightPaths'], GeoAPI.Attr('StringAttr',['/root/world/light']), 'Light1') ]
+Light1_out_1_0 = GeoAPI.Filters.Override(Light1_out_1_0, oDict)
+Merge1_out_1_0 = GeoAPI.Filters.MergeFilter(iterators=[Light_out_1_0,Light1_out_1_0,], nodeName="Merge1")
+Insert2_out_1_0 = GeoAPI.Filters.InsertFilter(TransformGroup_out_1_0,"root/world/null",Merge1_out_1_0,"root/world",True,nodeName="Insert2")
+# Camera.out @ 1.0
+cameraXform = GeoAPI.GroupAttr(False)
+cameraXform = GeoAPI.PushTranslateAttr(cameraXform, 0.000000, 0.000000, 15.000000)
+cameraAttrs = {"xform":cameraXform,
+               "geometry":GeoAPI.GroupAttr(False, {
+"fov":GeoAPI.Attr("DoubleAttr",[50.0,]),
+"right":GeoAPI.Attr("DoubleAttr",[1.0,]),
+"bottom":GeoAPI.Attr("DoubleAttr",[-1.0,]),
+"far":GeoAPI.Attr("DoubleAttr",[100000.0,]),
+"top":GeoAPI.Attr("DoubleAttr",[1.0,]),
+"near":GeoAPI.Attr("DoubleAttr",[1.0,]),
+"left":GeoAPI.Attr("DoubleAttr",[-1.0,]),
+})
+}
+Camera_out_1_0 = GeoAPI.Filters.GenericGeo("/root/world/cam_main", "camera", cameraAttrs, "Camera")
+oDict = {}
+oDict[('root',)] = [ (['cameraPaths'], GeoAPI.Attr('StringAttr',['/root/world/cam_main']), 'Camera') ]
+Camera_out_1_0 = GeoAPI.Filters.Override(Camera_out_1_0, oDict)
+Merge_out_1_0 = GeoAPI.Filters.MergeFilter(iterators=[GTO_In_out_1_0,Insert1_out_1_0,Insert_out_1_0,Insert2_out_1_0,Camera_out_1_0,], nodeName="Merge")
+GenericGeoIter_0 = GeoAPI.Filters.GenericGeo("root/materials/checker",
+    "geometry material", None, "GenericGeo", Merge_out_1_0)
+GenericGeoIter_1 = GeoAPI.Filters.GenericGeo("root/materials/light3",
+    "light material", None, "GenericGeo", GenericGeoIter_0)
+GenericGeoIter_2 = GeoAPI.Filters.GenericGeo("root/materials/plastic1",
+    "geometry material", None, "GenericGeo", GenericGeoIter_1)
+GenericGeoIter_3 = GeoAPI.Filters.GenericGeo("root/materials/light3/light4",
+    "light material", None, "GenericGeo", GenericGeoIter_2)
+GenericGeo_out_1_0 = GenericGeoIter_3
+oDict = {}
+oDict[('root', 'materials', 'light3')] = [(['material'],GeoAPI.GroupAttr(True),'material2'),(['material', 'lightShader'],GeoAPI.Attr('StringAttr',['pointlight']),'material_lightShader'),(['material', 'lightParams'],GeoAPI.GroupAttr(False),'material_lightParams'),(['material', 'lightParams', 'intensity'],GeoAPI.Attr('DoubleAttr',[10.0]),'material_lightParams_intensity'),(['material', 'lightParams', 'lightcolor'],GeoAPI.Attr('DoubleAttr',[0.999983,0.000552022,0.0816705]),'material_lightParams_lightcolor')]
+oDict[('root', 'materials', 'light3', 'light4')] = [(['material'],GeoAPI.GroupAttr(True),'material1'),(['material', 'lightParams', 'lightcolor'],GeoAPI.Attr('DoubleAttr',[0.000138006,0.999983,1.0]),'material_lightParams_lightcolor1')]
+oDict[('root', 'materials', 'checker')] = [(['material'],GeoAPI.GroupAttr(True),'material4'),(['material', 'surfaceShader'],GeoAPI.Attr('StringAttr',['texmap']),'material_surfaceShader1'),(['material', 'surfaceParams'],GeoAPI.GroupAttr(False),'material_surfaceParams1'),(['material', 'surfaceParams', 'texname'],GeoAPI.Attr('StringAttr',['/net/homedirs/hall/svn/katana/TEST_IMAGES/checker.tx']),'material_surfaceParams_texname'),(['material', 'surfaceParams', 'Kd'],GeoAPI.Attr('DoubleAttr',[5.0]),'material_surfaceParams_Kd'),(['material', 'surfaceParams', 'Ka'],GeoAPI.Attr('DoubleAttr',[1.0]),'material_surfaceParams_Ka')]
+oDict[('root', 'materials', 'plastic1')] = [(['material'],GeoAPI.GroupAttr(True),'material'),(['material', 'surfaceShader'],GeoAPI.Attr('StringAttr',['plastic']),'material_surfaceShader'),(['material', 'surfaceParams'],GeoAPI.GroupAttr(False),'material_surfaceParams'),(['material', 'surfaceParams', 'specularcolor'],GeoAPI.Attr('DoubleAttr',[1.0,1.0,0.0]),'material_surfaceParams_specularcolor1')]
+material_surfaceParams_Ka_out_1_0 = GeoAPI.Filters.Override(GenericGeo_out_1_0, oDict)
+
+
+# Assign resultant iterator to std output name
+iterator = material_surfaceParams_Ka_out_1_0
+iterator = GeoAPI.Util.moveIterator(iterator, '/root/world/cam_main')

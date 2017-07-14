@@ -5,6 +5,9 @@ export LCTOOLSET=/home/xukai/Git/git_repo/lcatools
 export LCA_DEVKTN_PATH=/home/xukai/Git/git_repo/katana
 export LCA_DEVMY_PATH=/home/xukai/Git/git_repo/maya
 
-# launch katana
+## launch katana
 source "${LCA_DEVKTN_PATH}/launcher/env_config/plugin_dev_2.1.sh"
+#source "${LCA_DEVKTN_PATH}/launcher/env_config/shader_dev_2.1.sh"
+#source "${LCA_DEVKTN_PATH}/launcher/env_config/katana2.5v5_dev.sh"
 exec "${LCA_SOFTWARE_PATH}/katana/katana2.1v5/katana"
+#exec "${LCA_SOFTWARE_PATH}/katana/katana2.5v5/katana"

@@ -1,0 +1,19 @@
+SubdividedSpace Op
+==================
+
+The SubdividedSpace Op example is meant to provide a reference for porting
+scene graph generator plug-ins to Ops. The "ScenegraphGenerator" folder
+contains the source code for a scene graph generator plug-in that implements
+the same functionality as the SubdividedSpace Op.
+
+Environment Variables
+---------------------
+
+KATANA_HOME  The Katana installation directory at compile-time
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Run 'make install'.

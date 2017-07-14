@@ -1,0 +1,16 @@
+PRMan 17 Renderer Info Plug-in
+==============================
+
+Environment Variables
+---------------------
+
+KATANA_HOME  The Katana installation directory at compile-time
+RMANTREE     The installation directory of renderman
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/PRManRendererInfo.so' to the 'Libs' subdirectory within a
+   Katana resources path.

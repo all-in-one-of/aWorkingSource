@@ -1,0 +1,31 @@
+PRMan 17 KatanaProcedural
+=========================
+
+Environment Variables
+---------------------
+
+BOOST_HOME    The root of the boost directory.
+KATANA_HOME   The Katana installation directory at compile-time
+OPENEXR_HOME  The installation directory of openEXR
+RMANTREE      The installation directory of renderman
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/KatanaProcedural.so' to the 'Libs' subdirectory within a
+   Katana resources path.
+
+Testing
+-------
+
+To build and run a simple test application that tests KatanaProcedural.cpp
+without loading it as DSO or launching PRMan.
+
+1. 'cd' into 'testapp'.
+2. Run 'make test'.
+3. The test program should spew RIB to stdout.
+
+Currently boost is needed for the shared_ptr type. You could potentially change
+the source code in KatanaProcedural to use tr1 if you'd rather not use boost.

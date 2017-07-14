@@ -1,0 +1,20 @@
+ScenegraphXML Scene Graph Generator Plug-in
+===========================================
+
+The Scenegraph XML Scene Graph Generator (SGG) plug-in implements the same
+functionality of the ScenegraphXML node. It parses an XML file with structured
+scene information and generates the scene graph accordingly.
+
+Environment Variables
+---------------------
+
+BOOST_HOME   The root of the boost directory.
+KATANA_HOME  The Katana installation directory at compile-time
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/ScenegraphXML.so' to the 'Libs' subdirectory within a
+   Katana resources path.

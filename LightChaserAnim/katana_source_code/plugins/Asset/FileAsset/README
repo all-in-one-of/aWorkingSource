@@ -1,0 +1,18 @@
+FileAsset Asset Plug-in
+=======================
+
+The FileAsset plug-in reads and writes directly from and to the file system.
+For this plug-in an assetId is just a filename.
+
+Environment Variables
+---------------------
+
+KATANA_HOME  The Katana installation directory at compile-time
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/FileAsset.so' to the 'Libs' subdirectory within a Katana
+   resources path.

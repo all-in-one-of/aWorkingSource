@@ -1,0 +1,15 @@
+LocalLocation Render Output Location Plug-in
+============================================
+
+Environment Variables
+---------------------
+
+KATANA_HOME  The Katana installation directory at compile-time
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/LocalLocation.so' to the 'Libs' subdirectory within a
+   Katana resources path.

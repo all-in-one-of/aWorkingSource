@@ -2,7 +2,7 @@
 
 //#include <algorithm>
 #include <string>
-
+#include <vector>
 namespace kt{
 
 struct shapeid
@@ -16,6 +16,55 @@ struct shapeid
 		return id;
 	};
 };
+
+class map
+{
+public:
+	std::vector<shapeid> iMap;
+	void add(shapeid item)
+	{
+		iMap.push_back(item);
+	}
+	bool isExist(std::string key)
+	{
+		for(unsigned int i = 0;i < iMap.size();++i)
+		{
+			//if(iMap[i].shape==key)
+			if(key.compare(iMap[i].shape) == 0)
+				return true;
+		}
+		return false;
+	}
+	int find(std::string key)
+	{
+		for(unsigned int i = 0;i < iMap.size();i++)
+		{
+			if(iMap[i].shape==key)
+				return iMap[i].id;
+		}
+	}
+	shapeid find(int key)
+	{
+		return iMap[key];
+	}
+
+	size_t size()
+	{
+		return iMap.size();
+	}
+};
+
+/*bool isShapeidExist(std::string InKey,std::vector<shapeid> InMap)
+{
+	for(unsigned int i = 0;i < InMap.size();i++)
+	{
+		if(InMap[i].shape==InKey)
+		{
+			return true;
+		}
+	}
+	return false;
+}*/
 
 std::vector<std::string> split(std::string str, std::string pattern)
 {

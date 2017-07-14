@@ -1,0 +1,36 @@
+##RenderMan RIB
+version 3.04
+FrameBegin 1
+Identity 
+Format 740 326 1
+# Quantize "rgba" 65535 0 65535 0.5
+Declare "stopsize" "constant int"
+Declare "cropmode" "constant string"
+Display "/tmp/a.rla" "framebuffer" "rgba" "stopsize" [90]"cropmode" ["crop-only-offset"]
+ScreenWindow -1 1 -0.44089457 0.44089457
+Declare "fov" "uniform float"
+Projection "perspective" "fov" [87.3311]
+Clipping 1 10000
+Scale 1 1 -1
+
+# Option "limits" "eyesplits" [4]
+
+# vah_model camera:
+#ConcatTransform[0.305695851 0.202926469 -0.930253651 0 -5.68950468e-09 0.977024202 0.213128699 0 0.952129708 -0.0651525234 0.298671598 0 -100.573660 -594.988535 682.390377 1]
+
+#another vah_model camera:
+#ConcatTransform[-0.601814772 -0.0126249892 0.798535636 0 -1.54103897e-08   0.999875085 0.0158081961 0 -0.798635227 9.51360551e-03  -0.601739370 0 499.067465 -405.267829 -1150.31425 1]
+
+# in04 camera:
+# ConcatTransform[-0.827003383 -0.290291144 0.481451915 0 1.16242840e-07 0.856376248 0.516351399 0 -0.562195981 0.427024579 -0.708226226 0 -2.88992755e+03 -2.09196147e+03 -6.45670353e+03 1]
+
+# sa21 camera?:
+# ConcatTransform [0.453039 0.0663474 -0.889018 0 0.144637 0.978544 0.146735 0 0.879679 -0.195062 0.433722 0 20407.557493 298.81184 158.20811 1]
+WorldBegin 
+AttributeBegin
+
+Procedural "DynamicLoad" [ "out/_linux_gcc32_D/ripython.so" "-script ./goscript -timer" ] [ -100000 100000 -100000 100000 -100000 100000 ]
+
+AttributeEnd
+WorldEnd 
+FrameEnd 

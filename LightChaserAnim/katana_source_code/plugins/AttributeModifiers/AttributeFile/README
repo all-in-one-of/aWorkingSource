@@ -1,0 +1,21 @@
+AttributeFile Attribute Modifier Plug-in
+========================================
+
+The AttributeFile Attribute Modifier Plug-in (AMP) implements the same feature
+as the AttributeFile node. It parses a file with attribute information
+associated with scene graph locations and adds those attributes to those
+locations.
+
+Environment Variables
+---------------------
+
+BOOST_HOME   The root of the boost directory.
+KATANA_HOME  The Katana installation directory at compile-time
+
+Building
+--------
+
+1. Ensure the environment variables listed above have been set.
+2. Run 'make'.
+3. Copy 'out/AttributeFile.so' to the 'Libs' subdirectory within a
+   Katana resources path.
