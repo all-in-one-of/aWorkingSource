@@ -1,9 +1,9 @@
 # See README for instructions on how to use this Makefile
 
 # The output objects dir
-KATANA_HOME = /mnt/work/software/katana/katana2.1v5
+KATANA_HOME = /mnt/work/software/katana/katana2.5v5
 OBJDIR = ./out
-INSTALLDIR = /mnt/work/software/develop/katana/resource/2.1/Ops
+INSTALLDIR = /mnt/work/software/develop/katana/resource/2.5/Ops
 
 OUTFILENAME = TagSet.so
 OUTFILEPATH = $(OBJDIR)/$(OUTFILENAME)

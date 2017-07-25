@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <cassert>
+#include <iostream>
 
 #include <FnAttribute/FnAttribute.h>
 #include <FnAttribute/FnGroupBuilder.h>
@@ -125,5 +126,6 @@ DEFINE_GEOLIBOP_PLUGIN(TagSetOp)
 
 void registerPlugins()
 {
+    std::cout << "[LCA PLUGIN] Register TagSet v1.1" << std::endl;
     REGISTER_PLUGIN(TagSetOp, "TagSet", 0, 1);
 }

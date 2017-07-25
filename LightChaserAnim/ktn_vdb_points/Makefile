@@ -1,5 +1,5 @@
 # See README for instructions on how to use this Makefile
-KATANA_HOME = /mnt/work/software/katana/katana2.6v1
+KATANA_HOME = /mnt/work/software/katana/katana2.5v5
 INSTALL_TARGET = /mnt/public/home/john/git/lcatools/applications/katana_v2/Libs
 
 # The output objects dir
