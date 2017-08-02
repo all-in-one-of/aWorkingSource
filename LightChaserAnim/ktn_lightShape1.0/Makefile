@@ -5,7 +5,7 @@
 OUTDIR = ./out
 OUTFILENAME = LightViewerModifier.so
 OUTFILEPATH = $(OUTDIR)/$(OUTFILENAME)
-KATANA_HOME = /mnt/proj/software/k2/katana2.1v1
+KATANA_HOME = /mnt/work/software/katana/katana2.1v5
 PLUGIN_SRC = $(KATANA_HOME)/plugin_apis/src
 
 INCLUDES = -Iinclude -I$(KATANA_HOME)/plugin_apis/include

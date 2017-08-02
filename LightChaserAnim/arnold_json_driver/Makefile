@@ -5,8 +5,8 @@ SRC=src
 
 all:
 	c++ ${SRC}/driver_json.cpp -o ${OUT}/lc_json_driver.so -Wall -O2 -shared -fPIC -I${ARNOLD_PATH}/include -L${ARNOLD_PATH}/bin -lai
-tst:
-	/mnt/work/software/arnold/arnold-4.2.11.3/bin/kick /home/xukai/Documents/TestProgramFactory/arnold_json_driver/ref/example.ass -o tst.jpg -l /home/xukai/Documents/TestProgramFactory/arnold_json_driver/out
+test:
+	/mnt/work/software/arnold/arnold-4.2.11.3/bin/kick ./ref/example.ass -o tst.txt -l ./out
 install:
 	cp ${OUT}/lc_json_driver.so /home/xukai/Git/git_repo/katana/shader/4.x/devShaders
 

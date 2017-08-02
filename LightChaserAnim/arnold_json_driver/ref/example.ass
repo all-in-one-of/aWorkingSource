@@ -1,7 +1,8 @@
 options
 {
  AA_samples 3
- outputs "RGBA RGBA myfilter yourdriver"
+ outputs 1 1 STRING
+  "RGBA STRING myfilter kt_driver"
  xres 720
  yres 486
 }
@@ -12,8 +13,8 @@ gaussian_filter
 }
 driver_json
 {
- name yourdriver
- filename "data.json"	
+ name kt_driver
+ filename "data.txt"	
 }
 driver_tiff
 {

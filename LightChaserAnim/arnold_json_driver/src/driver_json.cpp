@@ -16,27 +16,13 @@ namespace ASTR {
    const AtString filename("filename");
 };
 
-namespace kt{
 typedef struct 
 {
    std::vector<AtString> name;
    std::vector<AtNode*> node;
-}DriverPtrStruct; 
-}//ending namespace kt
-
-struct DriverData
-{
-   std::vector<AtString> name;
-   std::vector<AtNode*> node;
-};
+}DriverData;
 
 
-
-typedef struct
-{
-   std::tr1::unordered_map<AtString,AtNode*> names;
-   //unordered_map<AtString, AtNode*, AtStringHash> names;
-}DriverPtrStruct;
 
 //node_parameters
 static void Parameters(AtList* params, AtMetaDataStore* mds)
@@ -61,7 +47,6 @@ AI_EXPORT_LIB bool NodeLoader(int i, AtNodeLib* node)
 node_initialize
 {
    DriverData* data = new DriverData();
-   //kt::DriverPtrStruct *driver = new kt::DriverPtrStruct();
    // initialize the driver
    AiDriverInitialize(node, false, data);
 }
@@ -127,7 +112,8 @@ static const char** DriverExtension()
    return extensions;
 }
  
-driver_prepare_bucket
+//driver_prepare_bucket
+static void DriverPrepareBucket(AtNode* node, int bucket_xo, int bucket_yo, int bucket_size_x, int bucket_size_y, int tid)
 { }
 
 //driver_write_bucket 
@@ -165,10 +151,12 @@ static void DriverWriteBucket(AtNode* node,
 //driver_close
 static void DriverClose(AtNode* node, struct AtOutputIterator* iterator)
 {
-   kt::DriverPtrStruct *driver = (kt::DriverPtrStruct *)AiDriverGetLocalData(node);
-   std::ofstream myfile(AiNodeGetStr(node, ASTR::filename));
-/*   for (auto &i : driver->names)
-      myfile << i.first << ":\t " <<i.second << std::endl;*/
+   DriverData *driver = (DriverData *)AiDriverGetLocalData(node);
+   std::ofstream myfile(AtString("/home/xukai/objects.txt"));
+   std::vector<AtString>   list = driver->name;
+   //for (unsigned int i = 0;i < list.size();++i)
+   //   myfile << i.first << ":\t " <<i.second << std::endl;
+   myfile << "Hello Arnold Driver" << std::endl;
    std::cout << "@@@@ Json Driver @@@@" << std::endl;
    myfile.close();
 }

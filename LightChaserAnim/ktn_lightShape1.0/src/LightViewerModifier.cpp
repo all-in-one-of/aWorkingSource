@@ -1139,5 +1139,5 @@ DEFINE_VMP_PLUGIN(LightViewerModifier)
 void registerPlugins()
 {
     REGISTER_PLUGIN(LightViewerModifier, "LightViewerModifier", 0, 1);
-    std::cout << "Register LightViewerModifier v1.5" << std::endl;
+    std::cout << "[LCA PLUGIN] Register LightViewerModifier v1.5" << std::endl;
 }
