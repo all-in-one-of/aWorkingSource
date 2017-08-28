@@ -2,14 +2,13 @@ options
 {
  AA_samples 3
  outputs 1 1 STRING
-  "RGBA STRING myfilter kt_driver"
+  "OBJECT POINTER myfilter kt_driver"
  xres 720
  yres 486
 }
-gaussian_filter
+closest_filter
 {
  name myfilter
- width 2.0
 }
 driver_json
 {

@@ -1,0 +1,88 @@
+#!/usr/bin/python
+# vim: filetype=python
+
+import os
+import subprocess
+
+## load our own python modules
+import utils as sa
+from   utils.version import Version
+from   utils.version import KatanaVersion
+
+## import and clone the build environment
+Import([ 'env' ])
+
+env = env.Clone()
+
+# Bring in static libs for interfacing with Katana
+Import([ 'LIBFNDISPLAYDRIVER' ])
+
+# Set handy variables for accessing SCons.Node.FS.Dir objects. Also for the root
+# path of the SCons project and for the variant dir (target), where everything
+# is built.
+__root      = env.Dir('#')
+__target    = env.Dir('.')
+__source    = __target.srcnode()
+__srcroot   = env.Dir(os.path.normpath(os.path.join(__source.abspath, os.pardir)))
+__common    = env.Dir(os.path.join(__srcroot.abspath, 'common'))
+
+# Specify the headers location and other automatically generated header files
+env.Append(CPPPATH = [ __target.abspath ])
+
+## setup all libraries
+
+env.Append(CPPPATH = [ os.path.join(env['KATANA_HOME'], 'plugin_apis', 'include') ])
+
+if len(env['KATANA_VERSION']) > 0 and env['KATANA_VERSION'][0] == 2 and env['KATANA_VERSION'][1] < 5:
+    env['EXTLIBS']['zmq_static'].attach(env)
+
+env['EXTLIBS']['ai'].attach(env)
+env['EXTLIBS']['boost_thread'].attach(env)
+env['EXTLIBS']['boost_system'].attach(env)
+if sa.system.is_linux:
+   #env['EXTLIBS']['clm'].attach(env)
+   env['EXTLIBS']['dl'].attach(env)
+   env['EXTLIBS']['pthread'].attach(env)
+   env['EXTLIBS']['gcc'].attach(env)
+
+env.Append(LIBS = [ LIBFNDISPLAYDRIVER ])
+
+## Build driver_katana
+
+targetname = 'driver_katana'
+
+if sa.system.is_darwin:
+   # FIXME: This should be done for debug builds as well, see core#4133
+   if env['MODE'] == 'opt':
+      # for our libs we remove everything not needed except for Arnold or Katana to run them;
+      # for OSX this needs to happen at link time, since strip does not remove everything.
+      env.Append(LINKFLAGS = env.Split('-Xlinker  -S -Xlinker -x ' +
+                 '-Xlinker -exported_symbol -Xlinker "_getPlugins" -Xlinker -exported_symbol -Xlinker "_NodeLoader"'))
+
+if sa.system.is_linux:
+   # Remove symbols from the library that are not part of the API or otherwise
+   # are required to be exposed for interaction with Arnold and Katana
+   symbols_map = os.path.join(__common.abspath, 'plugin.map')
+   env.Append(LINKFLAGS = [ '-Wl,--version-script={}'.format(symbols_map) ])
+   # Set RPATH to be able to find other shared libs in the same directory and in ../bin
+   env.Append(LINKFLAGS = [ '-Wl,-z,origin' ])
+   env.Append(RPATH = [ env.Literal('\\$$ORIGIN') ])
+   env.Append(RPATH = [ env.Literal(os.path.join('\\$$ORIGIN', os.pardir, 'bin')) ])
+   env.Append(LINKFLAGS = [ '-Wl,-soname,%s.so' % targetname ])
+
+# Automatically add all source and include files found in the source path
+source_files_cpp = sa.path.list(__source.abspath, ['.c', '.cpp'])
+
+# make shared or static library
+LIBDRIVERKATANA = env.SharedLibrary(target = targetname, source = source_files_cpp)
+
+## Add a post-action for embedding manifest file in the libraries
+if sa.system.is_windows:
+   def embed_manifest(target, source, env):
+      cmd = [env.WhereIs("mt.exe"), '-nologo', '-manifest', '{}.manifest'.format(target[0].path), '-outputresource:{};2'.format(target[0].path)]
+      r,_ = sa.system.execute(cmd)
+      return r
+   env.AddPostAction(LIBDRIVERKATANA, Action(embed_manifest, 'Embedding manifest in {} ...'.format(LIBDRIVERKATANA[0].path)))
+
+# hand back result
+Return('LIBDRIVERKATANA')

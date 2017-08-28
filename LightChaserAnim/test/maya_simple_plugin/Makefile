@@ -1,0 +1,2 @@
+g++412 -c -I. -I.. -I/usr/autodesk/maya2017/include -I/usr/X11R6/include -m64 -O3 -pthread -pipe -D_BOOL -DLINUX_64 -DREQUIRE_IOSTREAM -fPIC -mtune=pentium4 -Wno-deprecated -fno-gnu-keywords helloCmd.cpp
+g++412 -shared -m64 -O3 -pthread -pipe -D_BOOL -DLINUX -DREQUIRE_IOSTREAM -mtune=pentium4 -Wno-deprecated -fno-gnu-keywords -Wl,-Bsymbolic -shared -o helloCmd.so helloCmd.o -L/usr/autodesk/maya2017-x64/lib -lOpenMaya -lFoundation

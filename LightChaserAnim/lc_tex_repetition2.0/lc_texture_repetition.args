@@ -1,0 +1,4 @@
+<args format="1.0">
+<param name="texture" label="Texture Path" widget="fileInput"/>
+<param name="uvSetName" label="UV SetName" widget="fileInput"/>
+</args>

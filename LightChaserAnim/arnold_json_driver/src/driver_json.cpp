@@ -5,10 +5,15 @@
 #include <vector>
 #include <cstring>
 #include <fstream>
-#include <tr1/unordered_map>
+#include <cstdio>
 
-// This driver will write to a file a list of all the objects in a pointer AOV
- 
+#include "rapidjson/document.h"
+#include "rapidjson/filewritestream.h"
+#include "rapidjson/filereadstream.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/filewritestream.h"
+
+
 AI_DRIVER_NODE_EXPORT_METHODS(DriverJsonMtd);
 
 namespace ASTR {
@@ -18,20 +23,20 @@ namespace ASTR {
 
 typedef struct 
 {
-   std::vector<AtString> name;
-   std::vector<AtNode*> node;
+   std::vector<AtString> names;
+   std::vector<AtNode*> nodes;
+   std::vector<std::string> keys;
+   int count;
 }DriverData;
 
 
 
-//node_parameters
-static void Parameters(AtList* params, AtMetaDataStore* mds)
+node_parameters
 {
    AiParameterSTR(ASTR::filename, "objects.txt");
 }
 
-//node_loader
-AI_EXPORT_LIB bool NodeLoader(int i, AtNodeLib* node)
+node_loader
 {
    if (i>0)
       return false;
@@ -43,7 +48,6 @@ AI_EXPORT_LIB bool NodeLoader(int i, AtNodeLib* node)
    return true;
 }
 
-//static void Initialize(AtNode* node, AtParamValue* params)
 node_initialize
 {
    DriverData* data = new DriverData();
@@ -51,12 +55,10 @@ node_initialize
    AiDriverInitialize(node, false, data);
 }
 
-//node_update
-static void Update(AtNode* node, AtParamValue* params)
+node_update
 { }
 
-//node_finish
-static void Finish(AtNode* node)
+node_finish
 {
    // Free local data
    DriverData *data = (DriverData *)AiDriverGetLocalData(node);
@@ -101,8 +103,9 @@ static void DriverOpen(AtNode* node,
    AtBBox2 display_window, 
    AtBBox2 data_window, 
    int bucket_size)
-{ // this driver is unusual and happens to do all the writing at the end, so this function is
-  // empty.
+{ 
+   // this driver is unusual and happens to do all the writing at the end, so this function is
+   // empty.
 }
  
 //driver_extension
@@ -129,34 +132,43 @@ static void DriverWriteBucket(AtNode* node,
    DriverData *data = (DriverData *)AiDriverGetLocalData(node);
    const void *bucket_data;
    // Iterate over all the AOVs hooked up to this driver
+   data->count = 0;
    while (AiOutputIteratorGetNext(iterator, NULL, NULL, &bucket_data))
    {
       for (int y = 0; y < bucket_size_y; y++)
       {
          for (int x = 0; x < bucket_size_x; x++)
          {
-            // Get source bucket coordinates for pixel
             int sidx = y * bucket_size_x + x;
-            // Because of driver_supports_pixel_type, we know pixel is a
-            // pointer to an AtNode.
+
             AtNode* pixel_node = ((AtNode **)bucket_data)[sidx];
             const AtString name = AiNodeGetStr(pixel_node, ASTR::name);
-            data->name.push_back(name);
-            data->node.push_back(pixel_node);
+            //const AtNodeEntry* pixel_node_entry = AiNodeGetNodeEntry(pixel_node);
+            //AtString name_entry = AiNodeEntryGetNameAtString(pixel_node_entry);
+            std::cout << name.c_str() << std::endl;
+            data->names.push_back(name);
+            data->nodes.push_back(pixel_node);
          }
       }
    }
 }
- 
+
 //driver_close
 static void DriverClose(AtNode* node, struct AtOutputIterator* iterator)
 {
-   DriverData *driver = (DriverData *)AiDriverGetLocalData(node);
-   std::ofstream myfile(AtString("/home/xukai/objects.txt"));
-   std::vector<AtString>   list = driver->name;
-   //for (unsigned int i = 0;i < list.size();++i)
-   //   myfile << i.first << ":\t " <<i.second << std::endl;
-   myfile << "Hello Arnold Driver" << std::endl;
-   std::cout << "@@@@ Json Driver @@@@" << std::endl;
+   DriverData *data = (DriverData *)AiDriverGetLocalData(node);
+   std::ofstream myfile(AiNodeGetStr(node, ASTR::filename));
+   std::cout << "=== Json Driver TEST===" << std::endl;
+   std::vector<AtString> list_0 = data->names;
+   //std::vector<AtNode*> list_1 = data->nodes;
+   //std::vector<std::string> list_2 = data->keys;
+   for (unsigned int i = 0;i < list_0.size();++i)
+   {
+      myfile << list_0[i] << std::endl;
+   }
+      
    myfile.close();
+   std::cout << data->count << std::endl;
+   std::cout << "=== Json Driver END===" << std::endl;
+   
 }

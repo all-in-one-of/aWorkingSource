@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+export LCA_DEVUSD_PATH=/home/xukai/Git/git_repo/usd
+
+# ------USD
+export USD_INSTALL_ROOT=${LCA_DEVUSD_PATH}/lca_usd_house/usd_centos_v080
+export MAYA_PLUG_IN_PATH=${USD_INSTALL_ROOT}/third_party/maya/plugin/:$MAYA_PLUG_IN_PATH
+export MAYA_SCRIPT_PATH=${USD_INSTALL_ROOT}/third_party/maya/share/usd/plugins/usdMaya/resources/:$MAYA_SCRIPT_PATH
+export PYTHONPATH=${USD_INSTALL_ROOT}/lib/python/:$PYTHONPATH
+export XBMLANGPATH=${USD_INSTALL_ROOT}/third_party/maya/share/usd/plugins/usdMaya/resources/:XBMLANGPATH
+
+export MAYA_VP2_DEVICE_OVERRIDE=VirtualDeviceGL
+export MAYA_VP2_USE_VP1_SELECTION=1  
+
+exec /mnt/usr/autodesk/maya2017/bin/maya2017

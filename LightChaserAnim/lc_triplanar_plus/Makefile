@@ -1,16 +1,16 @@
 
 # ARNOLD_PATH="/mnt/work/software/arnold/arnold-4.2.10.0"
-ARNOLD_PATH=/home/kt/Develop/arnold-4.2.10.0
+ARNOLD_PATH=/mnt/work/software/arnold/arnold-5.0.1.0
 OUT=out
-INC=src
-SRC=src/source
-all: shader0
-	g++ -o ${OUT}/lc_triplanar.so -shared ${OUT}/shader0.os -L${ARNOLD_PATH}/bin -lai
-shader0:
-	g++ -o ${OUT}/shader0.os -c -fPIC -D_LINUX -I${ARNOLD_PATH}/include -I${INC}/common ${SRC}/alTriplanarPlus.cpp
+INC=src/common
+SRC=src
+all:
+	c++ ${SRC}/lc_triplanar.cpp ${SRC}/lc_triplanar3d.cpp ${SRC}/shader_loader.cpp -o ${OUT}/lc_triplanar_plus.so -Wall -O2 -shared -fPIC -I${INC} -I${ARNOLD_PATH}/include -L${ARNOLD_PATH}/bin -lai
 install:
+	@echo "----------------------"	
 	@echo "Install ... "
-	@cp -f ${OUT}/lc_triplanar.so /mnt/work/software/develop/katana/shader/4.x/lcaShaders
+	cp -f ${OUT}/lc_triplanar_plus.so /home/xukai/Git/git_repo/katana/shader/5.x/lcaShaders
 	@echo "Done!"
 clean:
-	rm -f ${OUT}/shader0.os
+	rm -f ${OUT}/lc_triplanar_plus.os
+ 
