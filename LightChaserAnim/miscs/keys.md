@@ -24,3 +24,6 @@ ktoa
 Username:	ye.yuan
 Password:	Zc2XriOn
 #####################################
+Autodesk Maya
+Username:	yuanye@lightchaseranimation.com
+Password:	lc20130401

@@ -162,9 +162,9 @@ shader_evaluate
          isFuse = true;
       }
    }
-   if(data->hasChainedNormal)
+   if(data->hasChainedNormal) // if lc_fuse_normal normal_map parameter has be connected with normal map
    {
-      if(isFuse)
+      if(isFuse && data->enable)
       {
          AtVector result = sg->Nf;
          sg->out.VEC() = result;
@@ -178,9 +178,16 @@ shader_evaluate
       }
    }
    else
-   {      
-      AtVector result = sg->Nf;
-      sg->out.VEC() = result;
+   {
+      if (data->enable)
+      {
+         AtVector result = sg->Nf;
+         sg->out.VEC() = result;         
+      }
+      else
+      {
+         sg->out.VEC() = sg->Ng;  
+      }
    }
    SGC.restoreSG(sg);
 

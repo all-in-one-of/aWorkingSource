@@ -56,7 +56,7 @@ export KATANA_TAGLINE="LCA With KtoA and Arnold"
 
 # ------xgen procedural
 export MAYA_PATH=${MAYA_HOME}
-export MTOA_PATH=${LCA_DEVMY_PATH}/arnold/mtoa-2.0.1.0-2017
+export MTOA_PATH=${LCA_DEVMY_PATH}/arnold/mtoa-2.0.2.2-2017
 export LD_LIBRARY_PATH=${MAYA_PATH}/plug-ins/xgen/lib:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=${MAYA_PATH}/lib:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=${MTOA_PATH}/procedurals:${LD_LIBRARY_PATH}

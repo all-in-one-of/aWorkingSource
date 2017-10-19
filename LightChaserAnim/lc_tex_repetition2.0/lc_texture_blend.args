@@ -1,9 +1,7 @@
 <args format="1.0">
-<param name="color" label="Texture Repetition Color" widget="color"/>
-<page name="Main Arguments">
-	<param name="repeatUV" label="Repeat UV"/>
-	<param name="rotateUV" label="Rotate UV"/>
-	<param name="offsetUV" label="Offset UV"/>
-	<param name="noiseUV" label="Noise UV"/>
-</page>
+<param name="color" label="Texture Repetition" widget="color"/>
+<param name="Repeat UV" label="Repeat UV"/>
+<param name="Rotate UV" label="Rotate UV"/>
+<param name="Offset UV" label="Offset UV"/>
+<param name="Noise UV" label="Noise UV"/>
 </args>

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-export LCTOOLSET=/home/xukai/Git/git_repo/lcatools
-export LCA_DEVKTN_PATH=/home/xukai/Git/git_repo/katana
-export LCA_DEVMY_PATH=/home/xukai/Git/git_repo/maya
-export LCA_DEVUSD_PATH=/home/xukai/Git/git_repo/usd
-source "${LCA_DEVMY_PATH}/launcher/env_config/maya2017_dev.sh"
+
+# fix opencl bug
+#export MAYA_IGNORE_OPENCL_VERSION=1
+export MAYA_OPENCL_IGNORE_DRIVER_VERSION=1
+
 exec /mnt/usr/autodesk/maya2017/bin/maya2017
