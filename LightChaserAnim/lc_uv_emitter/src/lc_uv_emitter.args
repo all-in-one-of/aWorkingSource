@@ -1,0 +1,15 @@
+<args format="1.0">
+	<param name="coverage" label="Coverage" />
+	<param name="repeatUV" label="Repeat UV" />
+	<param name="offsetUV" label="Offset UV" />
+	<param name="rotateUV" label="Rotate UV" />
+	<param name="translateFrame" label="Translate Frame" />
+	<param name="rotateFrame" label="Rotate Frame" />
+	<param name="mirrorU" label="Mirror U" />
+	<param name="mirrorV" label="Mirror V" />
+	<param name="wrapU" label="Wrap U" />
+	<param name="wrapV" label="Wrap V" />
+	<param name="stagger" label="Stagger" />
+	<param name="noiseUV" label="Noise UV" />
+	<param name="uvSetName" label="UV SetName" />
+</args>
