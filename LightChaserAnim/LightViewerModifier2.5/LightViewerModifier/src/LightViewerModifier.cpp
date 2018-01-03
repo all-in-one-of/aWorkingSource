@@ -850,7 +850,26 @@ private:
     void drawPointLight(FnKat::ViewerModifierInput& input)
     {
         glPushMatrix();
-        glScalef(0.3, 0.3, 0.3);
+        glScalef(0.2, 0.2, 0.2);
+
+        glPushMatrix();
+        glRotatef(0,1,0,0);
+        drawCircle(0,0,1,8);
+        glPopMatrix();
+        glPushMatrix();
+        glRotatef(90,1,0,0);
+        drawCircle(0,0,1,8);
+        glPopMatrix();
+        glPushMatrix();
+        glRotatef(0,0,0,1);
+        glRotatef(90,0,1,0);
+        drawCircle(0,0,1,8);
+        glPopMatrix();
+
+
+        glPopMatrix();
+
+        glPushMatrix();
 
         glBegin(GL_LINES);
 
@@ -876,6 +895,7 @@ private:
      */
     void drawSpotLight(FnKat::ViewerModifierInput& input)
     {
+
         float height=1;
         float scale=1;
 
@@ -895,6 +915,7 @@ private:
         radius*=scale;
 
         glPushMatrix();
+
         glScalef(2, 2, -2);
         gluCylinder(m_quadric, 0, radius, height, 8, 1);
 

@@ -1,0 +1,6 @@
+<args format="1.0">
+<param name="passthrough" label="passthrough"/>
+<param name="aov_input" label="aov input" widget="color"/>
+<param name="aov_name" label="aov name"/>
+<param name="blend_opacity" label="blend opacity" widget="checkBox"/>
+</args>

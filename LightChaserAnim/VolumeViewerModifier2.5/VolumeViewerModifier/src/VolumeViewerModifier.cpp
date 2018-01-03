@@ -274,7 +274,7 @@ protected:
 
 // Draw color
 const float VolumeViewerModifier::g_selectedColor[3] = { 1.0f, 1.0f, 1.0f };
-const float VolumeViewerModifier::g_boundColor[3] = { 0.5f, 0.5f, 0.5f };
+const float VolumeViewerModifier::g_boundColor[3] = { 0.3f, 0.3f, 0.3f };
 const float VolumeViewerModifier::g_ticksColor[3] = { 0.35f, 0.35f, 0.35f };
 
 
@@ -283,6 +283,6 @@ DEFINE_VMP_PLUGIN(VolumeViewerModifier)
 
 void registerPlugins()
 {
-    std::cout << "[LCA PLUGIN]: Register VolumeViewerModifier v0.1" << std::endl;
-    REGISTER_PLUGIN(VolumeViewerModifier, "VolumeViewerModifier", 0, 1);
+    std::cout << "[LCA PLUGIN]: Register VolumeViewerModifier v0.2" << std::endl;
+    REGISTER_PLUGIN(VolumeViewerModifier, "VolumeViewerModifier", 0, 2);
 }

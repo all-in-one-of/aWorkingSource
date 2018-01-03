@@ -153,6 +153,6 @@ DEFINE_GEOLIBOP_PLUGIN(VdbPointsOp)
 void registerPlugins()
 {
     REGISTER_PLUGIN(VdbPointsOp, "VdbPoints", 0, 1);
-    std::cout<<"[LCA PLUGIN] Register VdbPoints v1.0"<<std::endl;
+    std::cout<<"[LCA PLUGIN]: Register VdbPoints v1.0"<<std::endl;
 }
 
