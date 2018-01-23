@@ -35,7 +35,7 @@ public:
     {
         // In order to run the Op we need a valid CEL statement
         FnAttribute::StringAttribute celAttr = interface.getOpArg("CEL");
-        FnAttribute::StringAttribute fuseAttr = interface.getOpArg("fuse_set");
+        FnAttribute::StringAttribute fuseAttr = interface.getOpArg("StringAttribute");
         if (!celAttr.isValid())
         {
             interface.stopChildTraversal();
