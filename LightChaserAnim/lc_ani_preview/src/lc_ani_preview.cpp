@@ -53,7 +53,8 @@ shader_evaluate
 
       AtVector N = sg->Nf;
       AtVector Ng = sg->Ngf;
-
+      AtVector Ns = sg->Ns;
+      
       float mint = AiShaderEvalParamFlt(p_mint);
       float maxt = AiShaderEvalParamFlt(p_maxt);
       float spread = AiShaderEvalParamFlt(p_spread);
@@ -63,21 +64,23 @@ shader_evaluate
 
       static const uint32_t seed = static_cast<uint32_t>(AiNodeEntryGetNameAtString(AiNodeGetNodeEntry(node)).hash());
       AtSampler* sampler = AiSampler(seed, nsamples, ndim);
-      AtVector Nbent;
+      AtVector Nbent = AtVector(1,1,1);
 
-      // caculate occlusion
+      // caculate occlusion,if falloff equal to zero,maya would crash
+      if(falloff <= 0)
+            falloff = 0.001;
       AtRGB occlusion = AI_RGB_WHITE - AiOcclusion(N,Ng,sg,mint,maxt,spread,falloff,sampler,&Nbent);
 
       AtVector EYE = sg->Ro - sg->P;
 
-     float NDotEye = AiV3Dot(AiV3Normalize(Ng),AiV3Normalize(EYE));
+     float NDotEye = AiV3Dot(AiV3Normalize(Ns),AiV3Normalize(EYE));
 
       //alpha is specified through its own closure
-      AtRGB cacul_color = color * NDotEye;
+      AtRGB result_color = color * NDotEye *occlusion;
 
       // new, opacity must be premultiplied into other closures
       AtClosureList closures;
-      closures.add(AiClosureEmission(sg, opacity * cacul_color));
+      closures.add(AiClosureEmission(sg, opacity * result_color));
       closures.add(AiClosureTransparent(sg, 1 - opacity));
       sg->out.CLOSURE() = closures;
 }
