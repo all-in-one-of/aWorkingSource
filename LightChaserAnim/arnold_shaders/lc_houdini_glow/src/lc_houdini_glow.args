@@ -1,0 +1,16 @@
+<args format="1.0">
+    <page name="Surface" open="True">
+        <param name="glowColorVal" label="Glow Color"/>
+        <param name="usePointColor" label="Tint With Point Color" widget="checkBox"/>
+        <param name="usePointAlpha" label="Use Point Alpha" widget="checkBox"/>
+        <param name="expVal" label="Glow Ramp Rate" slider="True" slidermin="0.0" slidermax="10.0"/>
+        <param name="invertVal" label="Invert?" widget="checkBox"/>
+        <param name="emitLightVal" label="Enable Emisson" widget="checkBox"/>
+        <param name="emissonVal" label="Emisson" slider="True" slidermin="0.0" slidermax="1.0"/>
+    </page>
+    <page name="Other" open="True">
+        <param name="cdVal" label="Cd"/>
+        <param name="alphaVal" label="Alpha"/>
+        <param name="ceVal" label="Ce"/>
+    </page>
+</args>

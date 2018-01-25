@@ -1,0 +1,47 @@
+shader lc_houdini_glow(
+    color glowColorVal = color(1),
+    float expVal = 4.0,
+    int invertVal = 0,
+    int emitLightVal = 0,
+    float emissonVal = 1.0,
+    int usePointColor = 1,
+    int usePointAlpha = 1,
+    color cdVal = color(1),
+    float alphaVal = 1.0,
+    color ceVal = color(0),
+    output color outColor = color(0, 0, 0))
+{
+        color result_color = color(1);
+        
+        color diffuse_color = color(1);
+        if (usePointColor)
+        {
+            diffuse_color = cdVal;
+        }
+        
+        // caculate normal falloff,catually is N dot Eye
+        vector incident_ray = I;
+        normal shading_normal = N;
+        shading_normal = faceforward(shading_normal,incident_ray);
+        float falloff = clamp(dot(shading_normal,-incident_ray), 0.0, 1.0);
+        if (invertVal != 0) 
+            falloff = 1-falloff;
+        falloff = pow(falloff, expVal);
+
+        // choose alpha
+        float result_alpha = 1.0;
+        if (usePointAlpha)
+            result_alpha = alphaVal;
+
+        float falloff_multi_alpha = result_alpha * falloff ;
+
+        color glow_color = diffuse_color * glowColorVal * falloff_multi_alpha;
+        
+        color emisson_color = glow_color * emissonVal;
+        if (emitLightVal)
+            result_color = emisson_color;
+        else
+            result_color = glow_color;
+
+        outColor = result_color;
+}

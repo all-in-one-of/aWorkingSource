@@ -23,8 +23,8 @@ node_parameters
       AiParameterFlt("mint",0.0f)
       AiParameterFlt("maxt",2.0f)
       AiParameterFlt("spread",1.0f)
-      AiParameterFlt("falloff",0.0f)
-      AiParameterFlt("nsamples",6)
+      AiParameterFlt("falloff",0.5f)
+      AiParameterFlt("nsamples",4)
       AiParameterFlt("ndim",2)
 }
 
