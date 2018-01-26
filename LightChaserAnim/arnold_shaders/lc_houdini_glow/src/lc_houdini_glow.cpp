@@ -125,36 +125,42 @@ shader_evaluate
       // AtSampler* sampler = AiSampler(seed, 6, 2);
       // AtSamplerIterator* sampit = AiSamplerIterator(sampler, sg);
       // float samples = 6;
-      // int tag = 0;
+      // bool tag = false;
       // while (AiSamplerGetSample(sampit, &samples))
       // {
-      //    bool ishit = AiTrace(ray,weight,result);
+      //    bool is_hit = AiTrace(ray,weight,result);
          
-      //    if (ishit)
-      //    {            
-      //       result_weight += AtRGB(result.z);
-      //       tag++;
-      //    }
+      //    if (is_hit)
+      //         tag = true;
       // }
       // AtRGB test;
-      // if(tag==0)
-      //    test = AI_RGB_WHITE;
+      // if(tag)
+      //      test = AI_RGB_WHITE;
       // else
-      //    test = AI_RGB_RED;
+      //      test = AI_RGB_RED;
+      // AtClosureList closures;
+      // closures.add(AiClosureEmission(sg,  test));
+      // sg->out.CLOSURE() = closures;
 
       // new, opacity must be premultiplied into other closures
-      AtRGB fake_opacity = AtRGB(alpha);
+
+      float gain = 2.5;
+      float gamma = 25;
+      AtRGB result = result_opacity * result_color;
+      // gain
+      // result *= gain;
+      // gamma
+      // result *= AtRGB(powf(result.r, 1/gamma),powf(result.g, 1/gamma),powf(result.b, 1/gamma));
 
       AtClosureList closures;
-      closures.add(AiClosureEmission(sg,  result_color));
+      closures.add(AiClosureEmission(sg, result));
       if (AiMax(result_opacity.r, result_opacity.b, result_opacity.b) > AI_EPSILON)
       {
-         closures *= 1- fake_opacity;
-         closures.add(AiClosureTransparent(sg, fake_opacity));
+         closures *= result_opacity;
+         closures.add(AiClosureTransparent(sg, 1- result_opacity));
       }
       closures.add(AiClosureMatte(sg, AI_RGB_WHITE - result_alpha));
       sg->out.CLOSURE() = closures;
-
 }
 
 

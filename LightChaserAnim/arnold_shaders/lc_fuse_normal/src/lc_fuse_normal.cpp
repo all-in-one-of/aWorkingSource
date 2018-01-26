@@ -84,7 +84,7 @@ shader_evaluate
    bool isFuse = false;
 
    // if too close, just blend.
-   if (AiTraceProbe(near_test_ray, &near_hitpoint))
+   if (AiTraceProbe(-, &near_hitpoint))
    {
       sg->Nf = sg->N = AiV3Normalize(AiV3Normalize(near_hitpoint.N)+Nn);
       sg->Nf = AiFaceViewer(sg);

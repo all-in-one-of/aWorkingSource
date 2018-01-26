@@ -80,7 +80,8 @@ shader_evaluate
 
       // new, opacity must be premultiplied into other closures
       AtClosureList closures;
-      closures.add(AiClosureEmission(sg, opacity * result_color));
+      closures.add(AiClosureEmission(sg, result_color));
+      closures *= opacity;
       closures.add(AiClosureTransparent(sg, 1 - opacity));
       sg->out.CLOSURE() = closures;
 }
