@@ -1,6 +1,8 @@
 #include <ai.h>
 #include <cmath>
 
+#include "bsdf/diffuse_bsdf.h"
+
 AI_SHADER_NODE_EXPORT_METHODS(LcHoudiniGlowMethods);
 
 
@@ -73,16 +75,14 @@ shader_evaluate
         
         // caculate normal falloff,catually is N dot Eye
         AtVector incident_ray = sg->Ro - sg->P;
-        AtVector shading_normal = sg->N;
+        AtVector shading_normal = sg->Nf;
         AiFaceForward(shading_normal,incident_ray);
-        float falloff =  AiClamp(AiV3Dot(shading_normal,-incident_ray), 0.0f, 1.0f);
+        float falloff =  AiClamp(AiV3Dot(AiV3Normalize(shading_normal),AiV3Normalize(-incident_ray)), 0.0f, 1.0f);
         if (invert) 
             falloff = 1-falloff;
         falloff = powf(falloff, exp);
 
 
-
-         //float result1 = (0 != 0 ? (usePointAlpha != 0 ? 1 : alpha): (usePointAlpha != 0 ? alpha : 1));
 
         // choose alpha
         float result_alpha = 1.0;
@@ -112,56 +112,21 @@ shader_evaluate
       result_opacity = opacity;
 
 
-      // AtRay ray;
-      // AtShaderGlobals near_hitpoint;
-      // AtVector origin = sg->Ro;
-      // AtVector dir = sg->Ro -sg->P;
-      // ray = AiMakeRay(AI_RAY_CAMERA, origin, &dir, AI_BIG, sg);
-      
-      // AtRGB weight;
-      // AtRGB result_weight = AI_RGB_ZERO;
-      // AtScrSample result;
-      // static const uint32_t seed = static_cast<uint32_t>(AiNodeEntryGetNameAtString(AiNodeGetNodeEntry(node)).hash());
-      // AtSampler* sampler = AiSampler(seed, 6, 2);
-      // AtSamplerIterator* sampit = AiSamplerIterator(sampler, sg);
-      // float samples = 6;
-      // bool tag = false;
-      // while (AiSamplerGetSample(sampit, &samples))
-      // {
-      //    bool is_hit = AiTrace(ray,weight,result);
-         
-      //    if (is_hit)
-      //         tag = true;
-      // }
-      // AtRGB test;
-      // if(tag)
-      //      test = AI_RGB_WHITE;
-      // else
-      //      test = AI_RGB_RED;
-      // AtClosureList closures;
-      // closures.add(AiClosureEmission(sg,  test));
-      // sg->out.CLOSURE() = closures;
-
-      // new, opacity must be premultiplied into other closures
-
-      float gain = 2.5;
-      float gamma = 25;
       AtRGB result = result_opacity * result_color;
-      // gain
-      // result *= gain;
-      // gamma
-      // result *= AtRGB(powf(result.r, 1/gamma),powf(result.g, 1/gamma),powf(result.b, 1/gamma));
 
+      //sg->out.RGB() = kt::emisson(sg,glowColor,emisson);
       AtClosureList closures;
       closures.add(AiClosureEmission(sg, result));
       if (AiMax(result_opacity.r, result_opacity.b, result_opacity.b) > AI_EPSILON)
       {
-         closures *= result_opacity;
-         closures.add(AiClosureTransparent(sg, 1- result_opacity));
+           closures *= result_opacity;
+           closures.add(AiClosureTransparent(sg, 1- result_opacity));
       }
       closures.add(AiClosureMatte(sg, AI_RGB_WHITE - result_alpha));
       sg->out.CLOSURE() = closures;
+
 }
+
 
 
 node_loader
