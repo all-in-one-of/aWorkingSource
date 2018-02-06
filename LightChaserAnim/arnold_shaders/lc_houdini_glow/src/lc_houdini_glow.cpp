@@ -1,7 +1,6 @@
 #include <ai.h>
 #include <cmath>
 
-#include "bsdf/diffuse_bsdf.h"
 
 AI_SHADER_NODE_EXPORT_METHODS(LcHoudiniGlowMethods);
 
@@ -101,22 +100,16 @@ shader_evaluate
         if (emitLight)
         {
             result_color = emisson_color;
-            result_opacity = opacity;         
+            result_opacity = AI_RGB_ZERO;         
         }
         else
         {
             result_color = glow_color;
-            result_opacity = AI_RGB_ZERO;         
+            result_opacity = opacity;         
         }
-
-      result_opacity = opacity;
-
-
-      AtRGB result = result_opacity * result_color;
-
-      //sg->out.RGB() = kt::emisson(sg,glowColor,emisson);
+ 
       AtClosureList closures;
-      closures.add(AiClosureEmission(sg, result));
+      closures.add(AiClosureEmission(sg, result_color));
       if (AiMax(result_opacity.r, result_opacity.b, result_opacity.b) > AI_EPSILON)
       {
            closures *= result_opacity;

@@ -1,6 +1,11 @@
 #pragma once
  
+ #include <ai.h>
 #include <ai_shader_bsdf.h>
 #include <ai_shaderglobals.h>
  
-AtBSDF* DiffuseBSDFCreate(const AtShaderGlobals* sg, const AtRGB& weight, const AtVector& N);
+ namespace  kt {
+
+    AtBSDF* DiffuseBSDFCreate(const AtShaderGlobals* sg, const AtRGB& weight, const AtVector& N);
+
+ } // ending name space

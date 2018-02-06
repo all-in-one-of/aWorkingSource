@@ -40,9 +40,7 @@ bsdf_sample
    float sin_theta = sqrtf(rnd.x);
    float phi = 2 * AI_PI * rnd.y;
    float cosNI = sqrtf(1 - rnd.x);
-   AtVector wi = sin_theta * cosf(phi) * U +
-                 sin_theta * sinf(phi) * V +
-                 cosNI * data->N;
+   AtVector wi = sin_theta * cosf(phi) * U + sin_theta * sinf(phi) * V + cosNI * data->N;
  
    // discard rays below the hemisphere
    if (!(AiV3Dot(wi, data->Ng) > 0))
@@ -87,6 +85,8 @@ bsdf_eval
    return lobe_mask;
 }
  
+namespace  kt {
+
 AtBSDF* DiffuseBSDFCreate(const AtShaderGlobals* sg, const AtRGB& weight, const AtVector& N)
 {
    AtBSDF* bsdf = AiBSDF(sg, weight, DiffuseBSDFMtd, sizeof(DiffuseBSDF));
@@ -94,3 +94,6 @@ AtBSDF* DiffuseBSDFCreate(const AtShaderGlobals* sg, const AtRGB& weight, const 
    data->N = N;
    return bsdf;
 }
+
+ } // ending name space
+

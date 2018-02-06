@@ -76,8 +76,11 @@ shader_evaluate
      float NDotEye = AiV3Dot(AiV3Normalize(Ns),AiV3Normalize(EYE));
 
       //alpha is specified through its own closure
-      AtRGB result_color = color * NDotEye *occlusion;
-
+      AtRGB result_color;
+      if (opacity == AI_RGB_WHITE)
+         result_color = color * NDotEye *occlusion;
+      else
+         result_color = color;
       // new, opacity must be premultiplied into other closures
       AtClosureList closures;
       closures.add(AiClosureEmission(sg, result_color));
