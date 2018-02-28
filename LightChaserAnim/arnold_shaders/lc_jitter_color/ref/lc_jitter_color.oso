@@ -1,0 +1,1130 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.9.0dev
+# options: -o /home/xukai/Git/git_repo//oslShaders/lc_jitter_color.oso.3069-1a7f-a159-36ab.tmp
+shader lc_jitter_color
+param	color	input	1 1 1		%read{1,3} %write{2147483647,-1}
+param	string	face_shell	"lca_face_shell"		%read{34,34} %write{2147483647,-1}
+param	string	plant_area	"lca_shell_area"		%read{36,36} %write{2147483647,-1}
+param	string	plant_ao	"lca_shell_ao"		%read{37,37} %write{2147483647,-1}
+param	string	plant_py	"lca_shell_py"		%read{35,35} %write{2147483647,-1}
+param	string	plant_custom	"type your own float data"		%read{38,38} %write{2147483647,-1}
+param	float	plant_custom_default	0		%read{41,41} %write{2147483647,-1}
+param	float	rand_intensity	0		%read{44,44} %write{2147483647,-1}
+param	float	rand_hue_min	0		%read{64,64} %write{2147483647,-1}
+param	float	rand_hue_max	0		%read{65,65} %write{2147483647,-1}
+param	float	rand_sat_min	0		%read{75,75} %write{2147483647,-1}
+param	float	rand_sat_max	0		%read{76,76} %write{2147483647,-1}
+param	float	rand_val_min	0		%read{86,86} %write{2147483647,-1}
+param	float	rand_val_max	0		%read{87,87} %write{2147483647,-1}
+param	int	rand_seed	0		%read{42,247} %write{2147483647,-1}
+param	int	py_enable	1		%read{295,335} %write{2147483647,-1}
+param	float	py_posi_a	0		%read{95,95} %write{2147483647,-1}
+param	float	py_posi_b	1		%read{96,96} %write{2147483647,-1}
+param	float	py_rand_int	0		%read{105,107} %write{2147483647,-1}
+param	float	py_hue_min	0		%read{124,124} %write{2147483647,-1}
+param	float	py_hue_max	0		%read{125,125} %write{2147483647,-1}
+param	float	py_sat_min	0		%read{130,130} %write{2147483647,-1}
+param	float	py_sat_max	0		%read{131,131} %write{2147483647,-1}
+param	float	py_val_min	0		%read{136,136} %write{2147483647,-1}
+param	float	py_val_max	0		%read{137,137} %write{2147483647,-1}
+param	int	py_seed	0		%read{99,99} %write{2147483647,-1}
+param	int	area_enable	1		%read{299,339} %write{2147483647,-1}
+param	float	area_posi_a	0		%read{144,144} %write{2147483647,-1}
+param	float	area_posi_b	1		%read{145,145} %write{2147483647,-1}
+param	float	area_rand_int	0		%read{154,156} %write{2147483647,-1}
+param	float	area_hue_min	0		%read{173,173} %write{2147483647,-1}
+param	float	area_hue_max	0		%read{174,174} %write{2147483647,-1}
+param	float	area_sat_min	0		%read{179,179} %write{2147483647,-1}
+param	float	area_sat_max	0		%read{180,180} %write{2147483647,-1}
+param	float	area_val_min	0		%read{185,185} %write{2147483647,-1}
+param	float	area_val_max	0		%read{186,186} %write{2147483647,-1}
+param	int	area_seed	0		%read{148,148} %write{2147483647,-1}
+param	int	ao_enable	1		%read{303,343} %write{2147483647,-1}
+param	float	ao_posi_a	0		%read{193,193} %write{2147483647,-1}
+param	float	ao_posi_b	1		%read{194,194} %write{2147483647,-1}
+param	float	ao_rand_int	0		%read{203,205} %write{2147483647,-1}
+param	float	ao_hue_min	0		%read{222,222} %write{2147483647,-1}
+param	float	ao_hue_max	0		%read{223,223} %write{2147483647,-1}
+param	float	ao_sat_min	0		%read{228,228} %write{2147483647,-1}
+param	float	ao_sat_max	0		%read{229,229} %write{2147483647,-1}
+param	float	ao_val_min	0		%read{234,234} %write{2147483647,-1}
+param	float	ao_val_max	0		%read{235,235} %write{2147483647,-1}
+param	int	ao_seed	0		%read{197,197} %write{2147483647,-1}
+param	int	cus_enable	1		%read{307,347} %write{2147483647,-1}
+param	float	cus_posi_a	0		%read{242,242} %write{2147483647,-1}
+param	float	cus_posi_b	1		%read{243,243} %write{2147483647,-1}
+param	float	cus_rand_int	0		%read{252,254} %write{2147483647,-1}
+param	float	cus_hue_min	0		%read{271,271} %write{2147483647,-1}
+param	float	cus_hue_max	0		%read{272,272} %write{2147483647,-1}
+param	float	cus_sat_min	0		%read{277,277} %write{2147483647,-1}
+param	float	cus_sat_max	0		%read{278,278} %write{2147483647,-1}
+param	float	cus_val_min	0		%read{283,283} %write{2147483647,-1}
+param	float	cus_val_max	0		%read{284,284} %write{2147483647,-1}
+param	int	cus_seed	0		%read{246,246} %write{2147483647,-1}
+param	string	debugMode	"render"		%read{92,351} %write{2147483647,-1}
+oparam	color	outColor	0 0 0		%read{2147483647,-1} %write{94,402}
+local	float	___380_h	%read{361,366} %write{354,363}
+local	float	___380_s	%read{357,373} %write{355,355}
+local	float	___380_v	%read{359,396} %write{356,356}
+local	int	___382_hi	%read{365,392} %write{364,364}
+local	float	___382_f	%read{369,372} %write{366,366}
+local	float	___382_p	%read{378,396} %write{368,368}
+local	float	___382_q	%read{382,396} %write{371,371}
+local	float	___382_t	%read{378,394} %write{375,375}
+local	float	___383_r	%read{5,26} %write{1,1}
+local	float	___383_g	%read{4,26} %write{2,2}
+local	float	___383_b	%read{4,23} %write{3,3}
+local	float	___383_mincomp	%read{8,8} %write{5,5}
+local	float	___383_maxcomp	%read{8,21} %write{7,7}
+local	float	___383_delta	%read{12,27} %write{8,8}
+local	float	___383_h	%read{29,33} %write{16,32}
+local	float	___383_s	%read{14,33} %write{12,13}
+local	float	___383_v	%read{33,33} %write{9,9}
+local	point	___388_resout	%read{91,91} %write{49,90}
+local	float	___388_h_int	%read{63,65} %write{50,61}
+local	float	___388_h_value	%read{89,89} %write{51,66}
+local	float	___388_s_int	%read{74,76} %write{52,72}
+local	float	___388_s_value	%read{89,89} %write{53,77}
+local	float	___388_v_int	%read{85,87} %write{54,83}
+local	float	___388_v_value	%read{89,89} %write{55,88}
+local	float	___389_resout	%read{119,266} %write{98,265}
+local	float	___389_int_rand	%read{118,265} %write{108,255}
+local	point	___390_resout	%read{140,287} %write{121,286}
+local	int	lca_face_shell	%read{42,246} %write{34,34}
+local	float	plant_py_data	%read{110,110} %write{35,35}
+local	float	plant_area_data	%read{159,159} %write{36,36}
+local	float	plant_ao_data	%read{208,208} %write{37,37}
+local	float	plant_custom_data	%read{257,257} %write{38,41}
+local	color	tmp	%read{291,356} %write{33,350}
+local	int	arg	%read{39,39} %write{38,38}
+local	float	rand_int	%read{90,94} %write{46,46}
+local	point	rand_resout	%read{292,332} %write{91,91}
+local	float[2]	py_positions	%read{109,112} %write{95,96}
+local	float	py_int	%read{123,143} %write{119,119}
+local	point	py_resout	%read{294,334} %write{140,140}
+local	float[2]	area_positions	%read{158,161} %write{144,145}
+local	float	area_int	%read{172,192} %write{168,168}
+local	point	area_resout	%read{298,338} %write{189,189}
+local	float[2]	ao_positions	%read{207,210} %write{193,194}
+local	float	ao_int	%read{221,241} %write{217,217}
+local	point	ao_resout	%read{302,342} %write{238,238}
+local	float[2]	cus_positions	%read{256,259} %write{242,243}
+local	float	cus_int	%read{270,290} %write{266,266}
+local	point	cus_resout	%read{306,346} %write{287,287}
+const	string	$const1	"al_rgb2hsv"		%read{0,0} %write{2147483647,-1}
+const	int	$const2	0		%read{1,376} %write{2147483647,-1}
+const	int	$const3	1		%read{2,380} %write{2147483647,-1}
+const	int	$const4	2		%read{3,384} %write{2147483647,-1}
+temp	float	$tmp1	%read{5,5} %write{4,4}
+temp	float	$tmp2	%read{7,7} %write{6,6}
+temp	int	$tmp3	%read{11,11} %write{10,10}
+temp	int	$tmp4	%read{15,15} %write{14,14}
+temp	int	$tmp5	%read{18,18} %write{17,17}
+temp	float	$tmp6	%read{20,20} %write{19,19}
+temp	int	$tmp7	%read{22,22} %write{21,21}
+temp	float	$tmp8	%read{24,24} %write{23,23}
+temp	float	$tmp9	%read{25,25} %write{24,24}
+const	float	$const5	2		%read{25,25} %write{2147483647,-1}
+const	int	$const6	4		%read{392,392} %write{2147483647,-1}
+temp	float	$tmp10	%read{27,27} %write{26,26}
+temp	float	$tmp11	%read{28,28} %write{27,27}
+const	float	$const7	4		%read{28,28} %write{2147483647,-1}
+const	float	$const9	6		%read{29,363} %write{2147483647,-1}
+temp	int	$tmp12	%read{31,31} %write{30,30}
+const	float	$const10	1		%read{32,399} %write{2147483647,-1}
+temp	int	$tmp13	%read{2147483647,-1} %write{34,34}
+temp	int	$tmp14	%read{2147483647,-1} %write{35,35}
+temp	int	$tmp15	%read{2147483647,-1} %write{36,36}
+temp	int	$tmp16	%read{2147483647,-1} %write{37,37}
+temp	int	$tmp17	%read{40,40} %write{39,39}
+const	float	$const11	0		%read{46,398} %write{2147483647,-1}
+temp	int	$tmp18	%read{43,43} %write{42,42}
+const	int	$const12	100		%read{43,43} %write{2147483647,-1}
+temp	int	$tmp19	%read{45,45} %write{43,43}
+temp	float	$tmp20	%read{45,45} %write{44,44}
+const	float	$const13	100		%read{44,44} %write{2147483647,-1}
+temp	int	$tmp21	%read{46,46} %write{45,45}
+temp	float	$tmp22	%read{57,79} %write{47,47}
+const	int	$const14	3521		%read{56,78} %write{2147483647,-1}
+const	string	$const15	"compute_rand"		%read{48,48} %write{2147483647,-1}
+const	point	$const16	0 0 0		%read{49,268} %write{2147483647,-1}
+const	string	$const17	"cell"		%read{61,250} %write{2147483647,-1}
+temp	float	$tmp23	%read{59,59} %write{57,57}
+temp	float	$tmp24	%read{57,57} %write{56,56}
+temp	float	$tmp25	%read{60,60} %write{59,59}
+temp	float	$tmp26	%read{59,59} %write{58,58}
+temp	float	$tmp27	%read{61,61} %write{60,60}
+const	float	$const19	2563		%read{60,60} %write{2147483647,-1}
+const	string	$const20	"lerp"		%read{62,281} %write{2147483647,-1}
+temp	float	$tmp28	%read{64,64} %write{63,63}
+temp	float	$tmp29	%read{66,66} %write{64,64}
+temp	float	$tmp30	%read{66,66} %write{65,65}
+temp	float	$tmp31	%read{70,70} %write{68,68}
+temp	float	$tmp32	%read{68,68} %write{67,67}
+temp	float	$tmp33	%read{71,71} %write{70,70}
+temp	float	$tmp34	%read{70,70} %write{69,69}
+temp	float	$tmp35	%read{72,72} %write{71,71}
+const	float	$const22	2014		%read{71,71} %write{2147483647,-1}
+temp	float	$tmp36	%read{75,75} %write{74,74}
+temp	float	$tmp37	%read{77,77} %write{75,75}
+temp	float	$tmp38	%read{77,77} %write{76,76}
+temp	float	$tmp39	%read{81,81} %write{79,79}
+temp	float	$tmp40	%read{79,79} %write{78,78}
+temp	float	$tmp41	%read{82,82} %write{81,81}
+temp	float	$tmp42	%read{81,81} %write{80,80}
+temp	float	$tmp43	%read{83,83} %write{82,82}
+const	float	$const24	3321		%read{82,82} %write{2147483647,-1}
+temp	float	$tmp44	%read{86,86} %write{85,85}
+temp	float	$tmp45	%read{88,88} %write{86,86}
+temp	float	$tmp46	%read{88,88} %write{87,87}
+temp	point	$tmp47	%read{90,90} %write{89,89}
+const	string	$const25	"rand"		%read{92,92} %write{2147483647,-1}
+temp	int	$tmp48	%read{93,93} %write{92,92}
+const	string	$const26	"data_Ramp"		%read{97,244} %write{2147483647,-1}
+temp	float	$tmp49	%read{107,107} %write{103,103}
+temp	int	$tmp50	%read{100,100} %write{99,99}
+temp	int	$tmp51	%read{101,101} %write{100,100}
+const	int	$const27	8740		%read{101,248} %write{2147483647,-1}
+temp	int	$tmp52	%read{102,102} %write{101,101}
+temp	float	$tmp53	%read{103,103} %write{102,102}
+temp	float	$tmp54	%read{106,106} %write{105,105}
+temp	float	$tmp55	%read{108,108} %write{106,106}
+temp	float	$tmp56	%read{108,108} %write{107,107}
+temp	float	$tmp57	%read{118,118} %write{117,117}
+temp	float	$tmp58	%read{110,110} %write{109,109}
+temp	float	$tmp59	%read{114,114} %write{110,110}
+temp	float	$tmp60	%read{113,113} %write{111,111}
+temp	float	$tmp61	%read{113,113} %write{112,112}
+temp	float	$tmp62	%read{114,114} %write{113,113}
+temp	float	$tmp63	%read{116,116} %write{114,114}
+const	string	$const28	"clamp"		%read{115,400} %write{2147483647,-1}
+temp	float	$tmp64	%read{117,117} %write{116,116}
+const	string	$const29	"value_byRange"		%read{120,267} %write{2147483647,-1}
+temp	float	$tmp65	%read{127,127} %write{126,126}
+temp	float	$tmp66	%read{124,124} %write{123,123}
+temp	float	$tmp67	%read{126,126} %write{124,124}
+temp	float	$tmp68	%read{126,126} %write{125,125}
+temp	float	$tmp69	%read{133,133} %write{132,132}
+temp	float	$tmp70	%read{130,130} %write{129,129}
+temp	float	$tmp71	%read{132,132} %write{130,130}
+temp	float	$tmp72	%read{132,132} %write{131,131}
+temp	float	$tmp73	%read{139,139} %write{138,138}
+temp	float	$tmp74	%read{136,136} %write{135,135}
+temp	float	$tmp75	%read{138,138} %write{136,136}
+temp	float	$tmp76	%read{138,138} %write{137,137}
+const	string	$const30	"py"		%read{141,141} %write{2147483647,-1}
+temp	int	$tmp77	%read{142,142} %write{141,141}
+temp	float	$tmp78	%read{156,156} %write{152,152}
+temp	int	$tmp79	%read{149,149} %write{148,148}
+temp	int	$tmp80	%read{150,150} %write{149,149}
+temp	int	$tmp81	%read{151,151} %write{150,150}
+temp	float	$tmp82	%read{152,152} %write{151,151}
+temp	float	$tmp83	%read{155,155} %write{154,154}
+temp	float	$tmp84	%read{157,157} %write{155,155}
+temp	float	$tmp85	%read{157,157} %write{156,156}
+temp	float	$tmp86	%read{167,167} %write{166,166}
+temp	float	$tmp87	%read{159,159} %write{158,158}
+temp	float	$tmp88	%read{163,163} %write{159,159}
+temp	float	$tmp89	%read{162,162} %write{160,160}
+temp	float	$tmp90	%read{162,162} %write{161,161}
+temp	float	$tmp91	%read{163,163} %write{162,162}
+temp	float	$tmp92	%read{165,165} %write{163,163}
+temp	float	$tmp93	%read{166,166} %write{165,165}
+temp	float	$tmp94	%read{176,176} %write{175,175}
+temp	float	$tmp95	%read{173,173} %write{172,172}
+temp	float	$tmp96	%read{175,175} %write{173,173}
+temp	float	$tmp97	%read{175,175} %write{174,174}
+temp	float	$tmp98	%read{182,182} %write{181,181}
+temp	float	$tmp99	%read{179,179} %write{178,178}
+temp	float	$tmp100	%read{181,181} %write{179,179}
+temp	float	$tmp101	%read{181,181} %write{180,180}
+temp	float	$tmp102	%read{188,188} %write{187,187}
+temp	float	$tmp103	%read{185,185} %write{184,184}
+temp	float	$tmp104	%read{187,187} %write{185,185}
+temp	float	$tmp105	%read{187,187} %write{186,186}
+const	string	$const31	"area"		%read{190,190} %write{2147483647,-1}
+temp	int	$tmp106	%read{191,191} %write{190,190}
+temp	float	$tmp107	%read{205,205} %write{201,201}
+temp	int	$tmp108	%read{198,198} %write{197,197}
+temp	int	$tmp109	%read{199,199} %write{198,198}
+temp	int	$tmp110	%read{200,200} %write{199,199}
+temp	float	$tmp111	%read{201,201} %write{200,200}
+temp	float	$tmp112	%read{204,204} %write{203,203}
+temp	float	$tmp113	%read{206,206} %write{204,204}
+temp	float	$tmp114	%read{206,206} %write{205,205}
+temp	float	$tmp115	%read{216,216} %write{215,215}
+temp	float	$tmp116	%read{208,208} %write{207,207}
+temp	float	$tmp117	%read{212,212} %write{208,208}
+temp	float	$tmp118	%read{211,211} %write{209,209}
+temp	float	$tmp119	%read{211,211} %write{210,210}
+temp	float	$tmp120	%read{212,212} %write{211,211}
+temp	float	$tmp121	%read{214,214} %write{212,212}
+temp	float	$tmp122	%read{215,215} %write{214,214}
+temp	float	$tmp123	%read{225,225} %write{224,224}
+temp	float	$tmp124	%read{222,222} %write{221,221}
+temp	float	$tmp125	%read{224,224} %write{222,222}
+temp	float	$tmp126	%read{224,224} %write{223,223}
+temp	float	$tmp127	%read{231,231} %write{230,230}
+temp	float	$tmp128	%read{228,228} %write{227,227}
+temp	float	$tmp129	%read{230,230} %write{228,228}
+temp	float	$tmp130	%read{230,230} %write{229,229}
+temp	float	$tmp131	%read{237,237} %write{236,236}
+temp	float	$tmp132	%read{234,234} %write{233,233}
+temp	float	$tmp133	%read{236,236} %write{234,234}
+temp	float	$tmp134	%read{236,236} %write{235,235}
+const	string	$const32	"ao"		%read{239,239} %write{2147483647,-1}
+temp	int	$tmp135	%read{240,240} %write{239,239}
+temp	float	$tmp136	%read{254,254} %write{250,250}
+temp	int	$tmp137	%read{247,247} %write{246,246}
+temp	int	$tmp138	%read{248,248} %write{247,247}
+temp	int	$tmp139	%read{249,249} %write{248,248}
+temp	float	$tmp140	%read{250,250} %write{249,249}
+temp	float	$tmp141	%read{253,253} %write{252,252}
+temp	float	$tmp142	%read{255,255} %write{253,253}
+temp	float	$tmp143	%read{255,255} %write{254,254}
+temp	float	$tmp144	%read{265,265} %write{264,264}
+temp	float	$tmp145	%read{257,257} %write{256,256}
+temp	float	$tmp146	%read{261,261} %write{257,257}
+temp	float	$tmp147	%read{260,260} %write{258,258}
+temp	float	$tmp148	%read{260,260} %write{259,259}
+temp	float	$tmp149	%read{261,261} %write{260,260}
+temp	float	$tmp150	%read{263,263} %write{261,261}
+temp	float	$tmp151	%read{264,264} %write{263,263}
+temp	float	$tmp152	%read{274,274} %write{273,273}
+temp	float	$tmp153	%read{271,271} %write{270,270}
+temp	float	$tmp154	%read{273,273} %write{271,271}
+temp	float	$tmp155	%read{273,273} %write{272,272}
+temp	float	$tmp156	%read{280,280} %write{279,279}
+temp	float	$tmp157	%read{277,277} %write{276,276}
+temp	float	$tmp158	%read{279,279} %write{277,277}
+temp	float	$tmp159	%read{279,279} %write{278,278}
+temp	float	$tmp160	%read{286,286} %write{285,285}
+temp	float	$tmp161	%read{283,283} %write{282,282}
+temp	float	$tmp162	%read{285,285} %write{283,283}
+temp	float	$tmp163	%read{285,285} %write{284,284}
+const	string	$const33	"cus"		%read{288,288} %write{2147483647,-1}
+temp	int	$tmp164	%read{289,289} %write{288,288}
+temp	float	$tmp165	%read{293,293} %write{291,291}
+temp	float	$tmp166	%read{293,293} %write{292,292}
+temp	float	$tmp167	%read{297,297} %write{293,293}
+temp	float	$tmp168	%read{296,296} %write{294,294}
+temp	float	$tmp169	%read{297,297} %write{296,296}
+temp	float	$tmp170	%read{296,296} %write{295,295}
+temp	float	$tmp171	%read{301,301} %write{297,297}
+temp	float	$tmp172	%read{300,300} %write{298,298}
+temp	float	$tmp173	%read{301,301} %write{300,300}
+temp	float	$tmp174	%read{300,300} %write{299,299}
+temp	float	$tmp175	%read{305,305} %write{301,301}
+temp	float	$tmp176	%read{304,304} %write{302,302}
+temp	float	$tmp177	%read{305,305} %write{304,304}
+temp	float	$tmp178	%read{304,304} %write{303,303}
+temp	float	$tmp179	%read{309,309} %write{305,305}
+temp	float	$tmp180	%read{308,308} %write{306,306}
+temp	float	$tmp181	%read{309,309} %write{308,308}
+temp	float	$tmp182	%read{308,308} %write{307,307}
+temp	float	$tmp183	%read{310,310} %write{309,309}
+temp	float	$tmp184	%read{313,313} %write{311,311}
+temp	float	$tmp185	%read{313,313} %write{312,312}
+temp	float	$tmp186	%read{317,317} %write{313,313}
+temp	float	$tmp187	%read{316,316} %write{314,314}
+temp	float	$tmp188	%read{317,317} %write{316,316}
+temp	float	$tmp189	%read{316,316} %write{315,315}
+temp	float	$tmp190	%read{321,321} %write{317,317}
+temp	float	$tmp191	%read{320,320} %write{318,318}
+temp	float	$tmp192	%read{321,321} %write{320,320}
+temp	float	$tmp193	%read{320,320} %write{319,319}
+temp	float	$tmp194	%read{325,325} %write{321,321}
+temp	float	$tmp195	%read{324,324} %write{322,322}
+temp	float	$tmp196	%read{325,325} %write{324,324}
+temp	float	$tmp197	%read{324,324} %write{323,323}
+temp	float	$tmp198	%read{329,329} %write{325,325}
+temp	float	$tmp199	%read{328,328} %write{326,326}
+temp	float	$tmp200	%read{329,329} %write{328,328}
+temp	float	$tmp201	%read{328,328} %write{327,327}
+temp	float	$tmp202	%read{330,330} %write{329,329}
+temp	float	$tmp203	%read{333,333} %write{331,331}
+temp	float	$tmp204	%read{333,333} %write{332,332}
+temp	float	$tmp205	%read{337,337} %write{333,333}
+temp	float	$tmp206	%read{336,336} %write{334,334}
+temp	float	$tmp207	%read{337,337} %write{336,336}
+temp	float	$tmp208	%read{336,336} %write{335,335}
+temp	float	$tmp209	%read{341,341} %write{337,337}
+temp	float	$tmp210	%read{340,340} %write{338,338}
+temp	float	$tmp211	%read{341,341} %write{340,340}
+temp	float	$tmp212	%read{340,340} %write{339,339}
+temp	float	$tmp213	%read{345,345} %write{341,341}
+temp	float	$tmp214	%read{344,344} %write{342,342}
+temp	float	$tmp215	%read{345,345} %write{344,344}
+temp	float	$tmp216	%read{344,344} %write{343,343}
+temp	float	$tmp217	%read{349,349} %write{345,345}
+temp	float	$tmp218	%read{348,348} %write{346,346}
+temp	float	$tmp219	%read{349,349} %write{348,348}
+temp	float	$tmp220	%read{348,348} %write{347,347}
+temp	float	$tmp221	%read{350,350} %write{349,349}
+const	string	$const34	"render"		%read{351,351} %write{2147483647,-1}
+temp	int	$tmp222	%read{352,352} %write{351,351}
+temp	color	$tmp223	%read{401,401} %write{359,396}
+const	string	$const35	"al_hsv2rgb"		%read{353,353} %write{2147483647,-1}
+const	float	$const36	9.9999997e-05		%read{357,357} %write{2147483647,-1}
+temp	int	$tmp224	%read{358,358} %write{357,357}
+temp	float	$tmp225	%read{362,362} %write{361,361}
+temp	float	$tmp226	%read{363,363} %write{362,362}
+temp	float	$tmp227	%read{366,366} %write{365,365}
+temp	float	$tmp228	%read{368,368} %write{367,367}
+temp	float	$tmp229	%read{370,370} %write{369,369}
+temp	float	$tmp230	%read{371,371} %write{370,370}
+temp	float	$tmp231	%read{373,373} %write{372,372}
+temp	float	$tmp232	%read{374,374} %write{373,373}
+temp	float	$tmp233	%read{375,375} %write{374,374}
+temp	int	$tmp234	%read{377,377} %write{376,376}
+temp	int	$tmp235	%read{381,381} %write{380,380}
+temp	int	$tmp236	%read{385,385} %write{384,384}
+const	int	$const37	3		%read{388,388} %write{2147483647,-1}
+temp	int	$tmp237	%read{389,389} %write{388,388}
+temp	int	$tmp238	%read{393,393} %write{392,392}
+temp	color	$tmp239	%read{402,402} %write{398,398}
+temp	color	$tmp240	%read{401,401} %write{399,399}
+temp	color	$tmp241	%read{402,402} %write{401,401}
+code ___main___
+# Git/git_repo//oslShaders/lc_jitter_color.osl:153
+# 	//Get attribute
+	functioncall	$const1 34 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{153} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:221
+#     float r = rgb[0], g = rgb[1], b = rgb[2];
+	compref		___383_r input $const2 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{221} %argrw{"wrr"}
+	compref		___383_g input $const3 	%argrw{"wrr"}
+	compref		___383_b input $const4 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:222
+#     float mincomp = min(r, min(g, b));
+	min		$tmp1 ___383_g ___383_b 	%line{222} %argrw{"wrr"}
+	min		___383_mincomp ___383_r $tmp1 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:223
+#     float maxcomp = max(r, max(g, b));
+	max		$tmp2 ___383_g ___383_b 	%line{223} %argrw{"wrr"}
+	max		___383_maxcomp ___383_r $tmp2 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:224
+#     float delta = maxcomp - mincomp; // chroma
+	sub		___383_delta ___383_maxcomp ___383_mincomp 	%line{224} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:226
+#     v = maxcomp;
+	assign		___383_v ___383_maxcomp 	%line{226} %argrw{"wr"}
+# Git/git_repo/oslShaders/common/alshaders.h:227
+#     if (maxcomp > 0)
+	gt		$tmp3 ___383_maxcomp $const2 	%line{227} %argrw{"wrr"}
+	if		$tmp3 13 14 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:228
+#         s = delta / maxcomp;
+	div		___383_s ___383_delta ___383_maxcomp 	%line{228} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:230
+#         s = 0;
+	assign		___383_s $const2 	%line{230} %argrw{"wr"}
+# Git/git_repo/oslShaders/common/alshaders.h:231
+#     if (s <= 0)
+	le		$tmp4 ___383_s $const2 	%line{231} %argrw{"wrr"}
+	if		$tmp4 17 33 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:232
+#         h = 0;
+	assign		___383_h $const2 	%line{232} %argrw{"wr"}
+# Git/git_repo/oslShaders/common/alshaders.h:234
+#         if (r >= maxcomp)
+	ge		$tmp5 ___383_r ___383_maxcomp 	%line{234} %argrw{"wrr"}
+	if		$tmp5 21 29 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:235
+#             h = (g - b) / delta;
+	sub		$tmp6 ___383_g ___383_b 	%line{235} %argrw{"wrr"}
+	div		___383_h $tmp6 ___383_delta 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:236
+#         else if (g >= maxcomp)
+	ge		$tmp7 ___383_g ___383_maxcomp 	%line{236} %argrw{"wrr"}
+	if		$tmp7 26 29 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:237
+#             h = 2 + (b - r) / delta;
+	sub		$tmp8 ___383_b ___383_r 	%line{237} %argrw{"wrr"}
+	div		$tmp9 $tmp8 ___383_delta 	%argrw{"wrr"}
+	add		___383_h $const5 $tmp9 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:239
+#             h = 4 + (r - g) / delta;
+	sub		$tmp10 ___383_r ___383_g 	%line{239} %argrw{"wrr"}
+	div		$tmp11 $tmp10 ___383_delta 	%argrw{"wrr"}
+	add		___383_h $const7 $tmp11 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:240
+#         h /= 6;
+	div		___383_h ___383_h $const9 	%line{240} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:241
+#         if (h < 0)
+	lt		$tmp12 ___383_h $const2 	%line{241} %argrw{"wrr"}
+	if		$tmp12 33 33 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:242
+#             h += 1;
+	add		___383_h ___383_h $const10 	%line{242} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:244
+#     return color(h, s, v);
+	color		tmp ___383_h ___383_s ___383_v 	%line{244} %argrw{"wrrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:155
+# 	getattribute(plant_py,plant_py_data);
+	getattribute	$tmp13 face_shell lca_face_shell 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{155} %argrw{"wrw"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:156
+# 	getattribute(plant_area,plant_area_data);
+	getattribute	$tmp14 plant_py plant_py_data 	%line{156} %argrw{"wrw"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:157
+# 	getattribute(plant_ao,plant_ao_data);
+	getattribute	$tmp15 plant_area plant_area_data 	%line{157} %argrw{"wrw"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:158
+# 	//getattribute(plant_cv,plant_cv_data);
+	getattribute	$tmp16 plant_ao plant_ao_data 	%line{158} %argrw{"wrw"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:160
+# 	if (!arg)
+	getattribute	arg plant_custom plant_custom_data 	%line{160} %argrw{"wrw"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:161
+# 		plant_custom_data = plant_custom_default;
+	eq		$tmp17 arg $const2 	%line{161} %argrw{"wrr"}
+	if		$tmp17 42 42 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:162
+# 
+	assign		plant_custom_data plant_custom_default 	%line{162} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:165
+# 	point rand_resout = compute_rand(lca_face_shell,rand_int,rand_hue_min,rand_hue_max,rand_sat_min,rand_sat_max,rand_val_min,rand_val_max,3521,rand_seed);
+	add		$tmp18 lca_face_shell rand_seed 	%line{165} %argrw{"wrr"}
+	mod		$tmp19 $tmp18 $const12 	%argrw{"wrr"}
+	mul		$tmp20 rand_intensity $const13 	%argrw{"wrr"}
+	lt		$tmp21 $tmp19 $tmp20 	%argrw{"wrr"}
+	select		rand_int $const11 $const10 $tmp21 	%argrw{"wrrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:166
+# 	if (debugMode == "rand")
+	assign		$tmp22 lca_face_shell 	%line{166} %argrw{"wr"}
+	functioncall	$const15 92 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:15
+# 	float h_int = 0;
+	assign		___388_resout $const16 	%line{15} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:16
+# 	float h_value = 0;
+	assign		___388_h_int $const2 	%line{16} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:17
+# 	float s_int = 0;
+	assign		___388_h_value $const2 	%line{17} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:18
+# 	float s_value = 0;
+	assign		___388_s_int $const2 	%line{18} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:19
+# 	float v_int = 0;
+	assign		___388_s_value $const2 	%line{19} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:20
+# 	float v_value = 0;
+	assign		___388_v_int $const2 	%line{20} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:21
+# 
+	assign		___388_v_value $const2 	%line{21} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:23
+# 	h_value = lerp(h_min,h_max,h_int);
+	assign		$tmp24 $const14 	%line{23} %argrw{"wr"}
+	add		$tmp23 $tmp22 $tmp24 	%argrw{"wrr"}
+	assign		$tmp26 rand_seed 	%argrw{"wr"}
+	add		$tmp25 $tmp23 $tmp26 	%argrw{"wrr"}
+	add		$tmp27 $tmp25 $const19 	%argrw{"wrr"}
+	noise		___388_h_int $const17 $tmp27 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:24
+# 
+	functioncall	$const20 67 	%line{24} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp28 $const10 ___388_h_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp29 $tmp28 rand_hue_min 	%argrw{"wrr"}
+	mul		$tmp30 ___388_h_int rand_hue_max 	%argrw{"wrr"}
+	add		___388_h_value $tmp29 $tmp30 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:26
+# 	s_value = lerp(s_min,s_max,s_int);
+	assign		$tmp32 $const14 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{26} %argrw{"wr"}
+	add		$tmp31 $tmp22 $tmp32 	%argrw{"wrr"}
+	assign		$tmp34 rand_seed 	%argrw{"wr"}
+	add		$tmp33 $tmp31 $tmp34 	%argrw{"wrr"}
+	add		$tmp35 $tmp33 $const22 	%argrw{"wrr"}
+	noise		___388_s_int $const17 $tmp35 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:27
+# 
+	functioncall	$const20 78 	%line{27} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp36 $const10 ___388_s_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp37 $tmp36 rand_sat_min 	%argrw{"wrr"}
+	mul		$tmp38 ___388_s_int rand_sat_max 	%argrw{"wrr"}
+	add		___388_s_value $tmp37 $tmp38 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:29
+# 	v_value = lerp(v_min,v_max,v_int);
+	assign		$tmp40 $const14 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{29} %argrw{"wr"}
+	add		$tmp39 $tmp22 $tmp40 	%argrw{"wrr"}
+	assign		$tmp42 rand_seed 	%argrw{"wr"}
+	add		$tmp41 $tmp39 $tmp42 	%argrw{"wrr"}
+	add		$tmp43 $tmp41 $const24 	%argrw{"wrr"}
+	noise		___388_v_int $const17 $tmp43 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:30
+# 	return resout = point(h_value,s_value,v_value)*intensity;
+	functioncall	$const20 89 	%line{30} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp44 $const10 ___388_v_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp45 $tmp44 rand_val_min 	%argrw{"wrr"}
+	mul		$tmp46 ___388_v_int rand_val_max 	%argrw{"wrr"}
+	add		___388_v_value $tmp45 $tmp46 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:31
+# }
+	point		$tmp47 ___388_h_value ___388_s_value ___388_v_value 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{31} %argrw{"wrrr"}
+	mul		___388_resout $tmp47 rand_int 	%argrw{"wrr"}
+	assign		rand_resout ___388_resout 	%argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:167
+# 		outColor = color(rand_int);
+	eq		$tmp48 debugMode $const25 	%line{167} %argrw{"wrr"}
+	if		$tmp48 95 95 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:168
+# 
+	assign		outColor rand_int 	%line{168} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:171
+# 	float py_int = data_Ramp(py_positions,lca_face_shell,py_rand_int,plant_py_data,py_seed,rand_seed);
+	aassign		py_positions $const2 py_posi_a 	%line{171} %argrw{"wrr"}
+	aassign		py_positions $const3 py_posi_b 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:172
+# 	point py_resout = value_byRange(py_int,py_hue_min,py_hue_max,py_sat_min,py_sat_max,py_val_min,py_val_max);
+	functioncall	$const26 120 	%line{172} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:41
+# 	float int_rand = lerp(1,noise("cell",(lca_face_shell+seed+seed_global+8740)),ramp_rand_int);
+	assign		___389_resout $const11 	%line{41} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:42
+# 	resout = clamp((data-positions[0])/(positions[1]-positions[0]),0,1)*int_rand;
+	add		$tmp50 lca_face_shell py_seed 	%line{42} %argrw{"wrr"}
+	add		$tmp51 $tmp50 rand_seed 	%argrw{"wrr"}
+	add		$tmp52 $tmp51 $const27 	%argrw{"wrr"}
+	assign		$tmp53 $tmp52 	%argrw{"wr"}
+	noise		$tmp49 $const17 $tmp53 	%argrw{"wrr"}
+	functioncall	$const20 109 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp54 $const10 py_rand_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp55 $tmp54 $const10 	%argrw{"wrr"}
+	mul		$tmp56 py_rand_int $tmp49 	%argrw{"wrr"}
+	add		___389_int_rand $tmp55 $tmp56 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	aref		$tmp58 py_positions $const2 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+	sub		$tmp59 plant_py_data $tmp58 	%argrw{"wrr"}
+	aref		$tmp60 py_positions $const3 	%argrw{"wrr"}
+	aref		$tmp61 py_positions $const2 	%argrw{"wrr"}
+	sub		$tmp62 $tmp60 $tmp61 	%argrw{"wrr"}
+	div		$tmp63 $tmp59 $tmp62 	%argrw{"wrr"}
+	functioncall	$const28 118 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h:145
+# float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
+	min		$tmp64 $tmp63 $const10 	%filename{"Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h"} %line{145} %argrw{"wrr"}
+	max		$tmp57 $tmp64 $const11 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	mul		___389_resout $tmp57 ___389_int_rand 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:44
+# }
+	assign		py_int ___389_resout 	%line{44} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:173
+# 	if (debugMode == "py")
+	functioncall	$const29 141 	%line{173} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:56
+# 	resout[0] = lerp(h_min,h_max,intensity);
+	assign		___390_resout $const16 	%line{56} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	functioncall	$const20 127 	%line{57} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp66 $const10 py_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp67 $tmp66 py_hue_min 	%argrw{"wrr"}
+	mul		$tmp68 py_int py_hue_max 	%argrw{"wrr"}
+	add		$tmp65 $tmp67 $tmp68 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	compassign	___390_resout $const2 $tmp65 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{57} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	functioncall	$const20 133 	%line{58} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp70 $const10 py_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp71 $tmp70 py_sat_min 	%argrw{"wrr"}
+	mul		$tmp72 py_int py_sat_max 	%argrw{"wrr"}
+	add		$tmp69 $tmp71 $tmp72 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	compassign	___390_resout $const3 $tmp69 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{58} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	functioncall	$const20 139 	%line{59} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp74 $const10 py_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp75 $tmp74 py_val_min 	%argrw{"wrr"}
+	mul		$tmp76 py_int py_val_max 	%argrw{"wrr"}
+	add		$tmp73 $tmp75 $tmp76 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	compassign	___390_resout $const4 $tmp73 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{59} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:60
+# }
+	assign		py_resout ___390_resout 	%line{60} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:174
+# 		outColor = color(py_int);	
+	eq		$tmp77 debugMode $const30 	%line{174} %argrw{"wrr"}
+	if		$tmp77 144 144 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:175
+# 	//rand via area
+	assign		outColor py_int 	%line{175} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:177
+# 	float area_int = data_Ramp(area_positions,lca_face_shell,area_rand_int,plant_area_data,area_seed,rand_seed);
+	aassign		area_positions $const2 area_posi_a 	%line{177} %argrw{"wrr"}
+	aassign		area_positions $const3 area_posi_b 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:178
+# 	point area_resout = value_byRange(area_int,area_hue_min,area_hue_max,area_sat_min,area_sat_max,area_val_min,area_val_max);
+	functioncall	$const26 169 	%line{178} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:41
+# 	float int_rand = lerp(1,noise("cell",(lca_face_shell+seed+seed_global+8740)),ramp_rand_int);
+	assign		___389_resout $const11 	%line{41} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:42
+# 	resout = clamp((data-positions[0])/(positions[1]-positions[0]),0,1)*int_rand;
+	add		$tmp79 lca_face_shell area_seed 	%line{42} %argrw{"wrr"}
+	add		$tmp80 $tmp79 rand_seed 	%argrw{"wrr"}
+	add		$tmp81 $tmp80 $const27 	%argrw{"wrr"}
+	assign		$tmp82 $tmp81 	%argrw{"wr"}
+	noise		$tmp78 $const17 $tmp82 	%argrw{"wrr"}
+	functioncall	$const20 158 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp83 $const10 area_rand_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp84 $tmp83 $const10 	%argrw{"wrr"}
+	mul		$tmp85 area_rand_int $tmp78 	%argrw{"wrr"}
+	add		___389_int_rand $tmp84 $tmp85 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	aref		$tmp87 area_positions $const2 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+	sub		$tmp88 plant_area_data $tmp87 	%argrw{"wrr"}
+	aref		$tmp89 area_positions $const3 	%argrw{"wrr"}
+	aref		$tmp90 area_positions $const2 	%argrw{"wrr"}
+	sub		$tmp91 $tmp89 $tmp90 	%argrw{"wrr"}
+	div		$tmp92 $tmp88 $tmp91 	%argrw{"wrr"}
+	functioncall	$const28 167 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h:145
+# float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
+	min		$tmp93 $tmp92 $const10 	%filename{"Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h"} %line{145} %argrw{"wrr"}
+	max		$tmp86 $tmp93 $const11 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	mul		___389_resout $tmp86 ___389_int_rand 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:44
+# }
+	assign		area_int ___389_resout 	%line{44} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:179
+# 	if (debugMode == "area")
+	functioncall	$const29 190 	%line{179} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:56
+# 	resout[0] = lerp(h_min,h_max,intensity);
+	assign		___390_resout $const16 	%line{56} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	functioncall	$const20 176 	%line{57} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp95 $const10 area_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp96 $tmp95 area_hue_min 	%argrw{"wrr"}
+	mul		$tmp97 area_int area_hue_max 	%argrw{"wrr"}
+	add		$tmp94 $tmp96 $tmp97 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	compassign	___390_resout $const2 $tmp94 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{57} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	functioncall	$const20 182 	%line{58} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp99 $const10 area_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp100 $tmp99 area_sat_min 	%argrw{"wrr"}
+	mul		$tmp101 area_int area_sat_max 	%argrw{"wrr"}
+	add		$tmp98 $tmp100 $tmp101 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	compassign	___390_resout $const3 $tmp98 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{58} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	functioncall	$const20 188 	%line{59} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp103 $const10 area_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp104 $tmp103 area_val_min 	%argrw{"wrr"}
+	mul		$tmp105 area_int area_val_max 	%argrw{"wrr"}
+	add		$tmp102 $tmp104 $tmp105 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	compassign	___390_resout $const4 $tmp102 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{59} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:60
+# }
+	assign		area_resout ___390_resout 	%line{60} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:180
+# 		outColor = color(area_int);
+	eq		$tmp106 debugMode $const31 	%line{180} %argrw{"wrr"}
+	if		$tmp106 193 193 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:181
+# 
+	assign		outColor area_int 	%line{181} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:184
+# 	float ao_int = data_Ramp(ao_positions,lca_face_shell,ao_rand_int,plant_ao_data,ao_seed,rand_seed);
+	aassign		ao_positions $const2 ao_posi_a 	%line{184} %argrw{"wrr"}
+	aassign		ao_positions $const3 ao_posi_b 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:185
+# 	point ao_resout = value_byRange(ao_int,ao_hue_min,ao_hue_max,ao_sat_min,ao_sat_max,ao_val_min,ao_val_max);
+	functioncall	$const26 218 	%line{185} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:41
+# 	float int_rand = lerp(1,noise("cell",(lca_face_shell+seed+seed_global+8740)),ramp_rand_int);
+	assign		___389_resout $const11 	%line{41} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:42
+# 	resout = clamp((data-positions[0])/(positions[1]-positions[0]),0,1)*int_rand;
+	add		$tmp108 lca_face_shell ao_seed 	%line{42} %argrw{"wrr"}
+	add		$tmp109 $tmp108 rand_seed 	%argrw{"wrr"}
+	add		$tmp110 $tmp109 $const27 	%argrw{"wrr"}
+	assign		$tmp111 $tmp110 	%argrw{"wr"}
+	noise		$tmp107 $const17 $tmp111 	%argrw{"wrr"}
+	functioncall	$const20 207 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp112 $const10 ao_rand_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp113 $tmp112 $const10 	%argrw{"wrr"}
+	mul		$tmp114 ao_rand_int $tmp107 	%argrw{"wrr"}
+	add		___389_int_rand $tmp113 $tmp114 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	aref		$tmp116 ao_positions $const2 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+	sub		$tmp117 plant_ao_data $tmp116 	%argrw{"wrr"}
+	aref		$tmp118 ao_positions $const3 	%argrw{"wrr"}
+	aref		$tmp119 ao_positions $const2 	%argrw{"wrr"}
+	sub		$tmp120 $tmp118 $tmp119 	%argrw{"wrr"}
+	div		$tmp121 $tmp117 $tmp120 	%argrw{"wrr"}
+	functioncall	$const28 216 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h:145
+# float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
+	min		$tmp122 $tmp121 $const10 	%filename{"Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h"} %line{145} %argrw{"wrr"}
+	max		$tmp115 $tmp122 $const11 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	mul		___389_resout $tmp115 ___389_int_rand 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:44
+# }
+	assign		ao_int ___389_resout 	%line{44} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:186
+# 	if (debugMode == "ao")
+	functioncall	$const29 239 	%line{186} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:56
+# 	resout[0] = lerp(h_min,h_max,intensity);
+	assign		___390_resout $const16 	%line{56} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	functioncall	$const20 225 	%line{57} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp124 $const10 ao_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp125 $tmp124 ao_hue_min 	%argrw{"wrr"}
+	mul		$tmp126 ao_int ao_hue_max 	%argrw{"wrr"}
+	add		$tmp123 $tmp125 $tmp126 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	compassign	___390_resout $const2 $tmp123 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{57} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	functioncall	$const20 231 	%line{58} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp128 $const10 ao_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp129 $tmp128 ao_sat_min 	%argrw{"wrr"}
+	mul		$tmp130 ao_int ao_sat_max 	%argrw{"wrr"}
+	add		$tmp127 $tmp129 $tmp130 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	compassign	___390_resout $const3 $tmp127 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{58} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	functioncall	$const20 237 	%line{59} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp132 $const10 ao_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp133 $tmp132 ao_val_min 	%argrw{"wrr"}
+	mul		$tmp134 ao_int ao_val_max 	%argrw{"wrr"}
+	add		$tmp131 $tmp133 $tmp134 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	compassign	___390_resout $const4 $tmp131 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{59} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:60
+# }
+	assign		ao_resout ___390_resout 	%line{60} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:187
+# 		outColor = color(ao_int);
+	eq		$tmp135 debugMode $const32 	%line{187} %argrw{"wrr"}
+	if		$tmp135 242 242 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:188
+# 
+	assign		outColor ao_int 	%line{188} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:198
+# 	float cus_int = data_Ramp(cus_positions,lca_face_shell,cus_rand_int,plant_custom_data,cus_seed,rand_seed);
+	aassign		cus_positions $const2 cus_posi_a 	%line{198} %argrw{"wrr"}
+	aassign		cus_positions $const3 cus_posi_b 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:199
+# 	point cus_resout = value_byRange(cus_int,cus_hue_min,cus_hue_max,cus_sat_min,cus_sat_max,cus_val_min,cus_val_max);
+	functioncall	$const26 267 	%line{199} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:41
+# 	float int_rand = lerp(1,noise("cell",(lca_face_shell+seed+seed_global+8740)),ramp_rand_int);
+	assign		___389_resout $const11 	%line{41} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:42
+# 	resout = clamp((data-positions[0])/(positions[1]-positions[0]),0,1)*int_rand;
+	add		$tmp137 lca_face_shell cus_seed 	%line{42} %argrw{"wrr"}
+	add		$tmp138 $tmp137 rand_seed 	%argrw{"wrr"}
+	add		$tmp139 $tmp138 $const27 	%argrw{"wrr"}
+	assign		$tmp140 $tmp139 	%argrw{"wr"}
+	noise		$tmp136 $const17 $tmp140 	%argrw{"wrr"}
+	functioncall	$const20 256 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp141 $const10 cus_rand_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp142 $tmp141 $const10 	%argrw{"wrr"}
+	mul		$tmp143 cus_rand_int $tmp136 	%argrw{"wrr"}
+	add		___389_int_rand $tmp142 $tmp143 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	aref		$tmp145 cus_positions $const2 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+	sub		$tmp146 plant_custom_data $tmp145 	%argrw{"wrr"}
+	aref		$tmp147 cus_positions $const3 	%argrw{"wrr"}
+	aref		$tmp148 cus_positions $const2 	%argrw{"wrr"}
+	sub		$tmp149 $tmp147 $tmp148 	%argrw{"wrr"}
+	div		$tmp150 $tmp146 $tmp149 	%argrw{"wrr"}
+	functioncall	$const28 265 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h:145
+# float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
+	min		$tmp151 $tmp150 $const10 	%filename{"Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h"} %line{145} %argrw{"wrr"}
+	max		$tmp144 $tmp151 $const11 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:43
+# 	return resout;
+	mul		___389_resout $tmp144 ___389_int_rand 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{43} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:44
+# }
+	assign		cus_int ___389_resout 	%line{44} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:200
+# 	if (debugMode == "cus")
+	functioncall	$const29 288 	%line{200} %argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:56
+# 	resout[0] = lerp(h_min,h_max,intensity);
+	assign		___390_resout $const16 	%line{56} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	functioncall	$const20 274 	%line{57} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp153 $const10 cus_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp154 $tmp153 cus_hue_min 	%argrw{"wrr"}
+	mul		$tmp155 cus_int cus_hue_max 	%argrw{"wrr"}
+	add		$tmp152 $tmp154 $tmp155 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:57
+# 	resout[1] = lerp(s_min,s_max,intensity);
+	compassign	___390_resout $const2 $tmp152 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{57} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	functioncall	$const20 280 	%line{58} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp157 $const10 cus_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp158 $tmp157 cus_sat_min 	%argrw{"wrr"}
+	mul		$tmp159 cus_int cus_sat_max 	%argrw{"wrr"}
+	add		$tmp156 $tmp158 $tmp159 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:58
+# 	resout[2] = lerp(v_min,v_max,intensity);
+	compassign	___390_resout $const3 $tmp156 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{58} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	functioncall	$const20 286 	%line{59} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:7
+#     return (1 - t) * a + t * b;
+	sub		$tmp161 $const10 cus_int 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{7} %argrw{"wrr"}
+	mul		$tmp162 $tmp161 cus_val_min 	%argrw{"wrr"}
+	mul		$tmp163 cus_int cus_val_max 	%argrw{"wrr"}
+	add		$tmp160 $tmp162 $tmp163 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:59
+# 	return resout;
+	compassign	___390_resout $const4 $tmp160 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{59} %argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:60
+# }
+	assign		cus_resout ___390_resout 	%line{60} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:201
+# 		outColor = color(cus_int);
+	eq		$tmp164 debugMode $const33 	%line{201} %argrw{"wrr"}
+	if		$tmp164 291 291 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:202
+# 
+	assign		outColor cus_int 	%line{202} %argrw{"wr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:205
+# 	tmp[1] = tmp[1]+rand_resout[1]+py_resout[1]*py_enable+area_resout[1]*area_enable+ao_resout[1]*ao_enable+cus_resout[1]*cus_enable;
+	compref		$tmp165 tmp $const2 	%line{205} %argrw{"wrr"}
+	compref		$tmp166 rand_resout $const2 	%argrw{"wrr"}
+	add		$tmp167 $tmp165 $tmp166 	%argrw{"wrr"}
+	compref		$tmp168 py_resout $const2 	%argrw{"wrr"}
+	assign		$tmp170 py_enable 	%argrw{"wr"}
+	mul		$tmp169 $tmp168 $tmp170 	%argrw{"wrr"}
+	add		$tmp171 $tmp167 $tmp169 	%argrw{"wrr"}
+	compref		$tmp172 area_resout $const2 	%argrw{"wrr"}
+	assign		$tmp174 area_enable 	%argrw{"wr"}
+	mul		$tmp173 $tmp172 $tmp174 	%argrw{"wrr"}
+	add		$tmp175 $tmp171 $tmp173 	%argrw{"wrr"}
+	compref		$tmp176 ao_resout $const2 	%argrw{"wrr"}
+	assign		$tmp178 ao_enable 	%argrw{"wr"}
+	mul		$tmp177 $tmp176 $tmp178 	%argrw{"wrr"}
+	add		$tmp179 $tmp175 $tmp177 	%argrw{"wrr"}
+	compref		$tmp180 cus_resout $const2 	%argrw{"wrr"}
+	assign		$tmp182 cus_enable 	%argrw{"wr"}
+	mul		$tmp181 $tmp180 $tmp182 	%argrw{"wrr"}
+	add		$tmp183 $tmp179 $tmp181 	%argrw{"wrr"}
+	compassign	tmp $const2 $tmp183 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:206
+# 	tmp[2] = tmp[2]+rand_resout[2]+py_resout[2]*py_enable+area_resout[2]*area_enable+ao_resout[2]*ao_enable+cus_resout[2]*cus_enable;
+	compref		$tmp184 tmp $const3 	%line{206} %argrw{"wrr"}
+	compref		$tmp185 rand_resout $const3 	%argrw{"wrr"}
+	add		$tmp186 $tmp184 $tmp185 	%argrw{"wrr"}
+	compref		$tmp187 py_resout $const3 	%argrw{"wrr"}
+	assign		$tmp189 py_enable 	%argrw{"wr"}
+	mul		$tmp188 $tmp187 $tmp189 	%argrw{"wrr"}
+	add		$tmp190 $tmp186 $tmp188 	%argrw{"wrr"}
+	compref		$tmp191 area_resout $const3 	%argrw{"wrr"}
+	assign		$tmp193 area_enable 	%argrw{"wr"}
+	mul		$tmp192 $tmp191 $tmp193 	%argrw{"wrr"}
+	add		$tmp194 $tmp190 $tmp192 	%argrw{"wrr"}
+	compref		$tmp195 ao_resout $const3 	%argrw{"wrr"}
+	assign		$tmp197 ao_enable 	%argrw{"wr"}
+	mul		$tmp196 $tmp195 $tmp197 	%argrw{"wrr"}
+	add		$tmp198 $tmp194 $tmp196 	%argrw{"wrr"}
+	compref		$tmp199 cus_resout $const3 	%argrw{"wrr"}
+	assign		$tmp201 cus_enable 	%argrw{"wr"}
+	mul		$tmp200 $tmp199 $tmp201 	%argrw{"wrr"}
+	add		$tmp202 $tmp198 $tmp200 	%argrw{"wrr"}
+	compassign	tmp $const3 $tmp202 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:207
+# 
+	compref		$tmp203 tmp $const4 	%line{207} %argrw{"wrr"}
+	compref		$tmp204 rand_resout $const4 	%argrw{"wrr"}
+	add		$tmp205 $tmp203 $tmp204 	%argrw{"wrr"}
+	compref		$tmp206 py_resout $const4 	%argrw{"wrr"}
+	assign		$tmp208 py_enable 	%argrw{"wr"}
+	mul		$tmp207 $tmp206 $tmp208 	%argrw{"wrr"}
+	add		$tmp209 $tmp205 $tmp207 	%argrw{"wrr"}
+	compref		$tmp210 area_resout $const4 	%argrw{"wrr"}
+	assign		$tmp212 area_enable 	%argrw{"wr"}
+	mul		$tmp211 $tmp210 $tmp212 	%argrw{"wrr"}
+	add		$tmp213 $tmp209 $tmp211 	%argrw{"wrr"}
+	compref		$tmp214 ao_resout $const4 	%argrw{"wrr"}
+	assign		$tmp216 ao_enable 	%argrw{"wr"}
+	mul		$tmp215 $tmp214 $tmp216 	%argrw{"wrr"}
+	add		$tmp217 $tmp213 $tmp215 	%argrw{"wrr"}
+	compref		$tmp218 cus_resout $const4 	%argrw{"wrr"}
+	assign		$tmp220 cus_enable 	%argrw{"wr"}
+	mul		$tmp219 $tmp218 $tmp220 	%argrw{"wrr"}
+	add		$tmp221 $tmp217 $tmp219 	%argrw{"wrr"}
+	compassign	tmp $const4 $tmp221 	%argrw{"wrr"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:209
+# 		outColor = clamp(al_hsv2rgb(tmp),0,1);
+	eq		$tmp222 debugMode $const34 	%line{209} %argrw{"wrr"}
+	if		$tmp222 403 403 	%argrw{"r"}
+# Git/git_repo//oslShaders/lc_jitter_color.osl:210
+# 
+	functioncall	$const35 398 	%line{210} %argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:187
+#     float h = hsv[0];
+	compref		___380_h tmp $const2 	%filename{"Git/git_repo/oslShaders/common/alshaders.h"} %line{187} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:188
+#     float s = hsv[1];
+	compref		___380_s tmp $const3 	%line{188} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:189
+#     float v = hsv[2];
+	compref		___380_v tmp $const4 	%line{189} %argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:191
+#     if (s < 0.0001)
+	lt		$tmp224 ___380_s $const36 	%line{191} %argrw{"wrr"}
+	if		$tmp224 361 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:193
+#         return color(v, v, v);
+	color		$tmp223 ___380_v ___380_v ___380_v 	%line{193} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:197
+#         h = 6.0 * (h - floor(h));
+	floor		$tmp225 ___380_h 	%line{197} %argrw{"wr"}
+	sub		$tmp226 ___380_h $tmp225 	%argrw{"wrr"}
+	mul		___380_h $const9 $tmp226 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:198
+#         int hi = (int)h;
+	assign		___382_hi ___380_h 	%line{198} %argrw{"wr"}
+# Git/git_repo/oslShaders/common/alshaders.h:199
+#         float f = h - hi;
+	assign		$tmp227 ___382_hi 	%line{199} %argrw{"wr"}
+	sub		___382_f ___380_h $tmp227 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:200
+#         float p = v * (1.0 - s);
+	sub		$tmp228 $const10 ___380_s 	%line{200} %argrw{"wrr"}
+	mul		___382_p ___380_v $tmp228 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:201
+#         float q = v * (1.0 - s * f);
+	mul		$tmp229 ___380_s ___382_f 	%line{201} %argrw{"wrr"}
+	sub		$tmp230 $const10 $tmp229 	%argrw{"wrr"}
+	mul		___382_q ___380_v $tmp230 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:202
+#         float t = v * (1.0 - s * (1.0 - f));
+	sub		$tmp231 $const10 ___382_f 	%line{202} %argrw{"wrr"}
+	mul		$tmp232 ___380_s $tmp231 	%argrw{"wrr"}
+	sub		$tmp233 $const10 $tmp232 	%argrw{"wrr"}
+	mul		___382_t ___380_v $tmp233 	%argrw{"wrr"}
+# Git/git_repo/oslShaders/common/alshaders.h:203
+#         if(hi == 0)
+	eq		$tmp234 ___382_hi $const2 	%line{203} %argrw{"wrr"}
+	if		$tmp234 380 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:204
+#             return color(v, t, p);
+	color		$tmp223 ___380_v ___382_t ___382_p 	%line{204} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:205
+#         else if (hi == 1)
+	eq		$tmp235 ___382_hi $const3 	%line{205} %argrw{"wrr"}
+	if		$tmp235 384 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:206
+#             return color(q, v, p);
+	color		$tmp223 ___382_q ___380_v ___382_p 	%line{206} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:207
+#         else if (hi == 2)
+	eq		$tmp236 ___382_hi $const4 	%line{207} %argrw{"wrr"}
+	if		$tmp236 388 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:208
+#             return color(p, v, t);
+	color		$tmp223 ___382_p ___380_v ___382_t 	%line{208} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:209
+#         else if (hi == 3)
+	eq		$tmp237 ___382_hi $const37 	%line{209} %argrw{"wrr"}
+	if		$tmp237 392 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:210
+#             return color(p, q, v);
+	color		$tmp223 ___382_p ___382_q ___380_v 	%line{210} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:211
+#         else if (hi == 4)
+	eq		$tmp238 ___382_hi $const6 	%line{211} %argrw{"wrr"}
+	if		$tmp238 396 398 	%argrw{"r"}
+# Git/git_repo/oslShaders/common/alshaders.h:212
+#             return color(t, p, v);
+	color		$tmp223 ___382_t ___382_p ___380_v 	%line{212} %argrw{"wrrr"}
+	return
+# Git/git_repo/oslShaders/common/alshaders.h:214
+#             return color(v, p, q);
+	color		$tmp223 ___380_v ___382_p ___382_q 	%line{214} %argrw{"wrrr"}
+	return
+# Git/git_repo//oslShaders/lc_jitter_color.osl:210
+# 
+	assign		$tmp239 $const11 	%filename{"Git/git_repo//oslShaders/lc_jitter_color.osl"} %line{210} %argrw{"wr"}
+	assign		$tmp240 $const10 	%argrw{"wr"}
+	functioncall	$const28 403 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h:144
+# color  clamp (color x, color minval, color maxval) { return max(min(x,maxval),minval); }
+	min		$tmp241 $tmp223 $tmp240 	%filename{"Git/git_repo/katana/arnold/ktoa-pws-kat2.5/osl/include/stdosl.h"} %line{144} %argrw{"wrr"}
+	max		outColor $tmp241 $tmp239 	%argrw{"wrr"}
+	end

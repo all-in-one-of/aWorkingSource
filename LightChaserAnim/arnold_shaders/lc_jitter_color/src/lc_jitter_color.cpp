@@ -4,6 +4,100 @@
 
 AI_SHADER_NODE_EXPORT_METHODS(LcJitterColorMethods);
 
+AtVector compute_rand(float data,
+               float intensity,
+               float h_min,
+               float h_max,
+               float s_min,
+               float s_max,
+               float v_min,
+               float v_max,
+               int seed,
+               int seed_global)
+{
+   AtVector resout = AtVector(0,0,0);
+   float h_int = 0;
+   float h_value = 0;
+   float s_int = 0;
+   float s_value = 0;
+   float v_int = 0;
+   float v_value = 0;
+
+   float signal = data+seed+seed_global;
+   h_int = AiCellNoise2(AtVector2(signal, 51731.132151));
+   h_value = lerp(h_min,h_max,h_int);
+
+   s_int = AiCellNoise2(AtVector2(signal, 173.1231));
+   s_value = lerp(s_min,s_max,s_int);
+
+   v_int = AiCellNoise2(AtVector2(signal, 413.7254));
+   v_value = lerp(v_min,v_max,v_int);
+
+   //  // float saturation = fmodf((signal + 0.9311) * 51731.13215, 1.f);
+   //  float saturation = AiCellNoise2(AtVector2(signal, 51731.132151));
+   //  saturation = lerp(minSat, maxSat, saturation);
+   //  if (saturation != 1.0f) {
+   //      float l = luminance(result);
+   //      result = lerp(rgb(l), result, saturation);
+   //  }
+
+   //  // hue
+   //  // float hueOffset = fmodf((signal + 1.3311) * 173.1231, 1.f);
+   //  float hueOffset = AiCellNoise2(AtVector2(signal, 173.1231));
+   //  hueOffset = lerp(minHue, maxHue, hueOffset);
+   //  if (hueOffset != 0.0f) {
+   //      AtRGB hsv = rgb2hsv(result);
+   //      hsv.r += hueOffset;
+   //      result = hsv2rgb(hsv);
+   //  }
+
+   //  // float gain = fmodf((signal + 0.65416) * 413.7254, 1.f);
+   //  float gain = AiCellNoise2(AtVector2(signal, 413.7254));
+   //  gain = lerp(minGain, maxGain, gain);
+   //  result *= gain;
+
+
+   // h_int = noise("cell",(data+seed+seed_global+2563));
+   // h_value = lerp(h_min,h_max,h_int);
+
+   // s_int = noise("cell",(data+seed+seed_global+2014));
+   // s_value = lerp(s_min,s_max,s_int);
+
+   // v_int = noise("cell",(data+seed+seed_global+3321));
+   // v_value = lerp(v_min,v_max,v_int);
+   return resout = AtVector(h_value,s_value,v_value)*intensity;
+}
+
+float data_Ramp(float positions[],
+            int lca_face_shell,
+            float ramp_rand_int,
+            float data,
+            int seed,
+            int seed_global)
+{  
+   float resout = 0.0;
+   float int_rand = lerp(1,AiCellNoise2(AtVector2(lca_face_shell+seed+seed_global, 173.1231)),ramp_rand_int);
+   float value = (data-positions[0])/(positions[1]-positions[0]);
+   resout = clamp(float(value), 0.0f, 1.0f)*int_rand;
+   return resout;
+}
+
+AtVector value_byRange(float intensity,
+               float h_min,
+               float h_max,
+               float s_min,
+               float s_max,
+               float v_min,
+               float v_max)
+{
+   AtVector resout = AtVector(0, 0, 0);
+   resout[0] = lerp(h_min,h_max,intensity);
+   resout[1] = lerp(s_min,s_max,intensity);
+   resout[2] = lerp(v_min,v_max,intensity);
+   return resout;
+}
+
+
 enum Params
 {
    p_input,
@@ -165,7 +259,7 @@ node_finish
 
 shader_evaluate
 {
-   AtRGB intput = AiShaderEvalParamRGB(p_input);
+   AtRGB input = AiShaderEvalParamRGB(p_input);
 
    AtString face_shell = AiShaderEvalParamStr(p_face_shell);
    AtString plant_area = AiShaderEvalParamStr(p_plant_area);
@@ -234,16 +328,69 @@ shader_evaluate
    AtString debugMode = AiShaderEvalParamStr(p_debugMode);
    
    // Continue....
+   int lca_face_shell;
+   float plant_py_data;
+   float plant_area_data;
+   float plant_ao_data;
+   float plant_custom_data;
+   AtRGB tmp = rgb2hsv(input);
+   AtRGB outColor = AtRGB(1.0f,1.0f,1.0f);
 
+   // get user data
+   AiUDataGetInt(face_shell,lca_face_shell);
+   AiUDataGetFlt(plant_py,plant_py_data);
+   AiUDataGetFlt(plant_area,plant_area_data);
+   AiUDataGetFlt(plant_ao,plant_ao_data);
 
+   bool arg = AiUDataGetFlt(plant_custom,plant_custom_data);
+   if (!arg)
+      plant_custom_data = plant_custom_default;
 
+   //rand via face shell attribute
+   float rand_int = ((lca_face_shell+rand_seed)%100 < rand_intensity*100)?1.0:0.0;
+   AtVector rand_resout = compute_rand(lca_face_shell,rand_int,rand_hue_min,rand_hue_max,rand_sat_min,rand_sat_max,rand_val_min,rand_val_max,3521,rand_seed);
+   if (debugMode == AtString("rand"))
+      outColor = AtRGB(rand_int);
 
+   //rand via position Y
+   float py_positions[2] = {py_posi_a,py_posi_b};
+   float py_int = data_Ramp(py_positions,lca_face_shell,py_rand_int,plant_py_data,py_seed,rand_seed);
+   AtVector py_resout = value_byRange(py_int,py_hue_min,py_hue_max,py_sat_min,py_sat_max,py_val_min,py_val_max);
+   if (debugMode == AtString("py"))
+      outColor = AtRGB(py_int);  
 
+   //rand via area
+   float area_positions[2] = {area_posi_a,area_posi_b};
+   float area_int = data_Ramp(area_positions,lca_face_shell,area_rand_int,plant_area_data,area_seed,rand_seed);
+   AtVector area_resout = value_byRange(area_int,area_hue_min,area_hue_max,area_sat_min,area_sat_max,area_val_min,area_val_max);
+   if (debugMode == AtString("area"))
+      outColor = AtRGB(area_int);
 
+   //rand via ao
+   float ao_positions[2] = {ao_posi_a,ao_posi_b};
+   float ao_int = data_Ramp(ao_positions,lca_face_shell,ao_rand_int,plant_ao_data,ao_seed,rand_seed);
+   AtVector ao_resout = value_byRange(ao_int,ao_hue_min,ao_hue_max,ao_sat_min,ao_sat_max,ao_val_min,ao_val_max);
+   if (debugMode == AtString("ao"))
+      outColor = AtRGB(ao_int);
 
-   AtRGB result = AtRGB(1.0f,1.0f,1.0f);
+   //rand via custom attribute
+   float cus_positions[2] = {cus_posi_a,cus_posi_b};
+   float cus_int = data_Ramp(cus_positions,lca_face_shell,cus_rand_int,plant_custom_data,cus_seed,rand_seed);
+   AtVector cus_resout = value_byRange(cus_int,cus_hue_min,cus_hue_max,cus_sat_min,cus_sat_max,cus_val_min,cus_val_max);
+   if (debugMode == AtString("cus"))
+      outColor = AtRGB(cus_int);
 
-   sg->out.RGB() = result;
+   tmp[0] = tmp[0]+rand_resout[0]+py_resout[0]*py_enable+area_resout[0]*area_enable+ao_resout[0]*ao_enable+cus_resout[0]*cus_enable;
+   tmp[1] = tmp[1]+rand_resout[1]+py_resout[1]*py_enable+area_resout[1]*area_enable+ao_resout[1]*ao_enable+cus_resout[1]*cus_enable;
+   tmp[2] = tmp[2]+rand_resout[2]+py_resout[2]*py_enable+area_resout[2]*area_enable+ao_resout[2]*ao_enable+cus_resout[2]*cus_enable;
+
+   if (debugMode == AtString("render"))
+      outColor = clamp(hsv2rgb(tmp),AtRGB(0.0f),AtRGB(1.0f));
+   
+   //float tst = AiCellNoise2(AtVector2(lca_face_shell, 173.1231));
+
+   // sg->out.RGB() = AtRGB(tst);
+   sg->out.RGB() = outColor;
 
 }
 
