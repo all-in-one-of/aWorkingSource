@@ -2,7 +2,7 @@
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Develop For Katana,Arnold and USD in Light Chaser Animation
+Develop For Katana,Arnold and USD at Light Chaser Animation
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
