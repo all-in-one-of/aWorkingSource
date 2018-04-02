@@ -334,11 +334,11 @@ shader_evaluate
 
    int debugMode = AiShaderEvalParamEnum(p_debugMode);
    // Continue....
-   int lca_face_shell;
-   float plant_py_data;
-   float plant_area_data;
-   float plant_ao_data;
-   float plant_custom_data;
+   int lca_face_shell = 0;
+   float plant_py_data = 0.0f;
+   float plant_area_data = 0.0f;
+   float plant_ao_data = 0.0f;
+   float plant_custom_data = 0.0f;
    AtRGB tmp = rgb2hsv(input);
    AtRGB outColor = AtRGB(1.0f,0.0f,0.0f);
 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfoundry.katana.FnDefaultAttributeProducerPlugin.a  CMakeFiles/foundry.katana.FnDefaultAttributeProducerPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnDefaultAttributeProducer/plugin/FnDefaultAttributeProducerPlugin.cpp.o CMakeFiles/foundry.katana.FnDefaultAttributeProducerPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnDefaultAttributeProducer/plugin/FnDefaultAttributeProducerUtil.cpp.o
+/usr/bin/ranlib libfoundry.katana.FnDefaultAttributeProducerPlugin.a

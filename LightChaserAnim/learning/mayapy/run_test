@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+ROOT_PATH=$(dirname "$(readlink -e "$BASH_SOURCE")")
+
+export PATH="/mnt/usr/autodesk/maya2017/bin":${PATH}
+MAYA_BIN_PATH="/home/xukai/Git/git_repo/lca_rez/launchers/pws/linux/mayapy"
+PYTHON_FILE_NAME="${ROOT_PATH}/test.py"
+MAYA_FILE_PATH="${ROOT_PATH}/test.ma"
+OUTPUT_FILE_PATH="${ROOT_PATH}/test.txt"
+PY_ARGS="-s asfdasf -u asfdsgfsdgdfg -n fregrfgrf"
+echo ${PYTHON_FILE_NAME}
+echo ${MAYA_FILE_PATH}
+# mayapy ${PYTHON_FILE_NAME} ${MAYA_FILE_PATH}
+# ${MAYA_BIN_PATH} -file ${MAYA_FILE_PATH} -script ${PYTHON_FILE_NAME} -prompt
+${MAYA_BIN_PATH} ${PYTHON_FILE_NAME} ${PY_ARGS}
+# ${MAYA_BIN_PATH} -h

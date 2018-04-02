@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfoundry.katana.FnAssetPlugin.a  CMakeFiles/foundry.katana.FnAssetPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAsset/plugin/FnAsset.cpp.o CMakeFiles/foundry.katana.FnAssetPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAsset/plugin/FnFileSequence.cpp.o
+/usr/bin/ranlib libfoundry.katana.FnAssetPlugin.a

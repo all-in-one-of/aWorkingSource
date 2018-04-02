@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfoundry.katana.FnPluginSystem.a  CMakeFiles/foundry.katana.FnPluginSystem.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnPluginSystem/FnPlugin.cpp.o
+/usr/bin/ranlib libfoundry.katana.FnPluginSystem.a

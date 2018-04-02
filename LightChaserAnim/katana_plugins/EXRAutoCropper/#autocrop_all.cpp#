@@ -1,0 +1,473 @@
+/*
+*/
+
+#include <iostream>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cassert>
+
+#include <stdio.h>
+#include <string>
+#include <vector>
+
+
+ #include <ImfChannelList.h>
+#include <half.h>
+#include <ImfArray.h>
+#include <ImfOutputFile.h>
+
+#include "exr_io.h"
+
+static void usage(const char * const program) {
+    fprintf(stderr, "usage: %s <input.exr> <output.exr>\n", program);
+    fprintf(stderr, "\t Auto crop EXR file into a new! \n");
+    exit(1);
+}
+
+bool
+readChannelRGBA (const char fileName[],
+         Array2D<half> &rPixels,
+         Array2D<half> &gPixels,
+         Array2D<half> &bPixels,
+         Array2D<float> &aPixels,
+         int &width, int &height,
+         bool hasAlpha,bool isCorpped)
+{
+    try{
+    InputFile file (fileName);
+    Box2i dw = file.header().dataWindow();
+    Box2i dsw = file.header().displayWindow();
+    width  = dsw.max.x - dsw.min.x + 1;
+    height = dsw.max.y - dsw.min.y + 1;
+    rPixels.resizeErase (height, width);
+    gPixels.resizeErase (height, width);
+    bPixels.resizeErase (height, width);
+    aPixels.resizeErase (height, width);
+    FrameBuffer frameBuffer;
+ 
+    if (dw == dsw)
+        isCorpped = false;
+    else
+        isCorpped = true;
+    hasAlpha = true;
+
+     char Red[] = "beauty_chr_fill_a.R";
+    char Green[] = "beauty_chr_fill_a.G";
+    char Blue[] = "beauty_chr_fill_a.B";
+    char Alpha[] = "beauty_chr_fill_a.A";
+
+
+    frameBuffer.insert (Red,                                  // name
+                        Slice (HALF,                          // type
+                               (char *) (&rPixels[0][0] -     // base
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (rPixels[0][0]) * 1,    // xStride
+                               sizeof (rPixels[0][0]) * width,// yStride
+                               1, 1,                          // x/y sampling
+                               0.0));                         // fillValue
+    frameBuffer.insert (Green,                                  // name
+                        Slice (HALF,                          // type
+                               (char *) (&gPixels[0][0] -     // base
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (gPixels[0][0]) * 1,    // xStride
+                               sizeof (gPixels[0][0]) * width,// yStride
+                               1, 1,                          // x/y sampling
+                               0.0));                         // fillValue
+    frameBuffer.insert (Blue,                                  // name
+                        Slice (HALF,                          // type
+                               (char *) (&bPixels[0][0] -     // base
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (bPixels[0][0]) * 1,    // xStride
+                               sizeof (bPixels[0][0]) * width,// yStride
+                               1, 1,                          // x/y sampling
+                               0.0));                         // fillValue
+    frameBuffer.insert (Alpha,                                  // name
+                        Slice (FLOAT,                         // type
+                               (char *) (&aPixels[0][0] -     // base
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (aPixels[0][0]) * 1,    // xStride
+                               sizeof (aPixels[0][0]) * width,// yStride
+                               1, 1,                          // x/y sampling
+                               FLT_MAX));                     // fillValue
+    file.setFrameBuffer (frameBuffer);
+    file.readPixels (dw.min.y, dw.max.y);
+    return true;
+    }
+    catch (const std::exception &e) 
+    {
+        fprintf(stderr, "Unable to read image file \"%s\": %s", fileName, e.what());
+        return false;
+    }
+}
+
+void
+writeChannelRGBA (const char fileName[],
+        const Array2D<half> &rPixels,
+        const Array2D<half> &gPixels,
+        const Array2D<half> &bPixels,
+        const Array2D<float> &aPixels,
+        Box2i dataWindow,
+        Box2i displayWindow,
+        int width,
+        int height)
+{
+
+    char Red[] = "beautyKT.R";
+    char Green[] = "beautyKT.G";
+    char Blue[] = "beautyKT.B";
+    char Alpha[] = "beautyKT.A";
+    Header header (width, height);
+    header.channels().insert (Red, Channel (HALF));
+    header.channels().insert (Green, Channel (HALF));
+    header.channels().insert (Blue, Channel (HALF));
+    header.channels().insert (Alpha, Channel (FLOAT));
+    header.dataWindow() = dataWindow;
+    header.displayWindow() = displayWindow;
+
+    OutputFile file (fileName, header);
+    FrameBuffer frameBuffer;
+
+    frameBuffer.insert (Red,
+           Slice (HALF, 
+              (char *) &rPixels[0][0],
+              sizeof (rPixels[0][0]),
+              sizeof (rPixels[0][0]) * width,
+              1,  
+              1)
+          );
+
+    frameBuffer.insert (Green, 
+           Slice (HALF,                      
+              (char *) &gPixels[0][0],  
+              sizeof (gPixels[0][0]),   
+              sizeof (gPixels[0][0]) * width,
+              1,        
+              1)     
+          );
+    frameBuffer.insert (Blue,                // name
+           Slice (HALF,                                 // type
+              (char *) &bPixels[0][0],    // base
+              sizeof (bPixels[0][0]),     // xStride
+              sizeof (bPixels[0][0]) * width, // yStride
+              1,                // xSampling
+              1)                // ySampling
+          );
+    frameBuffer.insert (Alpha,                // name
+           Slice (FLOAT,                                 // type
+              (char *) &aPixels[0][0],    // base
+              sizeof (aPixels[0][0]),     // xStride
+              sizeof (aPixels[0][0]) * width, // yStride
+              1,                // xSampling
+              1,
+              0.0)
+          );
+
+    file.setFrameBuffer (frameBuffer);                             // 16
+    file.writePixels (dataWindow.max.y - dataWindow.min.y + 1);                                        // 17
+}
+
+void
+writeRGBA (const char fileName[],
+          const half *rPixels,
+          const half *gPixels,
+          const half *bPixels,
+          const float *aPixels,
+          int width,
+          int height)
+{
+    Header header (width, height);                                    // 1
+    header.channels().insert ("R", Channel (HALF));                   // 2
+    header.channels().insert ("G", Channel (HALF));                   // 2
+    header.channels().insert ("B", Channel (HALF));                   // 2
+    header.channels().insert ("A", Channel (FLOAT));                  // 3
+    OutputFile file (fileName, header);                               // 4
+    FrameBuffer frameBuffer;                                          // 5
+    frameBuffer.insert ("R",                                // name   // 6
+                        Slice (HALF,                        // type   // 7
+                               (char *) rPixels,            // base   // 8
+                               sizeof (*rPixels) * 1,       // xStride// 9
+                               sizeof (*rPixels) * width)); // yStride// 10
+    frameBuffer.insert ("G",                                // name   // 6
+                        Slice (HALF,                        // type   // 7
+                               (char *) gPixels,            // base   // 8
+                               sizeof (*gPixels) * 1,       // xStride// 9
+                               sizeof (*gPixels) * width)); // yStride// 10
+    frameBuffer.insert ("B",                                // name   // 6
+                        Slice (HALF,                        // type   // 7
+                               (char *) bPixels,            // base   // 8
+                               sizeof (*bPixels) * 1,       // xStride// 9
+                               sizeof (*bPixels) * width)); // yStride// 10
+    frameBuffer.insert ("A",                                // name   // 11
+                        Slice (FLOAT,                       // type   // 12
+                               (char *) aPixels,            // base   // 13
+                               sizeof (*aPixels) * 1,       // xStride// 14
+                               sizeof (*aPixels) * width)); // yStride// 15
+    file.setFrameBuffer (frameBuffer);                                // 16
+    file.writePixels (height);                                        // 17
+}
+
+bool endswithA(char *filename)
+{
+    bool result = false;
+    std::string source = filename;
+    if(source.substr( source.length() - 2 ) == ".A")
+    {
+        // match
+        result = true;
+    }
+    return result;
+}
+
+
+struct ChannelSet
+{
+    const char *name;
+    Array2D<half> rPixels;
+    Array2D<half> gPixels;
+    Array2D<half> bPixels;
+    Array2D<float> aPixels;
+    Box2i dataWindow;
+    Box2i displayWindow;
+};
+
+int main(int argc, char *argv[]) 
+{
+
+    const char *outfile = NULL;
+    const char *infile = NULL;
+
+    if (argc == 1) usage(argv[0]);
+    for (int i = 1; i < argc; ++i) {
+        if (!infile)
+            infile = argv[i];
+        else if (!outfile)
+            outfile = argv[i];
+        else
+            usage(argv[0]);
+    }
+    printf("[Start Process] read file from : %s \n", infile);
+
+    Array2D<half> rPixels;
+    Array2D<half> gPixels;
+    Array2D<half> bPixels;
+    Array2D<float> aPixels;
+    Box2i dataWindow;
+    Box2i displayWindow;
+    bool hasAlpha = true;
+    bool isCorpped = false;
+
+
+
+    dataWindow = ReadDataWindow(infile);
+    displayWindow = ReadDisplayWindow(infile);
+    printf("[Data Window] min x:%i, min y:%i, max x:%i, max y: %i \n", dataWindow.min.x, dataWindow.min.y, dataWindow.max.x, dataWindow.max.y);
+    printf("[Display Window] min x:%i, min y:%i, max x:%i, max y: %i \n", displayWindow.min.x, displayWindow.min.y, displayWindow.max.x, displayWindow.max.y);
+
+    int resolution[2];
+    int minx=displayWindow.max.x,miny=displayWindow.max.y,maxx=0,maxy=0;
+
+    if (!readChannelRGBA(infile, rPixels,gPixels,bPixels,aPixels,resolution[0], resolution[1], hasAlpha, isCorpped)) {
+        printf("[Error] couldn't read image %s\n", infile);
+        return 1;
+    }
+
+    // Read EXR
+    try{
+    InputFile file (infile);
+    Box2i dw = file.header().dataWindow();
+    Box2i dsw = file.header().displayWindow();
+    int width  = dsw.max.x - dsw.min.x + 1;
+    int height = dsw.max.y - dsw.min.y + 1;
+    resolution[0] = width;
+    resolution[1] = height;
+    rPixels.resizeErase (height, width);
+    gPixels.resizeErase (height, width);
+    bPixels.resizeErase (height, width);
+    aPixels.resizeErase (height, width);
+    FrameBuffer readFrameBuffer;
+ 
+    if (dw == dsw)
+        isCorpped = false;
+    else
+        isCorpped = true;
+    hasAlpha = true;
+
+    char *Red = "beauty_chr_fill_a.R";
+    char *Green = "beauty_chr_fill_a.G";
+    char *Blue = "beauty_chr_fill_a.B";
+    char *Alpha = "beauty_chr_fill_a.A";
+
+    bool test1 = endswithA(Red);
+    bool test2 = endswithA(Alpha);
+    if (test1)
+        printf("%s Ends with .A \n", Red);
+    if (test2)
+        printf("%s Ends with .A \n", Alpha);
+
+    readFrameBuffer.insert (Red,
+                        Slice (HALF,
+                               (char *) (&rPixels[0][0] -
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (rPixels[0][0]) * 1,
+                               sizeof (rPixels[0][0]) * width,
+                               1, 1,
+                               0.0));
+    readFrameBuffer.insert (Green,
+                        Slice (HALF,
+                               (char *) (&gPixels[0][0] -
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (gPixels[0][0]) * 1,
+                               sizeof (gPixels[0][0]) * width,
+                               1, 1,
+                               0.0));
+    readFrameBuffer.insert (Blue,
+                        Slice (HALF,
+                               (char *) (&bPixels[0][0] -
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (bPixels[0][0]) * 1,
+                               sizeof (bPixels[0][0]) * width,
+                               1, 1,
+                               0.0));
+    readFrameBuffer.insert (Alpha,
+                        Slice (FLOAT,
+                               (char *) (&aPixels[0][0] -
+                                         dw.min.x -
+                                         dw.min.y * width),
+                               sizeof (aPixels[0][0]) * 1,
+                               sizeof (aPixels[0][0]) * width,
+                               1, 1,
+                               FLT_MAX));
+    file.setFrameBuffer (readFrameBuffer);
+    file.readPixels (dw.min.y, dw.max.y);
+    }
+    catch (const std::exception &e) 
+    {
+        fprintf(stderr, "Unable to read image file \"%s\": %s", infile, e.what());
+        return 0;
+    }
+
+
+    assert(hasAlpha);
+
+    for (int x = 0; x < resolution[0]; ++x)
+    {
+        for (int y = 0; y < resolution[1]; ++y)
+        {
+            // printf("---------------------------------------\nx=%i,y=%i \n",x,y);
+            if (aPixels[y][x] != 0)
+            {
+                // printf("alpha %f \n",aPixels[y][x]);
+                minx = std::min(minx, x);
+                maxx = std::max(maxx, x);
+                miny = std::min(miny, y);
+                maxy = std::max(maxy, y);
+            }
+        }
+    }
+
+    return 0;
+    if (!isCorpped)
+    {
+        printf("[Result Data Window] min x :%i,min y :%i,max x :%i,max y: %i \n", minx, miny, maxx, maxy);
+        Box2i resultDatawindow(V2i(minx,miny), V2i(maxx, maxy));
+        printf("[Write EXR] save file to :%s \n", outfile);
+        // writeChannelRGBA(outfile,rPixels,gPixels,bPixels,aPixels,resultDatawindow,displayWindow,resolution[0], resolution[1]);
+
+        // Write EXR
+
+        char Red[] = "beautyKT.R";
+        char Green[] = "beautyKT.G";
+        char Blue[] = "beautyKT.B";
+        char Alpha[] = "beautyKT.A";
+        int width = resolution[0];
+        int height = resolution[1];
+        Header header (width, height);
+        header.channels().insert (Red, Channel (HALF));
+        header.channels().insert (Green, Channel (HALF));
+        header.channels().insert (Blue, Channel (HALF));
+        header.channels().insert (Alpha, Channel (FLOAT));
+        header.dataWindow() = dataWindow;
+        header.displayWindow() = displayWindow;
+
+        OutputFile ofile (outfile, header);
+        FrameBuffer writeFrameBuffer;
+
+        writeFrameBuffer.insert (Red,
+               Slice (HALF, 
+                  (char *) &rPixels[0][0],
+                  sizeof (rPixels[0][0]),
+                  sizeof (rPixels[0][0]) * width,
+                  1,  
+                  1)
+              );
+
+        writeFrameBuffer.insert (Green, 
+               Slice (HALF,                      
+                  (char *) &gPixels[0][0],  
+                  sizeof (gPixels[0][0]),   
+                  sizeof (gPixels[0][0]) * width,
+                  1,        
+                  1)     
+              );
+        writeFrameBuffer.insert (Blue,
+               Slice (HALF,
+                  (char *) &bPixels[0][0],
+                  sizeof (bPixels[0][0]),
+                  sizeof (bPixels[0][0]) * width,
+                  1,
+                  1)
+              );
+        writeFrameBuffer.insert (Alpha,
+               Slice (FLOAT,
+                  (char *) &aPixels[0][0],
+                  sizeof (aPixels[0][0]),
+                  sizeof (aPixels[0][0]) * width,
+                  1,
+                  1,
+                  0.0)
+              );
+
+        ofile.setFrameBuffer (writeFrameBuffer);
+        ofile.writePixels (dataWindow.max.y - dataWindow.min.y + 1);
+
+    }
+    else
+        printf("[Warning] file already croped: %s \n", infile);
+
+    // InputFile file(infile);
+    // const ChannelList &channels = file.header().channels();
+    // int length = 0;
+    // for (ChannelList::ConstIterator i = channels.begin(); i != channels.end(); ++i)
+    // {
+    //     // const Channel &channel = i.channel();
+    //     ++length;
+    //     // printf("[Channel Name] : %s \n", i.name());
+    // }
+    // length = length/4 ;
+    // ChannelSet channelxxx[length];
+    // int it = 0;
+    // for (ChannelList::ConstIterator i = channels.begin(); i != channels.end(); ++i)
+    // {
+    //     // const Channel &channel = i.channel();
+    //     ++length;
+    //     ChannelSet temp;
+    //     temp.name = i.name();
+    //     channelxxx[it] = temp;
+    //     // printf("[Channel Name] : %s \n", i.name());
+    // }
+    // printf("[LENGTH]  %i \n", length);
+    // for (int i = 0; i < length; ++i)
+    // {
+    //     // printf("[Channel Name] : %s \n", channelxxx[i].name);
+    // }
+
+    return 0;
+}
