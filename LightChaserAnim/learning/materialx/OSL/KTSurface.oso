@@ -1,0 +1,55 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.9.0dev
+# options: -o /home/xukai/Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.oso.8a25-9e02-8053-5775.tmp
+shader KTSurface
+param	float	diffuse_density	0.69999999		%read{6,6} %write{2147483647,-1}
+param	color	diffuse_color	1 1 1		%read{2,2} %write{2147483647,-1}
+param	float	diffuse_sigma	0		%read{1,1} %write{2147483647,-1}
+param	float	specular_density	1		%read{7,7} %write{2147483647,-1}
+param	color	specular_color	1 1 1		%read{5,5} %write{2147483647,-1}
+param	string	microfacet_distribution	"ggx"		%read{4,4} %write{2147483647,-1}
+param	float	microfacet_alpha	0		%read{4,4} %write{2147483647,-1}
+param	float	microfacet_eta	0		%read{4,4} %write{2147483647,-1}
+param	color	opacity	1 1 1		%read{2147483647,-1} %write{2147483647,-1}
+param	vector	normal_map	0 0 0		%read{2147483647,-1} %write{2147483647,-1}
+oparam	closure color	outClosureColor			%read{2147483647,-1} %write{0,9} %initexpr
+global	normal	N	%read{1,4} %write{2147483647,-1}
+local	closure color	result	%read{9,9} %write{8,8}
+local	closure color	diff	%read{6,6} %write{2,2}
+local	closure color	spec	%read{7,7} %write{5,5}
+const	string	$const1	"holdout"		%read{0,0} %write{2147483647,-1}
+temp	closure color	$tmp1	%read{2,2} %write{1,1}
+const	string	$const2	"oren_nayar"		%read{1,1} %write{2147483647,-1}
+temp	closure color	$tmp2	%read{5,5} %write{4,4}
+const	int	$const3	0		%read{4,4} %write{2147483647,-1}
+const	string	$const4	"microfacet"		%read{3,4} %write{2147483647,-1}
+const	vector	$const5	0 0 0		%read{4,4} %write{2147483647,-1}
+temp	closure color	$tmp4	%read{8,8} %write{6,6}
+temp	closure color	$tmp5	%read{8,8} %write{7,7}
+code outClosureColor
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:13
+# {
+	closure		outClosureColor $const1 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl"} %line{13} %argrw{"wr"}
+code ___main___
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:18
+#     spec = microfacet(microfacet_distribution, N, microfacet_alpha,
+	closure		$tmp1 $const2 N diffuse_sigma 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl"} %line{18} %argrw{"wrrr"}
+	mul		diff $tmp1 diffuse_color 	%argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:20
+#     result = diffuse_density*diff + specular_density*spec;
+	functioncall	$const4 5 	%line{20} %argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h:556
+#     return microfacet(distribution, N, vector(0), alpha, alpha, eta, refr);
+	closure		$tmp2 $const4 microfacet_distribution N $const5 microfacet_alpha microfacet_alpha microfacet_eta $const3 	%filename{"Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h"} %line{556} %argrw{"wrrrrrrrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:20
+#     result = diffuse_density*diff + specular_density*spec;
+	mul		spec $tmp2 specular_color 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl"} %line{20} %argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:21
+#     // result = opacity * result + (1 - opacity) * transparent();
+	mul		$tmp4 diff diffuse_density 	%line{21} %argrw{"wrr"}
+	mul		$tmp5 spec specular_density 	%argrw{"wrr"}
+	add		result $tmp4 $tmp5 	%argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTSurface.osl:24
+# }
+	assign		outClosureColor result 	%line{24} %argrw{"wr"}
+	end

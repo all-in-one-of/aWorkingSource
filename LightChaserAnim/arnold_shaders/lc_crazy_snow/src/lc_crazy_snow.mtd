@@ -1,0 +1,6 @@
+# Arnold MetaData File 
+[node lc_crazy_snow]
+	desc STRING "LCA Math Shader Library" 
+	maya.name STRING "lc_crazy_snow"
+	maya.id INT 0x71000020
+	maya.classification STRING "utility/color"

@@ -1,6 +1,0 @@
-README
-Instructions
-1). Set your KATANA_HOME environment variable to point to your Geolib3
-Katana installation
-2). Run:
-  make && make install

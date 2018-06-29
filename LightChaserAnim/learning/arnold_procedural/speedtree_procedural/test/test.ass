@@ -1,0 +1,26 @@
+plane
+{
+ name myplane
+ point 0 -10 0
+ normal 0 1 0
+ shader planeshader
+}
+  
+speedtree_procedural
+{
+ name myrandflake
+ shader myshader
+}
+
+standard_surface
+{
+ name myshader
+ base_color 0 1 0.739199996
+ specular_roughness 0.300000012
+}
+
+lambert
+{
+ name planeshader
+ Kd_color .15 .2 .2
+}

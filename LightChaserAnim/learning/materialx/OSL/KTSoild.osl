@@ -1,0 +1,9 @@
+shader KTSoild(
+    float eta = 0,
+    output color outColor= 0)
+{
+    float Kr,Kt;
+    vector R,T;
+    fresnel(I, N, eta, Kr, Kt, R, T);
+    outColor = color(Kt);
+}

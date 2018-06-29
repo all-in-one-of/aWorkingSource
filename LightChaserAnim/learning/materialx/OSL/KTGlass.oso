@@ -1,0 +1,75 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.9.0dev
+# options: -o /home/xukai/Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.oso.41ab-dc39-4ccb-c276.tmp
+shader KTGlass
+param	color	Cs	1 1 1		%read{16,16} %write{2147483647,-1}
+param	float	roughness	0.050000001		%read{5,14} %write{2147483647,-1}
+param	float	eta	1.5		%read{3,14} %write{2147483647,-1}
+param	int	_refract	0		%read{2147483647,-1} %write{2147483647,-1}
+param	int	enable_tir	1		%read{6,6} %write{2147483647,-1}
+oparam	closure color	result			%read{2147483647,-1} %write{0,17} %initexpr
+global	normal	N	%read{0,14} %write{2147483647,-1}
+global	closure color	Ci	%read{10,17} %write{5,16}
+const	string	$const1	"diffuse"		%read{0,0} %write{2147483647,-1}
+temp	int	$tmp1	%read{2,2} %write{1,1}
+const	string	$const2	"gxx"		%read{5,14} %write{2147483647,-1}
+const	float	$const3	1		%read{3,7} %write{2147483647,-1}
+temp	float	$tmp2	%read{5,5} %write{3,3}
+const	int	$const4	1		%read{5,12} %write{2147483647,-1}
+const	string	$const5	"microfacet"		%read{4,14} %write{2147483647,-1}
+const	vector	$const6	0 0 0		%read{5,14} %write{2147483647,-1}
+temp	closure color	$tmp4	%read{10,10} %write{9,9}
+temp	float	$tmp5	%read{9,9} %write{7,7}
+const	int	$const7	0		%read{9,14} %write{2147483647,-1}
+temp	closure color	$tmp8	%read{15,15} %write{14,14}
+code result
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:8
+# {
+	closure		result $const1 N 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{8} %argrw{"wrr"}
+code ___main___
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:10
+#       Ci = microfacet("gxx", N, roughness, 1.0 / eta, 1);
+	backfacing	$tmp1 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{10} %argrw{"w"}
+	if		$tmp1 11 16 	%argrw{"r"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:11
+#       if( enable_tir)
+	div		$tmp2 $const3 eta 	%line{11} %argrw{"wrr"}
+	functioncall	$const5 6 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h:556
+#     return microfacet(distribution, N, vector(0), alpha, alpha, eta, refr);
+	closure		Ci $const5 $const2 N $const6 roughness roughness $tmp2 $const4 	%filename{"Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h"} %line{556} %argrw{"wrrrrrrrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:12
+#       {
+	if		enable_tir 11 11 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{12} %argrw{"r"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:14
+#       }
+	div		$tmp5 $const3 eta 	%line{14} %argrw{"wrr"}
+	functioncall	$const5 10 	%argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h:556
+#     return microfacet(distribution, N, vector(0), alpha, alpha, eta, refr);
+	closure		$tmp4 $const5 $const2 N $const6 roughness roughness $tmp5 $const7 	%filename{"Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h"} %line{556} %argrw{"wrrrrrrrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:14
+#       }
+	add		Ci Ci $tmp4 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{14} %argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:19
+#       Ci += microfacet("gxx", N, roughness, eta, 0);
+	functioncall	$const5 13 	%line{19} %argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h:556
+#     return microfacet(distribution, N, vector(0), alpha, alpha, eta, refr);
+	closure		Ci $const5 $const2 N $const6 roughness roughness eta $const4 	%filename{"Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h"} %line{556} %argrw{"wrrrrrrrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:20
+#    }
+	functioncall	$const5 15 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{20} %argrw{"r"}
+# Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h:556
+#     return microfacet(distribution, N, vector(0), alpha, alpha, eta, refr);
+	closure		$tmp8 $const5 $const2 N $const6 roughness roughness eta $const7 	%filename{"Git/git_repo/katana/arnold/ktoa-2.1.0.0-kat3.0/osl/include/stdosl.h"} %line{556} %argrw{"wrrrrrrrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:20
+#    }
+	add		Ci Ci $tmp8 	%filename{"Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl"} %line{20} %argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:22
+#    result = Ci;
+	mul		Ci Ci Cs 	%line{22} %argrw{"wrr"}
+# Git/git_repo/aWorkingSource/LightChaserAnim/learning/materialx/OSL/KTGlass.osl:23
+# }
+	assign		result Ci 	%line{23} %argrw{"wr"}
+	end

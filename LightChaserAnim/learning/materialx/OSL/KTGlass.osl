@@ -1,0 +1,23 @@
+shader KTGlass(
+   color Cs = 1,
+   float roughness = 0.05,
+   float eta = 1.5,
+   int _refract = 0,
+   int enable_tir = 1,
+   output closure color result = diffuse(N))
+{
+   if( backfacing() ){
+      Ci = microfacet("gxx", N, roughness, 1.0 / eta, 1);
+      if( enable_tir)
+      {
+         Ci += microfacet("gxx", N, roughness, 1.0 / eta, 0);
+      }
+   } 
+   else
+   {
+      Ci = microfacet("gxx", N, roughness, eta, 1);
+      Ci += microfacet("gxx", N, roughness, eta, 0);
+   }
+   Ci *= Cs;
+   result = Ci;
+}

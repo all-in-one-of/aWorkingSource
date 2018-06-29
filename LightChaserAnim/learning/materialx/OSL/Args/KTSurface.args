@@ -1,0 +1,20 @@
+<args format="1.0">
+<param name="debug_mode" label="Debug"/>
+<page name="Diffuse">
+    <param name="diffuse_density" label="diffuse_density" slider="True"/>
+    <param name="diffuse_color" label="diffuse_color" widget="color"/>
+    <param name="diffuse_sigma" label="diffuse_sigma" slider="True"/>
+</page>
+<page name="Specular">
+    <param name="specular_density" label="specular_density" slider="True"/>
+    <param name="specular_color" label="specular_color" widget="color"/>
+    <param name="microfacet_distribution" label="microfacet_distribution" widget="popup">
+    <hintlist name="options">
+        <string value="ggx"/>
+        <string value="beckmann"/>
+    </hintlist>
+    </param>
+    <param name="microfacet_alpha" label="microfacet_alpha" slider="True"/>
+    <param name="microfacet_eta" label="microfacet_eta" slider="True"/>
+</page>
+</args>

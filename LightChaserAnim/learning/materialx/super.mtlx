@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<materialx version="1.35">
+  <xi:include href="/mnt/work/software/arnold/arnold-5.1.0.0/materialx/arnold/nodedefs.mtlx" />
+  <material name="Material_PontMate">
+    <shaderref name="ShaderRef_standard_surface1" node="standard_surface">
+      <bindinput name="base" type="float" value="0.8" />
+      <bindinput name="diffuse_roughness" type="float" value="0" />
+      <bindinput name="specular" type="float" value="1" />
+      <bindinput name="specular_roughness" type="float" value="0.1" />
+      <bindinput name="specular_IOR" type="float" value="1.52" />
+      <bindinput name="specular_anisotropy" type="float" value="0" />
+      <bindinput name="specular_rotation" type="float" value="0" />
+      <bindinput name="metalness" type="float" value="0" />
+      <bindinput name="transmission" type="float" value="0" />
+      <bindinput name="transmission_color" type="color3" value="1, 1, 1" />
+      <bindinput name="transmission_depth" type="float" value="0" />
+      <bindinput name="transmission_scatter" type="color3" value="0, 0, 0" />
+      <bindinput name="transmission_scatter_anisotropy" type="float" value="0" />
+      <bindinput name="transmission_dispersion" type="float" value="0" />
+      <bindinput name="transmission_extra_roughness" type="float" value="0" />
+      <bindinput name="transmit_aovs" type="string" value="false" />
+      <bindinput name="subsurface" type="float" value="0" />
+      <bindinput name="subsurface_color" type="color3" value="1, 1, 1" />
+      <bindinput name="subsurface_radius" type="color3" value="1, 1, 1" />
+      <bindinput name="subsurface_scale" type="float" value="1" />
+      <bindinput name="subsurface_anisotropy" type="float" value="0" />
+      <bindinput name="subsurface_type" type="string" value="diffusion" />
+      <bindinput name="thin_walled" type="string" value="false" />
+      <bindinput name="normal" type="vector3" value="0, 0, 0" />
+      <bindinput name="tangent" type="vector3" value="0, 0, 0" />
+      <bindinput name="coat" type="float" value="0" />
+      <bindinput name="coat_color" type="color3" value="1, 1, 1" />
+      <bindinput name="coat_roughness" type="float" value="0.1" />
+      <bindinput name="coat_IOR" type="float" value="1.5" />
+      <bindinput name="coat_normal" type="vector3" value="0, 0, 0" />
+      <bindinput name="coat_affect_color" type="float" value="0" />
+      <bindinput name="coat_affect_roughness" type="float" value="0" />
+      <bindinput name="thin_film_thickness" type="float" value="0" />
+      <bindinput name="thin_film_IOR" type="float" value="1.5" />
+      <bindinput name="emission" type="float" value="0" />
+      <bindinput name="emission_color" type="color3" value="1, 1, 1" />
+      <bindinput name="opacity" type="color3" value="1, 1, 1" />
+      <bindinput name="caustics" type="string" value="false" />
+      <bindinput name="internal_reflections" type="string" value="true" />
+      <bindinput name="exit_to_background" type="string" value="false" />
+      <bindinput name="indirect_diffuse" type="float" value="1" />
+      <bindinput name="indirect_specular" type="float" value="1" />
+      <bindinput name="aov_id1" type="string" value="" />
+      <bindinput name="id1" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id2" type="string" value="" />
+      <bindinput name="id2" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id3" type="string" value="" />
+      <bindinput name="id3" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id4" type="string" value="" />
+      <bindinput name="id4" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id5" type="string" value="" />
+      <bindinput name="id5" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id6" type="string" value="" />
+      <bindinput name="id6" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id7" type="string" value="" />
+      <bindinput name="id7" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id8" type="string" value="" />
+      <bindinput name="id8" type="color3" value="0, 0, 0" />
+      <bindinput name="base_color" type="color3" nodegraph="NodeGraph_color_correct" />
+      <bindinput name="specular_color" type="color3" nodegraph="NodeGraph_color_correct1" />
+    </shaderref>
+  </material>
+  <nodegraph name="NodeGraph_color_correct">
+    <color_correct name="color_correct" type="color3">
+      <input name="alpha_is_luminance" type="boolean" value="false" />
+      <input name="alpha_multiply" type="float" value="1" />
+      <input name="alpha_add" type="float" value="0" />
+      <input name="invert" type="boolean" value="true" />
+      <input name="invert_alpha" type="boolean" value="false" />
+      <input name="gamma" type="float" value="2.4" />
+      <input name="hue_shift" type="float" value="9.8" />
+      <input name="saturation" type="float" value="11.6" />
+      <input name="contrast" type="float" value="3" />
+      <input name="contrast_pivot" type="float" value="0.18" />
+      <input name="exposure" type="float" value="0" />
+      <input name="multiply" type="color3" value="1, 1, 1" />
+      <input name="add" type="color3" value="0, 0, 0" />
+      <input name="mask" type="float" value="1" />
+      <input name="input" type="color3" nodename="image" />
+    </color_correct>
+    <image name="image" type="color3">
+      <input name="filename" type="string" value="/mnt/public/home/xukai/sources/checker.tx" />
+      <input name="color_space" type="string" value="sRGB" />
+      <input name="filter" type="string" value="smart_bicubic" />
+      <input name="mipmap_bias" type="integer" value="0" />
+      <input name="single_channel" type="boolean" value="false" />
+      <input name="start_channel" type="integer" value="0" />
+      <input name="swrap" type="string" value="periodic" />
+      <input name="twrap" type="string" value="periodic" />
+      <input name="sscale" type="float" value="1" />
+      <input name="tscale" type="float" value="1" />
+      <input name="sflip" type="boolean" value="false" />
+      <input name="tflip" type="boolean" value="false" />
+      <input name="soffset" type="float" value="0" />
+      <input name="toffset" type="float" value="0" />
+      <input name="swap_st" type="boolean" value="false" />
+      <input name="uvcoords" type="vector2" value="0, 0" />
+      <input name="uvset" type="string" value="" />
+      <input name="multiply" type="color3" value="1, 1, 1" />
+      <input name="offset" type="color3" value="0, 0, 0" />
+      <input name="ignore_missing_textures" type="boolean" value="false" />
+      <input name="missing_texture_color" type="color4" value="0, 0, 0, 0" />
+    </image>
+    <output name="out" type="color3" nodename="color_correct" />
+  </nodegraph>
+  <nodegraph name="NodeGraph_color_correct1">
+    <color_correct name="color_correct1" type="color3">
+      <input name="alpha_is_luminance" type="boolean" value="false" />
+      <input name="alpha_multiply" type="float" value="1" />
+      <input name="alpha_add" type="float" value="0" />
+      <input name="invert" type="boolean" value="false" />
+      <input name="invert_alpha" type="boolean" value="false" />
+      <input name="gamma" type="float" value="1" />
+      <input name="hue_shift" type="float" value="0" />
+      <input name="saturation" type="float" value="1" />
+      <input name="contrast" type="float" value="1" />
+      <input name="contrast_pivot" type="float" value="0.18" />
+      <input name="exposure" type="float" value="0" />
+      <input name="multiply" type="color3" value="1, 1, 1" />
+      <input name="add" type="color3" value="0, 0, 0" />
+      <input name="mask" type="float" value="1" />
+      <input name="input" type="color3" nodename="image1" />
+    </color_correct>
+    <image name="image1" type="color3">
+      <input name="filename" type="string" value="/mnt/public/home/xukai/sources/checker.tx" />
+      <input name="color_space" type="string" value="auto" />
+      <input name="filter" type="string" value="smart_bicubic" />
+      <input name="mipmap_bias" type="integer" value="0" />
+      <input name="single_channel" type="boolean" value="false" />
+      <input name="start_channel" type="integer" value="0" />
+      <input name="swrap" type="string" value="periodic" />
+      <input name="twrap" type="string" value="periodic" />
+      <input name="sscale" type="float" value="1" />
+      <input name="tscale" type="float" value="1" />
+      <input name="sflip" type="boolean" value="false" />
+      <input name="tflip" type="boolean" value="false" />
+      <input name="soffset" type="float" value="0" />
+      <input name="toffset" type="float" value="0" />
+      <input name="swap_st" type="boolean" value="false" />
+      <input name="uvcoords" type="vector2" value="0, 0" />
+      <input name="uvset" type="string" value="" />
+      <input name="multiply" type="color3" value="1, 1, 1" />
+      <input name="offset" type="color3" value="0, 0, 0" />
+      <input name="ignore_missing_textures" type="boolean" value="false" />
+      <input name="missing_texture_color" type="color4" value="0, 0, 0, 0" />
+    </image>
+    <output name="out" type="color3" nodename="color_correct1" />
+  </nodegraph>
+  <material name="Material_PonyMate1">
+    <shaderref name="ShaderRef_standard_surface" node="standard_surface">
+      <bindinput name="base" type="float" value="0.8" />
+      <bindinput name="base_color" type="color3" value="1, 1, 1" />
+      <bindinput name="diffuse_roughness" type="float" value="0" />
+      <bindinput name="specular" type="float" value="1" />
+      <bindinput name="specular_color" type="color3" value="1, 1, 1" />
+      <bindinput name="specular_roughness" type="float" value="0.1" />
+      <bindinput name="specular_IOR" type="float" value="1.52" />
+      <bindinput name="specular_anisotropy" type="float" value="0" />
+      <bindinput name="specular_rotation" type="float" value="0" />
+      <bindinput name="metalness" type="float" value="0" />
+      <bindinput name="transmission" type="float" value="0" />
+      <bindinput name="transmission_color" type="color3" value="1, 1, 1" />
+      <bindinput name="transmission_depth" type="float" value="0" />
+      <bindinput name="transmission_scatter" type="color3" value="0, 0, 0" />
+      <bindinput name="transmission_scatter_anisotropy" type="float" value="0" />
+      <bindinput name="transmission_dispersion" type="float" value="0" />
+      <bindinput name="transmission_extra_roughness" type="float" value="0" />
+      <bindinput name="transmit_aovs" type="string" value="false" />
+      <bindinput name="subsurface" type="float" value="1" />
+      <bindinput name="subsurface_color" type="color3" value="0.294195, 0, 4.00395e-07" />
+      <bindinput name="subsurface_radius" type="color3" value="0.3, 0.3, 0.3" />
+      <bindinput name="subsurface_scale" type="float" value="1" />
+      <bindinput name="subsurface_anisotropy" type="float" value="0" />
+      <bindinput name="subsurface_type" type="string" value="1" />
+      <bindinput name="thin_walled" type="string" value="false" />
+      <bindinput name="normal" type="vector3" value="0, 0, 0" />
+      <bindinput name="tangent" type="vector3" value="0, 0, 0" />
+      <bindinput name="coat" type="float" value="0" />
+      <bindinput name="coat_color" type="color3" value="1, 1, 1" />
+      <bindinput name="coat_roughness" type="float" value="0.1" />
+      <bindinput name="coat_IOR" type="float" value="1.5" />
+      <bindinput name="coat_normal" type="vector3" value="0, 0, 0" />
+      <bindinput name="coat_affect_color" type="float" value="0" />
+      <bindinput name="coat_affect_roughness" type="float" value="0" />
+      <bindinput name="thin_film_thickness" type="float" value="0" />
+      <bindinput name="thin_film_IOR" type="float" value="1.5" />
+      <bindinput name="emission" type="float" value="0" />
+      <bindinput name="emission_color" type="color3" value="1, 1, 1" />
+      <bindinput name="opacity" type="color3" value="1, 1, 1" />
+      <bindinput name="caustics" type="string" value="false" />
+      <bindinput name="internal_reflections" type="string" value="true" />
+      <bindinput name="exit_to_background" type="string" value="false" />
+      <bindinput name="indirect_diffuse" type="float" value="1" />
+      <bindinput name="indirect_specular" type="float" value="1" />
+      <bindinput name="aov_id1" type="string" value="" />
+      <bindinput name="id1" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id2" type="string" value="" />
+      <bindinput name="id2" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id3" type="string" value="" />
+      <bindinput name="id3" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id4" type="string" value="" />
+      <bindinput name="id4" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id5" type="string" value="" />
+      <bindinput name="id5" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id6" type="string" value="" />
+      <bindinput name="id6" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id7" type="string" value="" />
+      <bindinput name="id7" type="color3" value="0, 0, 0" />
+      <bindinput name="aov_id8" type="string" value="" />
+      <bindinput name="id8" type="color3" value="0, 0, 0" />
+    </shaderref>
+  </material>
+  <material name="Material_PonyMate2">
+    <shaderref name="ShaderRef_mix_shader" node="mix_shader">
+      <bindinput name="mode" type="string" value="1" />
+      <bindinput name="mix" type="float" value="0.5" />
+      <bindinput name="shader1" type="color3" nodegraph="NodeGraph_standard_surface2" />
+      <bindinput name="shader2" type="color3" nodegraph="NodeGraph_standard_surface3" />
+    </shaderref>
+  </material>
+  <nodegraph name="NodeGraph_standard_surface2">
+    <standard_surface name="standard_surface2" type="color3">
+      <input name="base" type="float" value="0.8" />
+      <input name="base_color" type="color3" value="1, 0, 0" />
+      <input name="diffuse_roughness" type="float" value="0" />
+      <input name="specular" type="float" value="1" />
+      <input name="specular_color" type="color3" value="1, 1, 1" />
+      <input name="specular_roughness" type="float" value="0.1" />
+      <input name="specular_IOR" type="float" value="1.52" />
+      <input name="specular_anisotropy" type="float" value="0" />
+      <input name="specular_rotation" type="float" value="0" />
+      <input name="metalness" type="float" value="0" />
+      <input name="transmission" type="float" value="0" />
+      <input name="transmission_color" type="color3" value="1, 1, 1" />
+      <input name="transmission_depth" type="float" value="0" />
+      <input name="transmission_scatter" type="color3" value="0, 0, 0" />
+      <input name="transmission_scatter_anisotropy" type="float" value="0" />
+      <input name="transmission_dispersion" type="float" value="0" />
+      <input name="transmission_extra_roughness" type="float" value="0" />
+      <input name="transmit_aovs" type="boolean" value="false" />
+      <input name="subsurface" type="float" value="0" />
+      <input name="subsurface_color" type="color3" value="1, 1, 1" />
+      <input name="subsurface_radius" type="color3" value="1, 1, 1" />
+      <input name="subsurface_scale" type="float" value="1" />
+      <input name="subsurface_anisotropy" type="float" value="0" />
+      <input name="subsurface_type" type="string" value="diffusion" />
+      <input name="thin_walled" type="boolean" value="false" />
+      <input name="normal" type="vector3" value="0, 0, 0" />
+      <input name="tangent" type="vector3" value="0, 0, 0" />
+      <input name="coat" type="float" value="0" />
+      <input name="coat_color" type="color3" value="1, 1, 1" />
+      <input name="coat_roughness" type="float" value="0.1" />
+      <input name="coat_IOR" type="float" value="1.5" />
+      <input name="coat_normal" type="vector3" value="0, 0, 0" />
+      <input name="coat_affect_color" type="float" value="0" />
+      <input name="coat_affect_roughness" type="float" value="0" />
+      <input name="thin_film_thickness" type="float" value="0" />
+      <input name="thin_film_IOR" type="float" value="1.5" />
+      <input name="emission" type="float" value="0" />
+      <input name="emission_color" type="color3" value="1, 1, 1" />
+      <input name="opacity" type="color3" value="1, 1, 1" />
+      <input name="caustics" type="boolean" value="false" />
+      <input name="internal_reflections" type="boolean" value="true" />
+      <input name="exit_to_background" type="boolean" value="false" />
+      <input name="indirect_diffuse" type="float" value="1" />
+      <input name="indirect_specular" type="float" value="1" />
+      <input name="aov_id1" type="string" value="" />
+      <input name="id1" type="color3" value="0, 0, 0" />
+      <input name="aov_id2" type="string" value="" />
+      <input name="id2" type="color3" value="0, 0, 0" />
+      <input name="aov_id3" type="string" value="" />
+      <input name="id3" type="color3" value="0, 0, 0" />
+      <input name="aov_id4" type="string" value="" />
+      <input name="id4" type="color3" value="0, 0, 0" />
+      <input name="aov_id5" type="string" value="" />
+      <input name="id5" type="color3" value="0, 0, 0" />
+      <input name="aov_id6" type="string" value="" />
+      <input name="id6" type="color3" value="0, 0, 0" />
+      <input name="aov_id7" type="string" value="" />
+      <input name="id7" type="color3" value="0, 0, 0" />
+      <input name="aov_id8" type="string" value="" />
+      <input name="id8" type="color3" value="0, 0, 0" />
+    </standard_surface>
+    <output name="out" type="color3" nodename="standard_surface2" />
+  </nodegraph>
+  <nodegraph name="NodeGraph_standard_surface3">
+    <standard_surface name="standard_surface3" type="color3">
+      <input name="base" type="float" value="0.8" />
+      <input name="base_color" type="color3" value="0, 1, 0" />
+      <input name="diffuse_roughness" type="float" value="0" />
+      <input name="specular" type="float" value="1" />
+      <input name="specular_color" type="color3" value="1, 1, 1" />
+      <input name="specular_roughness" type="float" value="0.1" />
+      <input name="specular_IOR" type="float" value="1.52" />
+      <input name="specular_anisotropy" type="float" value="0" />
+      <input name="specular_rotation" type="float" value="0" />
+      <input name="metalness" type="float" value="0" />
+      <input name="transmission" type="float" value="0" />
+      <input name="transmission_color" type="color3" value="1, 1, 1" />
+      <input name="transmission_depth" type="float" value="0" />
+      <input name="transmission_scatter" type="color3" value="0, 0, 0" />
+      <input name="transmission_scatter_anisotropy" type="float" value="0" />
+      <input name="transmission_dispersion" type="float" value="0" />
+      <input name="transmission_extra_roughness" type="float" value="0" />
+      <input name="transmit_aovs" type="boolean" value="false" />
+      <input name="subsurface" type="float" value="0" />
+      <input name="subsurface_color" type="color3" value="1, 1, 1" />
+      <input name="subsurface_radius" type="color3" value="1, 1, 1" />
+      <input name="subsurface_scale" type="float" value="1" />
+      <input name="subsurface_anisotropy" type="float" value="0" />
+      <input name="subsurface_type" type="string" value="diffusion" />
+      <input name="thin_walled" type="boolean" value="false" />
+      <input name="normal" type="vector3" value="0, 0, 0" />
+      <input name="tangent" type="vector3" value="0, 0, 0" />
+      <input name="coat" type="float" value="0" />
+      <input name="coat_color" type="color3" value="1, 1, 1" />
+      <input name="coat_roughness" type="float" value="0.1" />
+      <input name="coat_IOR" type="float" value="1.5" />
+      <input name="coat_normal" type="vector3" value="0, 0, 0" />
+      <input name="coat_affect_color" type="float" value="0" />
+      <input name="coat_affect_roughness" type="float" value="0" />
+      <input name="thin_film_thickness" type="float" value="0" />
+      <input name="thin_film_IOR" type="float" value="1.5" />
+      <input name="emission" type="float" value="0" />
+      <input name="emission_color" type="color3" value="1, 1, 1" />
+      <input name="opacity" type="color3" value="1, 1, 1" />
+      <input name="caustics" type="boolean" value="false" />
+      <input name="internal_reflections" type="boolean" value="true" />
+      <input name="exit_to_background" type="boolean" value="false" />
+      <input name="indirect_diffuse" type="float" value="1" />
+      <input name="indirect_specular" type="float" value="1" />
+      <input name="aov_id1" type="string" value="" />
+      <input name="id1" type="color3" value="0, 0, 0" />
+      <input name="aov_id2" type="string" value="" />
+      <input name="id2" type="color3" value="0, 0, 0" />
+      <input name="aov_id3" type="string" value="" />
+      <input name="id3" type="color3" value="0, 0, 0" />
+      <input name="aov_id4" type="string" value="" />
+      <input name="id4" type="color3" value="0, 0, 0" />
+      <input name="aov_id5" type="string" value="" />
+      <input name="id5" type="color3" value="0, 0, 0" />
+      <input name="aov_id6" type="string" value="" />
+      <input name="id6" type="color3" value="0, 0, 0" />
+      <input name="aov_id7" type="string" value="" />
+      <input name="id7" type="color3" value="0, 0, 0" />
+      <input name="aov_id8" type="string" value="" />
+      <input name="id8" type="color3" value="0, 0, 0" />
+    </standard_surface>
+    <output name="out" type="color3" nodename="standard_surface3" />
+  </nodegraph>
+  <look name="default">
+    <materialassign name="MaterialAssign_PontMate" collection="Colloction_PontMate" material="Material_PontMate" />
+    <materialassign name="MaterialAssign_PonyMate1" collection="Colloction_PonyMate1" material="Material_PonyMate1" />
+    <materialassign name="MaterialAssign_PonyMate2" collection="Colloction_PonyMate2" material="Material_PonyMate2" />
+  </look>
+  <collection name="Colloction_PontMate">
+    <collectionadd name="CollectionAddPontMate" geom="*/pony" />
+  </collection>
+  <collection name="Colloction_PonyMate1">
+    <collectionadd name="CollectionAddPonyMate1" geom="*/pony1" />
+  </collection>
+  <collection name="Colloction_PonyMate2">
+    <collectionadd name="CollectionAddPonyMate2" geom="*/pony2" />
+  </collection>
+</materialx>

@@ -1,0 +1,24 @@
+shader KTSurface(
+    float diffuse_density = 0.7,
+    color diffuse_color = 1,
+    float diffuse_sigma = 0.0,
+    float specular_density = 1.0,
+    color specular_color = 1.0,
+    string microfacet_distribution = "ggx",
+    float microfacet_alpha = 0.0,
+    float microfacet_eta = 0.0,
+    color opacity = 1.0,
+    vector normal_map = 0.0,
+    output closure color outClosureColor = holdout())
+{
+    closure color result;
+    closure color diff;
+    closure color spec;
+    diff = oren_nayar(N, diffuse_sigma)*diffuse_color;
+    spec = microfacet(microfacet_distribution, N, microfacet_alpha,
+            microfacet_eta, 0)*specular_color;
+    result = diffuse_density*diff + specular_density*spec;
+    // result = opacity * result + (1 - opacity) * transparent();
+    // outClosureColor = reflection(N, microfacet_eta);
+    outClosureColor = result;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<materialx version="1.35">
+  <xi:include href="/mnt/work/software/arnold/arnold-5.1.0.0/materialx/arnold/nodedefs.mtlx" />
+  <material name="M_red">
+    <shaderref name="redMate" node="standard_surface">
+      <bindinput name="base_color" type="color3" value="1, 0, 0" />
+      <bindinput name="specular" type="float" value="0.5" />
+    </shaderref>
+  </material>
+  <material name="M_blue">
+    <shaderref name="blueMate" node="standard_surface">
+      <bindinput name="base_color" type="color3" value="0, 0, 1" />
+      <bindinput name="specular" type="float" value="0.5" />
+    </shaderref>
+  </material>
+  <collection name="S_pony">
+    <collectionadd name="GlobalAssign" geom="*" />
+  </collection>
+  <look name="lookA">
+    <materialassign name="redMA" collection="S_pony" material="M_red" />
+  </look>
+  <look name="lookB">
+    <materialassign name="blueMA" collection="S_pony" material="M_blue" />
+  </look>
+  <look name="lookC">
+    <visibility name="ponyVisibility" collection="S_pony" visible="false" />
+  </look>
+</materialx>

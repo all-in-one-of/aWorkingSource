@@ -8,12 +8,13 @@ enum Params
     p_input,
     p_space,
     p_normal,
+    p_global_zoom,
+    p_blend_softness,
     p_frequency,
     p_offset,
     p_scale,
     p_rotate,
     p_rotjitter,
-    p_blend_softness,
 };
 
 node_parameters 
@@ -21,12 +22,13 @@ node_parameters
     AiParameterRGBA("input", 1.0f, 1.0f, 1.0f, 1.0f);
     AiParameterEnum("space", 0, triplanarSpaceNames);
     AiParameterEnum("normal", 0, triplanarNormalNames);
+    AiParameterFlt("global_zoom", 1.f);
+    AiParameterFlt("blend_softness", 0.1f);
     AiParameterFlt("frequency", 1.0f);
     AiParameterVec("offset",0.0f,0.0f,0.0f);
     AiParameterVec("scale",1.0f,1.0f,1.0f);
     AiParameterVec("rotate",0.0f,0.0f,0.0f);
     AiParameterVec("rotjitter",1.0f,1.0f,1.0f);
-    AiParameterFlt("blend_softness", 0.1);
 }
 
 
@@ -51,9 +53,11 @@ shader_evaluate
 
     int normal = AiShaderEvalParamInt(p_normal);
 
-    float frequency = AiShaderEvalParamFlt(p_frequency);
+    float global_zoom = AiShaderEvalParamFlt(p_global_zoom);
 
-    float blend_softness = clamp(AiShaderEvalParamFlt(p_blend_softness), 0.f, 1.f);
+    float blend_softness = AiClamp(AiShaderEvalParamFlt(p_blend_softness), 0.f, 1.f);
+
+    float frequency = AiShaderEvalParamFlt(p_frequency);
 
     AtVector scale = AiShaderEvalParamVec(p_scale);
 
@@ -61,7 +65,7 @@ shader_evaluate
 
     AtVector offset = AiShaderEvalParamVec(p_offset);
 
-    AtVector rotjitter = AiShaderEvalParamVec(p_rotjitter);
+    // AtVector rotjitter = AiShaderEvalParamVec(p_rotjitter);
 
     SGCache SGC;
     SGC.initCache(sg);
@@ -73,15 +77,18 @@ shader_evaluate
     AtVector dPdy;
 
 
-    getProjectionGeometry(node, sg, space, normal, &P, &N, &dPdx, &dPdy);
     float weights[3];
-    computeBlendWeights(N, space, blend_softness, weights);
     int blends[3];
+    getProjectionGeometry(node, sg, space, normal, &P, &N, &dPdx, &dPdy);
+    getBlendWeights(N, space, blend_softness, weights);
 
     P *= frequency;
     // compute texture values
 
     AtRGBA colorResult[3];
+
+    // gllobal scale of texture
+    scale *= global_zoom;
 
     // lookup X
     AtVector projP;
@@ -98,10 +105,8 @@ shader_evaluate
     sg->dvdx = dPdx.y * scale.x;
     sg->dvdy = dPdy.y * scale.x;
 
-    AtRGBA result;
     if (weights[0] > 0.) 
     {
-        //sg->out.RGB() = AiShaderEvalParamRGBA(p_input).rgb();
         colorResult[0] = AiShaderEvalParamRGBA(p_input);
         blends[0] = 1;
     } 
@@ -158,22 +163,13 @@ shader_evaluate
         blends[2] = 0;
     }
 
-    //sg->out.RGBA() = colorResult[0]*blends[0] + colorResult[1]*blends[1] + colorResult[2]*blends[2];
-    //sg->out.RGBA() = lerp(lerp(lerp(colorResult[2],colorResult[0],weights[0]),colorResult[1],weights[1]),colorResult[2],weights[2]);
-    sg->out.RGBA() = lerp(lerp(lerp(colorResult[1]*weights[1],colorResult[0]*weights[0],weights[0]),colorResult[1]*weights[1],weights[1]),colorResult[2]*weights[2],weights[2]);
+    AtRGBA result = AI_RGBA_ZERO;
+    for (unsigned int i = 0; i < 6; ++i)
+    {
+        result = lerp(result, colorResult[i%3]*blends[i%3], weights[i%3]);
+    }
+
+    // sg->out.RGBA() = AtRGBA(N.x, N.y, N.z, 1.0f);
+    sg->out.RGBA() = result;
     SGC.restoreSG(sg);
 }
-
-/*
-node_loader 
-{
-    if (i > 0)
-        return 0;
-    node->methods = LcTriplanarMtd;
-    node->output_type = AI_TYPE_RGBA;
-    node->name = "lc_triplanar";
-    node->node_type = AI_NODE_SHADER;
-    strcpy(node->version, AI_VERSION);
-    return true;
-}
-*/

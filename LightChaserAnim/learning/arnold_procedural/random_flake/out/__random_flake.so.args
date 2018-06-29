@@ -1,0 +1,7 @@
+<args format="1.0" outputStyle="scenegraphAttr">
+    <int name='count' default=10/>
+    <int name='recursions' default=5/>
+    <float name='sphere_radius' default=0.01/>
+    <float name='flake_radius' default=10.0/>
+    <int name='seed' default=0/>
+</args>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<materialx version="1.35">
+  <xi:include href="/mnt/work/software/arnold/arnold-5.1.0.0/materialx/arnold/nodedefs.mtlx" />
+  <nodedef name="KTColorMap" type="color3" node="KTColorMap">
+    <input name="input" type="color3" value="1, 1, 1" />
+    <output name="out" type="color3" />
+  </nodedef>
+  <nodegraph name="NodeGraph_red">
+    <image name="image_shading_node" type="color3">
+      <input name="filename" type="string" value="/mnt/public/home/xukai/sources/checker.png" />
+    </image>
+    <KTColorMap name="KTColorMap_shading_node" type="color3">
+      <input name="input" type="color3" nodename="image_shading_node" />
+    </KTColorMap>
+    <color_correct name="cc_shading_node" type="color3">
+      <input name="input" type="color3" nodename="KTColorMap_shading_node" />
+      <input name="saturation" type="float" value="1" />
+    </color_correct>
+    <output name="out" type="color3" nodename="KTColorMap_shading_node" />
+  </nodegraph>
+  <material name="M_red">
+    <shaderref name="redMate" node="standard_surface">
+      <bindinput name="base_color" type="color3" />
+      <bindinput name="specular" type="color3" nodegraph="NodeGraph_red" output="out" />
+    </shaderref>
+  </material>
+  <collection name="S_pony">
+    <collectionadd name="GlobalAssign" geom="*" />
+  </collection>
+  <look name="default">
+    <materialassign name="default" collection="S_pony" material="M_red" />
+  </look>
+</materialx>

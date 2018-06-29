@@ -1,0 +1,6 @@
+<args format="1.0" outputStyle="scenegraphAttr">
+    <string name='filename' default=''/>
+    <float  name='offset' default=0/>
+    <float  name='threads' default=1/>
+    <float  name='motionSamples' default='-0.25, 0.25' size=2 widget="sortableArray"/>
+</args>

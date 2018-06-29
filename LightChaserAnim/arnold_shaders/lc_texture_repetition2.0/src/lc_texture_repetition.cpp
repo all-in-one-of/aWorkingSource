@@ -4,119 +4,23 @@ AI_SHADER_NODE_EXPORT_METHODS(LcTextureRepetitionMethods);
 
 enum TextureRepetitionParams { 
    p_texture,
+   p_color_space,
    p_uvset_name,
 };
-
-void TextureFileOperation(AtVector2 inUV,AtVector2 inDu,AtVector2 inDv,AtVector2 &outUV,AtVector2 &outDu,AtVector2 &outDv,AtVector2 noise,AtVector2 offset,float rotate,AtVector2 repeat)
-{
-
-   float outU = inUV.x;
-   float outV = inUV.y;
-   float outDuDx = inDu.x;
-   float outDuDy = inDu.y;
-   float outDvDx = inDv.x;
-   float outDvDy = inDv.y;
-
-
-   AtVector2 thisBlock = hashBlock(inUV, repeat);
-
-   // noise uv
-   if (noise.x > 0.0f)
-   {
-      AtVector2 uv = AtVector2(outU * 16, outV * 16);
-      outU += noise.x * AiPerlin2(uv);
-   }
-
-   if (noise.y > 0.0f)
-   {
-      AtVector2 uv = AtVector2((1 - outU) * 16, (1 - outV) * 16);
-      outV += noise.y * AiPerlin2(uv);
-   }
-
-   
-
-   // for UVs, translate first, then rotate
-   if(offset.x > 0 || offset.y > 0)
-   {
-      float offsetX = sin(AI_PI*(thisBlock.x+offset.x));
-      float offsetY = cos(AI_PI*(thisBlock.y+offset.y));
-      outU += offsetX;
-      outV += offsetY;
-      //outU += offset.x;
-      //outV += offset.y;
-   }
-
-      
-
-   int mirrorE = (int)thisBlock.x % 2;
-   int mirrorO = (int)thisBlock.y % 2;
-   // do mirror, stagger before rotation
-   if (mirrorE == 0)
-   {
-      float center = floor(outV) + 0.5f;
-      outV = center - (outV - center);
-
-      outDuDy = -outDuDy;
-      outDvDy = -outDvDy;
-   }
-   
-   if (mirrorO == 0)
-   {
-      float center = floor(outU) + 0.5f;
-      outU = center - (outU - center);
-
-      outDuDx = -outDuDx;
-      outDvDx = -outDvDx;
-   }
-
-
-   // finally rotate UV
-   if (rotate <= -AI_EPSILON || rotate >= AI_EPSILON)
-   {
-      float x, y;
-      float ca = cos(rotate);
-      float sa = sin(rotate);
-
-      x = outU - 0.5f;
-      y = outV - 0.5f;
-      outU = 0.5f + ca * x - sa * y;
-      outV = 0.5f + ca * y + sa * x;
-
-      x = outDuDx;
-      y = outDuDy;
-      outDuDx = ca * x - sa * y;
-      outDuDy = ca * y + sa * x;
-
-      x = outDvDx;
-      y = outDvDy;
-      outDvDx = ca * x - sa * y;
-      outDvDy = ca * y + sa * x;
-   }
-   
-   // apply repetition factor
-   outU *= repeat.x;
-   outV *= repeat.y;
-
-   // replace shader globals
-   outUV.x = outU;
-   outUV.y = outV;
-   outDu.x = outDuDx;
-   outDu.y = outDuDy;
-   outDv.x = outDvDx;
-   outDv.y = outDvDy;
-}
 
 node_parameters
 {
    AiParameterStr("texture", "");
+   AiParameterStr("color_space", "");
    AiParameterStr("uvSetName", "");
 }
 
 node_initialize
 {
    ShaderData *data = new ShaderData;
-   const char *texname = AiNodeGetStr(node, "texture");
-   data->texturehandle = AiTextureHandleCreate(texname);
+   AtString texname = AiNodeGetStr(node, AtString("texture"));
+   AtString color_space = AiNodeGetStr(node, AtString("color_space"));
+   data->texturehandle = AiTextureHandleCreate(texname,color_space);
    AiTextureParamsSetDefaults(data->textureparams);
    AiNodeSetLocalData(node, data);
 }

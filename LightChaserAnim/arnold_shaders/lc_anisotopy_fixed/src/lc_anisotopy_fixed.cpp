@@ -20,13 +20,11 @@ static const char* anisotopySpaceNames[] =
 enum Params 
 {
 	p_anisotopy_vector = 0,
-	p_standard_surface,
 };
 
 node_parameters
 {
 	AiParameterEnum("anisotopy_vector", 0, anisotopySpaceNames);
-	AiParameterClosure("standard_surface");
 }
 
 node_initialize
@@ -49,7 +47,6 @@ shader_evaluate
 	if (AiUDataGetVec(AtString("Pref"), Pref))
 	{	
 		// just caculate Pref derivatives vector
-		AiMsgWarning("[anisotopy_fix] Got Pref!");
 		AiUDataGetDxyDerivativesVec(AtString("Pref"), dPdx, dPdy);
 	}
 	else 
@@ -77,9 +74,7 @@ shader_evaluate
 			break;
  	}
 
-	sg->dPdu = result;
-
-	sg->out.CLOSURE() = AiShaderEvalParamClosure(p_standard_surface);
+	sg->out.VEC() = result;
 }
 
 node_loader
@@ -87,7 +82,7 @@ node_loader
 	if (i > 0)
 	  return false;
 	node->methods = AnisotopyFixedMethods;
-	node->output_type = AI_TYPE_CLOSURE;
+	node->output_type = AI_TYPE_VECTOR;
 	node->name = "lc_anisotopy_fixed";
 	node->node_type = AI_NODE_SHADER;
 	strcpy(node->version, AI_VERSION);

@@ -5,11 +5,13 @@
 
 extern AtNodeMethods* LcTextureRepetitionMethods;
 extern AtNodeMethods* LcTextureBlendMethods;
+extern AtNodeMethods* LcTextureEntranceMethods;
 
 enum SHADERS
 {
    LcTextureRepetition,
    LcTextureBlend,
+   LcTextureEntrance
 };
 
 node_loader
@@ -26,6 +28,12 @@ node_loader
          node->methods     = (AtNodeMethods*) LcTextureBlendMethods;
          node->output_type = AI_TYPE_RGBA;
          node->name        = "lc_texture_blend";
+         node->node_type   = AI_NODE_SHADER;
+      break;
+      case LcTextureEntrance:
+         node->methods     = (AtNodeMethods*) LcTextureEntranceMethods;
+         node->output_type = AI_TYPE_RGBA;
+         node->name        = "lc_texture_entrance";
          node->node_type   = AI_NODE_SHADER;
       break;
       default:

@@ -1,0 +1,6 @@
+<args format="1.0">
+<param name="speedtree_roots" label="Speedtree Roots"/>
+<param name="speedtree_trunks" label="Speedtree Trunks"/>
+<param name="speedtree_branches" label="Speedtree Branches"/>
+<param name="speedtree_leaves" label="Speedtree Leaves"/>
+</args>

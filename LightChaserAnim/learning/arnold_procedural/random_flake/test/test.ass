@@ -1,0 +1,31 @@
+plane
+{
+ name myplane
+ point 0 -10 0
+ normal 0 1 0
+ shader planeshader
+}
+ 
+random_flake
+{
+ name myrandflake
+ shader flakeshader
+ count 6
+ recursions 9
+ sphere_radius 0.015
+ flake_radius 10
+ seed 4
+}
+
+standard_surface
+{
+ name flakeshader
+ base_color 0 1 0.739199996
+ specular_roughness 0.300000012
+}
+
+lambert
+{
+ name planeshader
+ Kd_color .15 .2 .2
+}

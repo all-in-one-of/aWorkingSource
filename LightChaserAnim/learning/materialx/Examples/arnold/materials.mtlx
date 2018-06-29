@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<materialx version="1.35" cms="ocio" colorspace="lin_rec709" require="matnodegraph,override">
+  <xi:include href="nodedefs.mtlx"/>
+
+<materialx version="1.35" cms="ocio" colorspace="lin_rec709">
+  <nodedef name="shader1" type="surfaceshader" node="simple_srf">
+    <input name="diffColor" type="color3" value="0.18, 0.18, 0.18"/>
+    <input name="specColor" type="color3" value="0.05, 0.05, 0.05"/>
+    <input name="specRoughness" type="float" value="0.25"/>
+  </nodedef>
+
+  <material name="material1">
+    <shaderref name="sr1" node="utility">
+      <bindinput name="color" type="color3" value="1.0, 0.00, 0.00"/>
+    </shaderref>
+  </material>
+
+</materialx>

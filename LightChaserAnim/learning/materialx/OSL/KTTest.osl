@@ -1,0 +1,9 @@
+shader KTTest(
+    color normal_map = 0,
+    output vector outVector = 0
+    )
+{
+    vector normal_vector = vector(normal_map[0],normal_map[1],normal_map[2]);
+    normal_vector = vector(normal_vector[0],1-normal_vector[1],normal_vector[2]);
+    outVector = normal_vector;
+}

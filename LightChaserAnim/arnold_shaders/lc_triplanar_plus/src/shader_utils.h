@@ -1,8 +1,37 @@
 #pragma once
 
 #include <ai.h>
-#include <Remap.h>
 #include <cstring>
+#include <algorithm>
+
+inline float lerp(const float a, const float b, const float t) {
+    return (1 - t) * a + t * b;
+}
+
+inline AtRGB lerp(const AtRGB& a, const AtRGB& b, const float t) {
+    AtRGB r;
+    r.r = lerp(a.r, b.r, t);
+    r.g = lerp(a.g, b.g, t);
+    r.b = lerp(a.b, b.b, t);
+    return r;
+}
+
+inline AtVector lerp(const AtVector& a, const AtVector& b, const float t) {
+    AtVector r;
+    r.x = lerp(a.x, b.x, t);
+    r.y = lerp(a.y, b.y, t);
+    r.z = lerp(a.z, b.z, t);
+    return r;
+}
+
+inline AtRGBA lerp(const AtRGBA& a, const AtRGBA& b, const float t) {
+    AtRGBA r;
+    r.r = lerp(a.r, b.r, t);
+    r.g = lerp(a.g, b.g, t);
+    r.b = lerp(a.b, b.b, t);
+    r.a = lerp(a.a, b.a, t);
+    return r;
+}
 
 enum TriplanarSpaceEnum 
 {
@@ -14,15 +43,15 @@ enum TriplanarSpaceEnum
 static const char* triplanarSpaceNames[] 
     = {"World", "Object", "Pref", NULL};
 
-enum TriplanarNormalEnum 
+enum TriplanarNormalEnum
 {
-    N_GEOMETRIC = 0,
-    N_SMOOTH,
+    N_DEFAULT = 0,
+    N_PREFSMOOTH,
     N_SMOOTHNOBUMP,
 };
 
 static const char* triplanarNormalNames[] 
-    = {"Geometric", "Smooth","SmoothNoBump", NULL};
+    = {"Default", "PerfSmooth","SmoothNoBump", NULL};
 
 
 struct SGCache 
@@ -60,66 +89,80 @@ inline void getProjectionGeometry(const AtNode* node, const AtShaderGlobals* sg,
     AtVector baseN;
     switch (normal) 
     {
-    case N_GEOMETRIC:
-        baseN = sg->Ng;
+    case N_DEFAULT:
+        baseN = sg->N;
         break;
-    case N_SMOOTH:
+    case N_PREFSMOOTH:
         baseN = sg->N;
         break;
     case N_SMOOTHNOBUMP:
         baseN = sg->Ns;
         break;
     default:
-        baseN = sg->N;
+        baseN = sg->Ng;
         break;
     }
 
     switch (space) 
     {
-    case NS_WORLD:
-        *P = sg->P;
-        *N = baseN;
-        *dPdx = sg->dPdx;
-        *dPdy = sg->dPdy;
-        break;
-    case NS_OBJECT:
-        *P = sg->Po;
-        *N = AiShaderGlobalsTransformNormal(sg, baseN, AI_WORLD_TO_OBJECT);
-        *dPdx =
-            AiShaderGlobalsTransformVector(sg, sg->dPdx, AI_WORLD_TO_OBJECT);
-        *dPdy =
-            AiShaderGlobalsTransformVector(sg, sg->dPdy, AI_WORLD_TO_OBJECT);
-        break;
-    case NS_PREF:
-        static AtString str_Pref("Pref");
-        if (!AiUDataGetVec(str_Pref, *P)) 
-        {
-            AiMsgWarning("[lc_triplanar_plus] could not get Pref");
-            // TODO: Output warning about not finding the correct data.
+        case NS_WORLD:
+            *P = sg->P;
+            *N = baseN;
+            *dPdx = sg->dPdx;
+            *dPdy = sg->dPdy;
+            break;
+        case NS_OBJECT:
             *P = sg->Po;
             *N = AiShaderGlobalsTransformNormal(sg, baseN, AI_WORLD_TO_OBJECT);
-            *dPdx = AiShaderGlobalsTransformVector(sg, sg->dPdx,
-                                                   AI_WORLD_TO_OBJECT);
-            *dPdy = AiShaderGlobalsTransformVector(sg, sg->dPdy,
-                                                   AI_WORLD_TO_OBJECT);
-        } 
-        else 
-        {
-            AiMsgWarning("[lc_triplanar_plus got Pref]");
-            AiUDataGetDxyDerivativesVec(str_Pref, *dPdx, *dPdy);
-            *N = AiV3Normalize(AiV3Cross(*dPdx, *dPdy));
-        }
-        break;
-    default:
-        *P = sg->P;
-        *N = baseN;
-        *dPdx = sg->dPdx;
-        *dPdy = sg->dPdy;
-        break;
+            // *N = baseN;
+            *dPdx = AiShaderGlobalsTransformVector(sg, sg->dPdx, 
+                                                        AI_WORLD_TO_OBJECT);
+            *dPdy = AiShaderGlobalsTransformVector(sg, sg->dPdy, 
+                                                        AI_WORLD_TO_OBJECT);
+            break;
+        case NS_PREF:
+            static AtString str_Pref("Pref");
+            if (!AiUDataGetVec(str_Pref, *P)) 
+            {
+                AiMsgWarning("[triplanar plus] Could not get Pref, was wrong?");
+                *P = sg->Po;
+                // *N = AiShaderGlobalsTransformVector(sg, baseN, AI_WORLD_TO_OBJECT);
+                *N = baseN;
+                *dPdx = AiShaderGlobalsTransformVector(sg, sg->dPdx,
+                                                            AI_WORLD_TO_OBJECT);
+                *dPdy = AiShaderGlobalsTransformVector(sg, sg->dPdy,
+                                                            AI_WORLD_TO_OBJECT);
+            }
+            else
+            {
+                AiUDataGetDxyDerivativesVec(str_Pref, *dPdx, *dPdy);
+                switch (normal)
+                {
+                    case N_DEFAULT:
+                        *N = AiV3Normalize(AiV3Cross(*dPdx, *dPdy));                    
+                        break;
+                    case N_PREFSMOOTH:
+                        *N = baseN;
+                        break;
+                    case N_SMOOTHNOBUMP:
+                        *N = baseN;
+                        break;
+                    default:
+                        *N = AiV3Normalize(AiV3Cross(*dPdx, *dPdy));
+                        break;
+                }
+            }
+            break;
+        default:
+            *P = sg->P;
+            *N = baseN;
+            *dPdx = sg->dPdx;
+            *dPdy = sg->dPdy;
+            break;
     }
 }
 
-inline void computeBlendWeights(const AtVector N, int space, float blendSoftness, float* weights) 
+inline void getBlendWeights(const AtVector N, int space, float blendSoftness, float* weights) 
 {
     weights[0] = fabsf(N.x);
     weights[1] = fabsf(N.y);
@@ -137,6 +180,7 @@ inline void computeBlendWeights(const AtVector N, int space, float blendSoftness
             weights[i] /= weightsum;
     }
 }
+
 
 inline void rotateUVs(AtVector& P, float degrees) 
 {

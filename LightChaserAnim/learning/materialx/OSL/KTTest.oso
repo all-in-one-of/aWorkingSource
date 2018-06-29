@@ -1,0 +1,36 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.9.0dev
+# options: -o /home/xukai/Documents/TestProgramFactory/learning/materialx/OSL/KTTest.oso
+shader KTTest
+param	color	normal_map	0 0 0		%read{0,2} %write{2147483647,-1}
+oparam	vector	outVector	0 0 0		%read{2147483647,-1} %write{9,9}
+local	vector	normal_vector	%read{4,9} %write{3,8}
+const	int	$const1	0		%read{0,4} %write{2147483647,-1}
+temp	float	$tmp1	%read{3,3} %write{0,0}
+const	int	$const2	1		%read{1,5} %write{2147483647,-1}
+temp	float	$tmp2	%read{3,3} %write{1,1}
+const	int	$const3	2		%read{2,7} %write{2147483647,-1}
+temp	float	$tmp3	%read{3,3} %write{2,2}
+temp	float	$tmp4	%read{8,8} %write{4,4}
+temp	float	$tmp5	%read{6,6} %write{5,5}
+temp	float	$tmp6	%read{8,8} %write{6,6}
+const	float	$const4	1		%read{6,6} %write{2147483647,-1}
+temp	float	$tmp7	%read{8,8} %write{7,7}
+code ___main___
+# /home/xukai/Documents/TestProgramFactory/learning/materialx/OSL/KTTest.osl:6
+#     vector normal_vector = vector(normal_map[0],normal_map[1],normal_map[2]);
+	compref		$tmp1 normal_map $const1 	%filename{"/home/xukai/Documents/TestProgramFactory/learning/materialx/OSL/KTTest.osl"} %line{6} %argrw{"wrr"}
+	compref		$tmp2 normal_map $const2 	%argrw{"wrr"}
+	compref		$tmp3 normal_map $const3 	%argrw{"wrr"}
+	vector		normal_vector $tmp1 $tmp2 $tmp3 	%argrw{"wrrr"}
+# /home/xukai/Documents/TestProgramFactory/learning/materialx/OSL/KTTest.osl:7
+#     normal_vector = vector(normal_vector[0],1-normal_vector[1],normal_vector[2]);
+	compref		$tmp4 normal_vector $const1 	%line{7} %argrw{"wrr"}
+	compref		$tmp5 normal_vector $const2 	%argrw{"wrr"}
+	sub		$tmp6 $const4 $tmp5 	%argrw{"wrr"}
+	compref		$tmp7 normal_vector $const3 	%argrw{"wrr"}
+	vector		normal_vector $tmp4 $tmp6 $tmp7 	%argrw{"wrrr"}
+# /home/xukai/Documents/TestProgramFactory/learning/materialx/OSL/KTTest.osl:8
+#     outVector = normal_vector;
+	assign		outVector normal_vector 	%line{8} %argrw{"wr"}
+	end
