@@ -1,10 +1,10 @@
 # See README for instructions on how to use this Makefile
 
 # katana2.1v5
-KATANA_HOME = /mnt/work/software/katana/katana2.1v5
+KATANA_HOME = /mnt/work/software/katana/katana2.5v5
 # katana2.5v5
 #~KATANA_HOME = /mnt/work/software/katana/katana2.5v5
-INSTALL_TARGET = /home/xukai/Git/git_repo/katana/resource/2.1/Libs
+INSTALL_TARGET = /home/xukai/Git/git_repo/katana/resource/2.5/Libs
 
 # The output objects dir
 OBJDIR = ./out

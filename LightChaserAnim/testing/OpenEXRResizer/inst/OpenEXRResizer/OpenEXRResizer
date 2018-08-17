@@ -50,7 +50,6 @@ def main():
     # and return the results
     results = pool.map(excuted, tasks)
 
-        # os.system(command)
 if __name__ == "__main__":
     main()
 

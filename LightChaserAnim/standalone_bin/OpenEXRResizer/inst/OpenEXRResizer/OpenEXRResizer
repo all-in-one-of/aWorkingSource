@@ -46,11 +46,8 @@ def main():
     # make the Pool of workers
     pool = ThreadPool(int(threads)) 
 
-    # open the urls in their own threads
-    # and return the results
     results = pool.map(excuted, tasks)
 
-        # os.system(command)
 if __name__ == "__main__":
     main()
 

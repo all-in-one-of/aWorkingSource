@@ -143,6 +143,9 @@ void VdbPointsOp::cook(Foundry::Katana::GeolibCookInterface &interface)
     interface.setAttr("geometry.point.P", FnAttribute::FloatAttribute(P.data(), P.size(), 3));
     interface.setAttr("type", FnAttribute::StringAttribute("pointcloud"));
     interface.setAttr("xform", buildTransform(grid_ptr));
+    interface.setAttr("viewer.default.drawOptions.color.i0",FnAttribute::FloatAttribute(1.0));
+    interface.setAttr("viewer.default.drawOptions.color.i1",FnAttribute::FloatAttribute(0.0));
+    interface.setAttr("viewer.default.drawOptions.color.i2",FnAttribute::FloatAttribute(0.0));
     interface.stopChildTraversal();
 }
 
@@ -153,6 +156,6 @@ DEFINE_GEOLIBOP_PLUGIN(VdbPointsOp)
 void registerPlugins()
 {
     REGISTER_PLUGIN(VdbPointsOp, "VdbPoints", 0, 1);
-    std::cout<<"[LCA PLUGIN]: Register VdbPoints v1.0"<<std::endl;
+    std::cout<<"[LCA PLUGIN]: Register VdbPoints v1.1"<<std::endl;
 }
 
