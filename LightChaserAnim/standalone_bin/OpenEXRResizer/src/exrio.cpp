@@ -1,8 +1,5 @@
 #include "exrio.h"
  
-using namespace Imf;
-using namespace Imath;
-
 Box2i ReadDisplayWindow(const char *name)
 {
     Box2i result(V2i(0,0), V2i(1000, 1000));
@@ -169,4 +166,38 @@ void WriteEXR2(const char *name, float *pixels, int xRes, int yRes, Box2i dw)
     }
 
     delete[] hrgba;
+}
+
+void ReadHeaderData(const char *name, HeaderData& data)
+{
+    Box2i dataWindow(V2i(0,0), V2i(1000, 1000));
+    Box2i displayWindow(V2i(0,0), V2i(1000, 1000));
+    try {
+    InputFile file(name);
+    Box2i dataw = file.header().dataWindow();
+    Box2i displayw = file.header().displayWindow();
+    data.renderer = "arnold";
+
+    data.dataWindow = dataw;
+    data.displayWindow = displayw;
+
+    vector<MapAttrbute>* list = data.get();
+
+    // file.header().Resolution();
+    for(vector<MapAttrbute>::iterator it = (*list).begin(); it != (*list).end(); ++it)
+    {
+        // cout << (*it).getAttribute() << endl;
+        const StringAttribute *attribute =
+            file.header().findTypedAttribute <StringAttribute> (it->attribute());
+        if (attribute)
+            it->setValue(attribute->value());
+    }
+    const StringAttribute *resolution =
+        file.header().findTypedAttribute <StringAttribute> ("file");
+    if (resolution)
+        cout << "resolution:" << resolution->value() << endl;
+
+    }catch (const std::exception &e) {
+        fprintf(stderr, "Unable to read image file \"%s\": %s", name, e.what());
+    }
 }

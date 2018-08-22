@@ -1,3 +1,0 @@
-<args format="1.0" outputStyle="scenegraphAttr">
-    <int name='input' default='0'/>
-</args>

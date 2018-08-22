@@ -1,0 +1,1342 @@
+# depslib dependency file v1.0
+1528872853 source:/mnt/work/home/xiangquan/codeblocks/speedTree/speedTree_maya_procedural/source/procArgs.cpp
+	"include/procArgs.h"
+
+1529984285 /mnt/work/home/xiangquan/codeblocks/speedTree/speedTree_maya_procedural/include/procArgs.h
+	"Core/Core.h"
+	"Core/CoordSys.h"
+	"stdlib.h"
+	<sstream>
+	<iostream>
+	<fstream>
+	<cstring>
+	<cstdlib>
+	<math.h>
+	<string>
+	<vector>
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Core.h
+	"Core/ExportBegin.h"
+	"Core/Extents.h"
+	"Core/String.h"
+	"Core/Wind.h"
+	"Core/StaticArray_inl.h"
+	"Core/Core_inl.h"
+	"Core/RenderState_inl.h"
+	"Core/Geometry_inl.h"
+	"Core/VertexDecl_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/ExportBegin.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Extents.h
+	"Core/ExportBegin.h"
+	"Core/CoordSys.h"
+	"Core/Vector.h"
+	<cfloat>
+	<cassert>
+	"Core/Extents_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/CoordSys.h
+	"Core/ExportBegin.h"
+	"Core/Matrix.h"
+	<cassert>
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Matrix.h
+	"Core/ExportBegin.h"
+	"Core/Vector.h"
+	<string.h>
+	<cstring>
+	"Core/Matrix_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Vector.h
+	"Core/ExportBegin.h"
+	"Core/Types.h"
+	<limits>
+	<math.h>
+	<cfloat>
+	<cmath>
+	<cfloat>
+	"Core/Vector_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Types.h
+	"Core/ExportBegin.h"
+	<stddef.h>
+	"Core/Types_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Types_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/ExportEnd.h
+
+1462888482 /usr/include/math.h
+	<features.h>
+	<bits/huge_val.h>
+	<bits/huge_valf.h>
+	<bits/huge_vall.h>
+	<bits/inf.h>
+	<bits/nan.h>
+	<bits/mathdef.h>
+	<bits/mathcalls.h>
+	<bits/mathcalls.h>
+	<bits/mathcalls.h>
+	<bits/mathinline.h>
+
+1462888471 /usr/include/features.h
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1462888489 /usr/include/sys/cdefs.h
+	<features.h>
+	<bits/wordsize.h>
+
+1462888483 /usr/include/bits/wordsize.h
+
+1462888471 /usr/include/gnu/stubs.h
+	<bits/wordsize.h>
+	<gnu/stubs-32.h>
+	<gnu/stubs-64.h>
+
+1462886066 /usr/include/gnu/stubs-32.h
+
+1462888505 /usr/include/gnu/stubs-64.h
+
+1462888482 /usr/include/bits/huge_val.h
+	<endian.h>
+
+1462888485 /usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+	<bits/byteswap.h>
+
+1462888485 /usr/include/bits/endian.h
+
+1462888485 /usr/include/bits/byteswap.h
+	<bits/wordsize.h>
+
+1462888482 /usr/include/bits/huge_valf.h
+
+1462888482 /usr/include/bits/huge_vall.h
+
+1462888482 /usr/include/bits/inf.h
+
+1462888482 /usr/include/bits/nan.h
+	<endian.h>
+
+1462888482 /usr/include/bits/mathdef.h
+	<bits/wordsize.h>
+
+1462888482 /usr/include/bits/mathcalls.h
+
+1462888482 /usr/include/bits/mathinline.h
+	<bits/wordsize.h>
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Vector_inl.h
+
+1462888485 /usr/include/string.h
+	<features.h>
+	<stddef.h>
+	<xlocale.h>
+	<bits/string.h>
+	<bits/string2.h>
+	<bits/string3.h>
+
+1462888472 /usr/include/xlocale.h
+
+1462888485 /usr/include/bits/string.h
+
+1462888485 /usr/include/bits/string2.h
+	<endian.h>
+	<bits/types.h>
+	<stdlib.h>
+
+1462888488 /usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/typesizes.h>
+
+1462888488 /usr/include/bits/typesizes.h
+
+1462888483 /usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+	<bits/stdlib.h>
+	<bits/stdlib-ldbl.h>
+
+1462888488 /usr/include/bits/waitflags.h
+
+1462888488 /usr/include/bits/waitstatus.h
+	<endian.h>
+
+1462888488 /usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1462888487 /usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1462888487 /usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+
+1462888489 /usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+
+1462888489 /usr/include/bits/select.h
+	<bits/wordsize.h>
+
+1462888483 /usr/include/bits/sigset.h
+
+1462888488 /usr/include/sys/sysmacros.h
+	<features.h>
+
+1462888488 /usr/include/bits/pthreadtypes.h
+	<bits/wordsize.h>
+
+1462888483 /usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1462888483 /usr/include/bits/stdlib.h
+
+1462888483 /usr/include/bits/stdlib-ldbl.h
+
+1462888485 /usr/include/bits/string3.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Matrix_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Extents_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/String.h
+	"Core/ExportBegin.h"
+	"Core/Array.h"
+	"Core/Types.h"
+	"Core/FixedString.h"
+	<cstring>
+	"PortableCrt.h"
+	<stdio.h>
+	<cstdio>
+	"Core/String_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Array.h
+	"Core/ExportBegin.h"
+	<cstdlib>
+	<cassert>
+	<typeinfo>
+	"Core/Memory.h"
+	<string.h>
+	<cstring>
+	"Core/Array_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Memory.h
+	"Allocator.h"
+	"Core/Types.h"
+	<cassert>
+	<new>
+	<malloc.h>
+	<stdlib.h>
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Allocator.h
+	<cstdlib>
+	"Core/ExportBegin.h"
+	<string.h>
+	"Core/ExportEnd.h"
+
+1462888485 /usr/include/malloc.h
+	<features.h>
+	<stddef.h>
+	<stdio.h>
+
+1462888484 /usr/include/stdio.h
+	<features.h>
+	<stddef.h>
+	<bits/types.h>
+	<libio.h>
+	<stdarg.h>
+	<bits/stdio_lim.h>
+	<bits/sys_errlist.h>
+	<getopt.h>
+	<bits/stdio.h>
+	<bits/stdio2.h>
+	<bits/stdio-ldbl.h>
+
+1462888484 /usr/include/libio.h
+	<_G_config.h>
+	<stdarg.h>
+	<sys/cdefs.h>
+	<bits/stdio-lock.h>
+	<shlib-compat.h>
+	<bits/libio-ldbl.h>
+
+1462888484 /usr/include/_G_config.h
+	<bits/types.h>
+	<stddef.h>
+	<wchar.h>
+	<gconv.h>
+
+1462888485 /usr/include/wchar.h
+	<features.h>
+	<stdio.h>
+	<stdarg.h>
+	<bits/wchar.h>
+	<stddef.h>
+	<wctype.h>
+	<xlocale.h>
+	<xlocale.h>
+	<xlocale.h>
+	<wctype.h>
+	<bits/wchar2.h>
+	<bits/wchar-ldbl.h>
+
+1462888485 /usr/include/bits/wchar.h
+
+1462888490 /usr/include/wctype.h
+	<features.h>
+	<bits/types.h>
+	<wchar.h>
+	<endian.h>
+	<xlocale.h>
+
+1462888485 /usr/include/bits/wchar2.h
+
+1462888485 /usr/include/bits/wchar-ldbl.h
+
+1462888472 /usr/include/gconv.h
+	<features.h>
+	<wchar.h>
+	<stddef.h>
+
+1272972443 /usr/include/bits/stdio-lock.h
+	<bits/libc-lock.h>
+
+1273000941 /usr/include/bits/libc-lock.h
+	<pthread.h>
+
+1462888495 /usr/include/pthread.h
+	<features.h>
+	<endian.h>
+	<sched.h>
+	<time.h>
+	<bits/pthreadtypes.h>
+	<bits/setjmp.h>
+	<bits/wordsize.h>
+
+1462888488 /usr/include/sched.h
+	<features.h>
+	<bits/types.h>
+	<stddef.h>
+	<time.h>
+	<bits/sched.h>
+
+1462888488 /usr/include/bits/sched.h
+
+1462888482 /usr/include/bits/setjmp.h
+	<bits/wordsize.h>
+
+1462888484 /usr/include/bits/libio-ldbl.h
+
+1462888484 /usr/include/bits/stdio_lim.h
+
+1462888484 /usr/include/bits/sys_errlist.h
+
+1462888488 /usr/include/getopt.h
+	<ctype.h>
+
+1462888481 /usr/include/ctype.h
+	<features.h>
+	<bits/types.h>
+	<endian.h>
+	<xlocale.h>
+
+1462888484 /usr/include/bits/stdio.h
+
+1462888484 /usr/include/bits/stdio2.h
+
+1462888484 /usr/include/bits/stdio-ldbl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Array_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/FixedString.h
+	"Core/ExportBegin.h"
+	"Core/Types.h"
+	"PortableCrt.h"
+	<cstdio>
+	<cassert>
+	<string.h>
+	<cstring>
+	"Core/FixedString_inl.h"
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/PortableCrt.h
+	"Core/ExportBegin.h"
+	"Core/Types.h"
+	<cstdio>
+	<ctime>
+	<cstdarg>
+	<cassert>
+	<cstring>
+	"Core/ExportEnd.h"
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/FixedString_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/String_inl.h
+
+1509440713 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Wind.h
+	"Core/ExportBegin.h"
+	"Core/Types.h"
+	"Core/Wind_inl.h"
+	"Core/ExportEnd.h"
+
+1494559838 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Wind_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/StaticArray_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Core_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/RenderState_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/Geometry_inl.h
+
+1451889136 /mnt/work/home/xiangquan/Source/speedtreeSDK-v7.0/Include/Core/VertexDecl_inl.h
+
+1530857675 source:/mnt/work/home/xiangquan/codeblocks/speedTree/speedTree_maya_procedural/source/ST_DSO.cpp
+	<ai.h>
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<math.h>
+	<sstream>
+	"stdlib.h"
+	"SpeedtreeReader/SpeedTreeVertex.h"
+	"SpeedtreeReader/readSpeedTreeSrt.h"
+	"SpeedtreeReader/SpeedTreeVertex.h"
+	"Core/Core.h"
+	"Core/Wind.h"
+	"Core/CoordSys.h"
+	"include/utilities.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai.h
+	"ai_procedural.h"
+	"ai_volume.h"
+	"ai_plugins.h"
+	"ai_color_managers.h"
+	"ai_drivers.h"
+	"ai_driver_utils.h"
+	"ai_filters.h"
+	"ai_cameras.h"
+	"ai_shaders.h"
+	"ai_nodes.h"
+	"ai_params.h"
+	"ai_metadata.h"
+	"ai_dotass.h"
+	"ai_msg.h"
+	"ai_sampler.h"
+	"ai_shader_aovs.h"
+	"ai_shader_bsdf.h"
+	"ai_shader_closure.h"
+	"ai_shaderglobals.h"
+	"ai_shader_lights.h"
+	"ai_shader_message.h"
+	"ai_shader_radiance.h"
+	"ai_shader_sample.h"
+	"ai_shader_sss.h"
+	"ai_shader_userdef.h"
+	"ai_shader_parameval.h"
+	"ai_shader_util.h"
+	"ai_shader_volume.h"
+	"ai_noise.h"
+	"ai_texture.h"
+	"ai_ray.h"
+	"ai_render.h"
+	"ai_unit_test.h"
+	"ai_universe.h"
+	"ai_critsec.h"
+	"ai_threads.h"
+	"ai_pointcloud.h"
+	"ai_array.h"
+	"ai_bbox.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	"ai_color.h"
+	"ai_enum.h"
+	"ai_math.h"
+	"ai_constants.h"
+	"ai_version.h"
+	"ai_license.h"
+	"ai_allocate.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_procedural.h
+	"ai_version.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_version.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_api.h
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_volume.h
+	"ai_bbox.h"
+	"ai_color.h"
+	"ai_params.h"
+	"ai_string.h"
+	"ai_version.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_bbox.h
+	"ai_vector.h"
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_vector.h
+	"ai_comparison.h"
+	"ai_constants.h"
+	"ai_math.h"
+	"ai_api.h"
+	<cmath>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_comparison.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_constants.h
+	<cfloat>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_math.h
+	"ai_api.h"
+	"ai_constants.h"
+	<cmath>
+	<cstdlib>
+	<cstring>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_color.h
+	"ai_comparison.h"
+	"ai_math.h"
+	"ai_string.h"
+	"ai_constants.h"
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_string.h
+	"ai_api.h"
+	<stddef.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_params.h
+	"ai_array.h"
+	"ai_closure.h"
+	"ai_color.h"
+	"ai_enum.h"
+	"ai_math.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	"ai_api.h"
+	<stdint.h>
+	<windows.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_array.h
+	"ai_color.h"
+	"ai_math.h"
+	"ai_matrix.h"
+	"ai_string.h"
+	"ai_vector.h"
+	"ai_api.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_matrix.h
+	"ai_vector.h"
+	"ai_api.h"
+	"ai_matrix_private.h"
+	<cstring>
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_matrix_private.h
+	<cstring>
+	<stdint.h>
+
+1462888483 /usr/include/stdint.h
+	<features.h>
+	<bits/wchar.h>
+	<bits/wordsize.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_closure.h
+	"ai_api.h"
+	"ai_color.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_enum.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_plugins.h
+	"ai_api.h"
+	"ai_version.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_color_managers.h
+	"ai_api.h"
+	"ai_bbox.h"
+	"ai_nodes.h"
+	<stddef.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_nodes.h
+	"ai_node_entry.h"
+	"ai_params.h"
+	"ai_api.h"
+	"ai_string.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_node_entry.h
+	"ai_params.h"
+	"ai_string.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_drivers.h
+	"ai_nodes.h"
+	"ai_api.h"
+	"ai_bbox.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_driver_utils.h
+	"ai_api.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_filters.h
+	"ai_nodes.h"
+	"ai_vector.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_cameras.h
+	"ai_nodes.h"
+	"ai_vector.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shaders.h
+	"ai_nodes.h"
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_metadata.h
+	"ai_node_entry.h"
+	"ai_vector.h"
+	"ai_color.h"
+	"ai_api.h"
+	"ai_string.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_dotass.h
+	"ai_node_entry.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_msg.h
+	"ai_api.h"
+	<stdint.h>
+	<stddef.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_sampler.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_aovs.h
+	"ai_api.h"
+	"ai_params.h"
+	"ai_color.h"
+	"ai_vector.h"
+	"ai_string.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_bsdf.h
+	"ai_color.h"
+	"ai_ray.h"
+	"ai_vector.h"
+	"ai_shaderglobals.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_ray.h
+	"ai_shader_sample.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	"ai_string.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_sample.h
+	"ai_color.h"
+	"ai_vector.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shaderglobals.h
+	"ai_params.h"
+	"ai_array.h"
+	"ai_color.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	"ai_string.h"
+	"ai_api.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_closure.h
+	"ai_closure.h"
+	"ai_color.h"
+	"ai_shaderglobals.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_lights.h
+	"ai_nodes.h"
+	"ai_shaderglobals.h"
+	"ai_color.h"
+	"ai_vector.h"
+	"ai_ray.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_message.h
+	"ai_array.h"
+	"ai_color.h"
+	"ai_string.h"
+	"ai_vector.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_radiance.h
+	"ai_shaderglobals.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_sss.h
+	"ai_color.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_userdef.h
+	"ai_shaderglobals.h"
+	"ai_array.h"
+	"ai_color.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	"ai_nodes.h"
+	"ai_string.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_parameval.h
+	"ai_array.h"
+	"ai_closure.h"
+	"ai_color.h"
+	"ai_matrix.h"
+	"ai_vector.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_util.h
+	"ai_bbox.h"
+	"ai_color.h"
+	"ai_vector.h"
+	"ai_api.h"
+	"ai_shaderglobals.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_shader_volume.h
+	"ai_color.h"
+	"ai_vector.h"
+	"ai_api.h"
+	"ai_string.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_noise.h
+	"ai_vector.h"
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_texture.h
+	"ai_color.h"
+	"ai_api.h"
+	"ai_shaderglobals.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_render.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_unit_test.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_universe.h
+	"ai_bbox.h"
+	"ai_api.h"
+	"ai_string.h"
+	<stdint.h>
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_critsec.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_threads.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_pointcloud.h
+	"ai_vector.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_license.h
+	"ai_api.h"
+
+1510929024 /mnt/work/software/arnold/arnold-5.0.2.1/include/ai_allocate.h
+	"ai_msg.h"
+	"ai_api.h"
+	"ai_string.h"
+	<cstddef>
+
+1530698795 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/SpeedTreeVertex.h
+	<string.h>
+	<iostream>
+	<fstream>
+	<glm/glm.hpp>
+	<glm/gtx/compatibility.hpp>
+	"Core/Core.h"
+	"SpeedTreeCommon.h"
+	"utilities.h"
+
+1478999134 /usr/local/include/glm/glm.hpp
+	"detail/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cassert>
+	"fwd.hpp"
+	"vec2.hpp"
+	"vec3.hpp"
+	"vec4.hpp"
+	"mat2x2.hpp"
+	"mat2x3.hpp"
+	"mat2x4.hpp"
+	"mat3x2.hpp"
+	"mat3x3.hpp"
+	"mat3x4.hpp"
+	"mat4x2.hpp"
+	"mat4x3.hpp"
+	"mat4x4.hpp"
+	"trigonometric.hpp"
+	"exponential.hpp"
+	"common.hpp"
+	"packing.hpp"
+	"geometric.hpp"
+	"matrix.hpp"
+	"vector_relational.hpp"
+	"integer.hpp"
+
+1478999134 /usr/local/include/glm/detail/_fixes.hpp
+	<cmath>
+
+1478999134 /usr/local/include/glm/fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_int.hpp
+	"setup.hpp"
+	<type_traits>
+	<cstdint>
+
+1478999134 /usr/local/include/glm/detail/setup.hpp
+	<cassert>
+	<cstddef>
+	"../simd/platform.h"
+
+1478999134 /usr/local/include/glm/simd/platform.h
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<nmmintrin.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1478999134 /usr/local/include/glm/detail/type_float.hpp
+	"setup.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1478999134 /usr/local/include/glm/detail/precision.hpp
+	"setup.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat.hpp
+	"precision.hpp"
+
+1478999134 /usr/local/include/glm/vec2.hpp
+	"detail/type_vec2.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1478999134 /usr/local/include/glm/detail/_swizzle.hpp
+
+1478999134 /usr/local/include/glm/detail/_swizzle_func.hpp
+
+1478999134 /usr/local/include/glm/detail/type_vec2.inl
+
+1478999134 /usr/local/include/glm/vec3.hpp
+	"detail/type_vec3.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1478999134 /usr/local/include/glm/detail/type_vec3.inl
+
+1478999134 /usr/local/include/glm/vec4.hpp
+	"detail/type_vec4.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_vec4.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1478999134 /usr/local/include/glm/detail/type_vec4.inl
+	"type_vec4_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/type_vec4_simd.inl
+
+1478999134 /usr/local/include/glm/mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x2.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x2.inl
+	"func_matrix.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1478999134 /usr/local/include/glm/mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x3.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x3.inl
+
+1478999134 /usr/local/include/glm/mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x4.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat2x4.inl
+
+1478999134 /usr/local/include/glm/mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x2.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x2.inl
+
+1478999134 /usr/local/include/glm/mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x3.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x3.inl
+	"func_matrix.hpp"
+
+1478999134 /usr/local/include/glm/mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x4.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat3x4.inl
+
+1478999134 /usr/local/include/glm/mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x2.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x2.inl
+
+1478999134 /usr/local/include/glm/mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x3.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x3.inl
+
+1478999134 /usr/local/include/glm/mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x4.inl
+	"func_matrix.hpp"
+	"type_mat4x4_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/type_mat4x4_simd.inl
+
+1478999134 /usr/local/include/glm/detail/func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+	"func_matrix_simd.inl"
+
+1478999134 /usr/local/include/glm/geometric.hpp
+	"detail/func_geometric.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1478999134 /usr/local/include/glm/detail/func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+	"func_geometric_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1478999134 /usr/local/include/glm/detail/type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1478999134 /usr/local/include/glm/detail/type_vec1.inl
+
+1478999134 /usr/local/include/glm/detail/func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+	"func_exponential_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1478999134 /usr/local/include/glm/detail/func_vector_relational.inl
+	<limits>
+	"func_vector_relational_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_vector_relational_simd.inl
+
+1478999134 /usr/local/include/glm/detail/_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_exponential_simd.inl
+	"../simd/exponential.h"
+
+1478999134 /usr/local/include/glm/simd/exponential.h
+	"platform.h"
+
+1478999134 /usr/local/include/glm/detail/func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1478999134 /usr/local/include/glm/detail/func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+	"func_common_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_common_simd.inl
+	"../simd/common.h"
+	<immintrin.h>
+
+1478999134 /usr/local/include/glm/simd/common.h
+	"platform.h"
+
+1478999134 /usr/local/include/glm/detail/func_geometric_simd.inl
+	"../simd/geometric.h"
+
+1478999134 /usr/local/include/glm/simd/geometric.h
+	"common.h"
+
+1478999134 /usr/local/include/glm/detail/func_matrix_simd.inl
+	"type_mat4x4.hpp"
+	"func_geometric.hpp"
+	"../simd/matrix.h"
+
+1478999134 /usr/local/include/glm/simd/matrix.h
+	"geometric.h"
+
+1478999134 /usr/local/include/glm/trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_trigonometric.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_trigonometric.inl"
+
+1478999134 /usr/local/include/glm/detail/func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+	"func_trigonometric_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_trigonometric_simd.inl
+
+1478999134 /usr/local/include/glm/exponential.hpp
+	"detail/func_exponential.hpp"
+
+1478999134 /usr/local/include/glm/common.hpp
+	"detail/func_common.hpp"
+
+1478999134 /usr/local/include/glm/packing.hpp
+	"detail/func_packing.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1478999134 /usr/local/include/glm/detail/func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+	"func_packing_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1478999134 /usr/local/include/glm/detail/type_half.inl
+
+1478999134 /usr/local/include/glm/detail/func_packing_simd.inl
+
+1478999134 /usr/local/include/glm/matrix.hpp
+	"detail/func_matrix.hpp"
+
+1478999134 /usr/local/include/glm/vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1478999134 /usr/local/include/glm/integer.hpp
+	"detail/func_integer.hpp"
+
+1478999134 /usr/local/include/glm/detail/func_integer.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_common.hpp"
+	"func_vector_relational.hpp"
+	"func_integer.inl"
+
+1478999134 /usr/local/include/glm/detail/func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+	"func_integer_simd.inl"
+
+1478999134 /usr/local/include/glm/detail/func_integer_simd.inl
+	"../simd/integer.h"
+
+1478999134 /usr/local/include/glm/simd/integer.h
+
+1478999134 /usr/local/include/glm/gtx/compatibility.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1478999134 /usr/local/include/glm/gtc/quaternion.hpp
+	"../mat3x3.hpp"
+	"../mat4x4.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1478999134 /usr/local/include/glm/gtc/constants.hpp
+	"../detail/setup.hpp"
+	"constants.inl"
+
+1478999134 /usr/local/include/glm/gtc/constants.inl
+	<limits>
+
+1478999134 /usr/local/include/glm/gtc/quaternion.inl
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"../exponential.hpp"
+	<limits>
+	"quaternion_simd.inl"
+
+1478999134 /usr/local/include/glm/gtc/quaternion_simd.inl
+
+1478999134 /usr/local/include/glm/gtx/compatibility.inl
+	<limits>
+
+1530527477 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/SpeedTreeCommon.h
+	<iostream>
+	<fstream>
+	<glm/glm.hpp>
+	<glm/gtx/compatibility.hpp>
+	"SpeedTreeRoll.h"
+
+1530527371 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/SpeedTreeRoll.h
+	<glm/glm.hpp>
+	<glm/gtx/compatibility.hpp>
+	<glm/gtc/noise.hpp>
+	"utilities.h"
+
+1478999134 /usr/local/include/glm/gtc/noise.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/_noise.hpp"
+	"../geometric.hpp"
+	"../common.hpp"
+	"../vector_relational.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"noise.inl"
+
+1478999134 /usr/local/include/glm/detail/_noise.hpp
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../common.hpp"
+
+1478999134 /usr/local/include/glm/gtc/noise.inl
+
+1530527253 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/utilities.h
+	<string.h>
+	<iostream>
+	<fstream>
+	<glm/glm.hpp>
+	<glm/gtx/compatibility.hpp>
+
+1530697305 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/readSpeedTreeSrt.h
+	<vector>
+	<algorithm>
+	"procArgs.h"
+	"Core/Core.h"
+	"Core/Wind.h"
+	"Core/CoordSys.h"
+	"SpeedtreeReader/SpeedTreeCommon.h"
+
+1529983498 /mnt/work/home/xiangquan/codeblocks/speedTree/LCA_SpeedTree_SDK7_LIB/SpeedtreeReader/procArgs.h
+	"Core/Core.h"
+	"Core/CoordSys.h"
+	"stdlib.h"
+	<sstream>
+	<iostream>
+	<fstream>
+	<cstring>
+	<cstdlib>
+	<math.h>
+	<string>
+	<vector>
+
+1528952457 /mnt/work/home/xiangquan/codeblocks/speedTree/speedTree_maya_procedural/include/utilities.h
+	<string.h>
+	<iostream>
+	<fstream>
+	<glm/glm.hpp>
+	<glm/gtx/compatibility.hpp>
+

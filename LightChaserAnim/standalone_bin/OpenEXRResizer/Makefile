@@ -55,5 +55,5 @@ clean: ; rm -f $(OBJ_FILES) ${OBJDIR}/OpenEXRResizer
 install:
 	@echo [${LOGFILE}] "--Run the tester..."
 	@cp -f ${OBJDIR}/OpenEXRResizer inst/OpenEXRResizer/bin
-	@exec ./test.sh
+	@exec ./inst/test.crypto.sh
 	@echo [${LOGFILE}] "--Done!"
