@@ -1,3 +1,6 @@
+/*
+*/
+
 #include <iostream>
 #include <cmath>
 #include <cstdio>
@@ -7,78 +10,74 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include <time.h>
 
-#include <ImfChannelList.h>
+
+ #include <ImfChannelList.h>
+#include <half.h>
 #include <ImfArray.h>
 #include <ImfOutputFile.h>
-#include <ImfInputFile.h>
-#include <ImfChannelList.h>
-#include <ImfFrameBuffer.h>
-#include <ImfRgbaFile.h>
-#include <half.h>
 
-#include "exrio.h"
+#include "exr_io.h"
 
 using namespace std;
-using namespace Imf;
-using namespace Imath;
-
-// Get current time, format is HH:mm:ss
-const std::string currentTime() {
-    time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
-    tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "%X", &tstruct);
-
-    return buf;
-}
 
 static void usage(const char * const program) {
-    fprintf(stderr, "usage: %s <input.exr> <output.exr>\n", "OpenEXRResizer");
-    fprintf(stderr, "\t\t -s  factor of scale [2(default), 4, 8] \n");
-    fprintf(stderr, "\t\t -h  print help information \n");
-    fprintf(stderr, "\t Resize OpenEXR file, for proxy usage! \n");
+    fprintf(stderr, "usage: %s <input.exr> <output.exr>\n", program);
+    fprintf(stderr, "\t Auto crop EXR file into a new! \n");
     exit(1);
 }
 
+bool endswithdota(char *filename)
+{
+    bool result = false;
+    std::string source = filename;
+    if ( source.length() < 2)
+    {
+        if ( source == "A" )
+            result = true;
+        else result = false;
+    }
+    else
+    {
+        if(source.substr( source.length() - 2 ) == ".A")
+        {
+            // match
+            result = true;
+        }        
+    }
+    return result;
+}
+
+
 int main(int argc, char *argv[]) 
 {
-    const char *infile = NULL;
     const char *outfile = NULL;
-    const char *factor = "2";
-    // const char *resolution = "FLOAT";
+    const char *infile = NULL;
 
-    // chasing arguments
     if (argc == 1) usage(argv[0]);
-    for (int i = 1; i < argc; i++) {
-        if (i > 4)
-            printf("Too many arguments!");
-        else if (strcmp(argv[i], "-s") == 0)
-        {
-            factor = argv[i + 1];i++;
-        }
-        else if (strcmp(argv[i], "-h") == 0)
-            usage(argv[0]); 
-        else if (!infile)
+    for (int i = 1; i < argc; ++i) {
+        if (!infile)
             infile = argv[i];
         else if (!outfile)
             outfile = argv[i];
         else
             usage(argv[0]);
     }
+    printf("[Start Process] read file from : %s \n", infile);
 
-    printf("[%s] Read file from : %s \n",currentTime().c_str(), infile);
+    Array2D<half> rPixels;
+    Array2D<half> gPixels;
+    Array2D<half> bPixels;
+    Array2D<float> aPixels;
 
+    Box2i dataWindow;
+    Box2i displayWindow;
 
-    HeaderData data;
-    ReadHeaderData(infile, data);
+    bool noAlpha = false;
+    bool isCorpped = false;
 
-    Box2i dataWindow = data.dataWindow;
-    Box2i displayWindow = data.displayWindow;
-
-
+    int minx,miny,maxx,maxy;
+    int width,height;
 
     vector<string> floatPixelNameSet;
     Array < Array2D<float> > floatPixelSet;
@@ -87,16 +86,32 @@ int main(int argc, char *argv[])
     vector<string> uintPixelNameSet;
     Array < Array2D<uint> > uintPixelSet;
 
-
-    int width,height;
-
-    // Read EXR
+    // all the alpha data would be store here.
+    vector<string> alphaNameSet;
+    Array < Array2D<float> > alphaSet;
+    
+    // read pixles from exr image.
     try{
     InputFile inputFile (infile);
     Box2i dw = inputFile.header().dataWindow();
     Box2i dsw = inputFile.header().displayWindow();
     width  = dsw.max.x - dsw.min.x + 1;
     height = dsw.max.y - dsw.min.y + 1;
+    dataWindow = dw;
+    displayWindow = dsw;
+    if (dw == dsw)
+        isCorpped = false;
+    else
+        isCorpped = true;
+
+    minx=dsw.max.x;
+    miny=dsw.max.y;
+    maxx=0;
+    maxy=0;
+
+    printf("[Data Window] min x:%i, min y:%i, max x:%i, max y: %i \n", dw.min.x, dw.min.y, dw.max.x, dw.max.y);
+    printf("[Display Window] min x:%i, min y:%i, max x:%i, max y: %i \n", dsw.min.x, dsw.min.y, dsw.max.x, dsw.max.y);
+
 
     FrameBuffer readFrameBuffer;
 
@@ -104,6 +119,7 @@ int main(int argc, char *argv[])
 
     for (ChannelList::ConstIterator i = channels.begin(); i != channels.end(); ++i)
     {
+        // printf("Channels %s\n", i.name());
         switch (i.channel().type){
             case FLOAT:
                 floatPixelNameSet.push_back(string(i.name()));
@@ -118,11 +134,24 @@ int main(int argc, char *argv[])
                 floatPixelNameSet.push_back(string(i.name()));
                 break;
         }
+        if ( endswithdota((char*) i.name()) )
+            alphaNameSet.push_back(string(i.name()));
     }
 
+    if(alphaNameSet.empty())
+        noAlpha = true;
+
+
+    if (isCorpped || noAlpha)
+    {
+        printf("[Shut Down] no alpha:%s | has croped:%s \n", 
+            noAlpha?"yes":"no",isCorpped?"yes":"no");
+        return 0;
+    }
 
     // read FLOAT RGB channel
     floatPixelSet.resizeErase (floatPixelNameSet.size());
+    // printf("%s\n", "floatPixelSet");
     for (unsigned int it = 0; it < floatPixelNameSet.size(); ++it)
     {
         floatPixelSet[it].resizeErase (height, width);
@@ -139,6 +168,7 @@ int main(int argc, char *argv[])
 
     // read HALF RGB channel
     halfPixelSet.resizeErase (halfPixelNameSet.size());
+    // printf("%s\n", "halfPixelSet");
     for (unsigned int it = 0; it < halfPixelNameSet.size(); ++it)
     {
         halfPixelSet[it].resizeErase (height, width);
@@ -156,6 +186,7 @@ int main(int argc, char *argv[])
 
     // read UINT RGB channel
     uintPixelSet.resizeErase (uintPixelNameSet.size());
+    // printf("%s\n", "uintPixelSet");
     for (unsigned int it = 0; it < uintPixelNameSet.size(); ++it)
     {
         uintPixelSet[it].resizeErase (height, width);
@@ -170,6 +201,23 @@ int main(int argc, char *argv[])
                                    0.0));        
     }
 
+    // // read alpha channel
+    // alphaSet.resizeErase(alphaNameSet.size());
+    // // printf("%s\n", "alphaSet");
+    // for (unsigned int it = 0; it < alphaNameSet.size(); ++it)
+    // {
+    //     // printf("read alpha channel: %s \n", alphaNameSet[it].c_str());
+    //     alphaSet[it].resizeErase (height, width);
+    //     readFrameBuffer.insert (alphaNameSet[it],
+    //                         Slice (FLOAT,
+    //                                (char *) (&alphaSet[it][0][0] -
+    //                                          dw.min.x -
+    //                                          dw.min.y * width),
+    //                                sizeof (alphaSet[it][0][0]) * 1,
+    //                                sizeof (alphaSet[it][0][0]) * width,
+    //                                1, 1,
+    //                                0.0));        
+    // }
 
     inputFile.setFrameBuffer (readFrameBuffer);
     inputFile.readPixels (dw.min.y, dw.max.y);
@@ -180,85 +228,34 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-
-    // deal with image size
-    Array < Array2D<float> > floatPixelScaledSet;
-    Array < Array2D<half> > halfPixelScaledSet;
-    Array < Array2D<uint> > uintPixelScaledSet;
-
-    floatPixelScaledSet.resizeErase (floatPixelNameSet.size());
-    halfPixelScaledSet.resizeErase (halfPixelNameSet.size());
-    uintPixelScaledSet.resizeErase (uintPixelNameSet.size());
-
-    dataWindow.min.x = floor(dataWindow.min.x/atoi(factor));
-    dataWindow.min.y = floor(dataWindow.min.y/atoi(factor));
-    dataWindow.max.x = floor(dataWindow.max.x/atoi(factor));
-    dataWindow.max.y = floor(dataWindow.max.y/atoi(factor));
-    displayWindow.min.x = floor(displayWindow.min.x/atoi(factor));
-    displayWindow.min.y = floor(displayWindow.min.y/atoi(factor));
-    displayWindow.max.x = floor(displayWindow.max.x/atoi(factor));
-    displayWindow.max.y = floor(displayWindow.max.y/atoi(factor));
-
-    height = floor(height/atoi(factor));
-    width = floor(width/atoi(factor));
-
-    // FLOAT PIXEL
-    for (unsigned int it = 0; it < floatPixelNameSet.size(); ++it)
-    {
-        floatPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                floatPixelScaledSet[it][i][j] = floatPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
-
-    // HALF PIXEL
-    for (unsigned int it = 0; it < halfPixelNameSet.size(); ++it)
-    {
-        halfPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                halfPixelScaledSet[it][i][j] = halfPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
-
-    // UINT PIXEL
-    for (unsigned int it = 0; it < uintPixelNameSet.size(); ++it)
-    {
-        uintPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                uintPixelScaledSet[it][i][j] = uintPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
+    // for (int x = 0; x < width; ++x)
+    // {
+    //     for (int y = 0; y < height; ++y)
+    //     {
+    //         // printf("---------------------------------------\nx=%i,y=%i \n",x,y);
+    //         if (alphaSet[0][y][x] > 0.0f)
+    //         {
+    //             // printf("alpha %f \n",aPixels[y][x]);
+    //             minx = std::min(minx, x);
+    //             maxx = std::max(maxx, x);
+    //             miny = std::min(miny, y);
+    //             maxy = std::max(maxy, y);
+    //         }
+    //     }
+    // }
 
 
-    // write custom attributes
-    Header header (height, width);
+    
+    try{
+    printf("[Result Data Window] min x :%i,min y :%i,max x :%i,max y: %i \n", 
+        minx, miny, maxx, maxy);
+    Box2i resultDatawindow(V2i(minx,miny), V2i(maxx, maxy));
+
+    // Write EXR
+    Header header (width, height);
 
     header.dataWindow() = dataWindow;
     header.displayWindow() = displayWindow;
-
-    vector<MapAttrbute>* list = data.get();
-    for(vector<MapAttrbute>::iterator it = list->begin(); it != list->end(); ++it)
-    {
-        if (!it->value().empty())
-            header.insert (it->attribute(), StringAttribute (it->value()));
-    }
-
-
 
     FrameBuffer writeFrameBuffer;
 
@@ -266,17 +263,15 @@ int main(int argc, char *argv[])
     // WRITE FLOAT PIXEL DATA
     for (unsigned int it = 0; it < floatPixelNameSet.size(); ++it)
     {
+        printf("FLOAT channel %s\n", floatPixelNameSet[it].c_str());
         header.channels().insert (floatPixelNameSet[it], Channel (FLOAT));
-        // For smaller memory buffers with room only for the pixels in the data window, 
-        // the base, xStride and yStride arguments for the FrameBuffer object's slices 
-        // would have to be adjusted accordingly.
         writeFrameBuffer.insert (floatPixelNameSet[it],
                Slice (FLOAT,
-                  (char *) (&floatPixelScaledSet[it][0][0] -
+                  (char *) (&floatPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (floatPixelScaledSet[it][0][0]) * 1,
-                  sizeof (floatPixelScaledSet[it][0][0]) * width,
+                  sizeof (floatPixelSet[it][0][0]) * 1,
+                  sizeof (floatPixelSet[it][0][0]) * width,
                   1,
                   1));
     }
@@ -284,17 +279,15 @@ int main(int argc, char *argv[])
     // WRITE HALF PIXEL DATA
     for (unsigned int it = 0; it < halfPixelNameSet.size(); ++it)
     {
+        printf("HALF channel %s\n", halfPixelNameSet[it].c_str());
         header.channels().insert (halfPixelNameSet[it], Channel (HALF));
-        // For smaller memory buffers with room only for the pixels in the data window, 
-        // the base, xStride and yStride arguments for the FrameBuffer object's slices 
-        // would have to be adjusted accordingly.
         writeFrameBuffer.insert (halfPixelNameSet[it],
                Slice (HALF,
-                  (char *) (&halfPixelScaledSet[it][0][0] -
+                  (char *) (&halfPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (halfPixelScaledSet[it][0][0]) * 1,
-                  sizeof (halfPixelScaledSet[it][0][0]) * width,
+                  sizeof (halfPixelSet[it][0][0]) * 1,
+                  sizeof (halfPixelSet[it][0][0]) * width,
                   1,
                   1));
     }
@@ -303,26 +296,28 @@ int main(int argc, char *argv[])
     for (unsigned int it = 0; it < uintPixelNameSet.size(); ++it)
     {
         header.channels().insert (uintPixelNameSet[it], Channel (UINT));
-        // For smaller memory buffers with room only for the pixels in the data window, 
-        // the base, xStride and yStride arguments for the FrameBuffer object's slices 
-        // would have to be adjusted accordingly.
         writeFrameBuffer.insert (uintPixelNameSet[it],
                Slice (UINT,
-                  (char *) (&uintPixelScaledSet[it][0][0] -
+                  (char *) (&uintPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (uintPixelScaledSet[it][0][0]) * 1,
-                  sizeof (uintPixelScaledSet[it][0][0]) * width,
+                  sizeof (uintPixelSet[it][0][0]) * 1,
+                  sizeof (uintPixelSet[it][0][0]) * width,
                   1,
                   1));
     }
 
+
     OutputFile outputFile (outfile, header);
 
-
     outputFile.setFrameBuffer (writeFrameBuffer);
-    printf("[%s] Write EXR save file to :%s \n", currentTime().c_str(), outfile);
-    outputFile.writePixels (dataWindow.max.y - dataWindow.min.y + 1);
-
+    printf("[Write EXR] save file to :%s \n", outfile);
+    outputFile.writePixels (resultDatawindow.max.y - resultDatawindow.min.y + 1);
+    }
+    catch (const std::exception &e)
+    {
+        fprintf(stderr, "\n[Error] unable to write image file \"%s\": %s \n", infile, e.what());
+        return 0;
+    }
     return 0;
 }

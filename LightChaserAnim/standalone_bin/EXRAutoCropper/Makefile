@@ -1,3 +1,6 @@
+
+INSTALL_DIR=.
+
 CXX=g++
 
 EXR_INCLUDES="-I/mnt/work/software/develop/dependences/open_exr/include/OpenEXR"
@@ -24,6 +27,10 @@ LIBS=$(EXR_LIBDIR) $(EXRLIBS) -lm
 WARN=-Wall
 CXXFLAGS=$(OPT) $(MARCH) $(INCLUDE) $(WARN) $(DEFS)
 
+SRC_DIR := ./src
+OBJ_DIR := ./out
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 .PHONY: clean default
 
@@ -31,21 +38,19 @@ default: main
 
 LOGFILE=$(LOGPATH) `date +'%H:%M:%S'`
 
-clean: ; rm -f *.o EXRDataAutoCrop EXRRGBAAutoCrop
+clean: ; rm -f OBJ_FILES
 
-main: autocrop_rgba.o autocrop_all.o exr_io.o
-	@$(CXX) $(CXXFLAGS) -o EXRRGBAAutoCrop $(LIBS) autocrop_rgba.o exr_io.o
-	@$(CXX) $(CXXFLAGS) -o EXRDataAutoCrop $(LIBS) autocrop_all.o exr_io.o
-	@echo -e "\033[0;33m --Success! \033[0m"
-	@echo [${LOGFILE}] $< "--" $@
-autocrop_rgba.o: autocrop_rgba.cpp
-	@echo -e "\033[0;33m --Start to comple...! \033[0m"
-	@$(CXX) $(CXXFLAGS) -o $@ -c $<
-	@echo [${LOGFILE}] $< "--" $@
-autocrop_all.o: autocrop_all.cpp
-	@echo -e "\033[0;33m --Start to comple...! \033[0m"
-	@$(CXX) $(CXXFLAGS) -o $@ -c $<
-	@echo [${LOGFILE}] $< "--" $@
-exr_io.o: exr_io.cpp
-	@$(CXX) $(CXXFLAGS) -o $@ -c $<
-	@echo [${LOGFILE}] $< "--" $@
+start: ; @echo [${LOGFILE}] "--Start to comple...!"
+
+main: start $(OBJ_FILES)
+	@$(CXX) $(CXXFLAGS) -o ${OBJ_DIR}/EXRDataAutoCrop $(LIBS) $(OBJ_FILES)
+	@echo [${LOGFILE}] "--Finished!"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@echo [${LOGFILE}] "--Build $< -> $@"
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+install:
+	@echo [${LOGFILE}] "--Install..."
+	@cp -f ${OBJ_DIR}/EXRDataAutoCrop inst/bin/EXRDataAutoCrop
+	@#exec ./inst/test.crypto.sh
+	@echo [${LOGFILE}] "--Done!"

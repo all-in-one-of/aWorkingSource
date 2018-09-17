@@ -1,0 +1,150 @@
+#!/usr/bin/python
+
+import os
+from argparse import ArgumentParser
+from multiprocessing.dummy import Pool as ThreadPool
+
+def argsChaser():
+    parser = ArgumentParser(usage = '\t Batch resize EXR file.')
+    parser.add_argument(
+        "-f",
+        "--filePath",
+        metavar = 'DIR/',
+        action = 'store',
+        default = ".",
+        help = "folder dir which contents EXR file.")
+    parser.add_argument(
+        "-o",
+        "--outputPath",
+        metavar = 'DIR/',
+        action = 'store',
+        default = ".",
+        help = "folder dir which output EXR file.")
+    parser.add_argument(
+        "-c",
+        "--crop",
+        action = 'store_true',
+        default = False,
+        help = "crop exr" )
+    parser.add_argument(
+        "-r",
+        "--resize",
+        action = 'store_true',
+        default = False,
+        help = "crop exr" )
+    parser.add_argument(
+        "-s",
+        "--scale", 
+        metavar = '2|4|8',
+        action = 'store',
+        default = 2,
+        help = "factor of scale.")
+    parser.add_argument(
+        "-t",
+        "--threads",
+        metavar = '4|8|12',
+        action = 'store',
+        default = 1,
+        help = "Number of threads we used.")    
+    parser.add_argument(
+        "-a",
+        "--all",
+        type = bool,
+        nargs = '?',
+        action = 'store',
+        const = False, default = True,metavar = "Bool",
+        help = "convert all!")
+
+    args = None
+    temp_args,unknow = parser.parse_known_args()
+    args = vars(temp_args)
+    return args
+
+args = argsChaser()
+root = os.path.dirname(os.path.realpath(__file__))
+croper_exc = os.path.join(root,"bin","EXRAutoCropper")
+resizer_exc = os.path.join(root, "bin", "ResizerBin")
+filePath = args["filePath"]
+outputPath = args["outputPath"]
+factor = args["scale"]
+threads = args["threads"]
+
+
+def excuted(command):
+    os.system(command)
+
+
+# def excuted(text):
+#     print text
+
+
+def exc_oprate(exc_cmd,cmd_string_plate):
+
+    # local filePath
+    file_path = filePath 
+    output_path = outputPath
+
+    # make default proxy dir
+    if os.path.isdir(file_path):
+        proxy_dir = os.path.join(file_path,"proxy")
+        # skip make dir in crop mode
+        if 'EXRAutoCropper' in exc_cmd: 
+            proxy_dir = file_path
+    else:
+        proxy_dir = os.path.join(os.path.dirname(file_path),"proxy")
+        # skip make dir in crop mode
+        if 'EXRAutoCropper' in exc_cmd: 
+            proxy_dir = os.path.dirname(file_path)
+
+    # make proxy dirs
+    if 'proxy' in proxy_dir and not os.path.isdir(proxy_dir):
+        os.mkdir(proxy_dir, 0777) 
+        # print "makeing proxy dir ..{0}".format(proxy_dir)
+
+    # if output is not given then use default proxy dirs.
+    if outputPath is ".":
+        output_path = proxy_dir
+
+    # normalize input formats 
+    if os.path.isdir(file_path):
+        exr_files = os.listdir(file_path)
+    else:
+        exr_files = [os.path.basename(file_path)]
+        file_path = os.path.dirname(file_path)
+
+    # build tasks 
+    tasks = []
+    for file in exr_files:
+        if not file.endswith(".exr"):
+            continue
+        # skip cryptomatte file in crop
+        if 'EXRAutoCropper' in exc_cmd and 'crypto' in file:
+            continue
+
+        infile = os.path.join(file_path,file)
+        outfile = os.path.join(output_path,file)
+        command = cmd_string_plate.format(exc_cmd, infile, outfile, factor)
+        tasks.append(command)
+
+    # make the Pool of workers
+    pool = ThreadPool(int(threads)) 
+    results = pool.map(excuted, tasks)
+
+
+def main():
+
+    if args['crop']:
+        cmd_string_plate = "{0} {1} {2}"
+        exc_oprate(croper_exc,cmd_string_plate)
+
+    if args['resize']:
+        cmd_string_plate = "{0} {1} {2} -s {3}"
+        exc_oprate(resizer_exc,cmd_string_plate)
+
+if __name__ ==  "__main__":
+    main()
+
+#############################
+# Example
+# >./exrConverter -[c,r] -f /path/to/folder/ -t [2,4,8]
+# >./exrConverter -[c,r,cr] -f /path/to/folder/beauty.exr -o /path/to/new_folder -t [2,4,8]
