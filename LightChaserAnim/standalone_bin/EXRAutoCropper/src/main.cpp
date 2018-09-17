@@ -201,23 +201,6 @@ int main(int argc, char *argv[])
                                    0.0));        
     }
 
-    // // read alpha channel
-    // alphaSet.resizeErase(alphaNameSet.size());
-    // // printf("%s\n", "alphaSet");
-    // for (unsigned int it = 0; it < alphaNameSet.size(); ++it)
-    // {
-    //     // printf("read alpha channel: %s \n", alphaNameSet[it].c_str());
-    //     alphaSet[it].resizeErase (height, width);
-    //     readFrameBuffer.insert (alphaNameSet[it],
-    //                         Slice (FLOAT,
-    //                                (char *) (&alphaSet[it][0][0] -
-    //                                          dw.min.x -
-    //                                          dw.min.y * width),
-    //                                sizeof (alphaSet[it][0][0]) * 1,
-    //                                sizeof (alphaSet[it][0][0]) * width,
-    //                                1, 1,
-    //                                0.0));        
-    // }
 
     inputFile.setFrameBuffer (readFrameBuffer);
     inputFile.readPixels (dw.min.y, dw.max.y);
@@ -228,24 +211,47 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    // for (int x = 0; x < width; ++x)
-    // {
-    //     for (int y = 0; y < height; ++y)
-    //     {
-    //         // printf("---------------------------------------\nx=%i,y=%i \n",x,y);
-    //         if (alphaSet[0][y][x] > 0.0f)
-    //         {
-    //             // printf("alpha %f \n",aPixels[y][x]);
-    //             minx = std::min(minx, x);
-    //             maxx = std::max(maxx, x);
-    //             miny = std::min(miny, y);
-    //             maxy = std::max(maxy, y);
-    //         }
-    //     }
-    // }
+    if(!floatPixelNameSet.empty())
+    {
+      for (int x = 0; x < width; ++x)
+      {
+          for (int y = 0; y < height; ++y)
+          {
+              // printf("---------------------------------------\nx=%i,y=%i \n",x,y);
+              if (floatPixelSet[0][y][x] > 0.0f)
+              {
+                  // printf("alpha %f \n",aPixels[y][x]);
+                  minx = std::min(minx, x);
+                  maxx = std::max(maxx, x);
+                  miny = std::min(miny, y);
+                  maxy = std::max(maxy, y);
+              }
+          }
+      }
+    }
+    else if(!halfPixelNameSet.empty())
+    {
+      for (int x = 0; x < width; ++x)
+      {
+          for (int y = 0; y < height; ++y)
+          {
+              // printf("---------------------------------------\nx=%i,y=%i \n",x,y);
+              if (halfPixelSet[0][y][x] > 0.0f)
+              {
+                  // printf("alpha %f \n",aPixels[y][x]);
+                  minx = std::min(minx, x);
+                  maxx = std::max(maxx, x);
+                  miny = std::min(miny, y);
+                  maxy = std::max(maxy, y);
+              }
+          }
+      }
+    }
+    else
+    {
+      return 0;
+    }
 
-
-    
     try{
     printf("[Result Data Window] min x :%i,min y :%i,max x :%i,max y: %i \n", 
         minx, miny, maxx, maxy);
@@ -254,7 +260,7 @@ int main(int argc, char *argv[])
     // Write EXR
     Header header (width, height);
 
-    header.dataWindow() = dataWindow;
+    header.dataWindow() = resultDatawindow;
     header.displayWindow() = displayWindow;
 
     FrameBuffer writeFrameBuffer;
@@ -263,7 +269,7 @@ int main(int argc, char *argv[])
     // WRITE FLOAT PIXEL DATA
     for (unsigned int it = 0; it < floatPixelNameSet.size(); ++it)
     {
-        printf("FLOAT channel %s\n", floatPixelNameSet[it].c_str());
+        // printf("FLOAT channel %s\n", floatPixelNameSet[it].c_str());
         header.channels().insert (floatPixelNameSet[it], Channel (FLOAT));
         writeFrameBuffer.insert (floatPixelNameSet[it],
                Slice (FLOAT,
@@ -279,7 +285,7 @@ int main(int argc, char *argv[])
     // WRITE HALF PIXEL DATA
     for (unsigned int it = 0; it < halfPixelNameSet.size(); ++it)
     {
-        printf("HALF channel %s\n", halfPixelNameSet[it].c_str());
+        // printf("HALF channel %s\n", halfPixelNameSet[it].c_str());
         header.channels().insert (halfPixelNameSet[it], Channel (HALF));
         writeFrameBuffer.insert (halfPixelNameSet[it],
                Slice (HALF,
