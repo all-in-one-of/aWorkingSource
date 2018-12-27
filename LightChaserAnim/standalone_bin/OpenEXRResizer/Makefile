@@ -8,7 +8,6 @@ EXR_LIBDIR="-L/mnt/work/software/develop/dependences/open_exr/lib"
 
 OBJDIR = ./out
 
-OPT=-o3
 
 EXRLIBS=$(EXR_LIBDIR) -Bstatic -lIex -lIlmImf -lIlmThread -lImath -lIex -lHalf -Bdynamic
 
@@ -27,6 +26,7 @@ INCLUDES=$(EXR_INCLUDESS)
 LIBS=$(EXR_LIBDIR) $(EXRLIBS) -lm 
 
 WARN=-Wall
+OPT=-o3
 CXXFLAGS=$(OPT) $(MARCH) $(INCLUDES) $(WARN) $(DEFS)
 
 SRC_DIR := ./src
