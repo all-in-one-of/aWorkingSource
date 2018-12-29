@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Look From Task" command="import common.task_look as cta;reload(cta);win=cta.TaskLook();win.show()" />
+    <cmd_menu label="Submit Self-Check" command="import submit_echck.main as sm;reload(sm).show()" />
+</root>

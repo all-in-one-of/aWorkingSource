@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Tessa Pro" command="import common.katanaUtils as cku;win=cku.tessa_pro()" />
+    <cmd_menu label="check error" command="import common.getErrorInKatana as gtero;reload(gtero);gtero.runGetError()" />
+    <cmd_menu label="auto check" command="import common.autoPrune.checkErrorUI as erroui;
+    	reload(erroui);w=erroui.checkErrorWin({});w.show();print 'open ui'" />   
+    <cmd_menu label="Publish Set" command="import set.set_pub.publish_win as pub_win;reload(pub_win);pub_win.show_window()" />
+    <cmd_menu label="Shrink Lod" command="import set.shrink_lod.shrink_lod as sl;reload(sl);sl.set_lod()" />
+</root>

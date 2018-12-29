@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <project name="PWS" icon="logopws.png" path=""/>
+  <project name="CAT" icon="logocat.png" path=""/>
+  <project name="TPR" icon="logoteapet.png" path=""/>
+  <project name="GOD" icon="logodoorgod.png" path=""/>
+</root>

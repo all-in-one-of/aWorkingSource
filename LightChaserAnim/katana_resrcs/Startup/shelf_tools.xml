@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <sub_tool label="clean catalogs" icon="broom.png" command="import common.deleteCatalogsItems as dci;dci.main()"/>
+  <sub_tool label="build" icon="hammer.png" command="import common.katanaUtils as cku;cku.create_shot_maker_node()"/>
+  <sub_tool label="rocket" icon="rocket.png" command="import common.katanaUtils as cku;a=cku.muster_submit_render()"/>
+  <spacing value="5"/>
+</root>

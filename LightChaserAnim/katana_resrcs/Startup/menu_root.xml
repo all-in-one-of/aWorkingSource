@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+    <sub_menu name="srf"/>
+    <sub_menu name="lgt"/>
+    <sub_menu name="set"/>
+    <sub_menu name="ple"/>
+    <sub_menu name="efx"/>
+    <sub_menu name="cfx"/>
+    <sub_menu name="plt"/>
+
+    <cmd_menu label="Note Chaser" command="import note_chaser.note_chaser_win as ncw;reload(ncw);ncw.main()"/>
+
+    <separator name=""/>
+
+    <cmd_menu label="Menu Help" command="import production.open_url as open_url; open_url.open('http://10.0.0.5/wiki/index.php/PLE/LCA_Tools/Katana')" icon="/mnt/proj/software/lib/icons/katana_menu_help.png"/>
+    <cmd_menu label="Node Help" command="import common.katanaUtils as cku;a=cku.katana_node_help()" icon="/mnt/proj/software/lib/icons/katana_node_help.png"/>
+</root>

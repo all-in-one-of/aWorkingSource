@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Publish Edit Info" command="import plt.edit_publish.publish_edit_info as popp; popp.show_dialog()" />
+    <cmd_menu label="Open Srface Node" command="import plt.open_srf_node as opensrf; opensrf.open_klf_node()" />
+</root>

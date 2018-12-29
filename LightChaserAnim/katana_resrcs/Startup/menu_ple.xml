@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<root>
+    <cmd_menu label="Node Wiki Text" command="import common.katanaUtils as cku;reload(cku);a=cku.get_node_wiki_txt()" />
+</root>
