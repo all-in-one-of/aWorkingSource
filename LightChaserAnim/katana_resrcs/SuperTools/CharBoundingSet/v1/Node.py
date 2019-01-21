@@ -1,12 +1,12 @@
 import logging
 import textwrap
-log = logging.getLogger('ChraBoundingSet')
+log = logging.getLogger('CharBoundingSet')
 from Katana import NodegraphAPI, Nodes3DAPI, AssetAPI
 from Katana import QtCore, QtGui
 import ScriptActions as SA
 from Katana import DrawingModule
 
-class ChraBoundingSetNode(NodegraphAPI.SuperTool):
+class CharBoundingSetNode(NodegraphAPI.SuperTool):
     def __init__(self):
         self.hideNodegraphGroupControls()
         self.setContentLocked(True)
@@ -104,7 +104,7 @@ class ChraBoundingSetNode(NodegraphAPI.SuperTool):
 
 
 _ExtraHints = {
-    'ChraBoundingSet.rootLocations': {
+    'CharBoundingSet.rootLocations': {
         'widget': 'scenegraphLocationArray',
         'open': 'True',
         'help':

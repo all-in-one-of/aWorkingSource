@@ -4,11 +4,11 @@ from Katana import NodegraphAPI, Nodes3DAPI, AssetAPI, Plugins
 import ScriptActions as SA
 
 import logging
-log = logging.getLogger('ChraBoundingSet')
+log = logging.getLogger('CharBoundingSet')
 
 # Class Definitions -----------------------------------------------------------
 
-class ChraBoundingSetEditor(QtGui.QWidget):
+class CharBoundingSetEditor(QtGui.QWidget):
     """
     Example of a Super Tool editing widget that displays:
         - Its own parameters.

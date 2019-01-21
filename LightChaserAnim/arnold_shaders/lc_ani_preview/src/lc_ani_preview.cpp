@@ -51,9 +51,15 @@ shader_evaluate
       AtRGB color = AiShaderEvalParamRGB(p_color);
       AtRGB opacity = AiShaderEvalParamRGB(p_opacity);
 
+      AtVector I = sg->Ro - sg->P;
+
       AtVector N = sg->Nf;
       AtVector Ng = sg->Ngf;
       AtVector Ns = sg->Ns;
+
+      AiFaceForward(N, -I);
+      AiFaceForward(Ng, -I);
+      AiFaceForward(Ns, -I);
       
       float mint = AiShaderEvalParamFlt(p_mint);
       float maxt = AiShaderEvalParamFlt(p_maxt);
@@ -66,14 +72,14 @@ shader_evaluate
       AtSampler* sampler = AiSampler(seed, nsamples, ndim);
       AtVector Nbent = AtVector(1,1,1);
 
+      ///////////////////////////////////////////////////////////////
       // caculate occlusion,if falloff equal to zero,maya would crash
       if(falloff <= 0)
             falloff = 0.001;
+
       AtRGB occlusion = AI_RGB_WHITE - AiOcclusion(N,Ng,sg,mint,maxt,spread,falloff,sampler,&Nbent);
 
-      AtVector EYE = sg->Ro - sg->P;
-
-     float NDotEye = AiV3Dot(AiV3Normalize(Ns),AiV3Normalize(EYE));
+     float NDotEye = AiV3Dot(AiV3Normalize(Ns),AiV3Normalize(I));
 
       //alpha is specified through its own closure
       AtRGB result_color;

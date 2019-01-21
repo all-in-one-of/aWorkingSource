@@ -113,7 +113,7 @@ shader_evaluate
          AtVector o, dir = u*tangent + v*bitangent;
          dir = AiV3Normalize(dir);
          ray = AiMakeRay(AI_RAY_ALL_DIFFUSE , orig, &dir, trace_dist, sg);
-
+         
          // ==== gather ==== 
          if (AiTraceProbe(ray, &hitpoint)) 
          {
