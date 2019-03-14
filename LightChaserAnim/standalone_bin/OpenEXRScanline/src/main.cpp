@@ -36,10 +36,9 @@ const std::string currentTime() {
 }
 
 static void usage(const char * const program) {
-    fprintf(stderr, "usage: %s <input.exr> <output.exr>\n", "OpenEXRResizer");
-    fprintf(stderr, "\t\t -s  factor of scale [2(default), 4, 8] \n");
+    fprintf(stderr, "usage: %s <input.exr> <output.exr>\n", "OpenEXRScanline");
     fprintf(stderr, "\t\t -h  print help information \n");
-    fprintf(stderr, "\t Resize OpenEXR file, for proxy usage! \n");
+    fprintf(stderr, "\t Convert OpenEXR file to scanline type. \n");
     exit(1);
 }
 
@@ -47,18 +46,13 @@ int main(int argc, char *argv[])
 {
     const char *infile = NULL;
     const char *outfile = NULL;
-    const char *factor = "2";
     // const char *resolution = "FLOAT";
 
     // chasing arguments
     if (argc == 1) usage(argv[0]);
     for (int i = 1; i < argc; i++) {
-        if (i > 4)
+        if (i > 3)
             printf("Too many arguments!");
-        else if (strcmp(argv[i], "-s") == 0)
-        {
-            factor = argv[i + 1];i++;
-        }
         else if (strcmp(argv[i], "-h") == 0)
             usage(argv[0]); 
         else if (!infile)
@@ -181,73 +175,8 @@ int main(int argc, char *argv[])
     }
 
 
-    // deal with image size
-    Array < Array2D<float> > floatPixelScaledSet;
-    Array < Array2D<half> > halfPixelScaledSet;
-    Array < Array2D<uint> > uintPixelScaledSet;
-
-    floatPixelScaledSet.resizeErase (floatPixelNameSet.size());
-    halfPixelScaledSet.resizeErase (halfPixelNameSet.size());
-    uintPixelScaledSet.resizeErase (uintPixelNameSet.size());
-
-    dataWindow.min.x = floor(dataWindow.min.x/atoi(factor));
-    dataWindow.min.y = floor(dataWindow.min.y/atoi(factor));
-    dataWindow.max.x = floor(dataWindow.max.x/atoi(factor));
-    dataWindow.max.y = floor(dataWindow.max.y/atoi(factor));
-    displayWindow.min.x = floor(displayWindow.min.x/atoi(factor));
-    displayWindow.min.y = floor(displayWindow.min.y/atoi(factor));
-    displayWindow.max.x = floor(displayWindow.max.x/atoi(factor));
-    displayWindow.max.y = floor(displayWindow.max.y/atoi(factor));
-
-    height = floor(height/atoi(factor));
-    width = floor(width/atoi(factor));
-
-    // FLOAT PIXEL
-    for (unsigned int it = 0; it < floatPixelNameSet.size(); ++it)
-    {
-        floatPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                floatPixelScaledSet[it][i][j] = floatPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
-
-    // HALF PIXEL
-    for (unsigned int it = 0; it < halfPixelNameSet.size(); ++it)
-    {
-        halfPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                halfPixelScaledSet[it][i][j] = halfPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
-
-    // UINT PIXEL
-    for (unsigned int it = 0; it < uintPixelNameSet.size(); ++it)
-    {
-        uintPixelScaledSet[it].resizeErase (height, width);
-        
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                uintPixelScaledSet[it][i][j] = uintPixelSet[it][i*atoi(factor)][j*atoi(factor)];
-            }
-        }
-    }
-
-
     // write custom attributes
     Header header (height, width);
-
     header.dataWindow() = dataWindow;
     header.displayWindow() = displayWindow;
     header.compression() = ZIPS_COMPRESSION;
@@ -272,11 +201,11 @@ int main(int argc, char *argv[])
         // would have to be adjusted accordingly.
         writeFrameBuffer.insert (floatPixelNameSet[it],
                Slice (FLOAT,
-                  (char *) (&floatPixelScaledSet[it][0][0] -
+                  (char *) (&floatPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (floatPixelScaledSet[it][0][0]) * 1,
-                  sizeof (floatPixelScaledSet[it][0][0]) * width,
+                  sizeof (floatPixelSet[it][0][0]) * 1,
+                  sizeof (floatPixelSet[it][0][0]) * width,
                   1,
                   1));
     }
@@ -290,11 +219,11 @@ int main(int argc, char *argv[])
         // would have to be adjusted accordingly.
         writeFrameBuffer.insert (halfPixelNameSet[it],
                Slice (HALF,
-                  (char *) (&halfPixelScaledSet[it][0][0] -
+                  (char *) (&halfPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (halfPixelScaledSet[it][0][0]) * 1,
-                  sizeof (halfPixelScaledSet[it][0][0]) * width,
+                  sizeof (halfPixelSet[it][0][0]) * 1,
+                  sizeof (halfPixelSet[it][0][0]) * width,
                   1,
                   1));
     }
@@ -308,11 +237,11 @@ int main(int argc, char *argv[])
         // would have to be adjusted accordingly.
         writeFrameBuffer.insert (uintPixelNameSet[it],
                Slice (UINT,
-                  (char *) (&uintPixelScaledSet[it][0][0] -
+                  (char *) (&uintPixelSet[it][0][0] -
                                              dataWindow.min.x -
                                              dataWindow.min.y * width),
-                  sizeof (uintPixelScaledSet[it][0][0]) * 1,
-                  sizeof (uintPixelScaledSet[it][0][0]) * width,
+                  sizeof (uintPixelSet[it][0][0]) * 1,
+                  sizeof (uintPixelSet[it][0][0]) * width,
                   1,
                   1));
     }

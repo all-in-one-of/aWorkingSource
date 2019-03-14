@@ -8,7 +8,9 @@ AI_SHADER_NODE_EXPORT_METHODS(LcUVEmitterMtd);
 
 enum Params
 {
-   p_coverage = 0,
+   p_input_u = 0,
+   p_input_v,
+   p_coverage,
    p_translate_frame,
    p_rotate_frame,
    p_mirror_u,
@@ -62,6 +64,8 @@ struct ShaderData{
 
 node_parameters
 {
+   AiParameterFlt("input_u", 1.0f);
+   AiParameterFlt("input_v", 1.0f);
    AiParameterVec2("coverage", 1.0f, 1.0f);
    AiParameterVec2("translateFrame", 0.0f, 0.0f);
    AiParameterFlt("rotateFrame", 0.0f);
@@ -97,6 +101,8 @@ node_finish
 
 shader_evaluate
 {
+   float input_u = AiShaderEvalParamFlt(p_input_u);
+   float input_v = AiShaderEvalParamFlt(p_input_v);
    AtVector2 coverage = AiShaderEvalParamVec2(p_coverage);
    AtVector2 translate = AiShaderEvalParamVec2(p_translate_frame);
    float frotate = AiShaderEvalParamFlt(p_rotate_frame);
@@ -113,13 +119,27 @@ shader_evaluate
    ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
    float inU, inV;
 
-   if (data->useCustomUVSet)
+
+   if (AiNodeIsLinked(node, "input_u") && AiNodeIsLinked(node, "input_v"))
    {
-      AtVector2 altuv;
-      if (AiUDataGetVec2(data->uvSetName, altuv))
-      {         
-         inU = altuv.x;
-         inV = altuv.y;
+      inU = input_u;
+      inV = input_v;
+   }
+   else
+   {
+      if (data->useCustomUVSet)
+      {
+         AtVector2 altuv;
+         if (AiUDataGetVec2(data->uvSetName, altuv))
+         {         
+            inU = altuv.x;
+            inV = altuv.y;
+         }
+         else
+         {
+            inU = sg->u;
+            inV = sg->v;
+         }
       }
       else
       {
@@ -127,11 +147,6 @@ shader_evaluate
          inV = sg->v;
       }
    }
-   else
-   {
-      inU = sg->u;
-      inV = sg->v;
-   }  
 
    float outU = inU;
    float outV = inV;

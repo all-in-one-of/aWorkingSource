@@ -1,0 +1,225 @@
+{
+    "lc_Fractal": [
+        "lc_noise_fractal", 
+        {
+            "Time": "lc_time", 
+            "clamp_mode": "lc_clamp_mode", 
+            "color1": "lc_color1", 
+            "color2": "lc_color2", 
+            "distortion": "lc_distortion", 
+            "gain": "lc_gain", 
+            "lacunarity": "lc_lacunarity", 
+            "mode": "lc_mode", 
+            "octaves": "lc_octaves", 
+            "offest": "lc_offest", 
+            "position": "lc_position", 
+            "rot": "lc_rot", 
+            "scale": "lc_scale", 
+            "space": "lc_space", 
+            "turbulent": "lc_turbulent", 
+            "value": "lc_value"
+        }
+    ], 
+    "lc_add": [
+        "add", 
+        {
+            "input1": "input1", 
+            "input2": "input2"
+        }
+    ], 
+    "lc_color_correct": [
+        "lc_color_correct", 
+        {
+            "brighten": "lc_brighten", 
+            "contrast": "lc_contrast", 
+            "contrast_pivot": "lc_contrast_pivot", 
+            "exposure": "lc_exposure", 
+            "gain": "lc_gain", 
+            "gamma": "lc_gamma", 
+            "hue_shift": "lc_hue_shift", 
+            "input": "lc_input", 
+            "invert_color": "lc_invert_color", 
+            "mask": "lc_mask", 
+            "saturation": "lc_saturation"
+        }
+    ], 
+    "lc_layer_color": [
+        "lc_layer_color", 
+        {
+            "clamp_result": "lc_clamp_result", 
+            "layer1": "lc_layer1", 
+            "layer1_alpha": "lc_layer1_alpha", 
+            "layer1_blend": "lc_layer1_blend", 
+            "layer1_enabled": "lc_layer1_enabled", 
+            "layer2": "lc_layer2", 
+            "layer2_alpha": "lc_layer2_alpha", 
+            "layer2_blend": "lc_layer2_blend", 
+            "layer2_enabled": "lc_layer2_enabled", 
+            "layer3": "lc_layer3", 
+            "layer3_alpha": "lc_layer3_alpha", 
+            "layer3_blend": "lc_layer3_blend", 
+            "layer3_enabled": "lc_layer3_enabled", 
+            "layer4": "lc_layer4", 
+            "layer4_alpha": "lc_layer4_alpha", 
+            "layer4_blend": "lc_layer4_blend", 
+            "layer4_enabled": "lc_layer4_enabled", 
+            "layer5": "lc_layer5", 
+            "layer5_alpha": "lc_layer5_alpha", 
+            "layer5_blend": "lc_layer5_blend", 
+            "layer5_enabled": "lc_layer5_enabled", 
+            "layer6": "lc_layer6", 
+            "layer6_alpha": "lc_layer6_alpha", 
+            "layer6_blend": "lc_layer6_blend", 
+            "layer6_enabled": "lc_layer6_enabled", 
+            "layer7": "lc_layer7", 
+            "layer7_alpha": "lc_layer7_alpha", 
+            "layer7_blend": "lc_layer7_blend", 
+            "layer7_enabled": "lc_layer7_enabled", 
+            "layer8": "lc_layer8", 
+            "layer8_alpha": "lc_layer8_alpha", 
+            "layer8_blend": "lc_layer8_blend", 
+            "layer8_enabled": "lc_layer8_enabled"
+        }
+    ], 
+    "lc_layer_normal": [
+        "lc_layer_normal", 
+        {
+            "layer0": "lc_layer0", 
+            "layer0_strength": "lc_layer0_strength", 
+            "layer1": "lc_layer1", 
+            "layer1_blend": "lc_layer1_blend", 
+            "layer1_enabled": "lc_layer1_enabled", 
+            "layer1_strength": "lc_layer1_strength", 
+            "layer2": "lc_layer2", 
+            "layer2_blend": "lc_layer2_blend", 
+            "layer2_enabled": "lc_layer2_enabled", 
+            "layer2_strength": "lc_layer2_strength", 
+            "layer3": "lc_layer3", 
+            "layer3_blend": "lc_layer3_blend", 
+            "layer3_enabled": "lc_layer3_enabled", 
+            "layer3_strength": "lc_layer3_strength", 
+            "layer4": "lc_layer4", 
+            "layer4_blend": "lc_layer4_blend", 
+            "layer4_enabled": "lc_layer4_enabled", 
+            "layer4_strength": "lc_layer4_strength", 
+            "layer5": "lc_layer5", 
+            "layer5_blend": "lc_layer5_blend", 
+            "layer5_enabled": "lc_layer5_enabled", 
+            "layer5_strength": "lc_layer5_strength", 
+            "layer6": "lc_layer6", 
+            "layer6_blend": "lc_layer6_blend", 
+            "layer6_enabled": "lc_layer6_enabled", 
+            "layer6_strength": "lc_layer6_strength", 
+            "normalize_result": "lc_normalize_result"
+        }
+    ], 
+    "lc_multiply": [
+        "multiply", 
+        {}
+    ], 
+    "lc_ramp_p4": [
+        "lc_ramp_p4", 
+        {
+            "p_colors_1": "lc_colors_1", 
+            "p_colors_2": "lc_colors_2", 
+            "p_colors_3": "lc_colors_3", 
+            "p_colors_4": "lc_colors_4", 
+            "p_interp": "lc_interp", 
+            "p_positions_1": "lc_positions_1", 
+            "p_positions_2": "lc_positions_2", 
+            "p_positions_3": "lc_positions_3", 
+            "p_positions_4": "lc_positions_4", 
+            "p_type": "lc_type"
+        }
+    ], 
+    "lc_range": [
+        "lc_remap_float", 
+        {
+            "input": "lc_input", 
+            "input_max": "lc_input_max", 
+            "input_min": "lc_input_min", 
+            "is_smoothstep": "lc_clamp_enable", 
+            "output_max": "lc_output_max", 
+            "output_min": "lc_output_min"
+        }
+    ], 
+    "lc_remap_color": [
+        "lc_remap_color", 
+        {
+            "contrastPivot": "lc_contrast_pivot", 
+            "contrastVal": "lc_contrast", 
+            "exposureVal": "lc_exposure", 
+            "gainVal": "lc_gain", 
+            "gammaVal": "lc_gamma", 
+            "hueOffsetVal": "lc_hue_offset", 
+            "input": "lc_input", 
+            "maskVal": "lc_mask", 
+            "saturationVal": "lc_saturation"
+        }
+    ], 
+    "lc_remap_float": [
+        "lc_remap_float", 
+        {
+            "RMPbias": "lc_bias", 
+            "RMPclampEnable": "lc_clamp_enable", 
+            "RMPclampMax": "lc_clamp_max", 
+            "RMPclampMin": "lc_clamp_min", 
+            "RMPcontrast": "lc_contrast", 
+            "RMPcontrastPivot": "lc_contrast_pivot", 
+            "RMPgain": "lc_gain", 
+            "RMPinputMax": "lc_input_max", 
+            "RMPinputMin": "lc_input_min", 
+            "RMPoutputMax": "lc_output_max", 
+            "RMPoutputMin": "lc_output_min", 
+            "RMPthreshold": "lc_threshold", 
+            "input": "lc_input", 
+            "mask": "lc_mask"
+        }
+    ], 
+    "lc_remap_normal": [
+        "lc_remap_normal", 
+        {
+            "input": "lc_input", 
+            "intensity": "lc_intensity", 
+            "invert_x": "lc_invert_x", 
+            "invert_y": "lc_invert_y", 
+            "invert_z": "lc_invert_z"
+        }
+    ], 
+    "lc_switch_color": [
+        "lc_switch_color", 
+        {
+            "index": "lc_index", 
+            "input0": "lc_input0", 
+            "input1": "lc_input1", 
+            "input10": "lc_input10", 
+            "input11": "lc_input11", 
+            "input12": "lc_input12", 
+            "input13": "lc_input13", 
+            "input14": "lc_input14", 
+            "input15": "lc_input15", 
+            "input16": "lc_input16", 
+            "input17": "lc_input17", 
+            "input18": "lc_input18", 
+            "input19": "lc_input19", 
+            "input2": "lc_input2", 
+            "input20": "lc_input20", 
+            "input3": "lc_input3", 
+            "input4": "lc_input4", 
+            "input5": "lc_input5", 
+            "input6": "lc_input6", 
+            "input7": "lc_input7", 
+            "input8": "lc_input8", 
+            "input9": "lc_input9", 
+            "smooth": "lc_smooth", 
+            "threshold": "lc_threshold"
+        }
+    ], 
+    "lc_user_data_float": [
+        "user_data_float", 
+        {
+            "attribute": "attribute", 
+            "default_value": "default"
+        }
+    ]
+}
