@@ -1,0 +1,28 @@
+
+float2 uvs = UVs;
+float radius = Radius;
+float target_depth = TargetDepth;
+float scene_depth = CalcSceneDepth(uvs);
+float scene_depth_0_0 = CalcSceneDepth(uvs + float2(0, -radius));
+float scene_depth_0_1 = CalcSceneDepth(uvs + float2(-radius, 0));
+float scene_depth_1_0 = CalcSceneDepth(uvs + float2(0, -radius));
+float scene_depth_1_1 = CalcSceneDepth(uvs + float2(-radius, 0));
+
+float dist = scene_depth - target_depth;
+float dist_0_0 = scene_depth_0_0 - target_depth;
+float dist_0_1 = scene_depth_0_1 - target_depth;
+float dist_1_0 = scene_depth_1_0 - target_depth;
+float dist_1_1 = scene_depth_1_1 - target_depth;
+
+dist = max(max(dist_0_0, dist_0_1), max(dist_1_0, dist_1_1));
+
+float result = 0.0;
+if (dist >= 0.0)
+{
+    result = 1.0;
+}
+else
+{
+    result = 0.0;
+}
+return result;

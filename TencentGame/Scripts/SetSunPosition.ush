@@ -1,0 +1,18 @@
+#pragma once
+
+float2 center_pos = CenterPosition;
+float2 tex_coord = TexCoord;
+float tex_scale = TexScale;
+float aspect_ratio = AspectRatio;
+float2 default_center_pos = float2(0.5, 0.5);
+tex_coord = tex_coord*tex_scale;
+tex_coord = float2(tex_coord.x*aspect_ratio, tex_coord.y);
+float2 factor = float2(1.0*tex_scale*aspect_ratio, 1.0*tex_scale);
+float2 current_center_pos = factor/2;
+float2 movement = center_pos - current_center_pos;
+// movement = movement*factor;
+tex_coord = tex_coord + movement;
+float2 result = tex_coord;
+
+
+return result;

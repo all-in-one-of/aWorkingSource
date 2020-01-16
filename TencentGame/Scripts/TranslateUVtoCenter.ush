@@ -1,0 +1,30 @@
+#pragma once
+
+float2 center_pos = CenterPosition;
+float2 tex_coord = TexCoord;
+float2 tex_scale = TexScale;
+float aspect_ratio = AspectRatio;
+float2 default_center_pos = float2(0.5, 0.5);
+float2 aspect_center_pos = float2(0.5*aspect_ratio, 0.5);
+float2 movement = default_center_pos - center_pos;
+float2 result = tex_coord;
+result = float2(result.x*aspect_ratio, result.y);
+result = result + (default_center_pos - aspect_center_pos);
+result = result*tex_scale + (default_center_pos - default_center_pos*tex_scale);
+result = result + float2(movement.x*aspect_ratio, movement.y)*tex_scale;
+return result;
+
+
+
+// float2 center_pos = CenterPosition;
+// float2 tex_coord = TexCoord;
+// float tex_scale = TexScale;
+// float aspect_ratio = AspectRatio;
+// float2 default_center_pos = float2(0.5, 0.5);
+// float2 aspect_center_pos = float2(0.5*aspect_ratio, 0.5);
+// float2 movement = default_center_pos - center_pos;
+// float2 result = float2(0.0, 0.0);
+// tex_coord = float2(tex_coord.x*aspect_ratio, tex_coord.y);
+// tex_coord = tex_coord + (default_center_pos - aspect_center_pos);
+// result = tex_coord + float2(movement.x*aspect_ratio, movement.y);
+// return result;

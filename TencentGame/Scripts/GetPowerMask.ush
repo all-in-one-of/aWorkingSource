@@ -1,0 +1,19 @@
+float3 vertex_color = VertexColor;
+float2 mateid = float2(trunc(VertexColor.x*256.0), trunc(VertexColor.y*256.0));
+float id = ID;
+float result = 1.0;
+if (abs(mateid.x - id) <= 0.0000000001)
+{
+    result = 1.0 - vertex_color.z;
+}
+else if(abs(mateid.y - id) <= 0.0000000001)
+{
+    result = vertex_color.z;
+}
+else
+{
+    result = 0.0;
+}
+
+result = clamp(resu, 0.0, 1.0);
+return result;

@@ -1,0 +1,4 @@
+float3 t = n1.xyz*float3( 2,  2, 2) + float3(-1, -1,  0);
+float3 u = n2.xyz*float3(-2, -2, 2) + float3( 1,  1, -1);
+float3 r = t*dot(t, u) - u*t.z;
+return r;

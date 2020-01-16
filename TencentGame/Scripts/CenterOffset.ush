@@ -1,0 +1,11 @@
+
+
+float2 center_position = CenterPosition;
+float2 sun_location = Location;
+float2 origin_point = Origin;
+
+float2 move_vector = (origin_point - sun_location)
+move_vector = move_vector/sqrt( pow(move_vector.x, 2)+pow(move_vector.y, 2) );
+
+float2 result;
+result = move_vector;
