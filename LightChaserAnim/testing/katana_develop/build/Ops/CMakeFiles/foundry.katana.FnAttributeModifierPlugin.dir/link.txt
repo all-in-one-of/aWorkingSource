@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnAttributeModifierPlugin.a  CMakeFiles/foundry.katana.FnAttributeModifierPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAttributeModifier/plugin/FnAttributeModifier.cpp.o CMakeFiles/foundry.katana.FnAttributeModifierPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAttributeModifier/plugin/FnAttributeModifierInput.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnAttributeModifierPlugin.a

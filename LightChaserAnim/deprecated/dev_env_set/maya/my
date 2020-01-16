@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# fix opencl bug
-#export MAYA_IGNORE_OPENCL_VERSION=1
-export MAYA_OPENCL_IGNORE_DRIVER_VERSION=1
-
-exec /mnt/usr/autodesk/maya2017/bin/maya2017

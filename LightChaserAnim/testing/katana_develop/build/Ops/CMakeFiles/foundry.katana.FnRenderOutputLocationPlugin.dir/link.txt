@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnRenderOutputLocationPlugin.a  CMakeFiles/foundry.katana.FnRenderOutputLocationPlugin.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnRenderOutputLocation/plugin/FnRenderOutputLocationPlugin.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnRenderOutputLocationPlugin.a

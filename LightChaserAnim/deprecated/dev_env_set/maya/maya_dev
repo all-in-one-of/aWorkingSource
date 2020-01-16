@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-source "/mnt/work/software/develop/maya/launcher/env_config/maya2017_dev.sh"
-
-/usr/autodesk/maya2017/bin/maya2017 $@

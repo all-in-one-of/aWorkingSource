@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnRendererInfo.a  CMakeFiles/foundry.katana.FnRendererInfo.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnRendererInfo/client/FnRendererInfoPluginClient.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnRendererInfo.a

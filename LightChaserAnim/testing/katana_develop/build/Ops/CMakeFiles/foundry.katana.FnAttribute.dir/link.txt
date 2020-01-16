@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnAttribute.a  CMakeFiles/foundry.katana.FnAttribute.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAttribute/client/FnAttribute.cpp.o CMakeFiles/foundry.katana.FnAttribute.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAttribute/client/FnAttributeUtils.cpp.o CMakeFiles/foundry.katana.FnAttribute.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnAttribute/client/FnDataBuilder.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnAttribute.a

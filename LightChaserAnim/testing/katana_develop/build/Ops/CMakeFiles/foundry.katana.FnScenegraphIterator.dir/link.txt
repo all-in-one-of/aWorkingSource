@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnScenegraphIterator.a  CMakeFiles/foundry.katana.FnScenegraphIterator.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnScenegraphIterator/client/FnScenegraphIterator.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnScenegraphIterator.a

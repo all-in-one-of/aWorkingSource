@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-echo ${USER}
-export DIRECTORY="/home/${USER}/Resource"
-if [ ! -d "${DIRECTORY}" ]; then
-  mkdir ${DIRECTORY};mkdir ${DIRECTORY}/Macros
-fi 

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfoundry.katana.FnLogging.a  CMakeFiles/foundry.katana.FnLogging.dir/mnt/proj/software/develop/katana/katana/katana2.5v5/plugin_apis/src/FnLogging/client/FnLogging.cpp.o
-/usr/bin/ranlib libfoundry.katana.FnLogging.a
